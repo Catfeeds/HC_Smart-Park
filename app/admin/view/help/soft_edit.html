@@ -1,0 +1,95 @@
+{extend name="admin@public/base" /}
+{block name="main-content"}
+<div class="page-content">
+    <!--主题-->
+    <div class="page-header">
+        <h1>
+            您当前操作
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                修改软件
+            </small>
+        </h1>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xs-12">
+            <form class="form-horizontal ajaxForm2" name="soft_info_edit" method="post" action="{:url('admin/Help/runEdit')}">
+                <input name="soft_id" id="soft_id" type="hidden" value="{$soft_info.soft_id}" />
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 软件名称：  </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="soft_name" id="soft_name"  value="{$soft_info.soft_name}"  class="col-xs-10 col-sm-5"/>
+                        <span class="lbl col-xs-12 col-sm-7"><span class="red">*</span></span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 软件图标：  </label>
+                    <div class="col-sm-10">
+                        <input type="hidden" name="old_soft_ico" id="old_soft_ico" value="{$soft_info.soft_ico}">
+                        <a href="javascript:;" class="file">
+                            <input type="file" name="file0" id="file0" multiple="multiple"/>
+                            选择上传文件
+                        </a>
+                        <a href="javascript:;" onclick="return backpic('__PUBLIC__/img/no_img.jpg');"
+                           title="还原修改前的图片" class="file">
+                            撤销上传
+                        </a>
+                        <div><img src="__ROOT__{$soft_info.soft_ico}" height="70" id="img0"></div>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1">
+                        链接URL： </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="soft_url" id="soft_url" value="{$soft_info.soft_url}"
+                               class="col-xs-10 col-sm-8"/>
+                        <span class="lbl">&nbsp;&nbsp;<span class="red">*</span></span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 描述： </label>
+                    <div class="col-sm-10">
+                                    <textarea name="soft_content" cols="20" rows="2"
+                                              class="col-xs-10 col-sm-8 limitedone" id="form-field-10">{$soft_info.soft_desc}</textarea>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 是否审核： </label>
+                    <div class="col-sm-10" style="padding-top:5px;">
+                        <input name="soft_status" id="soft_status" {if condition="$soft_info['soft_status'] eq 1"}checked{/if} value="1" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox" />
+                        <span class="lbl">&nbsp;默认关闭</span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="clearfix form-actions">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button class="btn btn-info" type="submit">
+                            <i class="ace-icon fa fa-check bigger-110"></i>
+                            保存
+                        </button>
+
+                        &nbsp; &nbsp; &nbsp;
+                        <button class="btn" type="reset">
+                            <i class="ace-icon fa fa-undo bigger-110"></i>
+                            重置
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div><!-- /.page-content -->
+{/block}
