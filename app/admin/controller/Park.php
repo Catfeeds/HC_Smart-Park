@@ -79,4 +79,53 @@ class Park extends Base
     {
 
     }
+
+    /**
+     *会议室列表
+     */
+    public function meeting_room_list(){
+
+    }
+
+    /**
+     *增加会议室页面
+     */
+    public function meeting_room_add(){
+
+    }
+
+    /**
+     *执行增加会议室
+     */
+    public function meeting_room_runadd(){
+
+    }
+
+    /**
+     *编辑会议室
+     */
+    public function meeting_room_edit(){
+
+    }
+
+    /**
+     *执行编辑会议室操作
+     */
+    public function meeting_room_runedit(){
+
+    }
+
+    /**
+     *修改会议室状态
+     */
+    public function meeting_room_status(){
+
+    }
+
+    /**
+     *删除会议室
+     */
+    public function meeting_room_delete(){
+
+    }
 }
