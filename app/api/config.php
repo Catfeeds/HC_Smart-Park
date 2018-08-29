@@ -7,4 +7,6 @@ return [
     'default_return_type' => 'json',
     //api异常处理类
     'exception_handle' => '\app\api\library\ExceptionHandle',
+    //加密salt
+    'password_pre_halt'=>'',
 ];

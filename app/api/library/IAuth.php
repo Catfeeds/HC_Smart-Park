@@ -18,7 +18,7 @@ class IAuth
      */
     public static function setPassword($data)
     {
-        return md5($data . config('app.password_pre_halt'));
+        return md5($data . config('password_pre_halt'));
     }
 
     /**
