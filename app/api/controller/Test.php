@@ -9,10 +9,13 @@
 namespace app\api\controller;
 
 
+use app\api\library\ApiException;
+
 class Test extends Base
 {
     public function index()
     {
+
         return \show('1', 'OK');
     }
 
