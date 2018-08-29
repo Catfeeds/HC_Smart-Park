@@ -9,7 +9,7 @@
 use think\Route;
 
 /**
- * index	GET	test	index
+ *  index	GET	test	index
     create	GET	test/create	create
     save	POST	test	save
     read	GET	test/:id	read
