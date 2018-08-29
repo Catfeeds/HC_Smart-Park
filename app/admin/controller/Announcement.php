@@ -9,6 +9,8 @@
 namespace app\admin\controller;
 
 
+use think\Db;
+
 /**
  * Class Announcement
  * @package app\admin\controller
@@ -29,7 +31,14 @@ class Announcement extends Base
      */
     public function announcement_list()
     {
-
+        $list = \db('Announcement')
+            ->order('addtime desc')
+            ->paginate(config('paginate.list_rows'));
+        $show = $list->render();
+        $show = preg_replace("(<a[^>]*page[=|/](\d+).+?>(.+?)<\/a>)", "<a href='javascript:ajax_page($1);'>$2</a>", $show);
+        $this->assign(\compact('list'));
+        $this->assign('page', $show);
+        return $this->fetch();
     }
 
     /**
@@ -45,6 +54,37 @@ class Announcement extends Base
      */
     public function announcement_delete()
     {
+        $p = input('p');
+        $id = \input('id');
+        $rst = \db('Announcement')->where('id', 'eq', $id)->delete();
+        if ($rst !== false) {
+            $this->success('删除成功', url('admin/Announcement/announcement_list', array('p' => $p)));
+        } else {
+            $this->error('删除失败', url('admin/Announcement/announcement_list', array('p' => $p)));
+        }
+    }
 
+
+    /**
+     *删除全部公告
+     */
+    public function announcement_alldelete()
+    {
+        $p = input('p');
+        $ids = input('id/a');
+        if (empty($ids)) {
+            $this->error("请选择删除的公告", url('admin/Announcement/announcement_list', array('p' => $p)));
+        }
+        if (!is_array($ids)) {
+            $ids[] = $ids;
+        }
+
+        $rst = Db::name('Announcement')->where('id', 'in', $ids)->delete();
+        if (!$rst) {
+            $this->error("删除失败", url('admin/Announcement/announcement_list', array('p' => $p)));
+        } else {
+            $this->success("删除成功", url('admin/Announcement/announcement_list', array('p' => $p)));
+
+        }
     }
 }

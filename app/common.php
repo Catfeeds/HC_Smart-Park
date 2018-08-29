@@ -1791,3 +1791,14 @@ function getCityByIp($ip)
     curl_close($ch);
     return ($location->data->city);
 }
+
+/**
+ * @param $adminid
+ * @return mixed
+ * 根据id获取管理员名称
+ */
+function getAdminUserNameById($adminid)
+{
+    $name = Db::name('Admin')->where('admin_id', 'eq', $adminid)->value('admin_username');
+    return $name;
+}
