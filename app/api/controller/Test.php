@@ -11,7 +11,7 @@ namespace app\api\controller;
 
 use app\api\library\ApiException;
 
-class Test extends Base
+class Test extends Common
 {
     public function index()
     {

@@ -9,7 +9,7 @@ class Admin extends Base
 	protected function _initialize()
 	{
 		//调用admin/Base控制器的初始化
-		action('admin/Base/_initialize');
+		action('admin/Common/_initialize');
 	}
 	/*
 	 * 安全文件列表

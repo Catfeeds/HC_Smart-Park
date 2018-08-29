@@ -11,7 +11,7 @@ namespace app\api\controller;
 
 use think\Db;
 
-class banner extends Base
+class banner extends Common
 {
     public function banner_list(){
         $list = Db::name('PlugAd')->where('plug_ad_open','eq',1)->limit('3')->select();
