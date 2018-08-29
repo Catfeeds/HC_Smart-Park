@@ -30,7 +30,31 @@ class Enterprise extends Base
      */
     public function enterprise_list()
     {
+        $key = input('key');
+        $opentype_check = input('opentype_check', '');
+        $where = array();
+        if ($opentype_check !== '') {
+            $where['enterprise_list_open'] = $opentype_check;
+        }
 
+        $enterprise_list = \db('EnterpriseList')
+            ->where($where)
+            ->where('enterprise_list_name', 'like', "%" . $key . "%")
+            ->where('is_delete', 'neq', 1)
+            ->order('enterprise_list_addtime desc')
+            ->paginate(config('paginate.list_rows'), false, ['query' => get_query()]);
+        $show = $enterprise_list->render();
+        $show = preg_replace("(<a[^>]*page[=|/](\d+).+?>(.+?)<\/a>)", "<a href='javascript:ajax_page($1);'>$2</a>", $show);
+        $this->assign('opentype_check', $opentype_check);
+        $this->assign('enterprise_list', $enterprise_list);
+        $this->assign('page', $show);
+        $this->assign('val', $key);
+        if (request()->isAjax()) {
+            return $this->fetch('ajax_enterprise_list');
+        } else {
+            return $this->fetch();
+        }
+        return $this->fetch();
     }
 
     /**
@@ -46,7 +70,7 @@ class Enterprise extends Base
     /**
      *添加企业基本信息
      */
-    public function enterprise_basic_information_add()
+    public function enterprise_basic_information_runadd()
     {
 
     }
@@ -54,7 +78,7 @@ class Enterprise extends Base
     /**
      *添加企业合同信息
      */
-    public function enterprise_contract_information_add()
+    public function enterprise_contract_information_runadd()
     {
 
     }
@@ -62,7 +86,7 @@ class Enterprise extends Base
     /**
      *添加企业经济信息
      */
-    public function enterprise_economic_information_add()
+    public function enterprise_economic_information_runadd()
     {
 
     }
@@ -96,6 +120,13 @@ class Enterprise extends Base
      */
     public function enterprise_delete()
     {
-
+        $p = input('p');
+        $id = \input('id');
+        $rst = \db('EnterpriseList')->where('id', 'eq', $id)->setField('is_delete', 1);
+        if ($rst !== false) {
+            $this->success('删除成功', url('admin/Enterprise/enterprise_list', array('p' => $p)));
+        } else {
+            $this->error('删除失败', url('admin/Enterprise/enterprise_list', array('p' => $p)));
+        }
     }
 }
