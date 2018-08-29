@@ -46,7 +46,19 @@ class Announcement extends Base
      */
     public function announcement_runadd()
     {
+        $sqldata = [
+            'title' => \input('title'),
+            'content' => \input('content'),
+            'publisher_id' => \session('hid'),
+            'addtime' => \time()
+        ];
 
+        $res = Db::name('Announcement')->insert($sqldata);
+        if ($res) {
+            $this->success('发布成功', \url('admin/Announcement/announcement_list'));
+        } else {
+            $this->error('发布失败', \url('admin/Announcement/announcement_list'));
+        }
     }
 
     /**

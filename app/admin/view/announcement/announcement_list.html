@@ -1,17 +1,12 @@
 {extend name="admin@public/base" /}
 {block name="main-content"}
 <div class="page-content">
+    <!-- 点击模态框（Modal） -->
+    <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">
+        <i class="ace-icon fa fa-bolt bigger-110"></i>
+        发布新公告
+    </button>
 
-    <div class="row maintop">
-        <div class="col-xs-4 col-sm-2 margintop5">
-                <button class="btn btn-sm btn-danger">
-                    <i class="ace-icon fa fa-bolt bigger-110"></i>
-                    发布新公告
-                </button>
-        </div>
-
-
-    </div>
     <div class="row">
         <div class="col-xs-12">
             <div>
@@ -77,4 +72,81 @@
         </div>
     </div>
 </div><!-- /.page-content -->
+
+<!-- 显示模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form class="form-horizontal ajaxForm2" name="soft_add" method="post" action="{:url('admin/Announcement/announcement_runadd')}">
+        <div class="modal-dialog" style="width:1000px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        添加软件
+                    </h4>
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right" for="form-field-1">
+                                    标题： </label>
+                                <div class="col-sm-11">
+                                    <input type="text" name="title" id="title" placeholder="输入公告标题"
+                                           class="col-xs-10 col-sm-5" required/>
+                                    <span class="lbl">&nbsp;&nbsp;<span class="red">*</span></span>
+                                </div>
+
+                            </div>
+
+                            <!--<div class="form-group" id="pic_list">
+                                <label class="col-sm-1 control-label no-padding-right" for="form-field-1">
+                                    图片： </label>
+                                <div class="col-sm-11">
+                                    <a href="javascript:;" class="file">
+                                        <input type="file" name="file0" id="file0" multiple="multiple"/>
+                                        选择上传文件
+                                    </a>
+                                    <a href="javascript:;" onclick="return backpic('__PUBLIC__/img/no_img.jpg');"
+                                       title="还原修改前的图片" class="file">
+                                        撤销上传
+                                    </a>
+
+                                    <div><img src="__PUBLIC__/img/no_img.jpg" height="70" id="img0"></div>
+                                </div>
+                            </div>-->
+
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 内容： </label>
+                                <div class="col-sm-11">
+                                    <textarea name="content" cols="20" rows="2"
+                                              class="col-xs-10 col-sm-8 limitedone" id="form-field-10"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">
+                        提交保存
+                    </button>
+                    <button class="btn btn-info" type="reset">
+                        重置
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        关闭
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </form>
+</div><!-- /.modal -->
+
 {/block}
