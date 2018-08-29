@@ -13,11 +13,7 @@ class Test extends Base
 {
     public function index()
     {
-        return [
-            'status=>1',
-            'msg' => 'OK',
-            'data' => '2018年8月28日 22:03:19'
-        ];
+        return \show('1', 'OK');
     }
 
     public function update($id = 0)
