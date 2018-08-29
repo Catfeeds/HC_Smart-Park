@@ -108,11 +108,46 @@ class Enterprise extends Base
     }
 
     /**
-     *修改企业状态
+     *编辑企业基本信息
      */
-    public function enterprise_stauts()
+    public function enterprise_basic_information_runedit()
     {
 
+    }
+
+    /**
+     *编辑企业合同信息
+     */
+    public function enterprise_contract_information_runedit()
+    {
+
+    }
+
+    /**
+     *编辑企业经济信息
+     */
+    public function enterprise_economic_information_runedit()
+    {
+
+    }
+
+    /**
+     *修改企业状态
+     */
+    public function enterprise_status()
+    {
+        $id = input('x');
+        $enterprise_model = \db('EnterpriseList');
+        $status = $enterprise_model->where(array('id' => $id))->value('enterprise_list_open');//判断当前状态情况
+        if ($status == 1) {
+            $statedata = array('enterprise_list_open' => 0);
+            $enterprise_model->where(array('id' => $id))->setField($statedata);
+            $this->success('状态禁止');
+        } else {
+            $statedata = array('enterprise_list_open' => 1);
+            $enterprise_model->where(array('id' => $id))->setField($statedata);
+            $this->success('状态开启');
+        }
     }
 
     /**
