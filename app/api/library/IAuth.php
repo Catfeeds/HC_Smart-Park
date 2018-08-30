@@ -51,7 +51,7 @@ class IAuth
             return false;
         }
 
-        // diid=xx&app_type=3
+        // did=xx&app_type=3
         parse_str($str, $arr);
         if (!is_array($arr) || empty($arr['did'])
             || $arr['did'] != $data['did']
@@ -59,7 +59,7 @@ class IAuth
             return false;
         }
         if (!config('app_debug')) {
-            if ((time() - ceil($arr['time'] / 1000)) > config('app.app_sign_time')) {
+            if ((time() - ceil($arr['time'] / 1000)) > config('app_sign_time')) {
                 return false;
             }
             //echo Cache::get($data['sign']);exit;

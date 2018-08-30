@@ -10,6 +10,8 @@ namespace app\api\controller;
 
 
 use app\api\library\Aes;
+use app\api\library\IAuth;
+use app\api\library\Time;
 use think\Controller;
 
 /**
@@ -20,11 +22,17 @@ use think\Controller;
 class Common extends Controller
 {
     /**
+     * @var string
+     * 数据头信息
+     */
+    public $headers = '';
+
+    /**
      *初始化方法
      */
     public function _initialize()
     {
-        $this->checkRequestAuth();
+        //$this->checkRequestAuth();
         $this->doAes();
     }
 
@@ -35,14 +43,27 @@ class Common extends Controller
     {
         //获取header信息
         $headers = \request()->header();
-//        \halt($headers);
+
+        //sign参数校验
+        if (empty($headers['sign'])) {
+            $this->error('sign错误', 401);
+        } elseif (!IAuth::checkSignPass($headers)) {
+            $this->error('授权不合法', 401);
+        } else {
+            $this->headers = $headers;
+        }
     }
 
 
     //sign 加密-->前端,解密-->后端
+
+    /**
+     * @return bool
+     * 加密示例
+     */
     public function doAes()
     {
-//        $res= (new Aes())->decrypt($str);
-        return true;
+        $str = 'dddddddddddddddddddd';
+         echo (new Aes())->encrypt($str);exit;
     }
 }

@@ -9,4 +9,6 @@ return [
     'exception_handle' => '\app\api\library\ExceptionHandle',
     //加密salt
     'password_pre_halt'=>'',
+    //sign有效期,秒
+    'app_sign_time'=>'600'
 ];
