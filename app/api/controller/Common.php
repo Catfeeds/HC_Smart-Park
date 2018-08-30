@@ -38,14 +38,11 @@ class Common extends Controller
 //        \halt($headers);
     }
 
-    //sign 加密-->前端
 
-    //sign 解密-->后端
-
+    //sign 加密-->前端,解密-->后端
     public function doAes()
     {
-        $str = 'xpwsgg';
-        echo (new Aes())->encrypt($str);
-        echo (new Aes())->decrypt('H+7D/uKxG+C77iGiteVVnw==');
+//        $res= (new Aes())->decrypt($str);
+        return true;
     }
 }

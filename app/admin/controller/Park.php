@@ -21,7 +21,7 @@ class Park extends Base
      */
     public function index()
     {
-
+        return "这里是园区总览";
     }
 
     /**

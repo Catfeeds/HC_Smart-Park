@@ -18,3 +18,6 @@ use think\Route;
     delete	DELETE	test/:id	delete
  */
 Route::resource('test','api/test');
+
+
+Route::get('index','api/index');

@@ -62,11 +62,18 @@ class Enterprise extends Base
      */
     public function enterprise_add()
     {
+        return \view();
+    }
+
+    /**
+     *执行添加操作
+     */
+    public function enterprise_runadd()
+    {
 
     }
 
-    //企业信息分标签录入分表储存，故将add操作分成多个。
-
+    //下面三个方法备用
     /**
      *添加企业基本信息
      */

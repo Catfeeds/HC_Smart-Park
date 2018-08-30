@@ -10,6 +10,7 @@ namespace app\admin\controller;
 
 
 use think\Db;
+use app\admin\model\Announcement as AnnouncementModel;
 
 /**
  * Class Announcement
@@ -31,7 +32,8 @@ class Announcement extends Base
      */
     public function announcement_list()
     {
-        $list = \db('Announcement')
+        $announcement_model = new AnnouncementModel;
+        $list = $announcement_model
             ->order('addtime desc')
             ->paginate(config('paginate.list_rows'));
         $show = $list->render();

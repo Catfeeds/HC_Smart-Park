@@ -15,6 +15,7 @@ class Index extends Base
      */
     public function index()
     {
+//        $this->redirect(\url('admin/park/index'));
         $news_model = new NewsModel;
         $member_model = new MemberList;
         //热门文章排行

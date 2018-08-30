@@ -15,8 +15,17 @@ class Test extends Common
 {
     public function index()
     {
-
-        return \show('1', 'OK');
+        $banner = [
+            '1'=>'a',
+            '2'=>'b'
+        ];
+        $article_list=[
+            '3'=>'c',
+            '4'=>'d'
+        ];
+        $data['banner'] = $banner;
+        $data['article_lsit'] = $article_list;
+        return \show('1', 'OK', $data,200);
     }
 
     public function update($id = 0)

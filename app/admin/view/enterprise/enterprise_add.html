@@ -1,0 +1,89 @@
+{extend name="admin@public/base" /}
+{block name="main-content"}
+<div class="page-content">
+    <!--主题-->
+    <div class="page-header">
+        <h1>
+            您当前操作
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                新增企业
+            </small>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="tabbable">
+            <ul class="nav nav-tabs" id="myTab">
+                <li class="active"><a data-toggle="tab" href="#basic">基本信息</a></li>
+                <li><a data-toggle="tab" href="#contract">合同信息</a></li>
+            </ul>
+            <form class="form-horizontal ajaxForm" name="enterprise_info" method="post" action="{:url('admin/Enterprise/Enterprise_runadd')}">
+                <div class="tab-content">
+                    <div id="basic" class="tab-pane fade in active">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 企业名称： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="" id="" value=""  placeholder=""  class="col-xs-10 col-sm-5"/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red"></span></span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle" id="resone"></span>
+											</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 入住时间： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="" id="" value="" placeholder=""   class="col-xs-10 col-sm-5"/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red"></span></span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="restwo"></span>
+							</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="contract" class="tab-pane fade">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 字段一： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="" id="" value=""  placeholder=""  class="col-xs-10 col-sm-5"/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red"></span></span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="resthr"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 字段二： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="" id="" value="" placeholder=""   class="col-xs-10 col-sm-5"/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red"></span></span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="resfour"></span>
+							</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix form-actions">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <button class="btn btn-info" type="submit">
+                            <i class="ace-icon fa fa-check bigger-110"></i>
+                            保存
+                        </button>
+
+                        &nbsp; &nbsp; &nbsp;
+                        <button class="btn" type="reset">
+                            <i class="ace-icon fa fa-undo bigger-110"></i>
+                            重置
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div><!-- /.page-content -->
+{/block}
