@@ -1132,6 +1132,26 @@ function get_favorite_key($table, $object_id)
 }
 
 /**
+ *发送站内信操作
+ */
+function sendWebMsg($toid, $fromid, $msg)
+{
+    $sqldata = [
+        'toid' => $toid,
+        'fromid' => $fromid,
+        'content' => $msg,
+        'sendtime' => \time()
+    ];
+
+    $res = \db('WebMsgLog')->insert($sqldata);
+    if ($res) {
+        return ['发送成功'];
+    } else {
+        return ['发送失败'];
+    }
+}
+
+/**
  * 发送邮件
  * @author rainfer <81818832@qq.com>
  * @param string $to 收件人邮箱
@@ -1800,5 +1820,16 @@ function getCityByIp($ip)
 function getAdminUserNameById($adminid)
 {
     $name = Db::name('Admin')->where('admin_id', 'eq', $adminid)->value('admin_username');
+    return $name;
+}
+
+/**
+ * @param $adminid
+ * @return mixed
+ * 根据id获取管理员名称
+ */
+function getUserNameById($member_id)
+{
+    $name = Db::name('MemberList')->where('member_list_id', 'eq', $member_id)->value('member_list_username');
     return $name;
 }

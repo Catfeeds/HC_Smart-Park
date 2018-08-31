@@ -38,8 +38,8 @@ class Announcement extends Base
             ->paginate(config('paginate.list_rows'));
         $show = $list->render();
         $show = preg_replace("(<a[^>]*page[=|/](\d+).+?>(.+?)<\/a>)", "<a href='javascript:ajax_page($1);'>$2</a>", $show);
-        $this->assign(\compact('list'));
         $this->assign('page', $show);
+        $this->assign(\compact('list'));
         return $this->fetch();
     }
 
