@@ -32,38 +32,42 @@ class Common extends Controller
      */
     public function _initialize()
     {
-        //$this->checkRequestAuth();
-        $this->doAes();
+        $this->checkAuth();
     }
 
     /**
      *检查每次app请求的数据是否合法
+     * 1,有没有sign
+     * 2,sign值对不对
+     * 3,sign是否过期
      */
-    public function checkRequestAuth()
+    public function checkAtuh()
     {
         //获取header信息
         $headers = \request()->header();
 
         //sign参数校验
         if (empty($headers['sign'])) {
+            $this->error('sign缺失', 401);
+        } elseif (!$this->checkSign()) {
             $this->error('sign错误', 401);
-        } elseif (!IAuth::checkSignPass($headers)) {
-            $this->error('授权不合法', 401);
+        } elseif (\time() - $headers['time'] > \config('app_sign_time')) {
+            $this->error('sign过期', 401);
         } else {
             $this->headers = $headers;
         }
     }
 
-
-    //sign 加密-->前端,解密-->后端
-
-    /**
-     * @return bool
-     * 加密示例
-     */
-    public function doAes()
+    function checkSign()
     {
-        $str = 'dddddddddddddddddddd';
-         echo (new Aes())->encrypt($str);exit;
+        //获取header信息
+        $headers = \request()->header();
+        //和前端使用同样的数据和加密方式验证sign是否一致
+        $sign = '';  //后台进行sign加密运算
+        if ($sign === $headers['sign']) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
