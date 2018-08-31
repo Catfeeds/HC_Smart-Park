@@ -55,7 +55,7 @@ class Announcement extends Base
             'addtime' => \time()
         ];
 
-        $res = Db::name('Announcement')->insert($sqldata);
+        $res = \db('Announcement')->insert($sqldata);
         if ($res) {
             $this->success('发布成功', \url('admin/Announcement/announcement_list'));
         } else {
@@ -98,7 +98,6 @@ class Announcement extends Base
             $this->error("删除失败", url('admin/Announcement/announcement_list', array('p' => $p)));
         } else {
             $this->success("删除成功", url('admin/Announcement/announcement_list', array('p' => $p)));
-
         }
     }
 }

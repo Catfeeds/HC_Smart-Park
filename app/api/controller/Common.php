@@ -9,9 +9,6 @@
 namespace app\api\controller;
 
 
-use app\api\library\Aes;
-use app\api\library\IAuth;
-use app\api\library\Time;
 use think\Controller;
 
 /**
@@ -32,7 +29,9 @@ class Common extends Controller
      */
     public function _initialize()
     {
-        $this->checkAuth();
+        //debug模式下不检测sign
+        if (!\config('app_debug'))
+            $this->checkAuth();
     }
 
     /**
@@ -41,7 +40,7 @@ class Common extends Controller
      * 2,sign值对不对
      * 3,sign是否过期
      */
-    public function checkAtuh()
+    public function checkAuth()
     {
         //获取header信息
         $headers = \request()->header();
@@ -63,7 +62,7 @@ class Common extends Controller
         //获取header信息
         $headers = \request()->header();
         //和前端使用同样的数据和加密方式验证sign是否一致
-        $sign = '';  //后台进行sign加密运算
+        $sign = md5('xpwsgg');  //后台进行sign加密运算
         if ($sign === $headers['sign']) {
             return true;
         } else {
