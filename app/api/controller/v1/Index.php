@@ -1,32 +1,33 @@
 <?php
 
-namespace app\api\controller;
+namespace app\api\controller\v1;
 
 use think\Request;
 use think\Db;
+use app\api\controller\Common;
 
 /**
  * Class index
  * @package app\api\controller
+ * app首页接口
  */
-class index extends Common
+class Index extends Common
 {
+
     /**
-     * 显示资源列表
-     *
-     * @return \think\Response
+     * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function index()
     {
-        $data['banner_list'] = Db::name('PlugAd')
-            ->where('plug_ad_open', 'eq', 1)
-            ->limit('3')
-            ->select();
-        $data['announcement_list'] = Db::name('Announcement')
-            ->limit('5')
-            ->select();
+        //首页banner图
+        $data['banner_list'] = \model('PlugAd')->getHeadBanner();
+        //滚动公告
+        $data['announcement_list'] = \model('Announcement')->getAnnouncement();
 
-        return \show(200,'OK',$data,200);
+        return \show(200, 'OK', $data, 200);
 
     }
 

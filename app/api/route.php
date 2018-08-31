@@ -9,15 +9,18 @@
 use think\Route;
 
 /**
- *  index	GET	test	index
-    create	GET	test/create	create
-    save	POST	test	save
-    read	GET	test/:id	read
-    edit	GET	test/:id/edit	edit
-    update	PUT	test/:id	update
-    delete	DELETE	test/:id	delete
+ * 标 识       请求类型   路由规则         对应操作方法
+ *  index	    GET	    test	        index
+    create	    GET	    test/create	    create
+    save	    POST	test	        save
+    read	    GET	    test/:id	    read
+    edit	    GET	    test/:id/edit	edit
+    update	    PUT	    test/:id	    update
+    delete	    DELETE	test/:id	    delete
  */
-Route::resource('test','api/test');
+Route::resource('test','api/v1.test');
 
 
-Route::get('index','api/index');
+Route::resource('index','api/v1.index');
+Route::resource('news','api/v1.news');
+Route::resource('banner','api/v1.banner');
