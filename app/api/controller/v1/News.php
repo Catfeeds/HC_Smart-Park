@@ -13,22 +13,47 @@ use app\api\library\exception\ApiException;
 use think\Db;
 use app\api\controller\Common;
 
+/**
+ * Class News
+ * @package app\api\controller\v1
+ * 新闻接口
+ */
 class News extends Common
 {
+    /**
+     * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 新闻列表,带标题搜索功能
+     */
     public function index()
     {
-        $list = Db::name('News')->where('news_open', 'eq', 1)->limit('10')->select();
+        //页码
+        $page = \input('page', '1', 'intval');
+        //搜索关键字
+        $key = \input('key', '');
+        $where['news_title'] = ['like', '%' . $key . '%'];
+        $list = Db::name('News')
+            ->where($where)
+            ->where('news_open', 'eq', 1)
+            ->field('n_id,news_title,news_columnid,news_hits,news_img,news_time')
+            ->page($page, '10')
+            ->select();
         return \show('200', 'OK', $list);
     }
 
+    /**
+     * @return ApiException
+     * 新闻详情页
+     */
     public function read()
     {
-        $id = input('param.id', 0, 'intval');
+        $id = input('id', 0, 'intval');
 
-        $news= \model('News')->getNewsDetailById($id);
-        if (empty($news)){
-            return new ApiException('error',404);
+        $news = \model('News')->getNewsDetailById($id);
+        if (empty($news)) {
+            return new ApiException('error', 404);
         }
-
     }
 }
