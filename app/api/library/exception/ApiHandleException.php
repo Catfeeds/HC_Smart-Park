@@ -3,13 +3,18 @@
  * Created by PhpStorm.
  * User: xpwsg
  * Date: 2018/9/1
- * Time: 17:36
+ * Time: 17:46
  */
 
 namespace app\api\library\exception;
 
 use think\exception\Handle;
 
+/**
+ * Class ApiHandleException
+ * @package app\api\library\exception
+ * Api异常处理
+ */
 class ApiHandleException extends Handle
 {
     /**

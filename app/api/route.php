@@ -18,9 +18,6 @@ use think\Route;
     update	    PUT	    test/:id	    update
     delete	    DELETE	test/:id	    delete
  */
-Route::resource('test','api/v1.test');
-
-
 Route::resource('index','api/v1.index');
 Route::resource('news','api/v1.news');
 Route::resource('banner','api/v1.banner');
