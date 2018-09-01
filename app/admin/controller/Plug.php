@@ -410,9 +410,9 @@ class Plug extends Base
 			);
 			$rst=Db::name('plug_ad')->insert($sl_data);
 			if($rst!==false){
-				$this->success('广告添加成功',url('admin/Plug/plug_ad_list'));
+				$this->success('添加成功',url('admin/Plug/plug_ad_list'));
 			}else{
-				$this->error('广告添加失败',url('admin/Plug/plug_ad_list'));
+				$this->error('添加失败',url('admin/Plug/plug_ad_list'));
 			}
 		}
 	}
@@ -426,9 +426,9 @@ class Plug extends Base
 		$plug_ad_id=input('plug_ad_id');
 		$rst=Db::name('plug_ad')->where(array('plug_ad_id'=>$plug_ad_id))->delete();
 		if($rst!==false){
-			$this->success('广告删除成功',url('admin/Plug/plug_ad_list'));
+			$this->success('删除成功',url('admin/Plug/plug_ad_list'));
 		}else{
-			$this->error('广告删除失败',url('admin/Plug/plug_ad_list'));
+			$this->error('删除失败',url('admin/Plug/plug_ad_list'));
 		}
 	}
 
@@ -445,7 +445,7 @@ class Plug extends Base
 			foreach ($post as $id => $sort){
 				Db::name('plug_ad')->where(array('plug_ad_id' => $id ))->setField('plug_ad_order' , $sort);
 			}
-			$this->success('广告排序更新成功',url('admin/Plug/plug_ad_list'));
+			$this->success('排序更新成功',url('admin/Plug/plug_ad_list'));
 		}
 	}
 
@@ -541,9 +541,9 @@ class Plug extends Base
 			}
 			$rst=Db::name('plug_ad')->update($sl_data);
 			if($rst!==false){
-				$this->success('广告设置修改成功',url('admin/Plug/plug_ad_list'));
+				$this->success('设置修改成功',url('admin/Plug/plug_ad_list'));
 			}else{
-				$this->error('广告设置修改失败',url('admin/Plug/plug_ad_list'));
+				$this->error('设置修改失败',url('admin/Plug/plug_ad_list'));
 			}
 		}
 	}
@@ -573,9 +573,9 @@ class Plug extends Base
 		}else{
 			$rst=Db::name('plug_adtype')->insert(input('post.'));
 			if($rst!==false){
-				$this->success('广告位添加成功',url('admin/Plug/plug_adtype_list'));			
+				$this->success('添加成功',url('admin/Plug/plug_adtype_list'));
 			}else{
-				$this->error('广告位添加失败',url('admin/Plug/plug_adtype_list'));	
+				$this->error('添加失败',url('admin/Plug/plug_adtype_list'));
 			}
 		}
 	}
@@ -610,9 +610,9 @@ class Plug extends Base
 		}else{
 			$rst=Db::name('plug_adtype')->update(input('post.'));
 			if($rst!==false){
-				$this->success('广告位修改成功',url('admin/Plug/plug_adtype_list'));
+				$this->success('修改成功',url('admin/Plug/plug_adtype_list'));
 			}else{
-				$this->error('广告位修改失败',url('admin/Plug/plug_adtype_list'));
+				$this->error('修改失败',url('admin/Plug/plug_adtype_list'));
 			}
 			
 		}
@@ -629,12 +629,12 @@ class Plug extends Base
 		if($rst!==false){
 			$rst=Db::name('plug_adtype')->where(array('plug_adtype_id'=>input('plug_adtype_id')))->delete();//删除广告位
 			if($rst!==false){
-				$this->success('广告位删除成功',url('admin/Plug/plug_adtype_list', array('p' => $p)));
+				$this->success('删除成功',url('admin/Plug/plug_adtype_list', array('p' => $p)));
 			}else{
-				$this->error('广告位删除失败',url('admin/Plug/plug_adtype_list', array('p' => $p)));
+				$this->error('删除失败',url('admin/Plug/plug_adtype_list', array('p' => $p)));
 			}
 		}else{
-			$this->error('广告位删除失败',url('admin/Plug/plug_adtype_list', array('p' => $p)));
+			$this->error('删除失败',url('admin/Plug/plug_adtype_list', array('p' => $p)));
 		}
 	}
 
@@ -651,7 +651,7 @@ class Plug extends Base
 			foreach ($post as $id => $sort){
 				Db::name('plug_adtype')->where(array('plug_adtype_id' => $id ))->setField('plug_adtype_order' , $sort);
 			}
-			$this->success('广告位排序更新成功',url('admin/Plug/plug_adtype_list'));
+			$this->success('排序更新成功',url('admin/Plug/plug_adtype_list'));
 		}
 	}
 	/*

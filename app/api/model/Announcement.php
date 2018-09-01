@@ -16,6 +16,7 @@ class Announcement extends Model
     public function getAnnouncement()
     {
         return $this
+            ->field('addtime')
             ->limit('5')
             ->select();
     }

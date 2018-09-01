@@ -40,6 +40,8 @@ class Login extends Common
                     $this->error('验证不通过',url('admin/Login/login'));
                 };
             }else{
+			    //开发模式关闭验证码验证
+			    if (!\config('app_debug'))
 				$this->verify_check('aid');
             }
 			$admin_username=input('admin_username');

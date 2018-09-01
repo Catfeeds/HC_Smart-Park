@@ -7,7 +7,7 @@
 				<!-- 点击模态框（Modal） -->
 				<button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">
 					<i class="ace-icon fa fa-bolt bigger-110"></i>
-					添加广告
+					添加轮播图
 				</button>
 
 			</div>
@@ -26,7 +26,7 @@
 										<span class="input-group-addon">
 											<i class="ace-icon fa fa-check"></i>
 										</span>
-						<input type="text" name="key" id="key" class="form-control" value="{$val}" placeholder="输入广告名称" />
+						<input type="text" name="key" id="key" class="form-control" value="{$val}" placeholder="输入轮播图名称" />
 										<span class="input-group-btn">
 											<button type="submit" class="btn btn-sm  btn-purple ajax-search-form">
 												<span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
@@ -57,7 +57,7 @@
 							<thead>
 							<tr>
 								<th class="hidden-xs">ID</th>
-								<th>广告名称</th>
+								<th>轮播图名称</th>
 								<th class="hidden-sm hidden-xs">所属位置</th>
 								{if condition="config('lang_switch_on')"}
 								<th class="hidden-sm hidden-xs">语言</th>
@@ -89,7 +89,7 @@
 									aria-hidden="true">×
 							</button>
 							<h4 class="modal-title" id="myModalLabel">
-								添加广告
+								添加轮播图
 							</h4>
 						</div>
 						<div class="modal-body">
@@ -102,7 +102,7 @@
 										<label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 所属位置： </label>
 										<div class="col-sm-11">
 											<select name="plug_ad_adtypeid"  class="col-sm-4 selector" required>
-												<option value="">请选择所属广告位</option>
+												<option value="">请选择所属轮播图位</option>
 												{foreach name="plug_adtype_list" item="v"}
 													<option value="{$v.plug_adtype_id}">{$v.plug_adtype_name}</option>
 												{/foreach}
@@ -123,14 +123,14 @@
 									{/if}
 
 									<div class="form-group">
-										<label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 广告名称：  </label>
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 轮播图名称：  </label>
 										<div class="col-sm-11">
-											<input type="text" name="plug_ad_name" id="plug_ad_name" placeholder="输入广告名称" class="col-xs-10 col-sm-5" required/>
+											<input type="text" name="plug_ad_name" id="plug_ad_name" placeholder="输入轮播图名称" class="col-xs-10 col-sm-5" required/>
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 广告模式： </label>
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 轮播图模式： </label>
 										<div class="col-sm-11">
 											<div class="radio" >
 												<label>
@@ -153,7 +153,7 @@
 									</div>
 
 									<div class="form-group" id="pic_list">
-										<label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 广告图片： </label>
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 轮播图图片： </label>
 										<div class="col-sm-11">
 											<a href="javascript:;" class="file">
 												<input type="file" name="file0" id="file0" multiple="multiple"/>
@@ -195,7 +195,7 @@
 										<label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 内容： </label>
 										<div class="col-sm-11">
 											<textarea  name="plug_ad_content" cols="20" rows="2" class="col-xs-10 col-sm-8 limitedone" id="form-field-10"></textarea>
-											<span class="lbl">&nbsp;&nbsp;广告文字内容</span>
+											<span class="lbl">&nbsp;&nbsp;轮播图文字内容</span>
 										</div>
 									</div>
 

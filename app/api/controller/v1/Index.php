@@ -26,8 +26,11 @@ class Index extends Common
         $data['banner_list'] = \model('PlugAd')->getHeadBanner();
         //滚动公告
         $data['announcement_list'] = \model('Announcement')->getAnnouncement();
-
-        return \show(200, 'OK', $data, 200);
+        //推广广告
+        $data['ad_list'] = \model('PlugAd')->getMiddleBanner();
+        //新闻列表
+        $data['news_list'] = \model('News')->getIndexNewsList();
+        return \show(1, 'OK', $data, 200);
 
     }
 

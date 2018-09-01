@@ -2,6 +2,8 @@
 return array(
     'yfcmf_version' => 'V2.9.9',
     'update_check' => false,
+    'app_debug' => true,
+    'app_trace' => false,
     'think_sdk_qq' =>
         array(
             'app_key' => '',
@@ -30,8 +32,7 @@ return array(
             'auth_rule' => 'auth_rule',
             'auth_user' => 'admin',
         ),
-    'app_debug' => true,
-    'app_trace' => false,
+
     'baidumap_ak' => 'D91c810554767b49e3bdd2a7b25d97c1',
     'upload_validate' =>
         array(
