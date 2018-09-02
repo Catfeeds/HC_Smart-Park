@@ -10,7 +10,6 @@ namespace app\api\controller\v1;
 
 
 use think\Controller;
-use app\api\controller\Common;
 /**
  * Class Time
  * @package app\api\controller

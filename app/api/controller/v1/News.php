@@ -38,6 +38,7 @@ class News extends Common
             ->where($where)
             ->where('news_open', 'eq', 1)
             ->field('n_id,news_title,news_columnid,news_hits,news_img,news_time')
+            ->order('news_time desc')
             ->page($page, '10')
             ->select();
         return \show('200', 'OK', $list);

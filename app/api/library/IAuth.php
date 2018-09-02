@@ -18,6 +18,14 @@ class IAuth
 {
 
     /**
+     * @return string
+     * token生成方法
+     */
+    public static function setAppLoginToken(){
+        $token =  \sha1(md5(\uniqid(md5(\microtime(true)),true)));
+        return $token;
+    }
+    /**
      * 设置密码
      * @param string $data
      * @return string

@@ -1685,17 +1685,23 @@ function data_signature($data = [])
     return $sign;
 }
 
+
 /**
+ * @param $account
+ * @param $type
+ * @return array
+ * @throws \think\Exception
+ * @throws \think\db\exception\DataNotFoundException
+ * @throws \think\db\exception\ModelNotFoundException
+ * @throws \think\exception\DbException
+ * @throws \think\exception\PDOException
  * 发送短信验证码
- * @param string $account 手机号
- * @param string $type 验证码类型,比如'reg','reset'...
- * @return array 结果
  */
 function sendsms($account, $type)
 {
     $where['sms_type'] = $type;
     $where['sms_tel'] = $account;
-    $rst = Db::name('smslog')->where($where)->find();
+    $rst = Db::name('SmsLog')->where($where)->find();
     if ($rst) {
         if ($rst['sms_time'] > (time() - 120)) {
             return ['code' => 0, 'msg' => '已获取过,' . (time() - $rst['sms_time']) . '后稍后再试'];
@@ -1755,12 +1761,16 @@ function sendsms($account, $type)
     }
 }
 
+
 /**
- * 检测短信验证码
- * @param string $account 手机号
- * @param string $type 验证码类型,比如'reg','reset'...
- * @param string $verify 验证码
- * @return boolean true|false
+ * @param $account
+ * @param $type
+ * @param $verify
+ * @return bool
+ * @throws \think\db\exception\DataNotFoundException
+ * @throws \think\db\exception\ModelNotFoundException
+ * @throws \think\exception\DbException
+ * 校验短信验证码
  */
 function checksms($account, $type, $verify)
 {
