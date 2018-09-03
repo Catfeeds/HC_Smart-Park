@@ -2,7 +2,6 @@
 
 namespace app\admin\controller;
 
-use extend\UtilDbdic;
 use think\Db;
 use think\Validate;
 
