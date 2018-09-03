@@ -65,14 +65,11 @@ class News extends Model
      * @throws \think\exception\DbException
      * 获取新闻列表
      */
-    public function getNewsList()
+    public function getNewsList($page, $key)
     {
-        //页码
-        $page = \input('page', '1', 'intval');
-        //搜索关键字
-        $key = \input('key', '');
-        $where['news_title'] = ['like', '%' . $key . '%'];
+
         $where = [
+            'news_title' => ['like', '%' . $key . '%'],
             'news_columnid' => 1,     //栏目ID
             'news_open' => 1,         //已审状态
             'news_back' => 0          //没有被删除
@@ -80,7 +77,7 @@ class News extends Model
         return $this->where($where)
             ->field('n_id,news_title,news_columnid,news_hits,news_img,news_time')
             ->order('news_time desc')
-            ->page($page, '10')
+            ->page($page, 10)
             ->select();
         return \show('200', 'OK', $list);
     }

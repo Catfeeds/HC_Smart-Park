@@ -29,7 +29,9 @@ class News extends Common
      */
     public function index()
     {
-        $list = \model('News')->getNewsList();
+        $key = \input('key','');
+        $page = \input('page',1);
+        $list = \model('News')->getNewsList($page,$key);
         return \show(1, $list, 200);
     }
 

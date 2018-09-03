@@ -27,3 +27,5 @@ Route::resource('news', 'api/v1.news');
 Route::resource('banner', 'api/v1.banner');
 //短信验证码
 Route::resource('sms', 'api/v1.sms');
+//企业模块
+Route::resource('enterprise','api/v1.enterprise');
