@@ -10,6 +10,9 @@ namespace app\api\controller\v1;
 
 
 use app\api\controller\Common;
+use app\api\library\Aes;
+use app\api\library\IAuth;
+use think\cache\driver\Redis;
 
 /**
  * Class Register
@@ -18,6 +21,9 @@ use app\api\controller\Common;
  */
 class Register extends Common
 {
+    public function index(){
+
+    }
     /**
      * @return \think\response\Json
      * 注册
@@ -39,6 +45,17 @@ class Register extends Common
                 return \show(0, '手机验证码错误');
             } else {
                 //todo 注册逻辑
+
+
+
+
+
+
+
+                $token = IAuth::setAppLoginToken();
+                $redis = new Redis();
+                $redis->set($token,'1',2592000);       //储存token,一个月
+//                $redisres = $redis->has($token);
             }
         }
     }
