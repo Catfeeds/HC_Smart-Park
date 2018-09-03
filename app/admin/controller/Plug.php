@@ -2,6 +2,7 @@
 
 namespace app\admin\controller;
 
+use extend\UtilDbdic;
 use think\Db;
 use think\Validate;
 
@@ -1015,29 +1016,30 @@ class Plug extends Base
 
     /**
      *导出数据库字典
-     * 有时间再完善
      */
     public function DataDictionary()
     {
         //配置数据库
-        $dbserver = "101.132.69.92";
-        $dbusername = "hckj";
-        $dbpassword = "eyhertyrgery45y74";
-        $database = "hckj";
-//其他配置
+        $config= \config('database');
+        $dbserver = $config['hostname'];
+        $dbusername = $config['username'];
+        $dbpassword = $config['password'];
+        $database = $config['database'];
+        //其他配置
         $title = '海创智慧园区数据字典';
         $pdo = new \PDO("mysql:host=" . $dbserver . ";dbname=" . $database, $dbusername, $dbpassword);
         $pdo->query('SET NAMES utf8');
         $table_result = $pdo->query('show tables');
         $arr = $table_result->fetchAll(\PDO::FETCH_ASSOC);
 
-//取得所有的表名
+        $s = "Tables_in_$database";
+        //取得所有的表名
         foreach ($arr as $val) {
-            $tables[]['TABLE_NAME'] = $val['Tables_in_hckj'];
+            $tables[]['TABLE_NAME'] = $val[$s];
         }
 
 
-//循环取得所有表的备注及表中列消息
+        //循环取得所有表的备注及表中列消息
         foreach ($tables AS $k => $v) {
             $sql = 'SELECT * FROM ';
             $sql .= 'INFORMATION_SCHEMA.TABLES ';
