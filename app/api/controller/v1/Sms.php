@@ -21,23 +21,19 @@ class Sms extends Common
     /**
      *发送验证码
      */
-    public function save()
+    public function index()
     {
-        if (\request()->isPost()) {
-            $phone = \input('phone');
-            $type = 1;
+        $phone = \input('phone');
+        $type = 1;
 
-            //tp5内置规则怎么都没有用,所以
-            //验证手机号
-            $rule = '/^((13[0-9])|(14[5,7])|(15[0-3,5-9])|16[6]|(17[0,3,5-8])|(18[0-9])|19[89])\d{8}$/';
-            $rst = \preg_match($rule, $phone);
-            if (!$rst) {
-                return \show(0, '手机号不正确', 404);
-            } else {
-                return \sendsms($phone, $type);
-            }
+        //tp5内置规则怎么都没有用,所以
+        //验证手机号
+        $rule = '/^((13[0-9])|(14[5,7])|(15[0-3,5-9])|16[6]|(17[0,3,5-8])|(18[0-9])|19[89])\d{8}$/';
+        $rst = \preg_match($rule, $phone);
+        if (!$rst) {
+            return \show(0, '手机号不正确', 404);
         } else {
-            return \show(0, '提交方式不正确', 403);
+            return \sendsms($phone, $type);
         }
     }
 }
