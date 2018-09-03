@@ -25,7 +25,7 @@ class Index extends Common
         //首页banner图
         $data['banner_list'] = \model('PlugAd')->getHeadBanner();
         //滚动公告
-        $data['announcement_list'] = \model('Announcement')->getAnnouncement();
+        $data['announcement_list'] = \model('Announcement')->getIndexAnnouncementList();
         //推广广告
         $data['ad_list'] = \model('PlugAd')->getMiddleBanner();
         //新闻列表

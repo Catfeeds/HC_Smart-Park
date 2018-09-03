@@ -29,19 +29,8 @@ class News extends Common
      */
     public function index()
     {
-        //页码
-        $page = \input('page', '1', 'intval');
-        //搜索关键字
-        $key = \input('key', '');
-        $where['news_title'] = ['like', '%' . $key . '%'];
-        $list = Db::name('News')
-            ->where($where)
-            ->where('news_open', 'eq', 1)
-            ->field('n_id,news_title,news_columnid,news_hits,news_img,news_time')
-            ->order('news_time desc')
-            ->page($page, '10')
-            ->select();
-        return \show('200', 'OK', $list);
+        $list = \model('News')->getNewsList();
+        return \show(1, $list, 200);
     }
 
     /**
@@ -54,7 +43,9 @@ class News extends Common
 
         $news = \model('News')->getNewsDetailById($id);
         if (empty($news)) {
-            return new ApiException('error', 404);
+            return new ApiException('新闻不存在', 404);
+        } else {
+            return \show(1, 'OK', $news, 200);
         }
     }
 }
