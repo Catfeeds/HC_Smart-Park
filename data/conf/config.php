@@ -1,5 +1,4 @@
-<?php
-return array(
+<?php return array(
     'yfcmf_version' => 'V2.9.9',
     'update_check' => false,
     'app_debug' => true,
@@ -32,7 +31,6 @@ return array(
             'auth_rule' => 'auth_rule',
             'auth_user' => 'admin',
         ),
-
     'baidumap_ak' => 'D91c810554767b49e3bdd2a7b25d97c1',
     'upload_validate' =>
         array(
@@ -199,4 +197,13 @@ return array(
             'we_type' => '',
         ),
     'addons_sql' => true,
+    //阿里大鱼短信配置
+    'think_sdk_sms' =>
+        array(
+            'AccessKeyId' => '',
+            'accessKeySecret' => '',
+            'signName' => '',
+            'TemplateCode' => '',
+            'sms_open' => NULL,
+        ),
 );
