@@ -29,5 +29,7 @@ Route::resource('banner', 'api/v1.banner');
 Route::resource('sms', 'api/v1.sms');
 //个人注册
 Route::resource('register', 'api/v1.register');
+//登录
+Route::resource('login', 'api/v1.login');
 //企业模块
 Route::resource('enterprise','api/v1.enterprise');

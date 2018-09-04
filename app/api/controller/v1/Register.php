@@ -10,9 +10,7 @@ namespace app\api\controller\v1;
 
 
 use app\api\controller\Common;
-use app\api\library\Aes;
-use app\api\library\IAuth;
-use think\cache\driver\Redis;
+use think\Db;
 
 /**
  * Class Register
@@ -21,11 +19,17 @@ use think\cache\driver\Redis;
  */
 class Register extends Common
 {
-    public function index(){
+    public function index()
+    {
 
     }
+
+
     /**
      * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      * 注册
      */
     public function save()
@@ -44,18 +48,23 @@ class Register extends Common
             if (!$smsres) {
                 return \show(0, '手机验证码错误');
             } else {
-                //todo 注册逻辑
+                $member_list_salt=random(10);
+                $sqldata = [
+                    'member_list_username' => '会员' . \input('phone'),
+                    'member_list_password'=>\encrypt_password(\input('password'), $member_list_salt),
+                    'member_list_salt'=>$member_list_salt,
+                    'member_list_tel'=>\input('phone'),
+                    'member_list_addtime'=>\time(),
+                ];
+
+                $regres = Db::name('MemberList')->insertGetId($sqldata);
+                if($regres!==false){
+                    return \show(1, '注册成功','',200);
+                }else{
+                    return \show(0, '注册失败','',200);
+                }
 
 
-
-
-
-
-
-                $token = IAuth::setAppLoginToken();
-                $redis = new Redis();
-                $redis->set($token,'1',2592000);       //储存token,一个月
-//                $redisres = $redis->has($token);
             }
         }
     }
