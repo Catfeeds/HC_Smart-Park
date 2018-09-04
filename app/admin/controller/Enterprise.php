@@ -9,6 +9,8 @@
 namespace app\admin\controller;
 
 
+use think\Db;
+
 /**
  * Class Enterprise
  * @package app\admin\controller
@@ -57,6 +59,25 @@ class Enterprise extends Base
         return $this->fetch();
     }
 
+    public function enterprise_info()
+    {
+        $id = \input('id');
+        //基本信息
+        $basic_info = Db::name('EnterpriseList')->where('id', $id)->find();
+        //业务信息
+        $business_info = Db::name('EnterpriseBusiness')->where('enterprise_id', $id)->find();
+        //联系信息
+        $contact_info = Db::name('EnterpriseContact')->where('enterprise_id', $id)->find();
+        //银行信息
+        $bank_info = Db::name('EnterpriseBank')->where('enterprise_id', $id)->find();
+        //入驻信息
+        $entry_info = Db::name('EnterpriseEntryInfo')->where('enterprise_id', $id)->find();
+
+        $info = $basic_info + $business_info + $contact_info + $bank_info + $entry_info;
+        $this->assign('info',$info);
+        return $this->fetch();
+    }
+
     /**
      *添加企业的页面（包括基本信息，经济信息，合同信息等，用标检切换展示）
      */
@@ -67,35 +88,54 @@ class Enterprise extends Base
 
     /**
      *执行添加操作
+     * 1,提交的数据中如果没有表单最后一项:confirmer,说明数据没有提交完全则不进行添加操作.
+     * 2,confirmer数据存在则说明入库完成,返回成功提示.
+     * 因为提交页面写法的原因,也是因为没时间慢慢写数据验证和数据库操作,所以采取了这种小聪明的做法.有时间重写.
      */
     public function enterprise_runadd()
     {
+        $enterprise_info = \input();
+        if (!\request()->isPost()) {
+            $this->error('提交方式不正确');
+        } else {
+            if ($enterprise_info['confirmer'] != '') {
+                //企业基本信息写入
+                $enterprise_info['enterprise_list_legal_setup_day'] = \strtotime($enterprise_info['enterprise_list_legal_setup_day']);//成立日期转时间戳
+                $enterprise_info['enterprise_list_addtime'] = \time();
+                $enterprise_name_count = Db::name('EnterpriseList')
+                    ->where('enterprise_list_name', 'eq', $enterprise_info['enterprise_list_name'])
+                    ->count();
+                if ($enterprise_name_count > 0) {
+                    $this->error('企业名已存在');
+                }
+                //插入企业基本信息表并返回企业id
+                $enterprise_id = \model('EnterpriseList')->allowField(true)->save($enterprise_info);
 
-    }
+                //企业ID
+                $enterprise_info['enterprise_id'] = $enterprise_id;
+                //企业码
+                $enterprise_info['Invitation_code'] = substr(md5(microtime(true)), 0, 6);
+                //企业业务信息写入
+                \model('EnterpriseBusiness')->allowField(true)->save($enterprise_info);
+                //企业联系信息写入
+                \model('EnterpriseContact')->allowField(true)->save($enterprise_info);
+                //企业银行信息写入
+                \model('EnterpriseBank')->allowField(true)->save($enterprise_info);
+                //企业入驻信息写入
+                $enterprise_info['signed_day'] = \strtotime($enterprise_info['signed_day']);        //签订日期转时间戳
+                $enterprise_info['pay_time'] = \strtotime($enterprise_info['pay_time']);        //支付时间转时间戳
+                \model('EnterpriseEntryInfo')->allowField(true)->save($enterprise_info);
 
-    //下面三个方法备用
-    /**
-     *添加企业基本信息
-     */
-    public function enterprise_basic_information_runadd()
-    {
+                $confirmer = Db::name('EnterpriseEntryInfo')->where('enterprise_id', $enterprise_id)->value('confirmer');
 
-    }
 
-    /**
-     *添加企业合同信息
-     */
-    public function enterprise_contract_information_runadd()
-    {
-
-    }
-
-    /**
-     *添加企业经济信息
-     */
-    public function enterprise_economic_information_runadd()
-    {
-
+                if (empty($confirmer)) {
+                    $this->error('添加失败');
+                } else {
+                    $this->success('添加成功');
+                }
+            }
+        }
     }
 
     /**
@@ -110,30 +150,6 @@ class Enterprise extends Base
      *执行编辑操作
      */
     public function enterprise_runedit()
-    {
-
-    }
-
-    /**
-     *编辑企业基本信息
-     */
-    public function enterprise_basic_information_runedit()
-    {
-
-    }
-
-    /**
-     *编辑企业合同信息
-     */
-    public function enterprise_contract_information_runedit()
-    {
-
-    }
-
-    /**
-     *编辑企业经济信息
-     */
-    public function enterprise_economic_information_runedit()
     {
 
     }

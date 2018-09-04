@@ -16,9 +16,15 @@
     </td>
     <td>
         <div class="hidden-sm hidden-xs action-buttons">
+
+            <a class="green"  href="{:url('admin/enterprise/enterprise_info',array('id'=>$v['id']))}" title="查看">
+                <i class="ace-icon fa fa-eye bigger-130"></i>
+            </a>
+
             <a class="green"  href="{:url('admin/enterprise/enterprise_edit',array('id'=>$v['id']))}" title="修改">
                 <i class="ace-icon fa fa-pencil bigger-130"></i>
             </a>
+
             <a class="red confirm-rst-url-btn" href="{:url('admin/enterprise/enterprise_delete',array('id'=>$v['id'],'p'=>input('p',1)))}" data-info="你确定要删除吗？" title="删除">
                 <i class="ace-icon fa fa-trash-o bigger-130"></i>
             </a>
@@ -29,6 +35,14 @@
                     <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
                 </button>
                 <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                    <li>
+                        <a href="{:url('admin/enterprise/enterprise_info',array('id'=>$v['id']))}" class="tooltip-success" data-rel="tooltip" title="" data-original-title="修改">
+											<span class="green">
+												<i class="ace-icon fa fa-eye bigger-120"></i>
+											</span>
+                        </a>
+                    </li>
+
                     <li>
                         <a href="{:url('admin/enterprise/enterprise_edit',array('id'=>$v['id']))}" class="tooltip-success" data-rel="tooltip" title="" data-original-title="修改">
 											<span class="green">

@@ -15,58 +15,559 @@
         <div class="tabbable">
             <ul class="nav nav-tabs" id="myTab">
                 <li class="active"><a data-toggle="tab" href="#basic">基本信息</a></li>
-                <li><a data-toggle="tab" href="#contract">合同信息</a></li>
+                <li><a data-toggle="tab" href="#business">业务信息</a></li>
+                <li><a data-toggle="tab" href="#contract">联系信息</a></li>
+                <li><a data-toggle="tab" href="#bank">银行信息</a></li>
+                <li><a data-toggle="tab" href="#entry">入驻信息</a></li>
             </ul>
             <form class="form-horizontal ajaxForm" name="enterprise_info" method="post" action="{:url('admin/Enterprise/Enterprise_runadd')}">
                 <div class="tab-content">
                     <div id="basic" class="tab-pane fade in active">
+                        <!--基本信息开始-->
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 企业名称： </label>
                             <div class="col-sm-9">
-                                <input type="text" name="" id="" value=""  placeholder=""  class="col-xs-10 col-sm-5"/>
-                                <span class="lbl">&nbsp;&nbsp;<span class="red"></span></span>
+                                <input type="text" name="enterprise_list_name" id="enterprise_list_name" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
                                 <span class="help-inline col-xs-12 col-sm-7">
-												<span class="middle" id="resone"></span>
+												<span class="middle" id="res0"></span>
 											</span>
                             </div>
                         </div>
                         <div class="space-4"></div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 入住时间： </label>
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 统一社会信用代码： </label>
                             <div class="col-sm-9">
-                                <input type="text" name="" id="" value="" placeholder=""   class="col-xs-10 col-sm-5"/>
-                                <span class="lbl">&nbsp;&nbsp;<span class="red"></span></span>
+                                <input type="text" name="enterprise_list_credit_code" id="enterprise_list_credit_code" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
                                 <span class="help-inline col-xs-12 col-sm-7">
-								<span class="middle" id="restwo"></span>
+												<span class="middle" id="res1"></span>
+											</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 法定代表人： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="enterprise_list_legal_representative" id="enterprise_list_legal_representative" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle" id="res2"></span>
+											</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 法人身份证号： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="enterprise_list_legal_id_number" id="enterprise_list_legal_id_number" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle" id="res3"></span>
+											</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 法人联系方式： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="enterprise_list_legal_phone_number" id="enterprise_list_legal_phone_number" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle" id="res4"></span>
+											</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 成立日期： </label>
+                            <div class="col-sm-9">
+                                <input type="date" name="enterprise_list_legal_setup_day" id="enterprise_list_legal_setup_day" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle" id="res5"></span>
+											</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 注册资金： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="enterprise_list_legal_registered_capital" id="enterprise_list_legal_registered_capital" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle" id="res6"></span>
+											</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 注册地址： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="enterprise_list_legal_registered_address" id="enterprise_list_legal_registered_address" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle" id="res7"></span>
+											</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 经营地址： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="enterprise_list_legal_business_address" id="enterprise_list_legal_business_address" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle" id="res8"></span>
+											</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 企业通讯地址： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="enterprise_list_legal_book_address" id="enterprise_list_legal_book_address" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle" id="res9"></span>
+											</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 企业纳税人类型： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="enterprise_list_legal_tax_type" id="enterprise_list_legal_tax_type" value="" placeholder=""   class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="resten"></span>
 							</span>
                             </div>
                         </div>
                     </div>
-                    <div id="contract" class="tab-pane fade">
+                    <!--基本信息结束-->
+                    <!--企业业务信息开始-->
+                    <div id="business" class="tab-pane fade">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 字段一： </label>
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 企业登记注册类型： </label>
                             <div class="col-sm-9">
-                                <input type="text" name="" id="" value=""  placeholder=""  class="col-xs-10 col-sm-5"/>
-                                <span class="lbl">&nbsp;&nbsp;<span class="red"></span></span>
+                                <input type="text" name="registration_type" id="registration_type" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
                                 <span class="help-inline col-xs-12 col-sm-7">
-								<span class="middle" id="resthr"></span>
+								<span class="middle" id="res10"></span>
 							</span>
                             </div>
                         </div>
                         <div class="space-4"></div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 字段二： </label>
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 行业类别： </label>
                             <div class="col-sm-9">
-                                <input type="text" name="" id="" value="" placeholder=""   class="col-xs-10 col-sm-5"/>
-                                <span class="lbl">&nbsp;&nbsp;<span class="red"></span></span>
+                                <input type="text" name="enterprise_category" id="enterprise_category" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
                                 <span class="help-inline col-xs-12 col-sm-7">
-								<span class="middle" id="resfour"></span>
+								<span class="middle" id="res11"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 企业所属技术领域
+                                ： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="technical_field" id="technical_field" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res12"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 企业网址（非必填）： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="website_url" id="website_url" value="" placeholder=""   class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res13"></span>
 							</span>
                             </div>
                         </div>
                     </div>
+                    <!--企业业务信息结束-->
+
+                    <!--企业联系信息开始-->
+                    <div id="contract" class="tab-pane fade">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 企业联系地址： </label>
+                        <div class="col-sm-9">
+                            <input type="text" name="contact_address" id="contact_address" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                            <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                            <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res14"></span>
+							</span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 邮政编码： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="zip_code" id="zip_code" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res15"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 联系人： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="contact" id="contact" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res16"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 联系电话： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="contact_number" id="contact_number" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res17"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 传真（非必填）： </label>
+                        <div class="col-sm-9">
+                            <input type="text" name="fax" id="fax" value="" placeholder=""   class="col-xs-10 col-sm-5" required/>
+                            <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                            <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res18"></span>
+							</span>
+                        </div>
+                    </div>
+                </div>
+                    <!--企业联系信息结束-->
+                    <!--银行信息开始-->
+                    <div id="bank" class="tab-pane fade">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 银行名称： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="bank_name" id="bank_name" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res19"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 开户行： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="bank_deposit" id="bank_deposit" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res20"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 账号： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="account" id="account" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res21"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 财务负责人： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="financial_office" id="financial_office" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res22"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 财务负责人电话： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="financial_office_phone" id="financial_office_phone" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res23"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 邮箱： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="financial_office_email" id="financial_office_email" value="" placeholder=""   class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res24"></span>
+							</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--银行信息结束-->
+
+                    <!--入驻信息开始-->
+                    <div id="entry" class="tab-pane fade">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 楼层： </label>
+                            <div class="col-sm-9">
+                                <input type="number" name="floor" id="floor" value="" placeholder="请输入1~22的阿拉伯数字"  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res25"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 房间号： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="room" id="room" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res26"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 装修状态： </label>
+                            <div class="col-sm-9">
+                                <select name="member_list_groupid"  class="col-sm-5 selector" required>
+                                    <option value="">请选装修类型</option>
+                                    <option value="1">毛坯</option>
+                                    <option value="2">简装</option>
+                                </select>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res27"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 保证金： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="margin" id="margin" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res28"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 面积： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="area" id="area" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res29"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 每平米租金： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="rent_square" id="rent_square" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res30"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 每平米物业费： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="property_square" id="property_square" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res31"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 空调费： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="air_conditioner" id="air_conditioner" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res32"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 房租支付周期： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="rent_period" id="rent_period" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res33"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 物业费支付周期： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="property_period" id="property_period" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res34"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 空调费支付周期： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="air_conditioner_period" id="air_conditioner_period" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res35"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 费用总计： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="total_cost" id="total_cost" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res36"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 签订日期： </label>
+                            <div class="col-sm-9">
+                                <input type="date" name="signed_day" id="signed_day" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res37"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 支付时间： </label>
+                            <div class="col-sm-9">
+                                <input type="datetime-local" name="pay_time" id="pay_time" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res38"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 签订人： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="signer" id="signer" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res39"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 操作人： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="operator" id="operator" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res40"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 开票人： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="drawer" id="drawer" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res41"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 确认人： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="confirmer" id="confirmer" value=""  placeholder=""  class="col-xs-10 col-sm-5" required/>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res42"></span>
+							</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+                    </div>
+                    <!--入驻信息结束-->
                 </div>
                 <div class="clearfix form-actions">
                     <div class="col-sm-offset-3 col-sm-9">

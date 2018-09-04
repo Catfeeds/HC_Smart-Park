@@ -1,0 +1,517 @@
+{extend name="admin@public/base" /}
+{block name="main-content"}
+<div class="page-content">
+    <!--主题-->
+    <div class="page-header">
+        <h1>
+            您当前操作
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                查看企业
+            </small>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="tabbable">
+            <ul class="nav nav-tabs" id="myTab">
+                <li class="active"><a data-toggle="tab" href="#basic">基本信息</a></li>
+                <li><a data-toggle="tab" href="#business">业务信息</a></li>
+                <li><a data-toggle="tab" href="#contract">联系信息</a></li>
+                <li><a data-toggle="tab" href="#bank">银行信息</a></li>
+                <li><a data-toggle="tab" href="#entry">入驻信息</a></li>
+            </ul>
+            <form class="form-horizontal ajaxForm" name="enterprise_info" method="post" action="">
+                <div class="tab-content">
+                    <div id="basic" class="tab-pane fade in active">
+                        <!--基本信息开始-->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 企业名称： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="enterprise_list_name" id="enterprise_list_name"
+                                       value="{$info['enterprise_list_name']}" placeholder="" class="col-xs-10 col-sm-5"
+                                       readonly/>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">
+                                统一社会信用代码： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="enterprise_list_credit_code" id="enterprise_list_credit_code"
+                                       value="{$info['enterprise_list_credit_code']}" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 法定代表人： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="enterprise_list_legal_representative"
+                                       id="enterprise_list_legal_representative"
+                                       value="{$info['enterprise_list_legal_representative']}"
+                                       placeholder="{$info['enterprise_list_legal_representative']}"
+                                       class="col-xs-10 col-sm-5" readonly/>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 法人身份证号： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="enterprise_list_legal_id_number"
+                                       id="enterprise_list_legal_id_number"
+                                       value="{$info['enterprise_list_legal_id_number']}" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 法人联系方式： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="enterprise_list_legal_phone_number"
+                                       id="enterprise_list_legal_phone_number"
+                                       value="{$info['enterprise_list_legal_phone_number']}" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 成立日期： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="enterprise_list_legal_setup_day"
+                                       id="enterprise_list_legal_setup_day"
+                                       value="{$info['enterprise_list_legal_setup_day']|date='Y/m/d',###}"
+                                       placeholder="" class="col-xs-10 col-sm-5" readonly/>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 注册资金： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="enterprise_list_legal_registered_capital"
+                                       id="enterprise_list_legal_registered_capital"
+                                       value="{$info['enterprise_list_legal_registered_capital']}" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 注册地址： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="enterprise_list_legal_registered_address"
+                                       id="enterprise_list_legal_registered_address"
+                                       value="{$info['enterprise_list_legal_registered_address']}" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 经营地址： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="enterprise_list_legal_business_address"
+                                       id="enterprise_list_legal_business_address"
+                                       value="{$info['enterprise_list_legal_business_address']}" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 企业通讯地址： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="enterprise_list_legal_book_address"
+                                       id="enterprise_list_legal_book_address"
+                                       value="{$info['enterprise_list_legal_book_address']}" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 企业纳税人类型： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="enterprise_list_legal_tax_type"
+                                       id="enterprise_list_legal_tax_type"
+                                       value="{$info['enterprise_list_legal_tax_type']}" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--基本信息结束-->
+                    <!--企业业务信息开始-->
+                    <div id="business" class="tab-pane fade">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">
+                                企业登记注册类型： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="registration_type" id="registration_type"
+                                       value="{$info['registration_type']}" placeholder="" class="col-xs-10 col-sm-5"
+                                       readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 行业类别： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="enterprise_category" id="enterprise_category"
+                                       value="{$info['enterprise_category']}" placeholder="" class="col-xs-10 col-sm-5"
+                                       readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 企业所属技术领域
+                                ： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="technical_field" id="technical_field"
+                                       value="{$info['technical_field']}" placeholder="" class="col-xs-10 col-sm-5"
+                                       readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">
+                                企业网址（非必填）： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="website_url" id="website_url" value="{$info['website_url']}"
+                                       placeholder="" class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--企业业务信息结束-->
+
+                    <!--企业联系信息开始-->
+                    <div id="contract" class="tab-pane fade">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 企业联系地址： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="contact_address" id="contact_address"
+                                       value="{$info['contact_address']}" placeholder="" class="col-xs-10 col-sm-5"
+                                       readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 邮政编码： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="zip_code" id="zip_code" value="{$info['zip_code']}"
+                                       placeholder="" class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 联系人： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="contact" id="contact" value="{$info['contact']}" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 联系电话： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="contact_number" id="contact_number"
+                                       value="{$info['contact_number']}" placeholder="" class="col-xs-10 col-sm-5"
+                                       readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 传真（非必填）： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="fax" id="fax" value="{$info['fax']}" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--企业联系信息结束-->
+                    <!--银行信息开始-->
+                    <div id="bank" class="tab-pane fade">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 银行名称： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="bank_name" id="bank_name" value="{$info['bank_name']}"
+                                       placeholder="" class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 开户行： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="bank_deposit" id="bank_deposit" value="{$info['bank_deposit']}"
+                                       placeholder="" class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 账号： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="account" id="account" value="{$info['account']}" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 财务负责人： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="financial_office" id="financial_office"
+                                       value="{$info['financial_office']}" placeholder="" class="col-xs-10 col-sm-5"
+                                       readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 财务负责人电话： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="financial_office_phone" id="financial_office_phone"
+                                       value="{$info['financial_office_phone']}" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 邮箱： </label>
+                            <div class="col-sm-9">
+                                <input type="email" name="financial_office_email" id="financial_office_email"
+                                       value="{$info['financial_office_email']}" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--银行信息结束-->
+
+                    <!--入驻信息开始-->
+                    <div id="entry" class="tab-pane fade">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 楼层： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="floor" id="floor" value="{$info['floor']}" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 房间号： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="room" id="room" value="{$info['room']}" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 装修状态： </label>
+                            <div class="col-sm-9">
+                                {if $info['decorate'] eq 1}
+                                <input type="text" name="decorate" id="decorate" value="毛坯" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                                {else}
+                                <input type="text" name="decorate" id="decorate" value="简装" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                                {/if}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 保证金： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="margin" id="margin" value="{$info['margin']}" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 面积： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="area" id="area" value="{$info['area']}" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 每平米租金： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="rent_square" id="rent_square" value="{$info['rent_square']}"
+                                       placeholder="" class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 每平米物业费： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="property_square" id="property_square"
+                                       value="{$info['property_square']}" placeholder="" class="col-xs-10 col-sm-5"
+                                       readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 空调费： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="air_conditioner" id="air_conditioner"
+                                       value="{$info['air_conditioner']}" placeholder="" class="col-xs-10 col-sm-5"
+                                       readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 房租支付周期： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="rent_period" id="rent_period" value="{$info['rent_period']}"
+                                       placeholder="" class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 物业费支付周期： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="property_period" id="property_period"
+                                       value="{$info['property_period']}" placeholder="" class="col-xs-10 col-sm-5"
+                                       readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 空调费支付周期： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="air_conditioner_period" id="air_conditioner_period"
+                                       value="{$info['air_conditioner_period']}" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 费用总计： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="total_cost" id="total_cost" value="{$info['total_cost']}"
+                                       placeholder="" class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 签订日期： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="signed_day" id="signed_day"
+                                       value="{$info['signed_day']|date='Y/m/d',###}" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 支付时间： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="pay_time" id="pay_time"
+                                       value="{$info['pay_time']|date='Y-m-d H:i:s',###}" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 签订人： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="signer" id="signer" value="{$info['signer']}" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 操作人： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="operator" id="operator" value="{$info['operator']}"
+                                       placeholder="" class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 开票人： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="drawer" id="drawer" value="{$info['drawer']}" placeholder=""
+                                       class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 确认人： </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="confirmer" id="confirmer" value="{$info['confirmer']}"
+                                       placeholder="" class="col-xs-10 col-sm-5" readonly/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+                    </div>
+                    <!--入驻信息结束-->
+                </div>
+            </form>
+        </div>
+    </div>
+</div><!-- /.page-content -->
+{/block}
