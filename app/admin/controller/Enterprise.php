@@ -59,6 +59,13 @@ class Enterprise extends Base
         return $this->fetch();
     }
 
+    /**
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 企业详情
+     */
     public function enterprise_info()
     {
         $id = \input('id');
@@ -74,7 +81,7 @@ class Enterprise extends Base
         $entry_info = Db::name('EnterpriseEntryInfo')->where('enterprise_id', $id)->find();
 
         $info = $basic_info + $business_info + $contact_info + $bank_info + $entry_info;
-        $this->assign('info',$info);
+        $this->assign('info', $info);
         return $this->fetch();
     }
 
@@ -143,7 +150,21 @@ class Enterprise extends Base
      */
     public function enterprise_edit()
     {
+        $id = \input('id');
+        //基本信息
+        $basic_info = Db::name('EnterpriseList')->where('id', $id)->find();
+        //业务信息
+        $business_info = Db::name('EnterpriseBusiness')->where('enterprise_id', $id)->find();
+        //联系信息
+        $contact_info = Db::name('EnterpriseContact')->where('enterprise_id', $id)->find();
+        //银行信息
+        $bank_info = Db::name('EnterpriseBank')->where('enterprise_id', $id)->find();
+        //入驻信息
+        $entry_info = Db::name('EnterpriseEntryInfo')->where('enterprise_id', $id)->find();
 
+        $info = $basic_info + $business_info + $contact_info + $bank_info + $entry_info;
+        $this->assign('info', $info);
+        return \view();
     }
 
     /**
@@ -151,7 +172,24 @@ class Enterprise extends Base
      */
     public function enterprise_runedit()
     {
+        $data = \input();
+        $data['enterprise_list_legal_setup_day'] = \strtotime($data['enterprise_list_legal_setup_day']);//成立日期转时间戳
+        $data['signed_day'] = \strtotime($data['signed_day']);        //签订日期转时间戳
+        $data['pay_time'] = \strtotime($data['pay_time']);        //支付时间转时间戳
+        \model('EnterpriseList')->allowField(true)->save($data, ['id' => $data['id']]);
+        \model('EnterpriseBusiness')->allowField(true)->save($data, ['enterprise_id' => $data['id']]);
+        \model('EnterpriseContact')->allowField(true)->save($data, ['enterprise_id' => $data['id']]);
+        \model('EnterpriseBank')->allowField(true)->save($data, ['enterprise_id' => $data['id']]);
+        \model('EnterpriseEntryInfo')->allowField(true)->save($data, ['enterprise_id' => $data['id']]);
 
+        $confirmer = Db::name('EnterpriseEntryInfo')->where('enterprise_id', $data['id'])->value('confirmer');
+
+
+        if (empty($confirmer)) {
+            $this->error('修改失败');
+        } else {
+            $this->success('修改成功');
+        }
     }
 
     /**
