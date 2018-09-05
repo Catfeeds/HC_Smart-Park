@@ -259,6 +259,7 @@ class Admin extends Base
 	public function avatar()
 	{
 		$imgurl=input('imgurl');
+		\halt($imgurl);exit;
 		//去'/'
 		$imgurl=str_replace('/','',$imgurl);
 		$url='/data/upload/avatar/'.$imgurl;
