@@ -23,15 +23,19 @@ class Center extends AuthBase
 
     /**
      * @return bool|string
-     * 图片上传接口
+     * 单/多图片上传接口
      */
     public function imgUpload()
     {
-        $img = \input('file/s');
-        $upload = new Upload();
-        $res = $upload->base64_upload($img);
-        return $res;
+        $files = \input();
+        $file = \arrToOne($files);
+        foreach ($file as $img) {
+            $upload = new Upload();
+            $res[] = $upload->base64_upload($img);
+        }
+        return \show('1', 'OK',$res,200);
     }
+
     /**
      *投诉建议
      */
@@ -49,7 +53,7 @@ class Center extends AuthBase
             'phone' => $data['phone'],
             'title' => $data['title'],
             'content' => $data['content'],
-            'pic_url' => \input('pic_url',''),
+            'pic_url' => \input('pic_url', ''),
         ];
         $res = \model('ServiceComplains')->allowField(true)->save($sqldata);
         if ($res) {

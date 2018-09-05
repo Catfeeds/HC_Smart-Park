@@ -10,6 +10,7 @@ namespace app\api\controller;
 
 use app\api\library\exception\ApiException;
 use think\Request;
+use think\Db;
 
 /**
  * Class Upload
@@ -28,11 +29,14 @@ class Upload extends AuthBase
     {
         $reqeust = Request::instance();
         if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $base64_image, $result)) {
-            $img_type = $result['2'];       //文件后缀
+            //文件后缀
+            $img_type = $result['2'];
+            //文件大小
+            $img_size = \strlen($base64_image);
             //检测文件类型
             if (!\in_array($img_type, \config('upload_validate.ext')))
                 return new ApiException('文件类型不对', 200, 0);
-            if (\strlen($base64_image) / 1024 > \config('upload_validate.size'))
+            if ($img_size / 1024 > \config('upload_validate.size'))
                 return new ApiException('文件尺寸太大', 200, 0);
             $image_name = uniqid() . '.' . $img_type;     //文件名
             $path = ROOT_PATH . \config('upload_path') . '/' . date('Y-m-d') . '/';     //上传路径
@@ -42,7 +46,14 @@ class Upload extends AuthBase
             if (file_put_contents($image_file, base64_decode(str_replace($result[1], '', $base64_image)))) {
                 //拼接前端可以直接用的图片URL地址
                 $img_url = $reqeust->domain() . \config('upload_path') . '/' . date('Y-m-d') . '/' . $image_name;
-                return \show('1', 'OK', $img_url, 200);
+                //写入数据库
+                $sqldata = [
+                    'uptime' => \time(),
+                    'filesize' => $img_size,
+                    'path' => \config('upload_path') . '/' . date('Y-m-d') . '/' . $image_name
+                ];
+                Db::name('plug_files')->insert($sqldata);
+                return $img_url;
             } else {
                 return false;
             }
