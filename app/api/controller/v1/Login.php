@@ -47,12 +47,13 @@ class Login extends Common
      * @return \think\response\Json
      * 登录成功后token的操作
      */
-    function after_login()
+    function after_login($phone)
     {
+        $user_id = \getUserIdByPhone($phone);
         $token = IAuth::setAppLoginToken();
-        //token存入redis
+        //token存入redis,并赋值user_id,这样就知道用户的id了.
         $redis = new Redis();
-        $redis->set($token, '1', \config('token_expires_time'));
+        $redis->set($token, $user_id, \config('token_expires_time'));
         //返回加密后的token
         $token = Aes::encrypt($token);
         return \show('1', 'OK', $token, 200);

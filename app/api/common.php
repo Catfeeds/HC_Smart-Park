@@ -1,4 +1,7 @@
 <?php
+
+use think\Db;
+
 /**
  * @param $status 业务状态码
  * @param $message 提示信息
@@ -15,4 +18,15 @@ function show($status, $message, $data = [], $httpCode = 200)
         'data' => $data
     ];
     return json($data, $httpCode);
+}
+
+
+/**
+ * @param $phone
+ * @return mixed
+ * 根据会员手机号获取ID
+ */
+function getUserIdByPhone($phone){
+    $id = Db::name('MemberList')->where('member_list_tel', 'eq', $phone)->value('member_list_id');
+    return $id;
 }

@@ -19,11 +19,18 @@ use think\Db;
 class Service extends Base
 {
     /**
-     *投诉列表
+     *投诉建议列表
      */
     public function complaints_list()
     {
-
+        $list = Db::name('ServiceComplains')
+            ->order('create_time')
+            ->paginate(config('paginate.list_rows'));
+        $show = $list->render();
+        $show = preg_replace("(<a[^>]*page[=|/](\d+).+?>(.+?)<\/a>)", "<a href='javascript:ajax_page($1);'>$2</a>", $show);
+        $this->assign('page', $show);
+        $this->assign('list', $list);
+        return $this->fetch();
     }
 
     /**
@@ -35,19 +42,40 @@ class Service extends Base
     }
 
     /**
-     *建议列表
+     *删除投诉建议
      */
-    public function suggest_list()
+    public function complains_delete()
     {
-
+        $p = input('p');
+        $id = \input('id');
+        $rst = \db('ServiceComplains')->where('id', 'eq', $id)->delete();
+        if ($rst !== false) {
+            $this->success('删除成功', url('admin/Service/complaints_list', array('p' => $p)));
+        } else {
+            $this->error('删除失败', url('admin/Service/complaints_list', array('p' => $p)));
+        }
     }
 
     /**
-     *处理，回复建议
+     *热线全部删除
      */
-    public function suggest_reply()
+    public function complains_alldelete()
     {
+        $p = input('p');
+        $ids = input('id/a');
+        if (empty($ids)) {
+            $this->error("请选择删除的公告", url('admin/Service/complaints_list', array('p' => $p)));
+        }
+        if (!is_array($ids)) {
+            $ids[] = $ids;
+        }
 
+        $rst = Db::name('ServiceComplains')->where('id', 'in', $ids)->delete();
+        if (!$rst) {
+            $this->error("删除失败", url('admin/Service/complaints_list', array('p' => $p)));
+        } else {
+            $this->success("删除成功", url('admin/Service/complaints_list', array('p' => $p)));
+        }
     }
 
     /**
@@ -192,7 +220,7 @@ class Service extends Base
     }
 
     /**
-     *全部删除
+     *热线全部删除
      */
     public function hotline_alldelete()
     {

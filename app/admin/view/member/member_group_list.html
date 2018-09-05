@@ -23,7 +23,6 @@
 							<tr>
 								<th>会员组ID</th>
 								<th>会员组名称</th>
-								<th class="hidden-sm hidden-xs">满足积分条件</th>
 								<th style="border-right:#CCC solid 1px;">状态</th>
 								<th style="border-right:#CCC solid 1px;">排序</th>
 								<th style="border-right:#CCC solid 1px;">操作</th>
@@ -36,7 +35,6 @@
 								<tr>
 									<td height="28" >{$v.member_group_id}</td>
 									<td>{$v.member_group_name}</td>
-									<td class="hidden-sm hidden-xs">{$v.member_group_bomlimit} - {$v.member_group_toplimit} 积分</td>
 									<td>
 										{if condition='$v.member_group_open eq 1'}
 											<a class="red open-btn" href="{:url('admin/Member/member_group_state')}" data-id="{$v.member_group_id}" title="已开启">
@@ -126,25 +124,6 @@
 									<div class="space-4"></div>
 
 									<div class="form-group">
-										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 积分条件：  </label>
-										<div class="col-sm-10">
-
-										<span class="input-icon">
-											<input type="number" id="form-field-icon-1" name="member_group_bomlimit" placeholder="输入下限积分"  required/>
-											<i class="ace-icon fa fa-leaf blue"></i>
-										</span>
-
-										<span class="input-icon input-icon-right">
-											<input type="number" id="form-field-icon-2" name="member_group_toplimit" placeholder="输入上限积分"  required/>
-											<i class="ace-icon fa fa-leaf green"></i>
-										</span>
-
-											<!-- /section:elements.form.input-icon -->
-										</div>
-									</div>
-									<div class="space-4"></div>
-
-									<div class="form-group">
 										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 排序：  </label>
 										<div class="col-sm-10">
 											<input type="text" name="member_group_order" id="member_group_order" value="50" class="col-xs-10 col-sm-3" />
@@ -211,25 +190,6 @@
 										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 会员组名称：  </label>
 										<div class="col-sm-10">
 											<input type="text" name="member_group_name" id="editmember_group_name" value="" class="col-xs-10 col-sm-5"  required/>
-										</div>
-									</div>
-									<div class="space-4"></div>
-
-									<div class="form-group">
-										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 积分条件：  </label>
-										<div class="col-sm-10">
-
-											<span class="input-icon">
-												<input type="number" id="editmember_group_bomlimit" name="member_group_bomlimit" placeholder="输入下限积分" required/>
-												<i class="ace-icon fa fa-leaf blue"></i>
-											</span>
-
-											<span class="input-icon input-icon-right">
-												<input type="number" id="editmember_group_toplimit" name="member_group_toplimit" placeholder="输入上限积分" required/>
-												<i class="ace-icon fa fa-leaf green"></i>
-											</span>
-
-											<!-- /section:elements.form.input-icon -->
 										</div>
 									</div>
 									<div class="space-4"></div>

@@ -38,8 +38,6 @@ class Register extends Common
         if (!\request()->isPost()) {
             return \show(0, '提交方式不正确', 403);
         } else {
-
-
             //首先验证手机验证码
             $account = \input('phone');
             $type = 1;

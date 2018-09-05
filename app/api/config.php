@@ -12,7 +12,15 @@ return [
     //sign有效期,秒
     'app_sign_time' => '30',
     //token有效期,秒
-    'token_expires_time'=>'2592000',
+    'token_expires_time' => '2592000',
     //APP版本号
-    'version' => '1.0'
+    'version' => '1.0',
+
+    // redis缓存
+    'redis' => [
+        // 驱动方式
+        'type' => 'redis',
+        // 服务器地址
+        'host' => '127.0.0.1',
+    ],
 ];
