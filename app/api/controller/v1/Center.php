@@ -10,6 +10,7 @@ namespace app\api\controller\v1;
 
 
 use app\api\controller\AuthBase;
+use app\api\controller\Upload;
 use think\cache\driver\Redis;
 
 /**
@@ -19,16 +20,28 @@ use think\cache\driver\Redis;
  */
 class Center extends AuthBase
 {
+
+    /**
+     * @return bool|string
+     * 图片上传接口
+     */
+    public function imgUpload()
+    {
+        $img = \input('file/s');
+        $upload = new Upload();
+        $res = $upload->base64_upload($img);
+        return $res;
+    }
     /**
      *投诉建议
      */
     public function complains()
     {
-        /*$redis = new Redis();
+        $redis = new Redis();
         $redis->set('token', 'xpwsgg');
         $a = $redis->get('token');
         \halt($a);
-        exit;*/
+        exit;
         $data = \input();
         $sqldata = [
             'type' => $data['type'],
