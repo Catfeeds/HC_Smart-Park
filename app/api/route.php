@@ -36,7 +36,7 @@ Route::resource('enterprise', 'api/v1.enterprise');
 //                                  个人中心
 Route::resource('center','api/v1.center');
 //上传图片
-Route::post('img_upload','api/v1.center/imgUpload');
+Route::resource('upload','api/v1.upload');
 //投诉建议
 Route::post('complains', 'api/v1.center/complains');
 //                                   个人中心

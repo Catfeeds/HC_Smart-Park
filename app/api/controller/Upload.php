@@ -41,13 +41,14 @@ class Upload extends AuthBase
                 return new ApiException('文件尺寸太大', 200, 0);
             $image_name = uniqid() . '.' . $img_type;     //文件名
             $path = ROOT_PATH . \config('upload_path') . '/' . date('Y-m-d') . '/';     //上传路径
+            //如果不存在文件夹,就创建
+            if (!\file_exists($path))
+                \mkdir($path);
             //生成最终的图片完整数据
             $image_file = $path . $image_name;
-
             //保存图片
             if (file_put_contents($image_file, base64_decode(str_replace($result[1], '', $base64_image)))) {
-                //拼接前端可以直接用的图片URL地址
-                $img_url = $reqeust->domain() . \config('upload_path') . '/' . date('Y-m-d') . '/' . $image_name;
+
                 //写入数据库
                 $sqldata = [
                     'uptime' => \time(),
@@ -55,6 +56,8 @@ class Upload extends AuthBase
                     'path' => \config('upload_path') . '/' . date('Y-m-d') . '/' . $image_name
                 ];
                 Db::name('plug_files')->insert($sqldata);
+                //拼接前端可以直接用的图片URL地址
+                $img_url = $reqeust->domain() . \config('upload_path') . '/' . date('Y-m-d') . '/' . $image_name;
                 return $img_url;
             } else {
                 return false;
