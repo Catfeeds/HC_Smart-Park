@@ -11,6 +11,7 @@ namespace app\api\controller\v1;
 
 use app\api\controller\Common;
 use app\api\library\Aes;
+use app\api\library\exception\ApiException;
 use app\api\library\IAuth;
 use think\cache\driver\Redis;
 
@@ -37,9 +38,12 @@ class Login extends Common
                 break;
             case 2:
                 //todo 手机号+验证码登录
+
+                //登录成功执行
+                $this->after_login();
                 break;
             default:
-                return \show('0', '登录方式不正确', '', 200);
+                return new ApiException('登录方式不正确','200',0);
         }
     }
 

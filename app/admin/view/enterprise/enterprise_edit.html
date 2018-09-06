@@ -339,13 +339,15 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 装修状态： </label>
                             <div class="col-sm-9">
-                                {if $info['decorate'] eq 1}
-                                <input type="text" name="decorate" id="decorate" value="毛坯" placeholder=""
-                                       class="col-xs-10 col-sm-5" required/>
-                                {else}
-                                <input type="text" name="decorate" id="decorate" value="简装" placeholder=""
-                                       class="col-xs-10 col-sm-5" required/>
-                                {/if}
+                                <select name="decorate"  class="col-sm-5 selector" required>
+                                   {if $info['decorate'] eq 1}
+                                    <option value="1" selected>毛坯</option>
+                                    <option value="2">简装</option>
+                                    {else}
+                                    <option value="1">毛坯</option>
+                                    <option value="2" selected>简装</option>
+                                    {/if}
+                                </select>
                                 </span>
                             </div>
                         </div>

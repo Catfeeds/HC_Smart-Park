@@ -11,10 +11,24 @@ namespace app\api\library\exception;
 
 use think\Exception;
 
+/**
+ * Class ApiException
+ * @package app\api\library\exception
+ * 返回api报错信息
+ */
 class ApiException extends Exception
 {
+    /**
+     * @var string
+     */
     public $message = '';
+    /**
+     * @var int
+     */
     public $httpCode = 500;
+    /**
+     * @var int
+     */
     public $code = 0;
 
     /**

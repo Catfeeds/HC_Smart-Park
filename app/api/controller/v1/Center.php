@@ -20,14 +20,13 @@ use think\cache\driver\Redis;
  */
 class Center extends AuthBase
 {
-
     /**
      * @return bool|string
      * 单/多图片上传接口
      */
     public function imgUpload()
     {
-        $files = \input();
+        $files = \input('image/a');
         $file = \arrToOne($files);
         foreach ($file as $img) {
             $upload = new Upload();

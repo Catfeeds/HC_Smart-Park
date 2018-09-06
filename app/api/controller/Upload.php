@@ -36,10 +36,12 @@ class Upload extends AuthBase
             //检测文件类型
             if (!\in_array($img_type, \config('upload_validate.ext')))
                 return new ApiException('文件类型不对', 200, 0);
+            //检测文件大小
             if ($img_size / 1024 > \config('upload_validate.size'))
                 return new ApiException('文件尺寸太大', 200, 0);
             $image_name = uniqid() . '.' . $img_type;     //文件名
             $path = ROOT_PATH . \config('upload_path') . '/' . date('Y-m-d') . '/';     //上传路径
+            //生成最终的图片完整数据
             $image_file = $path . $image_name;
 
             //保存图片

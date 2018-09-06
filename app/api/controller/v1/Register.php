@@ -38,6 +38,8 @@ class Register extends Common
         if (!\request()->isPost()) {
             return \show(0, '提交方式不正确', 403);
         } else {
+            if (!\input('phone') || !\input('verify') || !\input('password'))
+                return \show('0', '信息不完整', '', 200);
             //首先验证手机验证码
             $account = \input('phone');
             $type = 1;
@@ -46,20 +48,23 @@ class Register extends Common
             if (!$smsres) {
                 return \show(0, '手机验证码错误');
             } else {
-                $member_list_salt=random(10);
+                $member_list_salt = random(10);
                 $sqldata = [
                     'member_list_username' => '会员' . \input('phone'),
-                    'member_list_password'=>\encrypt_password(\input('password'), $member_list_salt),
-                    'member_list_salt'=>$member_list_salt,
-                    'member_list_tel'=>\input('phone'),
-                    'member_list_addtime'=>\time(),
+                    'member_list_password' => \encrypt_password(\input('password'), $member_list_salt),
+                    'member_list_salt' => $member_list_salt,
+                    'member_list_tel' => \input('phone'),
+                    'member_list_addtime' => \time(),
                 ];
 
-                $regres = Db::name('MemberList')->insertGetId($sqldata);
-                if($regres!==false){
-                    return \show(1, '注册成功','',200);
-                }else{
-                    return \show(0, '注册失败','',200);
+                $user_id = Db::name('MemberList')->insertGetId($sqldata);
+
+                if ($user_id !== false) {
+                    //注册完成把用户信息返回给app
+                    $user_info = Db::name('MemberList')->where('member_list_id', 'eq', $user_id)->find();
+                    return \show(1, '注册成功', $user_info, 200);
+                } else {
+                    return \show(0, '注册失败', '', 200);
                 }
 
 

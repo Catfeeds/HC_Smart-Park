@@ -12,6 +12,11 @@ use app\api\library\Aes;
 use app\api\library\exception\ApiException;
 use think\cache\driver\Redis;
 
+/**
+ * Class AuthBase
+ * @package app\api\controller
+ * 需要登录的操作都须继承这个类
+ */
 class AuthBase extends Common
 {
     /**
@@ -37,7 +42,7 @@ class AuthBase extends Common
             $redis = new Redis();
             $res = $redis->has($token); //检查token是否存在或过期
             if (!$res)
-                new ApiException('请先登录');
+                return new ApiException('请先登录');
         }
     }
 }
