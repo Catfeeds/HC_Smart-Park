@@ -21,6 +21,20 @@ function show($status, $message, $data = [], $httpCode = 200)
     return json($data, $httpCode);
 }
 
+/**
+@desc：获取图片真实后缀
+@param   name    文件名
+@return  suffix  文件后缀
+ */
+function getimgsuffix($name)
+{
+    $info = getimagesize($name);
+    $suffix = false;
+    if ($mime = $info['mime']) {
+        $suffix = explode('/', $mime)[1];
+    }
+    return $suffix;
+}
 
 /**
  * @param $phone

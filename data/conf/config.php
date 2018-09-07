@@ -52,7 +52,7 @@ return
         'url_html_suffix' => 'html',
         'storage' =>
             array(
-                'storage_open' => true,
+                'storage_open' => false,
                 'accesskey' => 'vIWB7GM5PhOwjVcOhQGP7Eq8dFKLpjORr5KGWiXf',
                 'secretkey' => '9iXk4zlsUcDs9VwrXujdvklb5Bl7pqk0V_lttiPv',
                 'bucket' => 'echox',

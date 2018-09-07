@@ -84,7 +84,11 @@ class Upload extends AuthBase
         //获取上传所需的token
         $upToken = $auth->uploadToken($qiniu_config['bucket'], null, 3600);
         $uploadMgr = new UploadManager();
-        list($ret, $err) = $uploadMgr->putFile($upToken, null, $base64);
+        $rand = rand(1111, 9999);
+        $now = time();
+        $img_type = getimgsuffix($base64);
+        $key = \md5($rand . $now) . '.'.$img_type;
+        list($ret, $err) = $uploadMgr->putFile($upToken, $key, $base64);
         if ($ret) {
             return \config('storage.domain') . $ret['key'];
         } else {

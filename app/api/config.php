@@ -24,5 +24,5 @@ return [
         'host' => '127.0.0.1',
     ],
     //七牛云的上传地址
-    'upload_url' => 'http://up.qiniup.com/',
+    'upload_url' => 'http://up.qiniup.com/putb64/-1/key/',
 ];
