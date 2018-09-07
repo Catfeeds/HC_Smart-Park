@@ -23,4 +23,6 @@ return [
         // 服务器地址
         'host' => '127.0.0.1',
     ],
+    //七牛云的上传地址
+    'upload_url' => 'http://up.qiniup.com/',
 ];

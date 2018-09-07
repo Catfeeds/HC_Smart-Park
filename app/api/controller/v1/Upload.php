@@ -23,7 +23,11 @@ class Upload extends AuthBase
         $file = \arrToOne($files);
         foreach ($file as $img) {
             $upload = new \app\api\controller\Upload();
-            $res[] = $upload->qiniu_upload($img);
+            if (\config('storage.storage_open')){
+                $res[] = $upload->qiniu_upload($img);
+            }else{
+                $res[] = $upload->local_upload($img);
+            }
         }
         return \show('1', 'OK', $res, 200);
     }
