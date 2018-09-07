@@ -19,12 +19,6 @@ use think\Db;
  */
 class Register extends Common
 {
-    public function index()
-    {
-
-    }
-
-
     /**
      * @return \think\response\Json
      * @throws \think\db\exception\DataNotFoundException

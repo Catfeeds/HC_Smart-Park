@@ -14,6 +14,7 @@ use app\api\library\Aes;
 use app\api\library\exception\ApiException;
 use app\api\library\IAuth;
 use think\cache\driver\Redis;
+use think\Db;
 
 /**
  * Class Login
@@ -31,10 +32,24 @@ class Login extends Common
         $type = \input('type');     //登录方式
         switch ($type) {
             case 1:
-                //todo 手机号+密码登录
-
-                //登录成功执行
-                $this->after_login();
+                //手机号+密码登录
+                $phone = \input('phone');
+                //如果手机号不存在则说明没有注册
+                $count_phone = Db::name('MemberList')->where('member_list_tel', 'eq', $phone)->count();
+                if ($count_phone < 1) {
+                    return new ApiException('该手机号尚未注册');
+                } else {
+                    $user_info = Db::name('MemberList')->where('member_list_tel', 'eq', $phone)->field('member_list_id,member_list_salt,member_list_pwd')->find();
+                    $password = \input('password');
+                    $salt = $user_info['member_list_salt'];
+                    $pwd = \encrypt_password($password, $salt);
+                    if ($pwd == $user_info['member_list_pwd']) {
+                        //登录成功执行
+                        return $this->after_login($user_info['member_list_id']);
+                    } else {
+                        return new ApiException('登录失败');
+                    }
+                }
                 break;
             case 2:
                 //todo 手机号+验证码登录
@@ -43,7 +58,7 @@ class Login extends Common
                 $this->after_login();
                 break;
             default:
-                return new ApiException('登录方式不正确','200',0);
+                return new ApiException('登录方式不正确', '200', 0);
         }
     }
 
@@ -51,15 +66,25 @@ class Login extends Common
      * @return \think\response\Json
      * 登录成功后token的操作
      */
-    function after_login($phone)
+    function after_login($user_id)
     {
-        $user_id = \getUserIdByPhone($phone);
+        //更新登录信息
+        $updata = [
+            'last_login_time' => \time(),
+            'last_login_ip' => \request()->ip(),
+        ];
+        Db::name('MemberList')->where('member_list_id',$user_id)->setField($updata);
         $token = IAuth::setAppLoginToken();
         //token存入redis,并赋值user_id,这样就知道用户的id了.
         $redis = new Redis();
         $redis->set($token, $user_id, \config('token_expires_time'));
         //返回加密后的token
         $token = Aes::encrypt($token);
-        return \show('1', 'OK', $token, 200);
+        $user_info = Db::name('MemberList')
+            ->where('member_list_id', 'eq', $user_id)
+            ->field('member_list_id,member_list_username,member_list_groupid,member_list_tel')
+            ->find();
+        $user_info['token'] = $token;
+        return \show('1', 'OK', $user_info, 200);
     }
 }
