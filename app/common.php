@@ -1776,7 +1776,7 @@ function checksms($account, $type, $verify)
 {
     $where['sms_type'] = $type;
     $where['sms_tel'] = $account;
-    $where['sms_time'] = ['>', time() - 120];
+    $where['sms_time'] = ['>', time() - config('sms_out_time')];
     $rst = Db::name('SmsLog')->where($where)->find();
     if (!$rst || $rst['sms_code'] != $verify) {
         return false;

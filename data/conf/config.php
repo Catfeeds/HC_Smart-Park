@@ -206,4 +206,6 @@ return array(
             'TemplateCode' => '',
             'sms_open' => NULL,
         ),
+    //短信有效期/s
+    'sms_out_time' => 12000000000000,
 );
