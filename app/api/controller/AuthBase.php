@@ -27,7 +27,7 @@ class AuthBase extends Common
         parent::_initialize();
         //debug模式下不检测token
         if (!\config('app_debug'))
-            $this->isLogin();
+            return $this->isLogin();
     }
 
     /**
@@ -35,14 +35,15 @@ class AuthBase extends Common
      */
     protected function isLogin()
     {
-        if (empty($this->headers['token'])) {
-            return false;
+        if (empty($this->headers['token']))
+            return new ApiException('请先登录');
+        $token = Aes::decrypt(\input('token'));     //解密token
+        $redis = new Redis();
+        $res = $redis->has($token); //检查token是否存在或过期
+        if (!$res) {
+            return new ApiException('token已过期');
         } else {
-            $token = Aes::decrypt(\input('token'));     //解密token
-            $redis = new Redis();
-            $res = $redis->has($token); //检查token是否存在或过期
-            if (!$res)
-                return new ApiException('请先登录');
+            return true;
         }
     }
 }

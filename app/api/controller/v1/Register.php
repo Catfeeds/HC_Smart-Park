@@ -48,7 +48,7 @@ class Register extends Common
                     'member_list_password' => \encrypt_password(\input('password'), $member_list_salt),
                     'member_list_salt' => $member_list_salt,
                     'member_list_tel' => \input('phone'),
-                    'member_list_groupid' => '1',
+                    'member_list_groupid' => '1',       //会员组
                     'member_list_addtime' => \time(),
                 ];
 

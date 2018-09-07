@@ -23,7 +23,7 @@ class Upload extends AuthBase
         $file = \arrToOne($files);
         foreach ($file as $img) {
             $upload = new \app\api\controller\Upload();
-            $res[] = $upload->base64_upload($img);
+            $res[] = $upload->qiniu_upload($img);
         }
         return \show('1', 'OK', $res, 200);
     }

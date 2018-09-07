@@ -3,6 +3,7 @@
     1. php7.1
     2. Mysql7
     3. 操作系统推荐使用Linux
-    4. PHP需安装Redis扩展
+    4. Redis3.2
+    5. PHP需安装Redis扩展
 
     
