@@ -23,7 +23,7 @@ class ServiceComplains extends Model
     protected $autoWriteTimestamp = true;
 
     /**
-     * @param $news_time
+     * @param $create_time
      * @return false|string
      * 发布时间读取器
      */
@@ -33,7 +33,7 @@ class ServiceComplains extends Model
     }
 
     /**
-     * @param $news_time
+     * @param $handler_time
      * @return false|string
      * 处理时间读取器
      */
