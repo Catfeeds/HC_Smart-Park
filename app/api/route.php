@@ -35,6 +35,7 @@ Route::resource('login', 'api/v1.login');
 Route::resource('enterprise', 'api/v1.enterprise');
 //个人中心
 Route::resource('center','api/v1.center');
+Route::post('update_phone','api/v1.center/update_phone');
 //上传图片
 Route::resource('upload','api/v1.upload');
 //投诉建议
