@@ -79,7 +79,6 @@ class News extends Model
             ->order('news_time desc')
             ->page($page, 10)
             ->select();
-        return \show('200', 'OK', $list);
     }
 
     /**

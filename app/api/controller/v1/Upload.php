@@ -11,11 +11,18 @@ namespace app\api\controller\v1;
 
 use app\api\controller\AuthBase;
 
+/**
+ * Class Upload
+ * @package app\api\controller\v1
+ * 图片上传控制器
+ */
 class Upload extends AuthBase
 {
+
     /**
-     * @return bool|string
-     * 单/多图片上传接口
+     * @return \think\response\Json
+     * @throws \Exception
+     * 单图/多图上传图片至本地或者七牛
      */
     public function save()
     {

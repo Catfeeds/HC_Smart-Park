@@ -10,8 +10,6 @@ namespace app\api\controller\v1;
 
 
 use app\api\controller\AuthBase;
-use app\api\controller\Upload;
-use think\cache\driver\Redis;
 
 /**
  * Class Center
@@ -20,30 +18,5 @@ use think\cache\driver\Redis;
  */
 class Center extends AuthBase
 {
-    /**
-     *投诉建议
-     */
-    public function complains()
-    {
-        $redis = new Redis();
-        $redis->set('token', 'xpwsgg');
-        $a = $redis->get('token');
-        \halt($a);
-        exit;
-        $data = \input();
-        $sqldata = [
-            'type' => $data['type'],
-            'user_id' => \getUserIdByPhone($data['phone']),
-            'phone' => $data['phone'],
-            'title' => $data['title'],
-            'content' => $data['content'],
-            'pic_url' => \input('pic_url', ''),
-        ];
-        $res = \model('ServiceComplains')->allowField(true)->save($sqldata);
-        if ($res) {
-            return \show('1', 'OK', '', 200);
-        } else {
-            return \show(0, 'Fail', '', 200);
-        }
-    }
+
 }
