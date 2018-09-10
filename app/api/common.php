@@ -79,7 +79,7 @@ function getUserIdByToken($token)
  * @throws \think\exception\DbException
  * 根据企业码获取企业基本信息
  */
-function getEnterPriseBasicInfoByCode($code)
+function getEnterpriseBasicInfoByCode($code)
 {
     return Db::name('EnterpriseList')->where('enterprise_list_code', 'eq', $code)->find();
 }

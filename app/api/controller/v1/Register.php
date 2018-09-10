@@ -45,7 +45,7 @@ class Register extends Common
                 $member_list_salt = random(10);
                 $sqldata = [
                     'member_list_username' => '会员' . \input('phone'),
-                    'member_list_password' => \encrypt_password(\input('password'), $member_list_salt),
+                    'member_list_password' => \encrypt_password(\input('password', \config('default_password')), $member_list_salt),
                     'member_list_salt' => $member_list_salt,
                     'member_list_tel' => \input('phone'),
                     'member_list_groupid' => '1',       //分配一个会员组

@@ -45,11 +45,15 @@ class Center extends AuthBase
         if (\request()->isPost()) {
             $user_id = \input('user_id');
             $new_username = \input('user_name');
-            $count_username = Db::name('MemebrList')->where('member_list_username', 'eq', $new_username)->count();
+            $count_username = Db::name('MemebrList')
+                ->where('member_list_username', 'eq', $new_username)
+                ->count();
             if ($count_username > 0) {
                 return \show('0', '改昵称已存在');
             } else {
-                $res = Db::name('MemberList')->where('member_list_id', 'eq', $user_id)->setField('member_list_username', $new_username);
+                $res = Db::name('MemberList')
+                    ->where('member_list_id', 'eq', $user_id)
+                    ->setField('member_list_username', $new_username);
                 if ($res) {
                     return \show('1', '修改成功');
                 } else {
@@ -74,7 +78,9 @@ class Center extends AuthBase
         if (\request()->isPost()) {
             $user_id = \input('user_id');
             $new_phone = \input('phone');
-            $count_phone = Db::name('MemberList')->where('member_list_phone', 'eq', $new_phone)->count();
+            $count_phone = Db::name('MemberList')
+                ->where('member_list_phone', 'eq', $new_phone)
+                ->count();
             if ($count_phone > 0) {
                 return \show('0', '手机号已存在');
             } else {
@@ -82,7 +88,9 @@ class Center extends AuthBase
                 if (!$res) {
                     return \show('0', '验证码错误');
                 } else {
-                    $rst = Db::name('MemberList')->where('member_list_id', 'eq', $user_id)->setField('member_list_tel', $new_phone);
+                    $rst = Db::name('MemberList')
+                        ->where('member_list_id', 'eq', $user_id)
+                        ->setField('member_list_tel', $new_phone);
                     if ($rst) {
                         \show('1', '修改成功');
                     } else {
@@ -92,6 +100,36 @@ class Center extends AuthBase
             }
         } else {
             return \show(0, '提交方式不正确');
+        }
+    }
+
+    /**
+     * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 设置密码
+     * 不管是重置密码,修改密码都是手机号+验证码,不需要验证旧密码
+     */
+    public function setpwd()
+    {
+        $user_id = \input('user_id');
+        $phone = \input('phone');
+        $verify = \input('verify');
+        $res = \checksms($phone, 3, $verify);
+        if (!$res) {
+            return \show(0, '验证码错误');
+        } else {
+            $salt = random(10);
+            $new_pwd = \encrypt_password(\input('password'), $salt);
+            $rst = Db::name('MemberList')
+                ->where('member_list_id', 'eq', $user_id)
+                ->setField('member_list_pwd', $new_pwd);
+            if ($rst) {
+                return \show(1, '修改成功');
+            } else {
+                return \show(0, '修改失败');
+            }
         }
     }
 
@@ -114,13 +152,16 @@ class Center extends AuthBase
             if (!$user_id || !$slqdata['member_list_enterprise'] || !$slqdata['member_list_nickname'] || !$slqdata['member_list_department']) {
                 return \show(0, '信息不完整');
             } else {
-                $enterpriseInfo = \getEnterPriseBasicInfoByCode(\input('enterprise_code'));
+                $enterpriseInfo = \getEnterpriseBasicInfoByCode(\input('enterprise_code'));
                 $slqdata['member_list_enterprise'] = $enterpriseInfo['id'];
                 $rst = \model('MemberList')->save($slqdata, ['member_list_id' => $user_id]);
-                $info = Db::name('MemberList')->where('member_list_id','eq',$user_id)->field('member_list_id,member_list_enterprise,member_list_nickname,member_list_department')->find();
-                if ($rst){
-                    return \show(1, '绑定成功',$info,200);
-                }else{
+                $info = Db::name('MemberList')
+                    ->where('member_list_id', 'eq', $user_id)
+                    ->field('member_list_id,member_list_enterprise,member_list_nickname,member_list_department')
+                    ->find();
+                if ($rst) {
+                    return \show(1, '绑定成功', $info, 200);
+                } else {
                     return \show(0, '绑定失败');
                 }
             }
