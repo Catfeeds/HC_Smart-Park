@@ -124,7 +124,7 @@ class Center extends AuthBase
             $new_pwd = \encrypt_password(\input('password'), $salt);
             $rst = Db::name('MemberList')
                 ->where('member_list_id', 'eq', $user_id)
-                ->setField('member_list_pwd', $new_pwd);
+                ->setField(['member_list_pwd' => $new_pwd, 'member_list_salt' => $salt]);
             if ($rst) {
                 return \show(1, '修改成功');
             } else {

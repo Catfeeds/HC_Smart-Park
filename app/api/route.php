@@ -38,6 +38,7 @@ Route::resource('center','api/v1.center');
 Route::post('update_phone','api/v1.center/update_phone');
 Route::post('update_username','api/v1.center/update_username');
 Route::post('bind','api/v1.center/bind_enterprise');
+Route::post('pwd','api/v1.center/setpwd');
 //上传图片
 Route::resource('upload','api/v1.upload');
 //投诉建议
