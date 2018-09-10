@@ -69,3 +69,15 @@ function getUserIdByToken($token)
         return false;
     }
 }
+
+/**
+ * @param $code
+ * @return array|false|PDOStatement|string|\think\Model
+ * @throws \think\db\exception\DataNotFoundException
+ * @throws \think\db\exception\ModelNotFoundException
+ * @throws \think\exception\DbException
+ * 根据企业码获取企业基本信息
+ */
+function getEnterPriseBasicInfoByCode($code){
+    return Db::name('EnterpriseList')->where('enterprise_list_code','eq',$code)->find();
+}

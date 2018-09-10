@@ -11,7 +11,6 @@ namespace app\api\controller\v1;
 
 use app\api\controller\AuthBase;
 use think\Db;
-use think\Request;
 
 /**
  * Class Center
@@ -40,8 +39,6 @@ class Center extends AuthBase
     /**
      * @return \think\response\Json
      * 修改用户名
-     * $user_id = \input('user_id');
-     *$new_username = \input('user_name');
      */
     public function update_username()
     {
@@ -71,8 +68,6 @@ class Center extends AuthBase
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      * 更新手机号
-     * $user_id = \input('user_id');
-     *$new_username = \input('user_name');
      */
     public function update_phone()
     {
@@ -97,6 +92,38 @@ class Center extends AuthBase
             }
         } else {
             return \show(0, '提交方式不正确');
+        }
+    }
+
+    /**
+     * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 绑定企业
+     */
+    public function bind_enterprise()
+    {
+        if (!\request()->isPost()) {
+            return \show(0, '提交方式不正确');
+        } else {
+            $user_id = \input('user_id');
+            $slqdata['member_list_enterprise'] = \input('enterprise_code');
+            $slqdata['member_list_nickname'] = \input('realname');
+            $slqdata['member_list_department'] = \input('department');
+            if (!$user_id || !$slqdata['member_list_enterprise'] || !$slqdata['member_list_nickname'] || !$slqdata['member_list_department']) {
+                return \show(0, '信息不完整');
+            } else {
+                $enterpriseInfo = \getEnterPriseBasicInfoByCode(\input('enterprise_code'));
+                $slqdata['member_list_enterprise'] = $enterpriseInfo['id'];
+                $rst = \model('MemberList')->save($slqdata, ['member_list_id' => $user_id]);
+                $info = Db::name('MemberList')->where('member_list_id','eq',$user_id)->field('member_list_id,member_list_enterprise,member_list_nickname,member_list_department')->find();
+                if ($rst){
+                    return \show(1, '绑定成功',$info,200);
+                }else{
+                    return \show(0, '绑定失败');
+                }
+            }
         }
     }
 }

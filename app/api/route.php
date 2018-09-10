@@ -33,9 +33,11 @@ Route::resource('register', 'api/v1.register');
 Route::resource('login', 'api/v1.login');
 //企业模块
 Route::resource('enterprise', 'api/v1.enterprise');
-//个人中心
+//个人中心各种操作
 Route::resource('center','api/v1.center');
 Route::post('update_phone','api/v1.center/update_phone');
+Route::post('update_username','api/v1.center/update_username');
+Route::post('bind','api/v1.center/bind_enterprise');
 //上传图片
 Route::resource('upload','api/v1.upload');
 //投诉建议
