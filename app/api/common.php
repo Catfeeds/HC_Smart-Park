@@ -3,6 +3,7 @@
 use app\api\library\Aes;
 use think\Db;
 use think\cache\driver\Redis;
+
 /**
  * @param $status 业务状态码
  * @param $message 提示信息
@@ -22,9 +23,9 @@ function show($status, $message, $data = [], $httpCode = 200)
 }
 
 /**
-@desc：获取图片真实后缀
-@param   name    文件名
-@return  suffix  文件后缀
+ * @desc：获取图片真实后缀
+ * @param   name    文件名
+ * @return  suffix  文件后缀
  */
 function getimgsuffix($name)
 {
@@ -44,9 +45,9 @@ function getimgsuffix($name)
 function getUserIdByPhone($phone)
 {
     $user_id = Db::name('MemberList')->where('member_list_tel', 'eq', $phone)->value('member_list_id');
-    if ($user_id){
+    if ($user_id) {
         return $user_id;
-    }else{
+    } else {
         return false;
     }
 }
@@ -63,9 +64,9 @@ function getUserIdByToken($token)
     //去Redis拿$token的值,也就是登录时存进去的user_id
     $redis = new Redis();
     $user_id = $redis->get($token);
-    if ($user_id){
+    if ($user_id) {
         return $user_id;
-    }else{
+    } else {
         return false;
     }
 }
@@ -78,6 +79,7 @@ function getUserIdByToken($token)
  * @throws \think\exception\DbException
  * 根据企业码获取企业基本信息
  */
-function getEnterPriseBasicInfoByCode($code){
-    return Db::name('EnterpriseList')->where('enterprise_list_code','eq',$code)->find();
+function getEnterPriseBasicInfoByCode($code)
+{
+    return Db::name('EnterpriseList')->where('enterprise_list_code', 'eq', $code)->find();
 }
