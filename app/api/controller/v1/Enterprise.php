@@ -32,6 +32,10 @@ class Enterprise extends Common
         return \show(1, 'OK', $list,200);
     }
 
+    /**
+     * @return \think\response\Json
+     * 企业详情
+     */
     public function read()
     {
         $id = \input('id');

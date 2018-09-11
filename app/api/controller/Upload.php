@@ -62,10 +62,10 @@ class Upload extends AuthBase
                 $img_url = $reqeust->domain() . \config('upload_path') . '/' . date('Y-m-d') . '/' . $image_name;
                 return $img_url;
             } else {
-                return false;
+                return new ApiException('上传失败',202);
             }
         } else {
-            return false;
+            return new ApiException('上传失败',202);
         }
     }
 

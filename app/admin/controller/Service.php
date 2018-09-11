@@ -9,6 +9,7 @@
 namespace app\admin\controller;
 
 
+use app\admin\model\ServiceRepair;
 use think\Db;
 
 /**
@@ -57,7 +58,7 @@ class Service extends Base
     }
 
     /**
-     *热线全部删除
+     *全部删除
      */
     public function complains_alldelete()
     {
@@ -83,7 +84,54 @@ class Service extends Base
      */
     public function repair_list()
     {
+        $model = new ServiceRepair();
+        $list = $model
+            ->order('create_time desc')
+            ->paginate(config('paginate.list_rows'));
+        $show = $list->render();
 
+        $this->assign('page', $show);
+        $this->assign('list', $list);
+        return $this->fetch();
+    }
+
+    /**
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     * 删除报修
+     */
+    public function repair_delete()
+    {
+        $p = input('p');
+        $id = \input('id');
+        $rst = \db('ServiceRepair')->where('id', 'eq', $id)->delete();
+        if ($rst !== false) {
+            $this->success('删除成功', url('admin/Service/Repair_list', array('p' => $p)));
+        } else {
+            $this->error('删除失败', url('admin/Service/Repair_list', array('p' => $p)));
+        }
+    }
+
+    /**
+     *全部删除
+     */
+    public function repair_alldelete()
+    {
+        $p = input('p');
+        $ids = input('id/a');
+        if (empty($ids)) {
+            $this->error("请选择删除的报修", url('admin/Service/repair_list', array('p' => $p)));
+        }
+        if (!is_array($ids)) {
+            $ids[] = $ids;
+        }
+
+        $rst = Db::name('ServiceRepair')->where('id', 'in', $ids)->delete();
+        if (!$rst) {
+            $this->error("删除失败", url('admin/Service/repair_list', array('p' => $p)));
+        } else {
+            $this->success("删除成功", url('admin/Service/repair_list', array('p' => $p)));
+        }
     }
 
     /**

@@ -43,5 +43,7 @@ Route::post('pwd','api/v1.center/setpwd');
 Route::resource('upload','api/v1.upload');
 //投诉建议
 Route::resource('complains','api/v1.complains');
+//投诉建议
+Route::resource('repair','api/v1.repair');
 //点赞模块
 Route::resource('zan', 'api/v1.zan');

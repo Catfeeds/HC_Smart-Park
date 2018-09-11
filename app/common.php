@@ -1836,10 +1836,20 @@ function getAdminUserNameById($adminid)
 /**
  * @param $adminid
  * @return mixed
- * 根据id获取管理员名称
+ * 根据id获取会员名称
  */
 function getUserNameById($member_id)
 {
     $name = Db::name('MemberList')->where('member_list_id', 'eq', $member_id)->value('member_list_username');
     return $name;
+}
+
+/**
+ * @param $member_id
+ * @return mixed
+ * 根据会员id获取手机号
+ */
+function getUserPhoneById($member_id){
+    $phone = Db::name('MemberList')->where('member_list_id', 'eq', $member_id)->value('member_list_tel');
+    return $phone;
 }
