@@ -71,4 +71,30 @@ class Repair extends AuthBase
             return \show(1, 'OK', $info, 200);
         }
     }
+
+    /**
+     * @return ApiException|\think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 修改报修状态,撤回或者加急
+     */
+    public function change_status()
+    {
+        $id = \input('id');
+        $user_id = \input('user_id');
+        $status = \input('status');
+        $uid = Db::name('ServiceRepair')->where('id', 'eq', $id)->value('user_id');
+        if ($uid != $user_id) {
+            return new ApiException('身份不对', 201);
+        } else {
+            $res = Db::name('ServiceRepair')->where('id', 'eq', $id)->setField('status', $status);
+            if (!$res) {
+                return new ApiException('修改失败', 201);
+            } else {
+                $info = \model('ServiceRepair')->where('id', 'eq', $id)->find();
+                return \show(1, 'OK', $info, 200);
+            }
+        }
+    }
 }

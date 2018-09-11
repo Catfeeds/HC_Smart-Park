@@ -45,5 +45,6 @@ Route::resource('upload','api/v1.upload');
 Route::resource('complains','api/v1.complains');
 //投诉建议
 Route::resource('repair','api/v1.repair');
+Route::post('repair/status','api/v1.repair/change_status');
 //点赞模块
 Route::resource('zan', 'api/v1.zan');
