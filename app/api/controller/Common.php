@@ -10,6 +10,7 @@ namespace app\api\controller;
 
 
 use think\Controller;
+use think\Request;
 
 /**
  * Class Common
@@ -23,6 +24,16 @@ class Common extends Controller
      * 数据头信息
      */
     public $headers = '';
+
+    /**
+     * 基础接口
+     * @param Request|null $request
+     */
+    public function __construct(Request $request = null)
+    {
+        // CORS 跨域 Options 检测响应
+        \ToolsService::corsOptionsHandler();
+    }
 
     /**
      *初始化方法
@@ -57,6 +68,10 @@ class Common extends Controller
         }
     }
 
+    /**
+     * @return bool
+     * 检测sign方法
+     */
     function checkSign()
     {
         //获取header信息
