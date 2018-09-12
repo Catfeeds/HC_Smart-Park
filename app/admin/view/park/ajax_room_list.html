@@ -32,7 +32,7 @@
 				<a class="green"  href="{:url('admin/Park/room_edit',array('id'=>$v['id']))}" title="修改">
 					<i class="ace-icon fa fa-pencil bigger-130"></i>
 				</a>
-				<a class="red confirm-rst-url-btn" href="{:url('admin/Park/room_del',array('id'=>$v['id'],'p'=>input('p',1)))}" data-info="你确定要删除吗？" title="删除">
+				<a class="red confirm-rst-url-btn" href="{:url('admin/Park/room_delete',array('id'=>$v['id'],'p'=>input('p',1)))}" data-info="你确定要删除吗？" title="删除">
 					<i class="ace-icon fa fa-trash-o bigger-130"></i>
 				</a>
 			</div>
@@ -51,7 +51,7 @@
 						</li>
 
 						<li>
-							<a href="{:url('admin/Park/room_del',array('id'=>$v['id'],'p'=>input('p',1)))}"  class="tooltip-error confirm-rst-url-btn" data-info="你确定要删除吗？" data-rel="tooltip" title="" data-original-title="删除">
+							<a href="{:url('admin/Park/room_delete',array('id'=>$v['id'],'p'=>input('p',1)))}"  class="tooltip-error confirm-rst-url-btn" data-info="你确定要删除吗？" data-rel="tooltip" title="" data-original-title="删除">
 											<span class="red">
 												<i class="ace-icon fa fa-trash-o bigger-120"></i>
 											</span>

@@ -729,7 +729,7 @@ function backpic2(picurl,field) {
 }
 function backpic(picurl) {
     $("#img0").attr("src", picurl);//还原修改前的图片
-    $("input[name='file0']").val("");//清空文本框的值
+    $('#file0').val("");//清空文本框的值
     $("input[name='oldcheckpic']").val(picurl);//清空文本框的值
 }
 /* 新闻多图删除 */

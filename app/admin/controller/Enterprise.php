@@ -133,10 +133,16 @@ class Enterprise extends Base
                 $enterprise_info['pay_time'] = \strtotime($enterprise_info['pay_time']);        //支付时间转时间戳
                 \model('EnterpriseEntryInfo')->allowField(true)->save($enterprise_info);
 
-                $confirmer = Db::name('EnterpriseEntryInfo')->where('enterprise_id', $enterprise_id)->value('confirmer');
+                //入库之后找出需要的信息进行相关操作
+                $info = Db::name('EnterpriseEntryInfo')
+                    ->where('enterprise_id', $enterprise_id)
+                    ->field('confirmer,room')
+                    ->find();
 
-
-                if (empty($confirmer)) {
+                //根据企业房间号,需要更改房源的状态
+                $room_num = \trim($info['room']);
+                Db::name('ParkRoom')->where('room_number', 'eq', $room_num)->setField('status', 1);
+                if (empty($info['confirmer'])) {
                     $this->error('添加失败');
                 } else {
                     $this->success('添加成功');
@@ -182,10 +188,15 @@ class Enterprise extends Base
         \model('EnterpriseBank')->allowField(true)->save($data, ['enterprise_id' => $data['id']]);
         \model('EnterpriseEntryInfo')->allowField(true)->save($data, ['enterprise_id' => $data['id']]);
 
-        $confirmer = Db::name('EnterpriseEntryInfo')->where('enterprise_id', $data['id'])->value('confirmer');
-
-
-        if (empty($confirmer)) {
+        //入库之后找出需要的信息进行相关操作
+        $info = Db::name('EnterpriseEntryInfo')
+            ->where('enterprise_id', $data['id'])
+            ->field('confirmer,room')
+            ->find();
+        //根据企业房间号,需要更改房源的状态
+        $room_num = \trim($info['room']);
+        Db::name('ParkRoom')->where('room_number', 'eq', $room_num)->setField('status', 1);
+        if (empty($info['confirmer'])) {
             $this->error('修改失败');
         } else {
             $this->success('修改成功');

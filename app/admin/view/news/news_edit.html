@@ -102,7 +102,10 @@
 								<input type="file" name="pic_one[]" id="file0" multiple="multiple"/>
 								选择上传文件
 							</a>
-							<span class="lbl">&nbsp;&nbsp;<img src="{$news_list.news_img|get_imgurl}" width="100" height="70" id="img0" ></span>&nbsp;&nbsp;<a href="javascript:;" onclick="return backpic('{$news_list.news_img|get_imgurl}');" title="还原修改前的图片" class="file">
+							<span class="lbl">&nbsp;&nbsp;
+								<img src="{$news_list.news_img|get_imgurl}" width="100" height="70" id="img0" >
+							</span>&nbsp;&nbsp;
+							<a href="javascript:;" onclick="return backpic('{$news_list.news_img|get_imgurl}');" title="还原修改前的图片" class="file">
 							撤销修改
 							</a>
 											<span class="lbl">&nbsp;&nbsp;上传前先用PS处理成等比例图片后上传，默认比例100*70、600*420、800*560像素<br />
