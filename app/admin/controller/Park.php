@@ -162,7 +162,7 @@ class Park extends Base
             'area' => \input('area'),
             'price' => \input('price', 0),
             'decoration' => \input('decoration'),
-            'room _img' => $img_one,//封面图片路径
+            'room_img' => $img_one,//封面图片路径
             'room_pic_type' => \input('room_pic_type'),
             'room_pic_allurl' => $picall_url,//多图路径
             'room_pic_content' => \input('room_pic_content', ''),
