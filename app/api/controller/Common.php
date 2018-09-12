@@ -7,8 +7,6 @@
  */
 
 namespace app\api\controller;
-
-
 use think\Controller;
 use think\Request;
 
@@ -28,6 +26,7 @@ class Common extends Controller
     /**
      * 基础接口
      * @param Request|null $request
+     * 上线记得删除或注释
      */
     public function __construct(Request $request = null)
     {
