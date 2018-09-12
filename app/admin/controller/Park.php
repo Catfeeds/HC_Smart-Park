@@ -32,7 +32,40 @@ class Park extends Base
      */
     public function room_list()
     {
-        return $this->fetch();
+        //按照租赁状态
+        $opentype_check = input('status', '');
+        //按照楼层
+        $floor = \input('floor', '');
+        //按照期数
+        $phase = \input('phase', '');
+
+        $where = array();
+        if ($opentype_check !== '') {
+            $where['status'] = $opentype_check;
+        }
+        if ($floor !== '') {
+            $where['floor'] = $floor;
+        }
+        if ($phase !== '') {
+            $where['phase'] = $phase;
+        }
+        $model = new ParkRoom();
+        $list = $model
+            ->where($where)
+            ->order('create_time desc')
+            ->paginate(config('paginate.list_rows'), false, ['query' => get_query()]);
+        $show = $list->render();
+        $show = preg_replace("(<a[^>]*page[=|/](\d+).+?>(.+?)<\/a>)", "<a href='javascript:ajax_page($1);'>$2</a>", $show);
+        $this->assign('status', $opentype_check);
+        $this->assign('floor', $floor);
+        $this->assign('phase', $phase);
+        $this->assign('list', $list);
+        $this->assign('page', $show);
+        if (request()->isAjax()) {
+            return $this->fetch('ajax_room_list');
+        } else {
+            return $this->fetch();
+        }
     }
 
     /**
