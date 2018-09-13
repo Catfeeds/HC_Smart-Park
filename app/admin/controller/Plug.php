@@ -1014,7 +1014,7 @@ class Plug extends Base
     }
 
     /**
-     *导出数据库字典
+     *生成数据库字典
      */
     public function DataDictionary()
     {

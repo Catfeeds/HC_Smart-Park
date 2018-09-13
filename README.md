@@ -8,3 +8,6 @@
     
 ##接口文档地址:
 [点我一下试试](http://www.xiaoyaoji.cn/doc/W6Rv5sph4)
+
+##数据库字典
+http://domain/admin/plug/DataDictionary
