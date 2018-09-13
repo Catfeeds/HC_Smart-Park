@@ -615,6 +615,7 @@ $(function () {
 function souadd(val) {
     $('#news_source').val(val);
 }
+
 /* 微信菜单编辑 */
 $(function () {
 	$('body').on('click','.menuedit-btn',function () {

@@ -1,0 +1,64 @@
+{foreach name="list" item="v"}
+<tr>
+    <td class="hidden-xs" height="28">{$v.id}</td>
+    {if $v.phase eq 1}
+    <td>一期</td>
+    {else}
+    <td>二期</td>
+    {/if}
+    <td>{$v.room_number}</td>
+    <td>{$v.area}</td>
+
+    <td>
+        {foreach $v.equipment as $vv}
+        <span>{$vv}</span>
+        <span>,</span>
+        {/foreach}
+    </td>
+
+    <td class="hidden-sm hidden-xs">{$v.create_time|date='Y-m-d H:i:s',###}</td>
+    <td class="hidden-xs">
+        {if condition='$v.status eq 1'}
+        <a class="red open-btn" href="{:url('admin/Park/meeting_room_status')}" data-id="{$v.id}" title="已开启">
+            <div id="zt{$v.id}"><button class="btn btn-minier btn-yellow">开启</button></div>
+        </a>
+        {else/}
+        <a class="red open-btn" href="{:url('admin/Park/meeting_room_status')}" data-id="{$v.id}" title="已禁用">
+            <div id="zt{$v.id}"><button class="btn btn-minier btn-danger">禁用</button></div>
+        </a>
+        {/if}
+    </td>
+
+    <td>
+        <div class="hidden-sm hidden-xs action-buttons">
+            <a class="red confirm-rst-url-btn"
+               href="{:url('admin/Park/meeting_room_delete',array('id'=>$v['id'],'p'=>input('p',1)))}"
+               data-info="你确定要删除吗？"
+               title="删除">
+                <i class="ace-icon fa fa-trash-o bigger-130"></i>
+            </a>
+        </div>
+        <div class="hidden-md hidden-lg">
+            <div class="inline position-relative">
+                <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                    <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                    <li>
+                        <a href="{:url('admin/Park/meeting_room_delete',array('id'=>$v['id'],'p'=>input('p',1)))}"
+                           class="tooltip-error confirm-rst-url-btn" data-info="你确定要删除吗？" data-rel="tooltip" title=""
+                           data-original-title="删除">
+											<span class="red">
+												<i class="ace-icon fa fa-trash-o bigger-120"></i>
+											</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </td>
+</tr>
+{/foreach}
+<tr>
+    <td height="50" colspan="12" align="left">{$page}</td>
+</tr>

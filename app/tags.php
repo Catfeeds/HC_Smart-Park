@@ -3,7 +3,9 @@ return array(
     'app_init' =>
         array(),
     'app_begin' =>
-        array(),
+        array(
+            //0 => 'app\\common\\behavior\\Header',
+        ),
     'module_init' =>
         array(
             0 => 'app\\common\\behavior\\WebLog',
@@ -17,5 +19,6 @@ return array(
     'app_end' =>
         array(
             0 => 'app\\admin\\behavior\\Cron',
+            //1 => 'app\\common\\behavior\\Header',
         ),
 );

@@ -24,8 +24,19 @@ class Announcement extends Model
      * @return false|string
      * 时间读取器
      */
-    protected function getAddTimeAttr($addtime){
+    protected function getAddTimeAttr($addtime)
+    {
         return date('Y-m-d', $addtime);
+    }
+
+    /**
+     * @param $publisher_id
+     * @return mixed
+     * 发布人姓名读取器
+     */
+    protected function getpublisherIdAttr($publisher_id)
+    {
+        return \getAdminUserNameById($publisher_id);
     }
 
     /**
@@ -38,7 +49,6 @@ class Announcement extends Model
     public function getIndexAnnouncementList()
     {
         return $this
-            ->field('addtime')
             ->limit('5')
             ->select();
     }
