@@ -24,17 +24,6 @@ class Common extends Controller
     public $headers = '';
 
     /**
-     * 基础接口
-     * @param Request|null $request
-     * 上线记得删除或注释
-     */
-    public function __construct(Request $request = null)
-    {
-        // CORS 跨域 Options 检测响应
-        \ToolsService::corsOptionsHandler();
-    }
-
-    /**
      *初始化方法
      */
     public function _initialize()
