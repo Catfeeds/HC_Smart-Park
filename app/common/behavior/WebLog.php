@@ -71,7 +71,7 @@ class WebLog
             ];
             if (\session('hid'))
                 Db::name('web_log')->insert($data);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
         }
     }
 }

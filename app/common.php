@@ -1508,7 +1508,8 @@ function get_data($table, $join, $joinon, $ids, $cid, $field, $limit, $order, $w
  */
 function getBroswer()
 {
-    $sys = $_SERVER['HTTP_USER_AGENT'];  //获取用户代理字符串
+    //获取用户代理字符串
+    $sys = $_SERVER['HTTP_USER_AGENT'];
     if (stripos($sys, "Firefox/") > 0) {
         preg_match("/Firefox\/([^;)]+)+/i", $sys, $b);
         $exp[0] = "Firefox";
@@ -1521,8 +1522,8 @@ function getBroswer()
         preg_match("/MSIE\s+([^;)]+)+/i", $sys, $ie);
         $exp[0] = "IE";
         $exp[1] = $ie[1];  //获取IE的版本号
-    } elseif (stripos($sys, "OPR") > 0) {
-        preg_match("/OPR\/([\d\.]+)/", $sys, $opera);
+    } elseif (stripos($sys, "Opera") > 0) {
+        preg_match("/Opera\/([\d\.]+)/", $sys, $opera);
         $exp[0] = "Opera";
         $exp[1] = $opera[1];
     } elseif (stripos($sys, "Edge") > 0) {
@@ -1849,7 +1850,8 @@ function getUserNameById($member_id)
  * @return mixed
  * 根据会员id获取手机号
  */
-function getUserPhoneById($member_id){
+function getUserPhoneById($member_id)
+{
     $phone = Db::name('MemberList')->where('member_list_id', 'eq', $member_id)->value('member_list_tel');
     return $phone;
 }
