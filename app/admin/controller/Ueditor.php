@@ -5,6 +5,11 @@ namespace app\admin\controller;
 use app\common\controller\Common;
 use think\Db;
 
+/**
+ * Class Ueditor
+ * @package app\admin\controller
+ * 百度编辑器附件上传
+ */
 class Ueditor extends Common
 {
 	protected $config;
