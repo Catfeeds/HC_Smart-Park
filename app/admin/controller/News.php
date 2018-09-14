@@ -201,6 +201,7 @@ class News extends Base
 			'news_content'=>htmlspecialchars_decode(input('news_content')),
 			'news_auto'=>session('admin_auth.member_id'),
 			'news_time'=>time(),
+			'news_hold_time'=>\strtotime(\input('hold_time','')),
 			'listorder'=>input('listorder',50,'intval'),
 		);
 		//根据栏目id,获取语言
@@ -347,6 +348,7 @@ class News extends Base
 			'news_pic_type'=>input('news_pic_type'),
 			'news_pic_content'=>input('news_pic_content',''),
 			'news_open'=>input('news_open',0),
+            'news_hold_time'=>\strtotime(\input('hold_time','')),
 			'news_scontent'=>input('news_scontent',''),
 			'news_content'=>htmlspecialchars_decode(input('news_content')),
 			'listorder'=>input('listorder',50,'intval'),

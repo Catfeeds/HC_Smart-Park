@@ -26,7 +26,7 @@ class Announcement extends Model
      */
     protected function getAddTimeAttr($addtime)
     {
-        return date('Y-m-d', $addtime);
+        return date('Y-m-d H:i:s', $addtime);
     }
 
     /**
@@ -34,7 +34,7 @@ class Announcement extends Model
      * @return mixed
      * 发布人姓名读取器
      */
-    protected function getpublisherIdAttr($publisher_id)
+    protected function getPublisherIdAttr($publisher_id)
     {
         return \getAdminUserNameById($publisher_id);
     }

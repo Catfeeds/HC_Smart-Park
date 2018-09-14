@@ -156,7 +156,7 @@ class Admin extends Model
         $admin['admin_username']=$data['admin_username'];
         $admin['admin_email']=$data['admin_email'];
         $admin['admin_tel']=$data['admin_tel'];
-        $admin['admin_realname']=$data['admin_realname'];
+//        $admin['admin_realname']=$data['admin_realname'];
         $admin['admin_open']=$data['admin_open'];
         if($data['admin_pwd']){
             $admin['admin_pwd_salt']=random(10);
