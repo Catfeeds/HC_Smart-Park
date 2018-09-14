@@ -111,15 +111,15 @@
                         <div class="profile-info-name"> 上次登录IP</div>
 
                         <div class="profile-info-value">
-                            <span class="editable" id="lastip">{if condition="$admin.admin_ip eq ''"}未登陆过{else /}{$admin.admin_ip}{/if}</span>
+                            <span class="editable" id="lastip">{if condition="$admin.admin_last_ip eq ''"}未登陆过{else /}{$admin.admin_last_ip}{/if}</span>
                         </div>
                     </div>
-                    <div class="profile-info-row">
+                    <!--<div class="profile-info-row">
                         <div class="profile-info-name"> 本次登录IP</div>
 
                         <div class="profile-info-value">
                             <span class="editable" id="loginip">{$admin.admin_ip}</span></div>
-                    </div>
+                    </div>-->
                 </div>
 
                 <!-- /section:pages/profile.info -->

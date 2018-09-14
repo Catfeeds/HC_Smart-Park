@@ -10,6 +10,7 @@ namespace app\api\model;
 
 
 use think\Model;
+use think\Request;
 
 /**
  * Class News
@@ -35,6 +36,17 @@ class News extends Model
     protected function getNewsAutoAttr($news_auto)
     {
         return $news_auto = \model('Admin')->where('admin_id', $news_auto)->value('admin_username');
+    }
+
+    /**
+     * @param $news_img
+     * @return string
+     * 返回完整的图片路径
+     */
+    protected function getNewsImgAttr($news_img)
+    {
+        $reqeust = Request::instance();
+        return $reqeust->domain() . $news_img;
     }
 
     /**

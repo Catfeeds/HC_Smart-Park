@@ -39,7 +39,7 @@ class Admin extends Model
             } else {
                 $aid = $user['admin_id'];
                 // 更新登录信息
-                $user['admin_last_ip']   = request()->ip();
+                $user['admin_last_ip']   = \request()->ip();
                 $user['admin_last_time'] = time();
 				$user['admin_hits']	   = $user['admin_hits']+1;
                 if ($user->save()) {
