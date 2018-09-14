@@ -5,9 +5,17 @@ namespace app\admin\controller;
 use app\common\controller\Common;
 use app\admin\model\AuthRule;
 
-class Base extends Common 
+/**
+ * Class Base
+ * @package app\admin\controller
+ * 基础控制器
+ */
+class Base extends Common
 {
-	public function _initialize()
+    /**
+     *初始化
+     */
+    public function _initialize()
 	{
         parent::_initialize();
  		if(!$this->check_admin_login()) $this->redirect('admin/Login/login');//未登录
@@ -25,6 +33,6 @@ class Base extends Common
 		$this->assign('menus_child',$menus_child);
 		$this->assign('id_curr',$id_curr);
 		
-		$this->assign('admin_avatar',session('admin_auth.admin_avatar'));
+		$this->assign('admin_avatar',session('admin_avatar'));
 	}
 }
