@@ -65,7 +65,7 @@ function list_file($path, $pattern = '*')
             }
         }
     }
-    $cmp_func = create_function('$a,$b', '
+    $cmp_func = @create_function('$a,$b', '
 		if( ($a["isDir"] && $b["isDir"]) || (!$a["isDir"] && !$b["isDir"]) ){
 			return  $a["filename"]>$b["filename"]?1:-1;
 		}else{
@@ -639,7 +639,7 @@ function num2alpha($index, $start = 65)
  * @return array
  * @author rainfer <81818832@qq.com>
  */
-function read($filename, $type = 'Excel5')
+function readExcel($filename, $type = 'Excel5')
 {
     $objReader = \PHPExcel_IOFactory::createReader($type);
     $objPHPExcel = $objReader->load($filename);

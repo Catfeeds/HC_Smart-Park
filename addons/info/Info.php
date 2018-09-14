@@ -15,8 +15,8 @@ class Info extends Addons
         'description' => '后台首页信息显示',
         'status' => 1,
         'author' => 'rainfer',
-        'version'=> '0.1',
-        'admin'  => '0',//是否有管理页面
+        'version' => '0.1',
+        'admin' => '0',//是否有管理页面
     ];
 
     /**
@@ -31,7 +31,7 @@ class Info extends Addons
      */
     public $hooks = [
         // 钩子名称 => 钩子说明
-        'gitinfo'=>'git信息钩子',
+        'gitinfo' => 'git信息钩子',
         'sysinfo' => '框架信息钩子'
     ];
 
@@ -39,10 +39,10 @@ class Info extends Addons
      * @var array 插件管理方法,格式:['控制器/操作方法',[参数数组]])
      */
     public $admin_actions = [
-        'index'=>[],//管理首页
-        'config'=>['Admin/config'],//设置页
+        'index' => [],//管理首页
+        'config' => ['Admin/config'],//设置页
         'edit' => [],//编辑页
-        'add'=>[],//增加页
+        'add' => [],//增加页
     ];
 
     /**
@@ -69,49 +69,50 @@ class Info extends Addons
      */
     public function gitinfo()
     {
-        $config=$this->getConfig();
-		if($config['display']) return $this->fetch('gitinfo');
+        $config = $this->getConfig();
+        if ($config['display']) return $this->fetch('gitinfo');
     }
-	    /**
+
+    /**
      * 实现的sysinfo钩子方法
      * @return mixed
      */
     public function sysinfo()
     {
-        $config=$this->getConfig();
-		if($config['display']){
-			//系统信息
-			$info = array(
-				'PCTYPE'=>PHP_OS,
-				'RUNTYPE'=>$_SERVER["SERVER_SOFTWARE"],
-				'ONLOAD'=>ini_get('upload_max_filesize'),
-				'ThinkPHPTYE'=>THINK_VERSION,
-			);
-			$this->assign('info',$info);
-			//版本
-			$ver_curr=substr(config('yfcmf_version'),1);
-			$update_check=config('update_check');
-			$this->assign('update_check',$update_check);
-			$ver_str='';
-			$ver_last='';
-			if($update_check){
-				//版本检查
-				$version=cache('ver_last');
-				if(empty($version)){
-					$version = checkVersion();
-					cache('ver_last',$version);
-				}
-				$ver_last=substr($version,1);
-				if(version_compare($ver_curr,$ver_last)===-1){
-					$ver_str='最新版本V'.$ver_last;
-				}else{
-					$ver_str='已经是最新版本';
-					$ver_last='';
-				}
-			}
-			$this->assign('ver_str',$ver_str);
-			$this->assign('ver_last',$ver_last);
-			return $this->fetch('sysinfo');
-		}
+        $config = $this->getConfig();
+        if ($config['display']) {
+            //系统信息
+            $info = array(
+                'PCTYPE' => PHP_OS,
+                'RUNTYPE' => $_SERVER["SERVER_SOFTWARE"],
+                'ONLOAD' => ini_get('upload_max_filesize'),
+                'ThinkPHPTYE' => THINK_VERSION,
+            );
+            $this->assign('info', $info);
+            //版本
+            $ver_curr = substr(config('yfcmf_version'), 1);
+            $update_check = config('update_check');
+            $this->assign('update_check', $update_check);
+            $ver_str = '';
+            $ver_last = '';
+            if ($update_check) {
+                //版本检查
+                $version = cache('ver_last');
+                if (empty($version)) {
+                    $version = checkVersion();
+                    cache('ver_last', $version);
+                }
+                $ver_last = substr($version, 1);
+                if (version_compare($ver_curr, $ver_last) === -1) {
+                    $ver_str = '最新版本V' . $ver_last;
+                } else {
+                    $ver_str = '已经是最新版本';
+                    $ver_last = '';
+                }
+            }
+            $this->assign('ver_str', $ver_str);
+            $this->assign('ver_last', $ver_last);
+            return $this->fetch('sysinfo');
+        }
     }
 }

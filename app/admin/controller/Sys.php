@@ -1201,7 +1201,7 @@ class Sys extends Base
 			if (! copy ( $tmp_file, $savePath . $file_name )){
 				$this->error ('上传失败',url('admin/Sys/excel_import'));
 			}
-			$res = read ( $savePath . $file_name );
+			$res = readExcel ( $savePath . $file_name );
 			if (!$res){
 				$this->error ('数据处理失败',url('admin/Sys/excel_import'));
 			}
