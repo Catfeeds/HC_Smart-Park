@@ -23,7 +23,7 @@ function show($status, $message, $data = [], $httpCode = 200)
 }
 
 /**
- * @desc：获取图片真实后缀
+ * @desc：获取图片真实后缀,支持base64
  * @param   name    文件名
  * @return  suffix  文件后缀
  */

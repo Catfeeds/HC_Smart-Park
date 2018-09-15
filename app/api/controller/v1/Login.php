@@ -98,7 +98,7 @@ class Login extends Common
         $redis->set($token, $user_id, \config('token_expires_time'));
         //返回加密后的token
         $token = Aes::encrypt($token);
-        $user_info = $db
+        $user_info = \model('MemberList')
             ->where('member_list_id', 'eq', $user_id)
             ->field('member_list_id,member_list_username,member_list_groupid,member_list_tel')
             ->find();

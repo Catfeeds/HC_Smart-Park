@@ -31,7 +31,7 @@ class Center extends AuthBase
         $user_id = \input('user_id');
         $user_info = \model('MemberList')
             ->where('member_list_id', 'eq', $user_id)
-            ->field('member_list_id,member_list_username,member_list_groupid,member_list_headpic,member_list_tel,member_list_addtime,last_login_ip,last_login_time')
+            ->field('member_list_id,member_list_username,member_list_headpic,member_list_groupid,member_list_enterprise,member_list_tel,member_list_addtime,last_login_ip,last_login_time')
             ->find();
         return \show(1, 'OK', $user_info, 200);
     }

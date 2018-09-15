@@ -934,7 +934,12 @@ function get_ads($plug_ad_adtypeid, $limit = 5, $order = "plug_ad_order ASC")
     if ($limit == 0) {
         $limit = 5;
     }
-    return Db::name("plug_ad")->where('plug_ad_l', Lang::detect())->where(array('plug_ad_open' => 1, 'plug_ad_adtypeid' => $plug_ad_adtypeid))->order($order)->limit('0,' . $limit)->select();
+    return Db::name("plug_ad")
+        ->where('plug_ad_l', Lang::detect())
+        ->where(array('plug_ad_open' => 1, 'plug_ad_adtypeid' => $plug_ad_adtypeid))
+        ->order($order)
+        ->limit('0,' . $limit)
+        ->select();
 }
 
 /**
@@ -1151,13 +1156,17 @@ function sendWebMsg($toid, $fromid, $msg)
     }
 }
 
+
 /**
- * 发送邮件
- * @author rainfer <81818832@qq.com>
- * @param string $to 收件人邮箱
- * @param string $title 标题
- * @param string $content 内容
+ * @param $to
+ * @param $title
+ * @param $content
  * @return array
+ * @throws \think\db\exception\DataNotFoundException
+ * @throws \think\db\exception\ModelNotFoundException
+ * @throws \think\exception\DbException
+ * @throws phpmailerException
+ * 发送邮件
  */
 function sendMail($to, $title, $content)
 {
@@ -1205,10 +1214,13 @@ function sendMail($to, $title, $content)
     }
 }
 
+
 /**
- * 获取后台管理设置的邮件连接
- * @author rainfer <81818832@qq.com>
- * @return array
+ * @return array|mixed
+ * @throws \think\db\exception\DataNotFoundException
+ * @throws \think\db\exception\ModelNotFoundException
+ * @throws \think\exception\DbException
+ * 获取邮件设置
  */
 function get_email_options()
 {
@@ -1650,7 +1662,13 @@ function menu_left($menu, $id_field = 'id', $pid_field = 'pid', $lefthtml = '─
     return $arr;
 }
 
+
 /**
+ * @param string $lang
+ * @return array|false|mixed|PDOStatement|string|\think\Collection
+ * @throws \think\db\exception\DataNotFoundException
+ * @throws \think\db\exception\ModelNotFoundException
+ * @throws \think\exception\DbException
  * 返回后台news相关菜单层级text数组
  * @author  rainfer
  * @return array|mixed
@@ -1736,7 +1754,7 @@ function sendsms($account, $type)
             //更新
             $rst['sms_time'] = time();
             $rst['sms_code'] = $code;
-            $rst = Db::name('smslog')->update($rst);
+            $rst = Db::name('SmsLog')->update($rst);
             if ($rst !== false) {
                 return ['code' => 1, 'msg' => '发送成功'];
             } else {
@@ -1750,7 +1768,7 @@ function sendsms($account, $type)
                 'sms_time' => time(),
                 'sms_code' => $code
             ];
-            $rst = Db::name('smslog')->insert($data);
+            $rst = Db::name('SmsLog')->insert($data);
             if ($rst) {
                 return ['code' => 1, 'msg' => '发送成功'];
             } else {
