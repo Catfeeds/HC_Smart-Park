@@ -205,5 +205,5 @@
             'TemplateCode' => '',
             'sms_open' => NULL,
         ),
-    'sms_out_time' => 120,
+    'sms_out_time' => 120000000,
 );
