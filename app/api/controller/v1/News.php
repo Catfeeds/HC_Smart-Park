@@ -29,8 +29,8 @@ class News extends Common
     {
         $key = \input('key', '');
         $page = \input('page', 1);
-        $list = \model('News')->getNewsList($page, $key,$news_columnid=2);
-        return \show(1, $list, 200);
+        $list = \model('News')->getNewsList($page, $key, $news_columnid = 2);
+        return \show(1, 'OK', $list, 200);
     }
 
 

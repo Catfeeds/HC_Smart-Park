@@ -81,7 +81,7 @@ class News extends Model
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
-     * 获取指定栏目的列表
+     * 获取指定栏目的列表+总条数
      */
     public function getNewsList($page, $key, $news_columnid)
     {
@@ -92,11 +92,16 @@ class News extends Model
             'news_open' => 1,         //已审状态
             'news_back' => 0          //没有被删除
         ];
-        return $this->where($where)
-            ->field('n_id,news_title,news_columnid,news_hits,news_img,news_time')
-            ->order('news_time desc')
-            ->page($page, 10)
-            ->select();
+        $count = $this->where($where)->count();
+        $data =
+            $this->where($where)
+                ->field('n_id,news_title,news_columnid,news_hits,news_img,news_time')
+                ->order('news_time desc')
+                ->page($page, 2)
+                ->select();
+        $da['total_num'] = $count;
+        $da['data'] = $data;
+        return $da;
     }
 
 
