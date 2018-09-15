@@ -33,6 +33,6 @@ class Base extends Common
 		$this->assign('menus_child',$menus_child);
 		$this->assign('id_curr',$id_curr);
 		
-		$this->assign('admin_avatar',session('admin_avatar'));
+		$this->assign('admin_avatar',\session('admin_avatar'));
 	}
 }
