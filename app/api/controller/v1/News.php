@@ -57,6 +57,8 @@ class News extends Common
         if (empty($news)) {
             return new ApiException('新闻不存在', 404);
         } else {
+            //给阅读数+1
+            Db::name('News')->where('n_id','eq',$id)->setInc('news_hits');
             return \show(1, 'OK', $news, 200);
         }
     }
