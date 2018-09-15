@@ -10,6 +10,8 @@ namespace app\api\controller\v1;
 
 
 use app\api\controller\AuthBase;
+use app\api\model\ActivityApply;
+use app\api\model\MemberList;
 use think\Db;
 
 /**
@@ -166,5 +168,30 @@ class Center extends AuthBase
                 }
             }
         }
+    }
+
+    /**
+     * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 获取已参加的活动
+     */
+    public function my_activity()
+    {
+        $user_id = \input('user_id');
+        $page = \input('page',1);
+        $map = [
+            'aa.user_id' => $user_id,
+        ];
+        $field = 'id,activity_id,user_id,news_title,FROM_UNIXTIME(news_hold_time) as hold_time,status';
+        $list = Db::name('ActivityApply aa')
+            ->join('News n', 'aa.activity_id=n.n_id')
+            ->where($map)
+            ->field($field)
+            ->order('create_time desc')
+            ->page($page,3)
+            ->select();
+        return \show('1', "ok", $list, 200);
     }
 }
