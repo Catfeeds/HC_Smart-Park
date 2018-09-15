@@ -22,7 +22,7 @@ class EnterpriseList extends Model
      * @return false|string
      * 时间读取器
      */
-    protected function getEnterpriseListAddtimeAttr($enterprise_list_addtime)
+    public function getEnterpriseListAddtimeAttr($enterprise_list_addtime)
     {
         return \date('Y-m-d', $enterprise_list_addtime);
     }

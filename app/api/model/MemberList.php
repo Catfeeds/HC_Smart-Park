@@ -23,7 +23,7 @@ class MemberList extends Model
      * @return mixed
      * 成员组名称读取器
      */
-    protected function getMemberListGroupidAttr($member_list_groupid)
+    public function getMemberListGroupidAttr($member_list_groupid)
     {
         return Db::name('MemberGroup')
             ->where('member_group_id', 'eq', $member_list_groupid)
@@ -35,7 +35,7 @@ class MemberList extends Model
      * @return false|string
      * 注册时间读取器
      */
-    protected function getMemberListAddTimeAttr($member_list_addtime)
+    public function getMemberListAddTimeAttr($member_list_addtime)
     {
         return date('Y-m-d H:i:s', $member_list_addtime);
     }
@@ -45,7 +45,7 @@ class MemberList extends Model
      * @return false|string
      * 最后登录时间读取器
      */
-    protected function getlastLoginTimeAttr($last_login_time)
+    public function getlastLoginTimeAttr($last_login_time)
     {
         return date('Y-m-d H:i:s', $last_login_time);
     }

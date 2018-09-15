@@ -24,7 +24,7 @@ class News extends Model
      * @return false|string
      * 新闻时间读取器
      */
-    protected function getNewsTimeAttr($news_time)
+    public function getNewsTimeAttr($news_time)
     {
         return date('Y-m-d H:i:s', $news_time);
     }
@@ -34,9 +34,11 @@ class News extends Model
      * @return mixed
      * 新闻作者读取器
      */
-    protected function getNewsAutoAttr($news_auto)
+    public function getNewsAutoAttr($news_auto)
     {
-        return $news_auto = \model('Admin')->where('admin_id', $news_auto)->value('admin_username');
+        return $news_auto = \model('Admin')
+            ->where('admin_id', $news_auto)
+            ->value('admin_username');
     }
 
     /**
@@ -44,7 +46,7 @@ class News extends Model
      * @return string
      * 返回完整的图片路径
      */
-    protected function getNewsImgAttr($news_img)
+    public function getNewsImgAttr($news_img)
     {
         $reqeust = Request::instance();
         if (!empty($news_img)) {

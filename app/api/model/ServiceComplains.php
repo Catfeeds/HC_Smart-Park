@@ -27,7 +27,7 @@ class ServiceComplains extends Model
      * @return false|string
      * 发布时间读取器
      */
-    protected function getCreateTimeAttr($create_time)
+    public function getCreateTimeAttr($create_time)
     {
         return date('Y-m-d H:i:s', $create_time);
     }
@@ -37,7 +37,7 @@ class ServiceComplains extends Model
      * @return false|string
      * 处理时间读取器
      */
-    protected function gethandlerTimeAttr($handler_time)
+    public function gethandlerTimeAttr($handler_time)
     {
         return date('Y-m-d H:i:s', $handler_time);
     }
@@ -47,7 +47,7 @@ class ServiceComplains extends Model
      * @return mixed
      * 读取处理者username
      */
-    protected function getHandlerIdAttr($handler_id)
+    public function getHandlerIdAttr($handler_id)
     {
         return $handler = \model('Admin')->where('admin_id', $handler_id)->value('admin_username');
     }
@@ -57,7 +57,7 @@ class ServiceComplains extends Model
      * @return string
      * 返回中文化的处理状态
      */
-    protected function getStatusAttr($status)
+    public function getStatusAttr($status)
     {
         switch ($status) {
             case 1;

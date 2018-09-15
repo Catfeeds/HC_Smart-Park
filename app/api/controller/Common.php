@@ -8,8 +8,6 @@
 
 namespace app\api\controller;
 use think\Controller;
-use think\Request;
-
 /**
  * Class Common
  * @package app\api\controller

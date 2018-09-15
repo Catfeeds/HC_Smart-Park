@@ -40,6 +40,7 @@ Route::post('update_username', 'api/v1.center/update_username');
 Route::post('bind', 'api/v1.center/bind_enterprise');
 Route::post('pwd', 'api/v1.center/setpwd');
 Route::post('my_activity','api/v1.center/my_activity');
+Route::post('my_repair','api/v1.repair/my_repair');
 //上传图片
 Route::resource('upload', 'api/v1.upload');
 //投诉建议

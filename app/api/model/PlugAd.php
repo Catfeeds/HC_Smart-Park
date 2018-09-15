@@ -24,7 +24,7 @@ class PlugAd extends Model
      * @return string
      * 返回完整的图片路径,不需要客户端再拼接
      */
-    protected function getPlugAdPicAttr($plug_ad_pic)
+    public function getPlugAdPicAttr($plug_ad_pic)
     {
         $reqeust = Request::instance();
         return $reqeust->domain() . $plug_ad_pic;

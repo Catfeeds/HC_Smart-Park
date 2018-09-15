@@ -22,9 +22,9 @@ use think\Db;
 class Repair extends AuthBase
 {
     /**
-     *列表
+     *我的报修列表
      */
-    public function index()
+    public function my_repair()
     {
         $user_id = \input('user_id');
         $page = \input('page', 1);
