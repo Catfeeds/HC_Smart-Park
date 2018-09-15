@@ -47,7 +47,11 @@ class News extends Model
     protected function getNewsImgAttr($news_img)
     {
         $reqeust = Request::instance();
-        return $reqeust->domain() . $news_img;
+        if (!empty($news_img)) {
+            return $reqeust->domain() . $news_img;
+        } else {
+            return '';
+        }
     }
 
     /**
@@ -108,7 +112,7 @@ class News extends Model
     public function getNewsDetailById($id)
     {
         //给阅读数+1
-        Db::name('News')->where('n_id','eq',$id)->setInc('news_hits');
+        Db::name('News')->where('n_id', 'eq', $id)->setInc('news_hits');
         return $detail = $this
             ->where('n_id', 'eq', $id)
             ->field('news_title,news_time,news_auto,news_hits,news_source,news_content')
