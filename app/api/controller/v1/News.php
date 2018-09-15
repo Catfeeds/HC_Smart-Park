@@ -20,24 +20,24 @@ use app\api\controller\Common;
  */
 class News extends Common
 {
+
     /**
      * @return \think\response\Json
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
      * 新闻列表,带标题搜索功能
      */
     public function index()
     {
         $key = \input('key', '');
         $page = \input('page', 1);
-        $list = \model('News')->getNewsList($page, $key);
+        $list = \model('News')->getNewsList($page, $key,$news_columnid=2);
         return \show(1, $list, 200);
     }
 
+
     /**
-     * @return ApiException
-     * 新闻详情页
+     * @return ApiException|\think\response\Json
+     * @throws \think\Exception
+     * 读取新闻详情
      */
     public function read()
     {
@@ -57,8 +57,6 @@ class News extends Common
         if (empty($news)) {
             return new ApiException('新闻不存在', 404);
         } else {
-            //给阅读数+1
-            Db::name('News')->where('n_id','eq',$id)->setInc('news_hits');
             return \show(1, 'OK', $news, 200);
         }
     }

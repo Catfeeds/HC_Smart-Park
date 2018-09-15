@@ -34,17 +34,19 @@ Route::resource('login', 'api/v1.login');
 //企业模块
 Route::resource('enterprise', 'api/v1.enterprise');
 //个人中心各种操作
-Route::resource('center','api/v1.center');
-Route::post('update_phone','api/v1.center/update_phone');
-Route::post('update_username','api/v1.center/update_username');
-Route::post('bind','api/v1.center/bind_enterprise');
-Route::post('pwd','api/v1.center/setpwd');
+Route::resource('center', 'api/v1.center');
+Route::post('update_phone', 'api/v1.center/update_phone');
+Route::post('update_username', 'api/v1.center/update_username');
+Route::post('bind', 'api/v1.center/bind_enterprise');
+Route::post('pwd', 'api/v1.center/setpwd');
 //上传图片
-Route::resource('upload','api/v1.upload');
+Route::resource('upload', 'api/v1.upload');
 //投诉建议
-Route::resource('complains','api/v1.complains');
+Route::resource('complains', 'api/v1.complains');
 //投诉建议
-Route::resource('repair','api/v1.repair');
-Route::post('repair/status','api/v1.repair/change_status');
+Route::resource('repair', 'api/v1.repair');
+Route::post('repair/status', 'api/v1.repair/change_status');
 //点赞模块
 Route::resource('zan', 'api/v1.zan');
+//活动模块
+Route::resource('activity', 'api/v1.activity');

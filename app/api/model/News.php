@@ -11,6 +11,7 @@ namespace app\api\model;
 
 use think\Model;
 use think\Request;
+use think\Db;
 
 /**
  * Class News
@@ -25,7 +26,7 @@ class News extends Model
      */
     protected function getNewsTimeAttr($news_time)
     {
-        return date('Y-m-d', $news_time);
+        return date('Y-m-d H:i:s', $news_time);
     }
 
     /**
@@ -54,13 +55,14 @@ class News extends Model
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
-     * app首页新闻列表
+     * app首页新闻列表(园区新闻)
      */
     public function getIndexNewsList()
     {
         $where = [
             'news_open' => 1,
-            'news_back' => 0
+            'news_back' => 0,
+            'news_columnid' => 2,     //置顶栏目ID
         ];
         return $this
             ->where($where)
@@ -75,14 +77,14 @@ class News extends Model
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
-     * 获取新闻列表
+     * 获取指定栏目的列表
      */
-    public function getNewsList($page, $key)
+    public function getNewsList($page, $key, $news_columnid)
     {
 
         $where = [
             'news_title' => ['like', '%' . $key . '%'],
-            'news_columnid' => 1,     //栏目ID
+            'news_columnid' => $news_columnid,     //栏目ID
             'news_open' => 1,         //已审状态
             'news_back' => 0          //没有被删除
         ];
@@ -93,16 +95,20 @@ class News extends Model
             ->select();
     }
 
+
     /**
      * @param $id
      * @return array|false|\PDOStatement|string|Model
+     * @throws \think\Exception
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
-     * 获取新闻详情
+     * 获取文章详情
      */
     public function getNewsDetailById($id)
     {
+        //给阅读数+1
+        Db::name('News')->where('n_id','eq',$id)->setInc('news_hits');
         return $detail = $this
             ->where('n_id', 'eq', $id)
             ->field('news_title,news_time,news_auto,news_hits,news_source,news_content')
