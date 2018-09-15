@@ -50,7 +50,7 @@ class News extends Model
         if (!empty($news_img)) {
             return $reqeust->domain() . $news_img;
         } else {
-            return '';
+            return 'http://ov7uxfxnm.bkt.clouddn.com/no_news.webp';
         }
     }
 
