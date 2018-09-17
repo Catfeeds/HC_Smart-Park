@@ -4,7 +4,7 @@ return array(
         array(),
     'app_begin' =>
         array(
-            //0 => 'app\\common\\behavior\\Header',
+            0 => 'app\\common\\behavior\\Header',
         ),
     'module_init' =>
         array(
@@ -19,6 +19,6 @@ return array(
     'app_end' =>
         array(
             0 => 'app\\admin\\behavior\\Cron',
-            //1 => 'app\\common\\behavior\\Header',
+            1 => 'app\\common\\behavior\\Header',
         ),
 );

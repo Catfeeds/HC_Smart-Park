@@ -10,6 +10,7 @@ namespace app\api\controller\v1;
 
 
 use app\api\controller\Common;
+use app\api\library\exception\ApiException;
 use think\Db;
 
 /**
@@ -36,16 +37,21 @@ class Register extends Common
                 return \show('0', '信息不完整', '', 200);
             //首先验证手机验证码
             $account = \input('phone');
-            $type = 1;
+            $phone_count = Db::name('MemberList')->where('member_list_tel', 'eq', $account)->count();
+            if ($phone_count > 0) {
+                return new ApiException('手机号已存在');
+            }
+
+            $type = 1;  //1为注册
             $verify = \input('verify');
             $smsres = \checksms($account, $type, $verify);
             if (!$smsres) {
-                return \show(0, '手机验证码错误');
+                return \show(10001, '手机验证码错误');
             } else {
                 $member_list_salt = random(10);
                 $sqldata = [
                     'member_list_username' => '会员' . \input('phone'),
-                    'member_list_password' => \encrypt_password(\input('password', \config('default_password')), $member_list_salt),
+                    'member_list_pwd' => \encrypt_password(\input('password', \config('default_password')), $member_list_salt),
                     'member_list_salt' => $member_list_salt,
                     'member_list_tel' => \input('phone'),
                     'member_list_groupid' => '1',       //分配一个会员组
