@@ -1722,7 +1722,7 @@ function sendsms($account, $type)
     $where['sms_tel'] = $account;
     $rst = Db::name('SmsLog')->where($where)->find();
     if ($rst) {
-        if ($rst['sms_time'] > (time() - 120)) {
+        if ($rst['sms_time'] > (time() - config('sms_out_time'))) {
             return ['code' => 0, 'msg' => '已获取过,' . (time() - $rst['sms_time']) . '后稍后再试'];
         }
     }
