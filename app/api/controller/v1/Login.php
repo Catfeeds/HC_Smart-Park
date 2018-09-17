@@ -53,7 +53,7 @@ class Login extends Common
                     //登录成功执行
                     return $this->after_login($user_info['member_list_id']);
                 } else {
-                    return new ApiException('登录失败');
+                    return \show(0, '登录失败');
                 }
                 break;
             case 2:
@@ -61,7 +61,7 @@ class Login extends Common
                 $verify = \input('verify');
                 $verify_rst = \checksms($phone, 2, $verify);
                 if (!$verify_rst) {
-                    return new ApiException('验证码不正确');
+                    return \show(0, '验证码不正确');
                 } else {
                     //登录成功执行
                     return $this->after_login($user_info['member_list_id']);
@@ -70,7 +70,7 @@ class Login extends Common
                 return $this->after_login();
                 break;
             default:
-                return new ApiException('登录方式不正确', '200', 0);
+                return \show(0, '登录方式不对');
         }
     }
 
@@ -98,10 +98,7 @@ class Login extends Common
         $redis->set($token, $user_id, \config('token_expires_time'));
         //返回加密后的token
         $token = Aes::encrypt($token);
-        $user_info = \model('MemberList')
-            ->where('member_list_id', 'eq', $user_id)
-            ->field('member_list_id,member_list_username,member_list_groupid,member_list_tel')
-            ->find();
+        $user_info = \model('MemberList')->getMemberInfoById($user_id);
         $user_info['token'] = $token;
         return \show('1', 'OK', $user_info, 200);
     }

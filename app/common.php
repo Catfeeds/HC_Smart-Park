@@ -1746,7 +1746,7 @@ function sendsms($account, $type)
         if (isset($resp->result) && $resp->result->success) {
             $rst_sms = true;
         } else {
-            $error = $resp->sub_msg;
+            $error = $resp;
         }
     }
     if ($rst_sms) {

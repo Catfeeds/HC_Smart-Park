@@ -9,9 +9,9 @@
 namespace app\api\model;
 
 
+use think\Db;
 use think\Model;
 use think\Request;
-use think\Db;
 
 /**
  * Class News
@@ -106,6 +106,33 @@ class News extends Model
         return $da;
     }
 
+    /**
+     * @param $page
+     * @param $uid
+     * @param $c_id
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 根据用户名和栏目id获取文章列表
+     */
+    public function getNewsListByUserId($page, $uid, $c_id)
+    {
+        $map = [
+            'news_auto' => $uid,
+            'news_columnid' => $c_id
+        ];
+        $count = $this->where($map)->count();
+        $list = $this->where($map)
+            ->field('n_id,news_title,news_columnid,news_hits,news_img,news_time,news_back,news_open')
+            ->order('news_time desc')
+            ->page($page, 5)
+            ->select();
+        $data['total_num'] = $count;
+        $data['data'] = $list;
+        return $data;
+    }
+
 
     /**
      * @param $id
@@ -122,7 +149,7 @@ class News extends Model
         Db::name('News')->where('n_id', 'eq', $id)->setInc('news_hits');
         return $detail = $this
             ->where('n_id', 'eq', $id)
-            ->field('news_title,news_time,news_auto,news_hits,news_source,news_content')
+            ->field('news_title,news_time,news_auto,news_hits,news_source,news_content,news_img,news_zan')
             ->find();
     }
 }

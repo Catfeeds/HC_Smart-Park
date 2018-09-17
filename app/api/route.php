@@ -33,22 +33,43 @@ Route::resource('register', 'api/v1.register');
 Route::resource('login', 'api/v1.login');
 //企业模块
 Route::resource('enterprise', 'api/v1.enterprise');
+
+
 //个人中心各种操作
 Route::resource('center', 'api/v1.center');
+//修改手机号
 Route::post('update_phone', 'api/v1.center/update_phone');
+//修改用户名
 Route::post('update_username', 'api/v1.center/update_username');
+//绑定企业
 Route::post('bind', 'api/v1.center/bind_enterprise');
+//设置密码
 Route::post('pwd', 'api/v1.center/setpwd');
-Route::post('my_activity','api/v1.center/my_activity');
-Route::post('my_repair','api/v1.repair/my_repair');
+//我的活动
+Route::post('my_activity', 'api/v1.center/my_activity');
+//我的报修
+Route::post('my_repair', 'api/v1.repair/my_repair');
+//报修的加急和撤回
+Route::post('repair/status', 'api/v1.repair/change_status');
+//我的论坛
+Route::post('my_forum', 'api/v1.center/my_forum');
+//发布新帖
+Route::post('add_forum', 'api/v1.center/add_forum');
+//删除帖子
+Route::post('dele_forum', 'api/v1.center/dele_forum');
+
+
+
 //上传图片
 Route::resource('upload', 'api/v1.upload');
 //投诉建议
 Route::resource('complains', 'api/v1.complains');
 //投诉建议
 Route::resource('repair', 'api/v1.repair');
-Route::post('repair/status', 'api/v1.repair/change_status');
+
 //点赞模块
 Route::resource('zan', 'api/v1.zan');
 //活动模块
 Route::resource('activity', 'api/v1.activity');
+//论坛模块
+Route::resource('forum', 'api/v1.forum');

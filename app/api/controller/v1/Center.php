@@ -8,7 +8,6 @@
 
 namespace app\api\controller\v1;
 
-
 use app\api\controller\AuthBase;
 use think\Db;
 
@@ -28,11 +27,10 @@ class Center extends AuthBase
      */
     public function index()
     {
+//        $token = '0SUSXfUEBtfO0j0KuwYWmQKUvmSexitO8YJWIHgG4Be3Ne3ojqCMXP5ohG1OaSJl';
+//        $user_id=\getUserIdByToken($token);
         $user_id = \input('user_id');
-        $user_info = \model('MemberList')
-            ->where('member_list_id', 'eq', $user_id)
-            ->field('member_list_id,member_list_username,member_list_headpic,member_list_groupid,member_list_enterprise,member_list_tel,member_list_addtime,last_login_ip,last_login_time')
-            ->find();
+        $user_info = \model('MemberList')->getMemberInfoById($user_id);
         return \show(1, 'OK', $user_info, 200);
     }
 
@@ -45,15 +43,15 @@ class Center extends AuthBase
         if (\request()->isPost()) {
             $user_id = \input('user_id');
             $new_username = \input('user_name');
-            $count_username = Db::name('MemebrList')
+            $count_username = Db::name('MemberList')
                 ->where('member_list_username', 'eq', $new_username)
                 ->count();
             if ($count_username > 0) {
-                return \show('0', '改昵称已存在');
+                return \show('0', '改昵称已被占用');
             } else {
                 $res = Db::name('MemberList')
                     ->where('member_list_id', 'eq', $user_id)
-                    ->setField('member_list_username', $new_username);
+                    ->setField('member_list_username', \trim($new_username));
                 if ($res) {
                     return \show('1', '修改成功');
                 } else {
@@ -191,5 +189,52 @@ class Center extends AuthBase
             ->page($page, 3)
             ->select();
         return \show('1', "ok", $list, 200);
+    }
+
+    /**
+     * @return \think\response\Json
+     * 返回个人发帖列表
+     */
+    public function my_forum()
+    {
+        $page = \input('page', 1);
+        $user_id = \input('user_id');
+        $c_id = 4;
+        $data = \model('News')->getNewsListByUserId($page, $user_id, $c_id);
+        return \show(1, 'Ok', $data, 200);
+    }
+
+    /**
+     *
+     */
+    public function add_forum()
+    {
+
+    }
+
+    /**
+     * @return \think\response\Json
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     * 删除自己发布的某文章
+     */
+    public function dele_forum()
+    {
+        $n_id = \input('n_id');
+        $u_id = \input('user_id');
+        $p_id = Db::name('News')->where('n_id', 'eq', $n_id)->value('news_auto');
+        if ($u_id != $p_id) {
+            return \show(0, '没有权限');
+        } else {
+            $res = Db::name('News')
+                ->where('n_id', 'eq', $n_id)
+                ->where('news_auto', 'eq', $u_id)
+                ->delete();
+            if ($res) {
+                return \show(1, '删除成功', '', 200);
+            } else {
+                return \show('0', '删除失败');
+            }
+        }
     }
 }

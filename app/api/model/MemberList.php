@@ -68,12 +68,28 @@ class MemberList extends Model
      * @return string
      * 返回拼接好的头像url
      */
-    public function getMemberListHeadpicAttr($member_list_headpic){
+    public function getMemberListHeadpicAttr($member_list_headpic)
+    {
         $reqeust = Request::instance();
-        if (!empty($member_list_headpic)){
-            return $headpic_url = $reqeust->domain().$member_list_headpic;
-        }else{
+        if (!empty($member_list_headpic)) {
+            return $headpic_url = $reqeust->domain() . $member_list_headpic;
+        } else {
             return '';
         }
+    }
+
+    /**
+     * @param $user_id
+     * @return array|false|\PDOStatement|string|Model
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 根据用id获取基本信息
+     */
+    public function getMemberInfoById($user_id)
+    {
+        return $this->where('member_list_id', 'eq', $user_id)
+            ->field('member_list_id,member_list_username,member_list_headpic,member_list_groupid,member_list_tel,member_list_enterprise,member_list_addtime,last_login_ip,last_login_time')
+            ->find();
     }
 }

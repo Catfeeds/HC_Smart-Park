@@ -2,7 +2,7 @@
     'yfcmf_version' => 'V2.9.9',
     'update_check' => false,
     'app_debug' => true,
-    'app_trace' => true,
+    'app_trace' => false,
     'think_sdk_qq' =>
         array(
             'app_key' => '',
@@ -199,11 +199,11 @@
     'addons_sql' => true,
     'think_sdk_sms' =>
         array(
-            'AccessKeyId' => '',
-            'accessKeySecret' => '',
-            'signName' => '',
-            'TemplateCode' => '',
-            'sms_open' => NULL,
+            'AccessKeyId' => 'LTAI2k1hwbjysDTb',
+            'accessKeySecret' => 'LdKopwrOL6VgzwJYplTBuf5TvuCXwb',
+            'signName' => '海创空间',
+            'TemplateCode' => 'SMS_145295356',
+            'sms_open' => true,
         ),
     'sms_out_time' => 120000000,
 );
