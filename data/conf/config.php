@@ -205,11 +205,5 @@
             'TemplateCode' => 'SMS_145295356',
             'sms_open' => true,
         ),
-    'sms_out_time' => 120000000,
-
-    'alisms' => [
-        'key' => 'LTAI2k1hwbjysDTb',
-        'secret' => 'LdKopwrOL6VgzwJYplTBuf5TvuCXwb',
-        'sign' => '海空间'
-    ]
+    'sms_out_time' => 300,
 );

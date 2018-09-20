@@ -1,5 +1,5 @@
 <?php
-//error_reporting(E_ERROR | E_WARNING | E_PARSE);
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 use Flc\Dysms\Request\SendSms;
 use think\Db;
@@ -1722,8 +1722,9 @@ function sendsms($account, $type, $templateCode)
     $where['sms_tel'] = $account;
     $rst = Db::name('SmsLog')->where($where)->find();
     if ($rst) {
-        if ($rst['sms_time'] > (time() - config('sms_out_time'))) {
-            return ['code' => 0, 'msg' => '已获取过,' . (time() - $rst['sms_time']) . '后稍后再试'];
+        $limit = time() - $rst['sms_time'];
+        if ($limit < config('sms_out_time')) {
+            return ['code' => 0, 'msg' => '操作过于频繁'];
         }
     }
     $rst_sms = false;
