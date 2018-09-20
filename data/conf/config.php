@@ -202,8 +202,7 @@
             'AccessKeyId' => 'LTAI2k1hwbjysDTb',
             'accessKeySecret' => 'LdKopwrOL6VgzwJYplTBuf5TvuCXwb',
             'signName' => '海创空间',
-            'TemplateCode' => 'SMS_145295356',
-            'sms_open' => true,
+            'sms_open' => 1,
         ),
     //短信有效期
     'sms_out_time' => 300,
