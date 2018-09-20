@@ -26,6 +26,7 @@ return array(
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
     'GuzzleHttp\\Promise\\' => array($vendorDir . '/guzzlehttp/promises/src'),
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
+    'Flc\\Dysms\\' => array($vendorDir . '/flc/dysms/src'),
     'Flc\\Alidayu\\' => array($vendorDir . '/flc/alidayu/src/Alidayu'),
     'EasyWeChat\\' => array($vendorDir . '/overtrue/wechat/src'),
     'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache'),

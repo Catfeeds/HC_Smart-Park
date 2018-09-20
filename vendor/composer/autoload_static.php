@@ -63,6 +63,7 @@ class ComposerStaticInit42f1a2b06c32df0543aaa7dd0a10f07a
         ),
         'F' => 
         array (
+            'Flc\\Dysms\\' => 10,
             'Flc\\Alidayu\\' => 12,
         ),
         'E' => 
@@ -157,6 +158,10 @@ class ComposerStaticInit42f1a2b06c32df0543aaa7dd0a10f07a
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'Flc\\Dysms\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/flc/dysms/src',
         ),
         'Flc\\Alidayu\\' => 
         array (

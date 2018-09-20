@@ -1,13 +1,12 @@
 <?php
+//error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
+use Flc\Dysms\Request\SendSms;
 use think\Db;
 use think\Request;
 use think\Response;
 use app\admin\controller\Auth;
 use think\Lang;
-use Flc\Alidayu\Client;
-use Flc\Alidayu\App;
-use Flc\Alidayu\Requests\AlibabaAliqinFcSmsNumSend;
 
 // 应用公共文件
 /**
@@ -1708,15 +1707,16 @@ function data_signature($data = [])
 /**
  * @param $account
  * @param $type
- * @return array
+ * @param $templateCode
+ * @return array|mixed
  * @throws \think\Exception
  * @throws \think\db\exception\DataNotFoundException
  * @throws \think\db\exception\ModelNotFoundException
  * @throws \think\exception\DbException
  * @throws \think\exception\PDOException
- * 发送短信验证码
+ * * 发送短信验证码,阿里大鱼已废弃,此处为阿里云通信!!!
  */
-function sendsms($account, $type)
+function sendsms($account, $type, $templateCode)
 {
     $where['sms_type'] = $type;
     $where['sms_tel'] = $account;
@@ -1730,20 +1730,18 @@ function sendsms($account, $type)
     $error = '未设置短信平台配置';
     $code = random(6, 'number');
     if (config('think_sdk_sms.sms_open')) {
-        $alisms = array(
-            'app_key' => config('think_sdk_sms.AccessKeyId'),
-            'app_secret' => config('think_sdk_sms.accessKeySecret')
+        $config = array(
+            'accessKeyId' => config('think_sdk_sms.AccessKeyId'),
+            'accessKeySecret' => config('think_sdk_sms.accessKeySecret')
         );
-        $client = new Client(new App($alisms));
-        $req = new AlibabaAliqinFcSmsNumSend;
-        $req->setRecNum($account)
-            ->setSmsParam([
-                'number' => $code
-            ])
-            ->setSmsFreeSignName(config('think_sdk_sms.signName'))
-            ->setSmsTemplateCode(config('think_sdk_sms.TemplateCode'));
+        $client = new \Flc\Dysms\Client($config);
+        $req = new SendSms();
+        $req->setPhoneNumbers($account)
+            ->setSignName(config('think_sdk_sms.signName'))
+            ->setTemplateCode($templateCode)
+            ->setTemplateParam(['code' => $code]);
         $resp = $client->execute($req);
-        if (isset($resp->result) && $resp->result->success) {
+        if ($resp->Message == 'OK') {
             $rst_sms = true;
         } else {
             $error = $resp;

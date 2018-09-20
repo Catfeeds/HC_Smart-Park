@@ -31,7 +31,8 @@
 		"riverslei/payment": "~2.0",
 		"yfcmf/tp5-addons": "^1.0",
         "aliyuncs/oss-sdk-php": "^2.2.3",
-        "flc/alidayu": "^2.0"
+        "flc/alidayu": "^2.0",
+        "flc/dysms": "^1.0"
     },
     "extra": {
         "think-path": "thinkphp"
