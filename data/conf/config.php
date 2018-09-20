@@ -205,5 +205,6 @@
             'TemplateCode' => 'SMS_145295356',
             'sms_open' => true,
         ),
+    //短信有效期
     'sms_out_time' => 300,
 );
