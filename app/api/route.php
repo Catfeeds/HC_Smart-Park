@@ -64,7 +64,7 @@ Route::post('dele_forum', 'api/v1.center/dele_forum');
 Route::resource('upload', 'api/v1.upload');
 //投诉建议
 Route::resource('complains', 'api/v1.complains');
-//投诉建议
+//报修模块
 Route::resource('repair', 'api/v1.repair');
 
 //点赞模块

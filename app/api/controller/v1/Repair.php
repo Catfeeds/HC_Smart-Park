@@ -86,7 +86,7 @@ class Repair extends AuthBase
         $status = \input('status');
         $uid = Db::name('ServiceRepair')->where('id', 'eq', $id)->value('user_id');
         if ($uid != $user_id) {
-            return new ApiException('身份不对', 201);
+            return new ApiException('身份不对', 201,0);
         } else {
             $res = Db::name('ServiceRepair')->where('id', 'eq', $id)->setField('status', $status);
             if (!$res) {

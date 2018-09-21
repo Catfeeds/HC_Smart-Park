@@ -41,7 +41,7 @@ class AuthBase extends Common
         $redis = new Redis();
         $res = $redis->has($token); //检查token是否存在或过期
         if (!$res) {
-            return new ApiException('token已过期');
+            return new ApiException('token已过期',201,0);
         } else {
             return true;
         }
