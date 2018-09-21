@@ -7,7 +7,9 @@
  */
 
 namespace app\api\controller;
+
 use think\Controller;
+
 /**
  * Class Common
  * @package app\api\controller
@@ -69,5 +71,12 @@ class Common extends Controller
         } else {
             return false;
         }
+    }
+
+    function checkVersion()
+    {
+        $version_info = \config('app_version');
+
+        return $version_info;
     }
 }

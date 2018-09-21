@@ -10,6 +10,7 @@ namespace app\api\controller\v1;
 
 
 use app\api\controller\Common;
+use think\Db;
 
 /**
  * Class Sms
@@ -28,6 +29,10 @@ class Sms extends Common
         if ($type == 1) {
             //注册模板
             $templateCode = 'SMS_145187285';
+            $phone_count = Db::name('MemberList')->where('member_list_tel', 'eq', $phone)->count();
+            if ($phone_count > 0) {
+                return \show(0, '该手机号已被注册', '', 403);
+            }
         } elseif ($type == 2) {
             //登录模板
             $templateCode = 'SMS_145187287';

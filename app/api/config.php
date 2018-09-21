@@ -13,8 +13,15 @@ return [
     'app_sign_time' => '30',
     //token有效期,秒
     'token_expires_time' => '2592000',
-    //APP版本号
-    'version' => '1.0',
+    //APP更新信息
+    'app_version' => [
+        'version' => '1.0.1',
+        'publish_time' => '2018-09-20',
+        'size' => '15M',
+        'content' => '杀了一个程序员祭天,保佑中秋节不宕机',
+        'download_url'=>'https://fosduhik;ghsklgjhsdh.com',
+        'is_force'=>'1',
+    ],
     //七牛云的上传地址
     'upload_url' => 'http://up.qiniup.com/putb64/-1/key/',
 ];
