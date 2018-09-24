@@ -143,11 +143,12 @@ class Service extends Base
     }
 
     /**
-     *活动列表
+     *活动报名列表
      */
     public function activity_list()
     {
 
+        return $this->fetch();
     }
 
     /**
