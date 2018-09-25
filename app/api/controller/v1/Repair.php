@@ -41,8 +41,14 @@ class Repair extends AuthBase
      */
     public function save()
     {
-        $base64img = \input('image/a');
-        $pic_url = $this->img_upload($base64img);
+        $base64img = \input('image');
+        if (!empty($base64img)) {
+            $base64img = \json_decode($base64img);
+            $pic_url = $this->img_upload($base64img);
+        } else {
+            $pic_url = '';
+        }
+
         $sqldata = [
             'user_id' => \input('user_id'),
             'title' => \input('title'),
