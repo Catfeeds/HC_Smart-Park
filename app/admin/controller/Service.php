@@ -24,9 +24,10 @@ class Service extends Base
      */
     public function complaints_list()
     {
-        $list = Db::name('ServiceComplains')
-            ->order('create_time')
+        $list = \model('ServiceComplains')
+            ->order('create_time desc')
             ->paginate(config('paginate.list_rows'));
+
         $show = $list->render();
         $show = preg_replace("(<a[^>]*page[=|/](\d+).+?>(.+?)<\/a>)", "<a href='javascript:ajax_page($1);'>$2</a>", $show);
         $this->assign('page', $show);
@@ -149,8 +150,8 @@ class Service extends Base
     {
 
         $list = Db::name('ActivityApply aa')
-            ->join('News n','aa.activity_id=n.n_id')
-            ->join('MemberList ml','aa.user_id=ml.member_list_id')
+            ->join('News n', 'aa.activity_id=n.n_id')
+            ->join('MemberList ml', 'aa.user_id=ml.member_list_id')
             ->order('create_time desc')
             ->paginate(config('paginate.list_rows'));
 //        \halt($list);
