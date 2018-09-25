@@ -73,10 +73,33 @@ class Common extends Controller
         }
     }
 
+    /**
+     * @return mixed
+     * 检查版本号
+     */
     function checkVersion()
     {
         $version_info = \config('app_version');
 
         return $version_info;
+    }
+
+    /**
+     * @return \think\response\Json
+     * @throws \Exception
+     * 公共的图片上传接口
+     */
+    function img_upload($files)
+    {
+        $file = \arrToOne($files);
+        foreach ($file as $img) {
+            $upload = new \app\api\controller\Upload();
+            if (\config('storage.storage_open')) {
+                $res[] = $upload->qiniu_upload($img);
+            } else {
+                $res[] = $upload->local_upload($img);
+            }
+        }
+        return $res;
     }
 }

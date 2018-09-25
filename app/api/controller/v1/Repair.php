@@ -33,22 +33,26 @@ class Repair extends AuthBase
         return \show(1, 'OK', $list, 200);
     }
 
+
     /**
      * @return \think\response\Json
+     * @throws \Exception
      * 发布报修
      */
     public function save()
     {
+        $base64img = \input('image/a');
+        $pic_url = $this->img_upload($base64img);
         $sqldata = [
             'user_id' => \input('user_id'),
             'title' => \input('title'),
             'content' => \input('content'),
-            'pic_url' => \serialize(\input('pic_url/a')),
+            'pic_url' => \serialize($pic_url),
         ];
         $model = new ServiceRepair();
         $res = $model->allowField(true)->save($sqldata);
         if ($res) {
-            return \show('1', '报修成功', $model->id, 200);
+            return \show('1', '报修成功', $res, 200);
         }
     }
 
@@ -86,7 +90,7 @@ class Repair extends AuthBase
         $status = \input('status');
         $uid = Db::name('ServiceRepair')->where('id', 'eq', $id)->value('user_id');
         if ($uid != $user_id) {
-            return new ApiException('身份不对', 201,0);
+            return new ApiException('身份不对', 201, 0);
         } else {
             $res = Db::name('ServiceRepair')->where('id', 'eq', $id)->setField('status', $status);
             if (!$res) {
