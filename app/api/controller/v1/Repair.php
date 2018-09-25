@@ -29,7 +29,10 @@ class Repair extends AuthBase
         $user_id = \input('user_id');
         $page = \input('page', 1);
         $model = new ServiceRepair();
-        $list = $model->getRepairList($user_id, $page);
+        //已处理的列表
+        $list['list0'] = $model->getRepairList($user_id, $page, ('status=1'));
+        //其他情况的列表
+        $list['list1'] = $model->getRepairList($user_id, $page, ('status!=1'));
         return \show(1, 'OK', $list, 200);
     }
 

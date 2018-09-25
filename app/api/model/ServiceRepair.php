@@ -97,10 +97,11 @@ class ServiceRepair extends Model
      * @throws \think\exception\DbException
      * 返回个人中心报修列表
      */
-    public function getRepairList($user_id, $page)
+    public function getRepairList($user_id, $page, $where)
     {
         $list = $this
             ->where('user_id', 'eq', $user_id)
+            ->where($where)
             ->order('create_time desc')
             ->page($page, 10)
             ->select();
