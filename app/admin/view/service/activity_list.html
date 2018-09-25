@@ -1,0 +1,160 @@
+{extend name="admin@public/base" /}
+{block name="main-content"}
+<div class="page-content">
+
+    <div class="col-xs-5 col-sm-2  margintop5">
+        <a href="{:url('admin/News/news_add',array('news_columnid'=>3))}" target="_blank">
+            <button class="btn btn-sm btn-danger">
+                <i class="ace-icon fa fa-bolt bigger-110"></i>
+                发布活动
+            </button>
+        </a>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div>
+                <form id="alldel" name="alldel" method="post" action="{:url('admin/Service/hotline_alldelete')}">
+                    <input name="p" id="p" value="{:input('p',1)}" type="hidden"/>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="dynamic-table">
+                            <thead>
+                            <tr>
+                               <!-- <th class="hidden-xs center">
+                                    <label class="pos-rel">
+                                        <input type="checkbox" class="ace" id='chkAll' onclick='CheckAll(this.form)'
+                                               value="全选"/>
+                                        <span class="lbl"></span>
+                                    </label>
+                                </th>-->
+                                <th>ID</th>
+                                <th>活动名称</th>
+                                <th>报名人姓名</th>
+                                <th class="hidden-sm hidden-xs">活动时间</th>
+                                <th class="hidden-sm hidden-xs">报名时间</th>
+                                <!--<th style="border-right:#CCC solid 1px;">操作</th>-->
+                            </tr>
+                            </thead>
+
+                            <tbody id="ajax-data">
+                            {foreach name="list" item="v"}
+                            <tr>
+                                <!--<td class="hidden-xs" align="center">
+                                    <label class="pos-rel">
+                                        <input name='id[]' id="navid" class="ace" type='checkbox' value='{$v.id}'>
+                                        <span class="lbl"></span>
+                                    </label>
+                                </td>-->
+                                <td>{$v.id}</td>
+                                <td height="28">{$v.news_title}</td>
+                                <td height="28">{$v.member_list_username}</td>
+                                <td height="28">{$v.news_time|date='Y-m-d H:i:s',###}</td>
+                                <td class="hidden-sm hidden-xs">{$v.create_time|date='Y-m-d H:i:s',###}</td>
+                                <!--<td>
+                                    <div class="action-buttons">
+                                        <a class="red confirm-rst-url-btn" data-info="确定删除吗？"
+                                           href="{:url('admin/Service/hotline_delete',array('id'=>$v['id'],'p'=>input('p',1)))}"
+                                           title="删除">
+                                            <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                        </a>
+                                    </div>
+                                </td>-->
+                            </tr>
+                            {/foreach}
+                            <tr>
+                                <td align="left">
+                                    <button id="btnsubmit" class="btn btn-white btn-yellow btn-sm">删</button>
+                                     
+                                </td>
+                                <td colspan="8" align="right">{$page}</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div><!-- /.page-content -->
+
+<!-- 显示模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form class="form-horizontal ajaxForm2" name="phone_add" method="post"
+          action="{:url('admin/Service/hotline_runadd')}">
+        <div class="modal-dialog" style="width:1000px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        添加热线
+                    </h4>
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right" for="form-field-1">
+                                    单位名称： </label>
+                                <div class="col-sm-11">
+                                    <input type="text" name="name" id="name" placeholder="输入单位名称"
+                                           class="col-xs-10 col-sm-5" required/>
+                                    <span class="lbl">&nbsp;&nbsp;<span class="red">*</span></span>
+                                </div>
+
+                            </div>
+
+                            <!--<div class="form-group" id="pic_list">
+                                <label class="col-sm-1 control-label no-padding-right" for="form-field-1">
+                                    图片： </label>
+                                <div class="col-sm-11">
+                                    <a href="javascript:;" class="file">
+                                        <input type="file" name="file0" id="file0" multiple="multiple"/>
+                                        选择上传文件
+                                    </a>
+                                    <a href="javascript:;" onclick="return backpic('__PUBLIC__/img/no_img.jpg');"
+                                       title="还原修改前的图片" class="file">
+                                        撤销上传
+                                    </a>
+
+                                    <div><img src="__PUBLIC__/img/no_img.jpg" height="70" id="img0"></div>
+                                </div>
+                            </div>-->
+
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right" for="form-field-1">
+                                    电话号码： </label>
+                                <div class="col-sm-11">
+                                    <input type="text" name="phone_number" id="phone_number" placeholder="输入电话号码"
+                                           class="col-xs-10 col-sm-5" required/>
+                                    <span class="lbl">&nbsp;&nbsp;<span class="red">*</span></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">
+                        提交保存
+                    </button>
+                    <button class="btn btn-info" type="reset">
+                        重置
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        关闭
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </form>
+</div><!-- /.modal -->
+
+{/block}
