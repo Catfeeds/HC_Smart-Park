@@ -19,6 +19,24 @@ use think\Request;
  */
 class News extends Model
 {
+    protected $visible=[
+        'n_id',
+        'news_title',
+        'news_auto',
+        'news_source',
+        'news_content',
+        'news_hold_time',
+        'news_scontent',
+        'news_columnid',
+        'news_hits',
+        'news_zan',
+        'news_img',
+        'news_pic_allurl',
+        'news_pic_content',
+        'news_time',
+        'news_extra',
+        'iszan'
+        ];
     /**
      * @param $news_time
      * @return false|string
@@ -97,7 +115,6 @@ class News extends Model
         $count = $this->where($where)->count();
         $data =
             $this->where($where)
-                ->field('n_id,news_title,news_columnid,news_hits,news_img,news_time')
                 ->order('news_time desc')
                 ->page($page, 2)
                 ->select();
@@ -124,7 +141,6 @@ class News extends Model
         ];
         $count = $this->where($map)->count();
         $list = $this->where($map)
-            ->field('n_id,news_title,news_columnid,news_hits,news_img,news_time,news_back,news_open')
             ->order('news_time desc')
             ->page($page, 5)
             ->select();
@@ -146,10 +162,22 @@ class News extends Model
     public function getNewsDetailById($id)
     {
         //给阅读数+1
-        Db::name('News')->where('n_id', 'eq', $id)->setInc('news_hits');
-        return $detail = $this
+        Db::name('News')
             ->where('n_id', 'eq', $id)
-            ->field('news_title,news_time,news_auto,news_hits,news_source,news_content,news_img,news_zan')
+            ->setInc('news_hits');
+        return $detail = $this::with('author')
+            ->where('n_id', 'eq', $id)
             ->find();
+    }
+
+    /**
+     * @return \think\model\relation\BelongsTo
+     * 关联文章发布者信息
+     */
+    public function author(){
+        return $this->
+        belongsTo('Admin','news_auto','admin_id')
+            ->field('admin_avatar')
+            ->setEagerlyType(0);
     }
 }

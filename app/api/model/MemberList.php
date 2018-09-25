@@ -19,6 +19,9 @@ use think\Request;
  */
 class MemberList extends Model
 {
+    protected $visible=[
+
+    ];
     /**
      * @param $member_list_groupid
      * @return mixed

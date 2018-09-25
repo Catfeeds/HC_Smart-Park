@@ -13,5 +13,7 @@ use think\Model;
 
 class Admin extends Model
 {
-
+    protected $visible=[
+      'admin_avatar'
+    ];
 }
