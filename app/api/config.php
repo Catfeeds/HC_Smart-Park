@@ -24,4 +24,12 @@ return [
     ],
     //七牛云的上传地址
     'upload_url' => 'http://up.qiniup.com/putb64/-1/key/',
+
+    //分页配置
+    //分页配置
+    'paginate'               => [
+        'type'      => 'bootstrap',
+        'var_page'  => 'page',
+        'list_rows' => 10000000000000000,
+    ],
 ];

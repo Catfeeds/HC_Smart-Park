@@ -44,9 +44,11 @@
                                 <td height="28">{$v.title}</td>
                                 <td height="28">{$v.content}</td>
                                 <td>
+                                    {if $v.pic_url}
                                     {foreach $v.pic_url as $vv}
                                     <img src="{$vv}" style="max-width:40px;max-height:40px;"/>
                                     {/foreach}
+                                    {/if}
                                 </td>
                                 <td class="hidden-sm hidden-xs">{$v.create_time}</td>
                                 <td height="28">{$v.status}</td>

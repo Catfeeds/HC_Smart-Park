@@ -1400,11 +1400,14 @@ function currency_long($currency)
     return 0;
 }
 
+
 /**
- * 返回前台菜单含model_name model_id model_title的菜单数组
- * @author  rainfer520@qq.com
- * @param array
+ * @param $menus
  * @return array
+ * @throws \think\db\exception\DataNotFoundException
+ * @throws \think\db\exception\ModelNotFoundException
+ * @throws \think\exception\DbException
+ * 返回前台菜单含model_name model_id model_title的菜单数组
  */
 function get_menu_model($menus)
 {

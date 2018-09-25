@@ -48,6 +48,7 @@ class Repair extends AuthBase
         if (!empty($base64img)) {
             $base64img = \json_decode($base64img);
             $pic_url = $this->img_upload($base64img);
+            $pic_url = \serialize($pic_url);
         } else {
             $pic_url = '';
         }
@@ -56,7 +57,7 @@ class Repair extends AuthBase
             'user_id' => \input('user_id'),
             'title' => \input('title'),
             'content' => \input('content'),
-            'pic_url' => \serialize($pic_url),
+            'pic_url' => $pic_url,
         ];
         $model = new ServiceRepair();
         $res = $model->allowField(true)->save($sqldata);
@@ -80,7 +81,14 @@ class Repair extends AuthBase
         if ($uid != $user_id) {
             return new ApiException('身份不对', 201);
         } else {
-            $info = \model('ServiceRepair')->where('id', 'eq', $id)->find();
+            $enterprise_id = Db::name('MemberList')->where('member_list_id', 'eq', $user_id)->value('member_list_enterprise');
+            $info['enterprise_info'] = Db::name('EnterpriseList')
+                ->alias('el')
+                ->join('EnterpriseEntryInfo eei', 'el.id=eei.enterprise_id')
+                ->field('el.enterprise_list_name,eei.room')
+                ->where('el.id', 'eq', $enterprise_id)
+                ->find();
+            $info['repair_info'] = \model('ServiceRepair')->where('id', 'eq', $id)->find();
             return \show(1, 'OK', $info, 200);
         }
     }

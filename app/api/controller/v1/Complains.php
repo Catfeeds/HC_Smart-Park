@@ -38,21 +38,22 @@ class Complains extends AuthBase
      */
     public function save()
     {
-        $data = \input();
-        $base64img = $data['image'];
+//        \halt(\input());
+        $base64img = \input('image');
         if (!empty($base64img)) {
             $base64img = \json_decode($base64img);
             $pic_url = $this->img_upload($base64img);
+            $pic_url = \serialize($pic_url);
         } else {
             $pic_url = '';
         }
         $sqldata = [
-            'type' => $data['type'],
-            'user_id' => $data['user_id'],
-            'phone' => $data['phone'],
-            'title' => $data['title'],
-            'content' => $data['content'],
-            'pic_url' => \serialize($pic_url),
+            'type' => \input('type'),
+            'user_id' => \input('user_id'),
+            'phone' => \input('phone'),
+            'title' => \input('title'),
+            'content' => \input('content'),
+            'pic_url' => $pic_url,
         ];
         $res = \model('ServiceComplains')->allowField(true)->save($sqldata);
         if ($res) {

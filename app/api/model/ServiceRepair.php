@@ -103,7 +103,7 @@ class ServiceRepair extends Model
             ->where('user_id', 'eq', $user_id)
             ->where($where)
             ->order('create_time desc')
-            ->page($page, 10)
+            ->page($page, \config('paginate.list_rows'))
             ->select();
         return $list;
     }
