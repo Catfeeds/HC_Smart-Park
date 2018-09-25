@@ -32,7 +32,7 @@ class ServiceRepair extends Model
      */
     public function getStatusAttr($value)
     {
-        $status = [0 => '未处理,', 1 => '处理中', 2 => '已处理', 3 => '催办', 4 => '已撤回'];
+        $status = [0 => '未处理', 1 => '处理中', 2 => '已处理', 3 => '催办', 4 => '已撤回'];
         return $status[$value];
     }
 
