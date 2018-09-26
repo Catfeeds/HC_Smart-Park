@@ -53,9 +53,7 @@ class Room extends Common
             $where['area'] = ['between', [$size1, $size2]];
         }
         $model = new ParkRoom();
-        $list = $model
-            ->where($where)
-            ->select();
+        $list = $model->where($where)->select();
         return \show(1, 'Ok', $list, 200);
     }
 

@@ -26,7 +26,8 @@ class ParkRoom extends Model
         'room_number',
         'area',
         'phase',
-        'room_img'
+        'room_img',
+        'status'
     ];
 
     /**
@@ -59,8 +60,9 @@ class ParkRoom extends Model
      * @return mixed
      * 返回房源的入驻状态
      */
-    public function getStatusAttr($value){
-        $status = [ 0 => '暂无企业入驻',1 => '已有企业入驻'];
+    public function getStatusAttr($value)
+    {
+        $status = [0 => '暂无企业入驻', 1 => '已有企业入驻'];
         return $status[$value];
     }
 
