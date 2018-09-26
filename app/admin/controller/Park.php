@@ -336,7 +336,7 @@ class Park extends Base
      */
     public function meeting_room_list()
     {
-        //按照租赁状态
+        //按照状态
         $opentype_check = input('status', '');
 
         //按照期数
@@ -462,6 +462,7 @@ class Park extends Base
             'phase' => \input('phase'),
             'room_number' => \trim(\input('room_number')),
             'area' => \input('area'),
+            'capacity' => \input('capacity'),
             'equipment' => \serialize(\input('equipment/a')),
 //            'price' => \input('price', 0),
             'room_img' => $img_one,//封面图片路径
@@ -490,8 +491,8 @@ class Park extends Base
     {
         $id = \input('id');
         $info = \model('ParkMeetingRoom')->where('id', 'eq', $id)->find();
-        $equipment = \model('ParkMeetingRoom')->where('id','eq',$id)->value('equipment');
-        $this->assign('equipment',$equipment);
+        $equipment = \model('ParkMeetingRoom')->where('id', 'eq', $id)->value('equipment');
+        $this->assign('equipment', $equipment);
         $this->assign('info', $info);
         return $this->fetch();
     }
@@ -509,16 +510,16 @@ class Park extends Base
      */
     public function meeting_room_status()
     {
-        $id=input('x');
-        $model=new ParkMeetingRoom();
-        $status=$model->where(array('id'=>$id))->value('status');
-        if($status==1){
-            $statedata = array('status'=>0);
-            $model->where(array('id'=>$id))->setField($statedata);
+        $id = input('x');
+        $model = new ParkMeetingRoom();
+        $status = $model->where(array('id' => $id))->value('status');
+        if ($status == 1) {
+            $statedata = array('status' => 0);
+            $model->where(array('id' => $id))->setField($statedata);
             $this->success('状态禁止');
-        }else{
-            $statedata = array('status'=>1);
-            $model->where(array('id'=>$id))->setField($statedata);
+        } else {
+            $statedata = array('status' => 1);
+            $model->where(array('id' => $id))->setField($statedata);
             $this->success('状态开启');
         }
     }
@@ -528,17 +529,17 @@ class Park extends Base
      */
     public function meeting_room_delete()
     {
-        $id=input('id');
+        $id = input('id');
         $p = input('p');
-        $model=new ParkMeetingRoom();
-        if (empty($id)){
-            $this->error('参数错误',url('admin/Park/meeting_room_list',array('p' => $p)));
-        }else{
-            $rst=$model->where('id','eq',$id)->delete();
-            if($rst!==false){
-                $this->success('删除成功',url('admin/Park/meeting_room_list',array('p' => $p)));
-            }else{
-                $this -> error("删除失败！",url('admin/Park/meeting_room_list',array('p' => $p)));
+        $model = new ParkMeetingRoom();
+        if (empty($id)) {
+            $this->error('参数错误', url('admin/Park/meeting_room_list', array('p' => $p)));
+        } else {
+            $rst = $model->where('id', 'eq', $id)->delete();
+            if ($rst !== false) {
+                $this->success('删除成功', url('admin/Park/meeting_room_list', array('p' => $p)));
+            } else {
+                $this->error("删除失败！", url('admin/Park/meeting_room_list', array('p' => $p)));
             }
         }
     }

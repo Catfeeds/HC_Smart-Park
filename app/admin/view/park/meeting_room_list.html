@@ -19,7 +19,7 @@
                     <option value="0" {if condition="$status eq '0'"}selected="selected"{/if} >禁用</option>
                 </select>
 
-                <select name="status" class="ajax_change">
+                <select name="phase" class="ajax_change">
                     <option value="">按期数</option>
                     <option value="1" {if condition="$phase eq '1'"}selected="selected"{/if}>一期</option>
                     <option value="2" {if condition="$phase eq '2'"}selected="selected"{/if} >二期</option>
@@ -47,7 +47,9 @@
                         <th class="hidden-xs">ID</th>
                         <th>期数</th>
                         <th>房间号</th>
+                        <th>缩略图</th>
                         <th class="hidden-sm hidden-xs">面积(㎡)</th>
+                        <th class="hidden-sm hidden-xs">可容纳(人)</th>
                         <th class="hidden-sm hidden-xs">设备</th>
                         <th class="hidden-sm hidden-xs">添加时间</th>
                         <th class="hidden-xs">状态</th>

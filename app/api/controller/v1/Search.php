@@ -16,9 +16,9 @@ class Search extends Common
     public function search()
     {
         //1=社区,2=房源,3=活动
-        $type = \input('type');
+        $type = \input('type',1);
         //搜索关键字
-        $key = \trim(\input('key'));
+        $key = \trim(\input('key',''));
         switch ($type) {
             case 1:
                 $map = [

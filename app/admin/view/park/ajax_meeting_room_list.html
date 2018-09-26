@@ -7,8 +7,9 @@
     <td>二期</td>
     {/if}
     <td>{$v.room_number}</td>
+    <td><img src={$v.room_img|get_imgurl} style="max-width:40px;max-height:40px;"/></td>
     <td>{$v.area}</td>
-
+    <td>{$v.capacity}</td>
     <td>
         {foreach $v.equipment as $vv}
         <span>{$vv}</span>
@@ -20,11 +21,15 @@
     <td class="hidden-xs">
         {if condition='$v.status eq 1'}
         <a class="red open-btn" href="{:url('admin/Park/meeting_room_status')}" data-id="{$v.id}" title="已开启">
-            <div id="zt{$v.id}"><button class="btn btn-minier btn-yellow">开启</button></div>
+            <div id="zt{$v.id}">
+                <button class="btn btn-minier btn-yellow">开启</button>
+            </div>
         </a>
         {else/}
         <a class="red open-btn" href="{:url('admin/Park/meeting_room_status')}" data-id="{$v.id}" title="已禁用">
-            <div id="zt{$v.id}"><button class="btn btn-minier btn-danger">禁用</button></div>
+            <div id="zt{$v.id}">
+                <button class="btn btn-minier btn-danger">禁用</button>
+            </div>
         </a>
         {/if}
     </td>
