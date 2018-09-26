@@ -55,6 +55,16 @@ class ParkRoom extends Model
     }
 
     /**
+     * @param $value
+     * @return mixed
+     * 返回房源的入驻状态
+     */
+    public function getStatusAttr($value){
+        $status = [ 0 => '暂无企业入驻',1 => '已有企业入驻'];
+        return $status[$value];
+    }
+
+    /**
      * @param $room_pic_allurl
      * @return array
      * 返回拼接好的多图路径

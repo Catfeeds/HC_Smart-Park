@@ -45,7 +45,7 @@ class Sms extends Common
         $rule = '/^((13[0-9])|(14[5,7])|(15[0-3,5-9])|16[6]|(17[0,3,5-8])|(18[0-9])|19[89])\d{8}$/';
         $rst = \preg_match($rule, $phone);
         if (!$rst) {
-            return \show(0, '手机号不正确', 401);
+            return \show(0, '手机号不正确', '',201);
         } else {
             return \sendsms($phone, $type, $templateCode);
 

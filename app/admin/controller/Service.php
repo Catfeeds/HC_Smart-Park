@@ -303,4 +303,65 @@ class Service extends Base
             $this->success("删除成功", url('admin/Service/hotline_list', array('p' => $p)));
         }
     }
+
+    /**
+     * @return mixed
+     * @throws \think\exception\DbException
+     * 看房预约
+     */
+    public function room_visit()
+    {
+        $list = \db('RoomVisit')
+            ->order('visit_time desc')
+            ->paginate(config('paginate.list_rows'));
+        $show = $list->render();
+        $show = preg_replace("(<a[^>]*page[=|/](\d+).+?>(.+?)<\/a>)", "<a href='javascript:ajax_page($1);'>$2</a>", $show);
+
+        $this->assign([
+            'list' => $list,
+            'page' => $show
+        ]);
+        return $this->fetch();
+    }
+
+    /**
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     * 删除单个预约
+     */
+    public function room_visit_delete()
+    {
+        $p = input('p');
+        $id = \input('id');
+        $rst = \db('RoomVisit')->where('id', 'eq', $id)->delete();
+        if ($rst !== false) {
+            $this->success('删除成功', url('admin/Service/room_visit', array('p' => $p)));
+        } else {
+            $this->error('删除失败', url('admin/Service/room_visit', array('p' => $p)));
+        }
+    }
+
+    /**
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     * 删除全部预约
+     */
+    public function room_visit_alldelete()
+    {
+        $p = input('p');
+        $ids = input('id/a');
+        if (empty($ids)) {
+            $this->error("请选择删除的预约", url('admin/Service/room_visit', array('p' => $p)));
+        }
+        if (!is_array($ids)) {
+            $ids[] = $ids;
+        }
+
+        $rst = Db::name('RoomVisit')->where('id', 'in', $ids)->delete();
+        if (!$rst) {
+            $this->error("删除失败", url('admin/Service/room_visit', array('p' => $p)));
+        } else {
+            $this->success("删除成功", url('admin/Service/room_visit', array('p' => $p)));
+        }
+    }
 }

@@ -1,0 +1,74 @@
+{extend name="admin@public/base" /}
+{block name="main-content"}
+<div class="page-content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div>
+                <form id="alldel" name="alldel" method="post" action="{:url('admin/Service/room_visit_alldelete')}">
+                    <input name="p" id="p" value="{:input('p',1)}" type="hidden"/>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="dynamic-table">
+                            <thead>
+                            <tr>
+                                <th class="hidden-xs center">
+                                    <label class="pos-rel">
+                                        <input type="checkbox" class="ace" id='chkAll' onclick='CheckAll(this.form)'
+                                               value="全选"/>
+                                        <span class="lbl"></span>
+                                    </label>
+                                </th>
+                                <th>ID</th>
+                                <th>看房人</th>
+                                <th>手机号</th>
+                                <th>看房时间</th>
+                                <th>处理状态</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+
+                            <tbody id="ajax-data">
+                            {foreach name="list" item="v"}
+                            <tr>
+                                <td class="hidden-xs" align="center">
+                                    <label class="pos-rel">
+                                        <input name='id[]' id="navid" class="ace" type='checkbox' value='{$v.id}'>
+                                        <span class="lbl"></span>
+                                    </label>
+                                </td>
+                                <td>{$v.id}</td>
+                                <td height="28">{$v.name}</td>
+                                <td height="28">{$v.phone}</td>
+                                <td height="28">{$v.visit_time|date='Y-m-d H:i:s',###}</td>
+                                {if $v.status eq 1}
+                                <td>已处理</td>
+                                {else}
+                                <td>待处理</td>
+                                {/if}
+                                <td>
+                                    <div class="action-buttons">
+                                        <a class="red confirm-rst-url-btn" data-info="确定删除吗？"
+                                           href="{:url('admin/Service/room_visit_delete',array('id'=>$v['id'],'p'=>input('p',1)))}"
+                                           title="删除">
+                                            <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {/foreach}
+                            <tr>
+                                <td align="left">
+                                    <button id="btnsubmit" class="btn btn-white btn-yellow btn-sm">删</button>
+                                     
+                                </td>
+                                <td colspan="12" align="right">{$page}</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div><!-- /.page-content -->
+{/block}

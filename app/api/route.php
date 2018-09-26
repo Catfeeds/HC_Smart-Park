@@ -7,7 +7,6 @@
  * Date:2018/8/28
  */
 
-use think\Request;
 use think\Route;
 
 /**
@@ -79,3 +78,5 @@ Route::resource('forum', 'api/v1.forum');
 Route::get('room_list', 'api/v1.room/room_list');
 //房源模块--详情
 Route::get('room_detail', 'api/v1.room/room_detail');
+//房源模块--预约
+Route::post('room_visit', 'api/v1.room/room_visit');
