@@ -59,7 +59,6 @@ Route::post('add_forum', 'api/v1.center/add_forum');
 Route::post('dele_forum', 'api/v1.center/dele_forum');
 
 
-
 //上传图片
 Route::resource('upload', 'api/v1.upload');
 //投诉建议
@@ -73,3 +72,7 @@ Route::resource('zan', 'api/v1.zan');
 Route::resource('activity', 'api/v1.activity');
 //论坛模块
 Route::resource('forum', 'api/v1.forum');
+//房源模块--列表
+Route::get('room_list', 'api/v1.room/room_list');
+//房源模块--详情
+Route::get('room_detail', 'api/v1.room/room_detail');
