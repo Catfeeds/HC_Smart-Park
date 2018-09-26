@@ -364,4 +364,24 @@ class Service extends Base
             $this->success("删除成功", url('admin/Service/room_visit', array('p' => $p)));
         }
     }
+
+    /**
+     *ajax修改预约状态
+     */
+    public function room_visit_state()
+    {
+        $id = input('x');
+        $status = \db('RoomVisit')
+            ->where('id', 'eq', $id)
+            ->value('status');//判断当前状态情况
+        if ($status == 1) {
+            $statedata = array('status' => 0);
+            \db('RoomVisit')->where('id', 'eq', $id)->setField($statedata);
+            $this->success('待处理');
+        } else {
+            $statedata = array('status' => 1);
+            \db('RoomVisit')->where('id', 'eq', $id)->setField($statedata);
+            $this->success('已处理');
+        }
+    }
 }

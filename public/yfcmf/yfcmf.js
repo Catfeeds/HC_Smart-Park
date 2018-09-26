@@ -168,6 +168,31 @@ $(function () {
 });
 
 
+/* 处理状态操作 */
+$(function () {
+    $('body').on('click','.check-btn',function () {
+        var $url = this.href,
+            val = $(this).data('id'),
+            $btn=$(this);
+        $.post($url, {x: val}, function (data) {
+            if (data.code==1) {
+                if (data.msg == '待处理') {
+                    var a = '<button class="btn btn-minier btn-danger">未处理</button>';
+                    $btn.children('div').html(a).attr('title','未处理');
+                    return false;
+                } else {
+                    var b = '<button class="btn btn-minier btn-yellow">已处理</button>';
+                    $btn.children('div').html(b).attr('title','已处理');
+                    return false;
+                }
+            } else {
+                layer.alert(data.msg, {icon: 5});
+            }
+        }, "json");
+        return false;
+    });
+});
+
 
 /* 显示状态操作 */
 $(function () {
