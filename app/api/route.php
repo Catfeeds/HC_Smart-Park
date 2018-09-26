@@ -21,6 +21,8 @@ use think\Route;
  */
 //首页接口
 Route::resource('index', 'api/v1.index');
+//搜索框接口
+Route::post('search', 'api/v1.search/search');
 //新闻接口
 Route::resource('news', 'api/v1.news');
 //轮播图接口
