@@ -237,4 +237,45 @@ class Center extends AuthBase
             }
         }
     }
+
+    /**
+     * @return \think\response\Json
+     * @throws \Exception
+     * 设置头像
+     */
+    public function avatar()
+    {
+        $user_id = \input('user_id');
+        $base64img = \input('image/a');
+        if (empty($user_id) || empty($base64img)) {
+            return \show(0, '数据缺失', '', 201);
+        }
+        if (!empty($base64img)) {
+            //得到完整的头像路径
+            $pic_url = $this->img_upload($base64img);
+            //得到的是数组,需要转为字符串进行分割
+            $pic_url = \implode('', $pic_url);
+            //因为数据库存的只是文件名,所以截取文件名进行保存
+            $sql_pic_url = \cut_str($pic_url, '/', -1);
+        } else {
+            $pic_url = '';
+        }
+        //因为上传文件的文件夹和头像文件夹不是用一个,所以需要移动到头像专属文件夹.
+        $domain = \request()->domain();
+        $table_change = array($domain => '');
+        $url1 = ROOT_PATH . \strtr($pic_url, $table_change);
+        $newname = ROOT_PATH . 'data/upload/avatar/' . $sql_pic_url;
+        //移动图片
+        \rename($url1, $newname);
+        $res = \model('MemberList')
+            ->where('member_list_id', 'eq', $user_id)
+            ->setField('member_list_headpic', $sql_pic_url);
+        //拼接好前端需要的路径
+        $return_pic_url = \request()->domain() . '/' . 'data/upload/avatar/' . $sql_pic_url;
+        if ($res) {
+            return \show(1, '修改成功', $return_pic_url, 200);
+        } else {
+            return \show('0', '修改失败', '', 201);
+        }
+    }
 }

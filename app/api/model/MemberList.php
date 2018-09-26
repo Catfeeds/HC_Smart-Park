@@ -75,7 +75,7 @@ class MemberList extends Model
     {
         $reqeust = Request::instance();
         if (!empty($member_list_headpic)) {
-            return $headpic_url = $reqeust->domain() . $member_list_headpic;
+            return $headpic_url = $reqeust->domain() . '/'.$member_list_headpic;
         } else {
             return '';
         }

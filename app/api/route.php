@@ -7,6 +7,7 @@
  * Date:2018/8/28
  */
 
+use think\Request;
 use think\Route;
 
 /**
@@ -41,6 +42,8 @@ Route::resource('center', 'api/v1.center');
 Route::post('update_phone', 'api/v1.center/update_phone');
 //修改用户名
 Route::post('update_username', 'api/v1.center/update_username');
+//设置头像
+Route::post('avatar', 'api/v1.center/avatar');
 //绑定企业
 Route::post('bind', 'api/v1.center/bind_enterprise');
 //设置密码
