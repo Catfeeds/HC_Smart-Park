@@ -35,7 +35,8 @@ class News extends Model
         'news_pic_content',
         'news_time',
         'news_extra',
-        'iszan'
+        'iszan',
+        'author'
         ];
     /**
      * @param $news_time
@@ -177,7 +178,6 @@ class News extends Model
     public function author(){
         return $this->
         belongsTo('Admin','news_auto','admin_id')
-            ->field('admin_avatar')
             ->setEagerlyType(0);
     }
 }
