@@ -88,6 +88,7 @@ class Repair extends AuthBase
                 ->field('el.enterprise_list_name,eei.room')
                 ->where('el.id', 'eq', $enterprise_id)
                 ->find();
+            $info['author'] = Db::name('MemberList')->where('member_list_id', 'eq', $user_id)->field('member_list_username,member_list_tel')->find();
             $info['repair_info'] = \model('ServiceRepair')->where('id', 'eq', $id)->find();
             return \show(1, 'OK', $info, 200);
         }

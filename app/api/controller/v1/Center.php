@@ -145,6 +145,9 @@ class Center extends AuthBase
         } else {
             $user_id = \input('user_id');
             $slqdata['member_list_enterprise'] = \input('enterprise_code');
+            $code_count = Db::name('EnterpriseList')->where('enterprise_list_code', 'eq', \trim(\input('enterprise_code')))->count();
+            if ($code_count < 1)
+                return \show(0, '企业码不正确', '', 201);
             $slqdata['member_list_nickname'] = \input('realname');
             $slqdata['member_list_department'] = \input('department');
             if (!$user_id || !$slqdata['member_list_enterprise'] || !$slqdata['member_list_nickname'] || !$slqdata['member_list_department']) {
