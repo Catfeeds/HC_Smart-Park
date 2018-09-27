@@ -6,6 +6,8 @@
     4. Redis3.2
     5. PHP需安装Redis扩展
     
+##演示地址:
+[摸这里](http://dev.echox.net)
 ##接口文档地址:
 [点我一下试试](http://www.xiaoyaoji.cn/doc/W6Rv5sph4)
 

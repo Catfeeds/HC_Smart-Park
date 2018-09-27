@@ -1,5 +1,6 @@
 {foreach name="plug_ad_list" item="v"}
 <tr>
+    <td><input name="{$v.plug_ad_id}" value="{$v.plug_ad_order}" class="list_order center"/></td>
     <td class="hidden-xs" height="28">{$v.plug_ad_id}</td>
     <td><a href="{$v.plug_ad_url}" target="_blank">{$v.plug_ad_name}</a></td>
     <td class="hidden-sm hidden-xs">{$v.plug_adtype_name}</td>
@@ -7,7 +8,6 @@
     <td class="hidden-sm hidden-xs">{$v.plug_ad_l}</td>
     {/if}
     <td class="hidden-sm hidden-xs">{$v.plug_ad_addtime|date='Y-m-d',###}</td>
-    <td><input name="{$v.plug_ad_id}" value="{$v.plug_ad_order}" class="list_order center"/></td>
     <td>
         {if condition='$v.plug_ad_open eq 1'}
         <a class="red open-btn" href="{:url('admin/Plug/plug_ad_state')}" data-id="{$v.plug_ad_id}" title="已开启">
