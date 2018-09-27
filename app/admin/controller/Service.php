@@ -248,11 +248,11 @@ class Service extends Base
             ->where('id', 'eq', $id)
             ->value('status');//判断当前状态情况
         if ($status == 1) {
-            $statedata = array('status' => 0);
+            $statedata = array('status' => 0,'handler_id'=>\session('hid'));
             \db('ServiceMeetingroomAppoint')->where('id', 'eq', $id)->setField($statedata);
             $this->success('待处理');
         } else {
-            $statedata = array('status' => 1);
+            $statedata = array('status' => 1,'handler_id'=>\session('hid'));
             \db('ServiceMeetingroomAppoint')->where('id', 'eq', $id)->setField($statedata);
             $this->success('已处理');
         }
