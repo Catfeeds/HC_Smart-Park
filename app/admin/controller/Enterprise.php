@@ -9,6 +9,10 @@
 namespace app\admin\controller;
 
 
+use app\admin\model\EnterpriseBank;
+use app\admin\model\EnterpriseBusiness;
+use app\admin\model\EnterpriseContact;
+use app\admin\model\EnterpriseEntryInfo;
 use app\admin\model\EnterpriseList;
 use think\Db;
 
@@ -106,6 +110,12 @@ class Enterprise extends Base
         if (!\request()->isPost()) {
             $this->error('提交方式不正确');
         } else {
+            $modleA = new EnterpriseList();
+            $modelB = new EnterpriseBusiness();
+            $modleC = new EnterpriseContact();
+            $modelD = new EnterpriseBank();
+            $modelE = new EnterpriseEntryInfo();
+
             if ($enterprise_info['confirmer'] != '') {
                 //企业基本信息写入
                 $enterprise_info['enterprise_list_legal_setup_day'] = \strtotime($enterprise_info['enterprise_list_legal_setup_day']);//成立日期转时间戳
@@ -119,38 +129,64 @@ class Enterprise extends Base
                     $this->error('企业名已存在');
                 }
                 //插入企业基本信息表并返回企业id
-                $modle = new EnterpriseList();
-                $enterprise_id = $modle->allowField(true)->save($enterprise_info);
+
+                $modleA->startTrans();
+                $enterprise_id = $modleA->allowField(true)->save($enterprise_info);
 
                 //企业ID
-                $enterprise_info['enterprise_id'] = $modle->id;
+                $enterprise_info['enterprise_id'] = $modleA->id;
                 if (empty($enterprise_info['enterprise_id'])) {
-                    $this->error('添加失败');
+                    //list模型事务回滚
+                    $modleA->rollback();
+                    $this->error('添加失败,企业ID不存在');
                 }
 
                 //企业业务信息写入
-                \model('EnterpriseBusiness')->allowField(true)->save($enterprise_info);
+                $modelB->allowField(true)->save($enterprise_info);
+                if (empty($modelB->id)) {
+                    $modelB->rollback();
+                    $modleA->rollback();
+                }
                 //企业联系信息写入
-                \model('EnterpriseContact')->allowField(true)->save($enterprise_info);
+                $modleC->allowField(true)->save($enterprise_info);
+                if (empty($modleC->id)) {
+                    $modleC->rollback();
+                    $modelB->rollback();
+                    $modleA->rollback();
+                }
                 //企业银行信息写入
-                \model('EnterpriseBank')->allowField(true)->save($enterprise_info);
+                $modelD->allowField(true)->save($enterprise_info);
+                if (empty($modelD->id)) {
+                    $modelD->rollback();
+                    $modleC->rollback();
+                    $modelB->rollback();
+                    $modleA->rollback();
+                }
                 //企业入驻信息写入
                 $enterprise_info['signed_day'] = \strtotime($enterprise_info['signed_day']);        //签订日期转时间戳
                 $enterprise_info['pay_time'] = \strtotime($enterprise_info['pay_time']);        //支付时间转时间戳
-                \model('EnterpriseEntryInfo')->allowField(true)->save($enterprise_info);
 
-                //入库之后找出需要的信息进行相关操作
-                $info = Db::name('EnterpriseEntryInfo')
-                    ->where('enterprise_id', $enterprise_id)
-                    ->field('confirmer,room')
-                    ->find();
-
-                //根据企业房间号,需要更改房源的状态
-                $room_num = \trim($info['room']);
-                Db::name('ParkRoom')->where('room_number', 'eq', $room_num)->setField('status', 1);
-                if (empty($info['confirmer'])) {
-                    $this->error('添加失败');
+                $modelE->allowField(true)->save($enterprise_info);
+                if (empty($modelE->id)) {
+                    $modelE->rollback();
+                    $modelD->rollback();
+                    $modleC->rollback();
+                    $modelB->rollback();
+                    $modleA->rollback();
                 } else {
+                    //入库之后找出需要的信息进行相关操作
+                    $info = Db::name('EnterpriseEntryInfo')
+                        ->where('enterprise_id', $enterprise_id)
+                        ->field('confirmer,room')
+                        ->find();
+                    //根据企业房间号,需要更改房源的状态
+                    $room_num = \trim($info['room']);
+                    Db::name('ParkRoom')->where('room_number', 'eq', $room_num)->setField('status', 1);
+                    $modelE->commit();
+                    $modelD->commit();
+                    $modleC->commit();
+                    $modelB->commit();
+                    $modleA->commit();
                     $this->success('添加成功');
                 }
             }
