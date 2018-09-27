@@ -9,6 +9,7 @@ return array(
     'module_init' =>
         array(
             0 => 'app\\common\\behavior\\WebLog',
+            1 => 'app\\api\\behavior\\ApiLog',
         ),
     'action_begin' =>
         array(),

@@ -59,6 +59,9 @@ class Repair extends AuthBase
             'content' => \input('content'),
             'pic_url' => $pic_url,
         ];
+        if (empty($sqldata['user_id']) || empty($sqldata['title']) || empty($sqldata['content'])) {
+            return \show(0, '数据不完整', '', 201);
+        }
         $model = new ServiceRepair();
         $res = $model->allowField(true)->save($sqldata);
         if ($res) {
