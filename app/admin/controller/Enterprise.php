@@ -9,6 +9,7 @@
 namespace app\admin\controller;
 
 
+use app\admin\model\EnterpriseList;
 use think\Db;
 
 /**
@@ -97,7 +98,7 @@ class Enterprise extends Base
      *执行添加操作
      * 1,提交的数据中如果没有表单最后一项:confirmer,说明数据没有提交完全则不进行添加操作.
      * 2,confirmer数据存在则说明入库完成,返回成功提示.
-     * 因为提交页面写法的原因,也是因为没时间慢慢写数据验证和数据库操作,所以采取了这种小聪明的做法.有时间重写.
+     * 因为提交页面写法的原因,也是因为没时间慢慢写数据验证和数据库操作,所以采取了这种做法.有时间重写.
      */
     public function enterprise_runadd()
     {
@@ -109,6 +110,8 @@ class Enterprise extends Base
                 //企业基本信息写入
                 $enterprise_info['enterprise_list_legal_setup_day'] = \strtotime($enterprise_info['enterprise_list_legal_setup_day']);//成立日期转时间戳
                 $enterprise_info['enterprise_list_addtime'] = \time();
+                //企业码
+                $enterprise_info['enterprise_list_code'] = substr(md5(microtime(true)), 0, 6);
                 $enterprise_name_count = Db::name('EnterpriseList')
                     ->where('enterprise_list_name', 'eq', $enterprise_info['enterprise_list_name'])
                     ->count();
@@ -116,12 +119,15 @@ class Enterprise extends Base
                     $this->error('企业名已存在');
                 }
                 //插入企业基本信息表并返回企业id
-                $enterprise_id = \model('EnterpriseList')->allowField(true)->save($enterprise_info);
+                $modle = new EnterpriseList();
+                $enterprise_id = $modle->allowField(true)->save($enterprise_info);
 
                 //企业ID
-                $enterprise_info['enterprise_id'] = $enterprise_id;
-                //企业码
-                $enterprise_info['Invitation_code'] = substr(md5(microtime(true)), 0, 6);
+                $enterprise_info['enterprise_id'] = $modle->id;
+                if (empty($enterprise_info['enterprise_id'])) {
+                    $this->error('添加失败');
+                }
+
                 //企业业务信息写入
                 \model('EnterpriseBusiness')->allowField(true)->save($enterprise_info);
                 //企业联系信息写入
