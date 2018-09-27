@@ -226,7 +226,77 @@ class Service extends Base
      */
     public function meeting_room_order_list()
     {
+        $list = Db::name('ServiceMeetingroomAppoint sma')
+            ->join('MemberList ml', 'sma.user_id=ml.member_list_id')
+            ->field('sma.*,ml.member_list_username,ml.member_list_tel')
+            ->order('sma.create_time desc')
+            ->paginate(config('paginate.list_rows'));
+        $show = $list->render();
+        $show = preg_replace("(<a[^>]*page[=|/](\d+).+?>(.+?)<\/a>)", "<a href='javascript:ajax_page($1);'>$2</a>", $show);
+        $this->assign('list', $list);
+        $this->assign('page', $show);
+        return $this->fetch();
+    }
 
+    /**
+     *修改会议室申请状态
+     */
+    public function meeting_room_state()
+    {
+        $id = input('x');
+        $status = \db('ServiceMeetingroomAppoint')
+            ->where('id', 'eq', $id)
+            ->value('status');//判断当前状态情况
+        if ($status == 1) {
+            $statedata = array('status' => 0);
+            \db('ServiceMeetingroomAppoint')->where('id', 'eq', $id)->setField($statedata);
+            $this->success('待处理');
+        } else {
+            $statedata = array('status' => 1);
+            \db('ServiceMeetingroomAppoint')->where('id', 'eq', $id)->setField($statedata);
+            $this->success('已处理');
+        }
+    }
+
+    /**
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     * 删除单挑会议室申请
+     */
+    public function meeting_room_delete()
+    {
+        $p = input('p');
+        $id = \input('id');
+        $rst = \db('ServiceMeetingroomAppoint')->where('id', 'eq', $id)->delete();
+        if ($rst !== false) {
+            $this->success('删除成功', url('admin/Service/meeting_room_order_list', array('p' => $p)));
+        } else {
+            $this->error('删除失败', url('admin/Service/meeting_room_order_list', array('p' => $p)));
+        }
+    }
+
+    /**
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     * 删除全部会议室申请
+     */
+    public function meeting_room_alldelete()
+    {
+        $p = input('p');
+        $ids = input('id/a');
+        if (empty($ids)) {
+            $this->error("请选择删除的申请", url('admin/Service/meeting_room_order_list', array('p' => $p)));
+        }
+        if (!is_array($ids)) {
+            $ids[] = $ids;
+        }
+
+        $rst = Db::name('ServiceMeetingroomAppoint')->where('id', 'in', $ids)->delete();
+        if (!$rst) {
+            $this->error("删除失败", url('admin/Service/meeting_room_order_list', array('p' => $p)));
+        } else {
+            $this->success("删除成功", url('admin/Service/meeting_room_order_list', array('p' => $p)));
+        }
     }
 
     /**

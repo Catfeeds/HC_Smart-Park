@@ -57,6 +57,8 @@ Route::post('my_repair', 'api/v1.repair/my_repair');
 Route::post('repair/status', 'api/v1.repair/change_status');
 //我的论坛
 Route::post('my_forum', 'api/v1.center/my_forum');
+//我的会议室预定
+Route::post('my_meeting', 'api/v1.center/meetingroom_appoint');
 //发布新帖
 Route::post('add_forum', 'api/v1.center/add_forum');
 //删除帖子
@@ -69,6 +71,8 @@ Route::resource('upload', 'api/v1.upload');
 Route::resource('complains', 'api/v1.complains');
 //报修模块
 Route::resource('repair', 'api/v1.repair');
+//会议室模块
+Route::resource('meetingroom', 'api/v1.meetingroom');
 
 //点赞模块
 Route::resource('zan', 'api/v1.zan');

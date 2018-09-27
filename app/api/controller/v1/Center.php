@@ -281,4 +281,24 @@ class Center extends AuthBase
             return \show('0', '修改失败', '', 201);
         }
     }
+
+    /**
+     * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 我的会议室预约列表
+     */
+    public function meetingroom_appoint()
+    {
+        $uid = \input('user_id');
+        if (empty($uid))
+            return \show(0, '请求信息不完整', '', 201);
+        $list = Db::name('ServiceMeetingroomAppoint sma')
+            ->join('ParkMeetingRoom pmr', 'sma.meetingroom_id=pmr.id')
+            ->where('user_id', 'eq', $uid)
+            ->field('pmr.room_number,FROM_UNIXTIME(sma.s_time) as start_time,FROM_UNIXTIME(sma.e_time) as end_time,sma.status')
+            ->select();
+        return \show(1, 'OK',$list,200);
+    }
 }
