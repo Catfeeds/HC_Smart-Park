@@ -226,6 +226,15 @@ class Enterprise extends Base
                     $modleC->commit();
                     $modelB->commit();
                     $modleA->commit();
+                    //添加企业后需要将法人注册为用户
+                    $m_data = [
+                        'member_list_username' => $enterprise_info['enterprise_list_legal_representative'],
+                        'member_list_pwd' => \encrypt_password(\config('default_password'), \config('default_salt')),
+                        'member_list_tel' => $enterprise_info['enterprise_list_legal_phone_number'],
+                        'member_list_groupid' => '2',       //分配一个会员组:企业主
+                        'member_list_addtime' => \time(),
+                    ];
+                    Db::name('MemberList')->insert($m_data);    //插入一个会员
                     $this->success('添加成功');
                 }
             }

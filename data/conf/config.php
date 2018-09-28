@@ -206,4 +206,7 @@
         ),
     //短信有效期
     'sms_out_time' => 300,
+    //默认密码+盐
+    'default_password' => 88888888,
+    'default_salt' => 'sbsZsQaqLV',
 );
