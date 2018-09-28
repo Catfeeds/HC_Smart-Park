@@ -39,7 +39,7 @@ class Login extends Common
         //如果手机号不存在则说明没有注册
         $count_phone = $db->where('member_list_tel', 'eq', $phone)->count();
         if ($count_phone < 1){
-            return new ApiException('该手机号尚未注册');
+            return \show(0, '该手机号尚未注册','',201);
         }else{
             $user_info = $db->where('member_list_tel', 'eq', $phone)->field('member_list_id,member_list_salt,member_list_pwd')->find();
         }

@@ -17,12 +17,18 @@ use think\Model;
  */
 class EnterpriseList extends Model
 {
-    protected $visible=[
+    /**
+     * @var array
+     * 显示字段
+     */
+    protected $visible = [
         'id',
         'enterprise_list_name',
         'enterprise_list_logo',
-        'enterprise_list_addtime'
+        'enterprise_list_addtime',
+        'entry_info.room'
     ];
+
     /**
      * @return \think\model\relation\HasOne
      * 关联入驻信息
@@ -30,7 +36,8 @@ class EnterpriseList extends Model
     function EntryInfo()
     {
         return $this
-            ->hasOne('EnterpriseEntryInfo','id','enterprise_id');
+            ->hasOne('EnterpriseEntryInfo', 'enterprise_id', 'id')
+            ->setEagerlyType(1);
     }
 
     /**
@@ -66,7 +73,7 @@ class EnterpriseList extends Model
      * @throws \think\exception\DbException
      * 企业列表带搜索
      */
-    public function getEnterpriseList($page, $key='')
+    public function getEnterpriseList($page, $key = '')
     {
         $where = [
             'enterprise_list_name' => ['like', '%' . $key . '%'],
@@ -93,6 +100,7 @@ class EnterpriseList extends Model
     public function getEnterpriseDetailById($id)
     {
         return $this
+            ::with('EntryInfo')
             ->where('id', 'eq', $id)
             ->find();
     }
