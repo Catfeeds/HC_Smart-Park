@@ -36,6 +36,24 @@
                         </div>
                         <div class="space-4"></div>
 
+                        <div class="form-group" id="pic_list">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 企业LOGO </label>
+                            <div class="col-sm-9">
+                                <input type="hidden" name="checkpic" id="checkpic" value="" />
+                                <input type="hidden" name="oldcheckpic" id="oldcheckpic" value="" />
+                                <input type="hidden" name="oldcheckpicname" id="oldcheckpic" value="" />
+                                <a href="javascript:;" class="file" title="点击选择所要上传的图片">
+                                    <input type="file" name="file0" id="file0" multiple="multiple"/>
+                                    选择上传文件
+                                </a>
+                                &nbsp;&nbsp;<a href="javascript:;" onclick="return backpic('__PUBLIC__/img/no_img.jpg');" title="还原修改前的图片" class="file">
+                                撤销上传
+                            </a>
+                                <div><img src="__PUBLIC__/img/no_img.jpg" height="70" id="img0" ></div>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 统一社会信用代码： </label>
                             <div class="col-sm-9">

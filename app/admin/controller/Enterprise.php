@@ -45,7 +45,7 @@ class Enterprise extends Base
         }
 
         $enterprise_list = \db('EnterpriseList el')
-            ->join('EnterpriseEntryInfo eei','el.id=eei.enterprise_id')
+            ->join('EnterpriseEntryInfo eei', 'el.id=eei.enterprise_id')
             ->where($where)
             ->where('enterprise_list_name', 'like', "%" . $key . "%")
             ->where('is_delete', 'neq', 1)
@@ -118,6 +118,44 @@ class Enterprise extends Base
             $modelE = new EnterpriseEntryInfo();
 
             if ($enterprise_info['confirmer'] != '') {
+                //logo图片
+                $checkpic = input('checkpic');
+                $oldcheckpic = input('oldcheckpic');
+                $img_url = '';
+                if ($checkpic != $oldcheckpic) {
+                    $file = request()->file('file0');
+                    if (!empty($file)) {
+                        if (config('storage.storage_open')) {
+                            //七牛
+                            $upload = \Qiniu::instance();
+                            $info = $upload->upload();
+                            $error = $upload->getError();
+                            if ($info) {
+                                $img_url = config('storage.domain') . $info[0]['key'];
+                            } else {
+                                $this->error($error);//否则就是上传错误，显示错误原因
+                            }
+                        } else {
+                            //本地
+                            $validate = config('upload_validate');
+                            $info = $file->validate($validate)->rule('uniqid')->move(ROOT_PATH . config('upload_path') . DS . date('Y-m-d'));
+                            if ($info) {
+                                $img_url = config('upload_path') . '/' . date('Y-m-d') . '/' . $info->getFilename();
+                                //写入数据库
+                                $data['uptime'] = time();
+                                $data['filesize'] = $info->getSize();
+                                $data['path'] = $img_url;
+                                Db::name('plug_files')->insert($data);
+                            } else {
+                                $this->error($file->getError());//否则就是上传错误，显示错误原因
+                            }
+                        }
+                        $enterprise_info['enterprise_list_logo'] = $img_url;
+                    }
+                } else {
+                    //原有图片
+                    $enterprise_info['enterprise_list_logo'] = input('oldcheckpicname');
+                }
                 //企业基本信息写入
                 $enterprise_info['enterprise_list_legal_setup_day'] = \strtotime($enterprise_info['enterprise_list_legal_setup_day']);//成立日期转时间戳
                 $enterprise_info['enterprise_list_addtime'] = \time();
