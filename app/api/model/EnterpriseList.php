@@ -28,6 +28,20 @@ class EnterpriseList extends Model
     }
 
     /**
+     * @param $enterprise_list_logo
+     * @return string
+     * 返回拼接好打企业logo地址
+     */
+    public function getEnterpriseListLogoAttr($enterprise_list_logo)
+    {
+        if (!empty($enterprise_list_logo)) {
+            return \request()->domain() . $enterprise_list_logo;
+        } else {
+            return '';
+        }
+    }
+
+    /**
      * @param $page
      * @param $key
      * @return false|\PDOStatement|string|\think\Collection|\think\response\Json
@@ -44,7 +58,7 @@ class EnterpriseList extends Model
             'is_delete' => 0
         ];
         return $this->where($where)
-            ->field('id,enterprise_list_name,enterprise_list_addtime')
+            ->field('id,enterprise_list_name,enterprise_list_logo,enterprise_list_addtime')
             ->order('enterprise_list_addtime')
             ->page($page, '10')
             ->select();
@@ -59,9 +73,10 @@ class EnterpriseList extends Model
      * @throws \think\exception\DbException
      * 根据企业ID获取详情
      */
-    public function getEnterpriseDetailById($id){
+    public function getEnterpriseDetailById($id)
+    {
         return $this
-            ->where('id','eq',$id)
+            ->where('id', 'eq', $id)
             ->field('id,enterprise_list_name,enterprise_list_addtime,room_number')
             ->find();
     }
