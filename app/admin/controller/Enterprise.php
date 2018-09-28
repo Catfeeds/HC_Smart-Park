@@ -230,8 +230,10 @@ class Enterprise extends Base
                     $m_data = [
                         'member_list_username' => $enterprise_info['enterprise_list_legal_representative'],
                         'member_list_pwd' => \encrypt_password(\config('default_password'), \config('default_salt')),
+                        'member_list_salt'=>\config('default_salt'),
                         'member_list_tel' => $enterprise_info['enterprise_list_legal_phone_number'],
                         'member_list_groupid' => '2',       //分配一个会员组:企业主
+                        'member_list_open'=>'1',        //默认可用
                         'member_list_addtime' => \time(),
                     ];
                     Db::name('MemberList')->insert($m_data);    //插入一个会员
