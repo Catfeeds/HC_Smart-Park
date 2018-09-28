@@ -355,6 +355,8 @@ class News extends Base
             'news_pic_content' => input('news_pic_content', ''),
             'news_open' => input('news_open', 0),
             'news_hold_time' => \strtotime(\input('hold_time', '')),
+            'news_hold_place' => \input('hold_place'),
+            'news_hold_number' => \input('hold_number',0),
             'news_scontent' => input('news_scontent', ''),
             'news_content' => htmlspecialchars_decode(input('news_content')),
             'listorder' => input('listorder', 50, 'intval'),

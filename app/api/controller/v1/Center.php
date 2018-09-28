@@ -194,8 +194,12 @@ class Center extends AuthBase
         return \show('1', "ok", $list, 200);
     }
 
+
     /**
      * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      * 返回个人发帖列表
      */
     public function my_forum()
@@ -203,7 +207,8 @@ class Center extends AuthBase
         $page = \input('page', 1);
         $user_id = \input('user_id');
         $c_id = 4;
-        $data = \model('News')->getNewsListByUserId($page, $user_id, $c_id);
+        $model = new \app\api\model\News();
+        $data = $model->getNewsListByUserId($page, $user_id, $c_id);
         return \show(1, 'Ok', $data, 200);
     }
 
@@ -217,7 +222,7 @@ class Center extends AuthBase
             $base64img = \json_decode($base64img);
             //图片上传后返回完整地址的数组,根据原本数据规则,需要进行分割拼接处理.
             $pic_url = $this->img_upload($base64img);
-            $dir = '/data/upload/'.\date('Y-m-d').'/';
+            $dir = '/data/upload/' . \date('Y-m-d') . '/';
             foreach ($pic_url as &$v) {
                 $v = $dir . \cut_str($v, '/', -1);
             }

@@ -19,9 +19,15 @@ use think\Request;
  */
 class MemberList extends Model
 {
-    protected $visible=[
-
+    protected $visible = [
+        'member_list_id',
+        'member_list_username',
+        'member_list_groupid',
+        'member_list_headpic',
+        'member_list_tel',
+        ''
     ];
+
     /**
      * @param $member_list_groupid
      * @return mixed
@@ -75,7 +81,7 @@ class MemberList extends Model
     {
         $reqeust = Request::instance();
         if (!empty($member_list_headpic)) {
-            return $headpic_url = $reqeust->domain() . '/'.$member_list_headpic;
+            return $headpic_url = $reqeust->domain() . '/data/upload/avatar/' . $member_list_headpic;
         } else {
             return '';
         }

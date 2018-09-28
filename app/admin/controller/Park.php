@@ -308,7 +308,7 @@ class Park extends Base
     /**
      *房间状态
      */
-    public function room_status()
+    public function room_state()
     {
 
     }

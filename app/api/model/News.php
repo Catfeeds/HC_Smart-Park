@@ -126,7 +126,7 @@ class News extends Model
         ];
         $count = $this->where($where)->count();
         $data =
-            $this->where($where)
+            $this::with('author')->where($where)
                 ->order('news_time desc')
                 ->page($page, 2)
                 ->select();
@@ -188,7 +188,7 @@ class News extends Model
      */
     public function author(){
         return $this->
-        belongsTo('Admin','news_auto','admin_id')
+        belongsTo('MemberList','news_auto','member_list_id')
             ->setEagerlyType(0);
     }
 }

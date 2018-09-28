@@ -44,7 +44,8 @@ class Enterprise extends Base
             $where['enterprise_list_open'] = $opentype_check;
         }
 
-        $enterprise_list = \db('EnterpriseList')
+        $enterprise_list = \db('EnterpriseList el')
+            ->join('EnterpriseEntryInfo eei','el.id=eei.enterprise_id')
             ->where($where)
             ->where('enterprise_list_name', 'like', "%" . $key . "%")
             ->where('is_delete', 'neq', 1)
