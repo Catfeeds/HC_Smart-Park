@@ -22,7 +22,7 @@ class News extends Model
     /**
      * @var array
      */
-    protected $visible=[
+    protected $visible = [
         'n_id',
         'news_title',
         'news_auto',
@@ -39,7 +39,8 @@ class News extends Model
         'news_extra',
         'iszan',
         'author'
-        ];
+    ];
+
     /**
      * @param $news_time
      * @return false|string
@@ -55,7 +56,8 @@ class News extends Model
      * @return false|string
      * 活动时间读取器
      */
-    public function getNewsHoldTimeAttr($news_hold_time){
+    public function getNewsHoldTimeAttr($news_hold_time)
+    {
         return date('Y-m-d H:i:s', $news_hold_time);
     }
 
@@ -84,6 +86,18 @@ class News extends Model
         } else {
             return 'http://ov7uxfxnm.bkt.clouddn.com/no_news.webp';
         }
+    }
+
+    /**
+     * @param $content
+     * @return string
+     * 拼接文章内容里的图片地址
+     */
+    public function getNewsContentAttr($content)
+    {
+        $img_url = \request()->domain() . '/data';
+        $replace_pairs = ['/data' => $img_url];
+        return \strtr($content, $replace_pairs);
     }
 
     /**
@@ -186,9 +200,10 @@ class News extends Model
      * @return \think\model\relation\BelongsTo
      * 关联文章发布者信息
      */
-    public function author(){
+    public function author()
+    {
         return $this->
-        belongsTo('MemberList','news_auto','member_list_id')
+        belongsTo('MemberList', 'news_auto', 'member_list_id')
             ->setEagerlyType(0);
     }
 }

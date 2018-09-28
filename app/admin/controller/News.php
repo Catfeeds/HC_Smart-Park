@@ -205,7 +205,7 @@ class News extends Base
             'news_time' => time(),
             'news_hold_time' => \strtotime(\input('hold_time', '')),
             'news_hold_place' => \input('hold_place'),
-            'news_hold_number' => \input('hold_number'),
+            'news_hold_number' => \input('hold_number',0),
             'listorder' => input('listorder', 50, 'intval'),
         );
         //根据栏目id,获取语言
