@@ -19,6 +19,9 @@ use think\Request;
  */
 class News extends Model
 {
+    /**
+     * @var array
+     */
     protected $visible=[
         'n_id',
         'news_title',
@@ -27,7 +30,6 @@ class News extends Model
         'news_content',
         'news_hold_time',
         'news_scontent',
-        'news_columnid',
         'news_hits',
         'news_zan',
         'news_img',
@@ -46,6 +48,15 @@ class News extends Model
     public function getNewsTimeAttr($news_time)
     {
         return date('Y-m-d H:i:s', $news_time);
+    }
+
+    /**
+     * @param $news_hold_time
+     * @return false|string
+     * 活动时间读取器
+     */
+    public function getNewsHoldTimeAttr($news_hold_time){
+        return date('Y-m-d H:i:s', $news_hold_time);
     }
 
     /**

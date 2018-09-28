@@ -203,7 +203,8 @@
             <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 活动时间： </label>
             <div class="col-sm-10">
                 <input name="hold_time" class="datetime-picker col-xs-10 col-sm-6"
-                       value="{$news_list['news_hold_time']|date='Y-m-d H:i:s',###}" type="text" data-date-format="yyyy-mm-dd">
+                       value="{$news_list['news_hold_time']|date='Y-m-d H:i:s',###}" type="text"
+                       data-date-format="yyyy-mm-dd">
             </div>
         </div>
         <div class="space-4"></div>
@@ -338,7 +339,7 @@
         format: 'yyyy-mm-dd hh:ii:ss',
         autoclose: true,
         todayHighlight: true,
-        language:'zh-CN'
+        language: 'zh-CN'
     });
 </script>
 {/block}

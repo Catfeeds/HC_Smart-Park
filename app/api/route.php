@@ -57,6 +57,8 @@ Route::post('my_repair', 'api/v1.repair/my_repair');
 Route::post('repair/status', 'api/v1.repair/change_status');
 //我的论坛
 Route::post('my_forum', 'api/v1.center/my_forum');
+//论坛发帖
+Route::post('add_forum', 'api/v1.center/add_forum');
 //我的会议室预定
 Route::post('my_meeting', 'api/v1.center/meetingroom_appoint');
 //发布新帖

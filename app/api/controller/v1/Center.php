@@ -208,11 +208,43 @@ class Center extends AuthBase
     }
 
     /**
-     *
+     *app端用户发帖
      */
     public function add_forum()
     {
-
+        $base64img = \input('image');
+        if (!empty($base64img)) {
+            $base64img = \json_decode($base64img);
+            //图片上传后返回完整地址的数组,根据原本数据规则,需要进行分割拼接处理.
+            $pic_url = $this->img_upload($base64img);
+            $dir = '/data/upload/'.\date('Y-m-d').'/';
+            foreach ($pic_url as &$v) {
+                $v = $dir . \cut_str($v, '/', -1);
+            }
+            $pic_url = \array_filter($pic_url); //得到切割为相对路径的数组
+            $news_img = $pic_url[0];
+            $pic_url = \implode(',', $pic_url); //将数组转为字符串后入库
+            $news_pic_type = 2;
+        } else {
+            $pic_url = '';
+            $news_pic_type = 1;
+        }
+        $sqldata = [
+            'news_title' => \input('title'),
+            'news_columnid' => 4,
+            'news_auto' => \input('user_id'),
+            'news_content' => \input('content'),
+            'news_img' => $news_img,    //封面图片路径
+            'news_pic_type' => $news_pic_type,
+            'news_pic_allurl' => $pic_url,//多图路径
+            'news_time' => \time(),
+        ];
+        $res = \model('News')->allowField(true)->save($sqldata);
+        if ($res) {
+            return \show('1', 'OK', $res, 200);
+        } else {
+            return \show(0, 'Fail', '', 200);
+        }
     }
 
     /**
@@ -251,7 +283,7 @@ class Center extends AuthBase
         $user_id = \input('user_id');
         $base64img = \input('image/a');
         if (empty($user_id) || empty($base64img)) {
-            return \show(0, '数据缺失', '', 201);
+            return \show(0, '数据不完整', '', 201);
         }
         if (!empty($base64img)) {
             //得到完整的头像路径
@@ -299,6 +331,6 @@ class Center extends AuthBase
             ->where('user_id', 'eq', $uid)
             ->field('pmr.room_number,FROM_UNIXTIME(sma.s_time) as start_time,FROM_UNIXTIME(sma.e_time) as end_time,sma.status')
             ->select();
-        return \show(1, 'OK',$list,200);
+        return \show(1, 'OK', $list, 200);
     }
 }
