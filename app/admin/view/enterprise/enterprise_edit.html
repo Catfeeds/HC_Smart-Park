@@ -33,6 +33,27 @@
                             </div>
                         </div>
                         <div class="space-4"></div>
+
+                        <div class="form-group" id="pic_list">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 企业LOGO </label>
+                            <div class="col-sm-9">
+                                <input type="hidden" name="checkpic" id="checkpic" value="{$info.enterprise_list_logo}" />
+                                <input type="hidden" name="oldcheckpic" id="oldcheckpic" value="{$info.enterprise_list_logo}" />
+                                <input type="hidden" name="oldcheckpicname" id="oldcheckpic" value="{$info.enterprise_list_logo}" />
+                                <a href="javascript:;" class="file" title="点击选择所要上传的图片">
+                                    <input type="file" name="file0" id="file0" multiple="multiple"/>
+                                    选择上传文件
+                                </a>
+                                <span class="lbl">&nbsp;&nbsp;
+								<img src="{$info.enterprise_list_logo|get_imgurl}" width="100" height="70" id="img0">
+							</span>&nbsp;&nbsp;
+                                &nbsp;&nbsp;<a href="javascript:;" onclick="return backpic('{$info.enterprise_list_logo}');" title="还原修改前的图片" class="file">
+                                撤销上传
+                            </a>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
                         <input type="hidden" name="id" value="{$info['enterprise_id']}">
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1">

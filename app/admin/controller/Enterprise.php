@@ -263,6 +263,44 @@ class Enterprise extends Base
         $data['enterprise_list_legal_setup_day'] = \strtotime($data['enterprise_list_legal_setup_day']);//成立日期转时间戳
         $data['signed_day'] = \strtotime($data['signed_day']);        //签订日期转时间戳
         $data['pay_time'] = \strtotime($data['pay_time']);        //支付时间转时间戳
+        //logo图片
+        $checkpic = input('checkpic');
+        $oldcheckpic = input('oldcheckpic');
+        $img_url = '';
+        if ($checkpic != $oldcheckpic) {
+            $file = request()->file('file0');
+            if (!empty($file)) {
+                if (config('storage.storage_open')) {
+                    //七牛
+                    $upload = \Qiniu::instance();
+                    $info = $upload->upload();
+                    $error = $upload->getError();
+                    if ($info) {
+                        $img_url = config('storage.domain') . $info[0]['key'];
+                    } else {
+                        $this->error($error);//否则就是上传错误，显示错误原因
+                    }
+                } else {
+                    //本地
+                    $validate = config('upload_validate');
+                    $info = $file->validate($validate)->rule('uniqid')->move(ROOT_PATH . config('upload_path') . DS . date('Y-m-d'));
+                    if ($info) {
+                        $img_url = config('upload_path') . '/' . date('Y-m-d') . '/' . $info->getFilename();
+                        //写入数据库
+                        $datai['uptime'] = time();
+                        $datai['filesize'] = $info->getSize();
+                        $datai['path'] = $img_url;
+                        Db::name('plug_files')->insert($datai);
+                    } else {
+                        $this->error($file->getError());//否则就是上传错误，显示错误原因
+                    }
+                }
+                $data['enterprise_list_logo'] = $img_url;
+            }
+        } else {
+            //原有图片
+            $data['enterprise_list_logo'] = input('oldcheckpicname');
+        }
         \model('EnterpriseList')->allowField(true)->save($data, ['id' => $data['id']]);
         \model('EnterpriseBusiness')->allowField(true)->save($data, ['enterprise_id' => $data['id']]);
         \model('EnterpriseContact')->allowField(true)->save($data, ['enterprise_id' => $data['id']]);
