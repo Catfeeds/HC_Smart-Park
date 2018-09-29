@@ -67,7 +67,6 @@ class PlugAd extends Model
         ];
 
         return $this->where($where)
-            ->field('plug_ad_pic,plug_ad_content,plug_ad_url')
             ->order('plug_ad_order aes')
             ->limit(3)
             ->select();
@@ -87,7 +86,6 @@ class PlugAd extends Model
             'plug_ad_open' => 1
         ];
         return $this->where($where)
-            ->field('plug_ad_pic,plug_ad_content,plug_ad_url')
             ->order('plug_ad_order aes')
             ->limit(3)
             ->select();
@@ -99,7 +97,7 @@ class PlugAd extends Model
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
-     * 根据条件获取banner图,上面的其实都可以用这个,但是不想改了.
+     * 根据条件获取banner图,上面的都可以用这个,但是不想改了.
      */
     public function getBannerListByCondition($where)
     {
