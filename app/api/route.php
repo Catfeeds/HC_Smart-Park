@@ -19,6 +19,8 @@ use think\Route;
  * update        PUT        test/:id        update
  * delete        DELETE    test/:id        delete
  */
+//检测更新
+Route::resource('version', 'api/Version');
 //首页接口
 Route::resource('index', 'api/v1.index');
 //搜索框接口

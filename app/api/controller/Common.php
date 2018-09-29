@@ -29,8 +29,9 @@ class Common extends Controller
     public function _initialize()
     {
         //debug模式下不检测sign
-        if (!\config('app_debug'))
+        if (!\config('app_debug')){
             $this->checkAuth();
+        }
     }
 
     /**
@@ -80,8 +81,12 @@ class Common extends Controller
     function checkVersion()
     {
         $version_info = \config('app_version');
-
-        return $version_info;
+        $headers = \request()->header();
+        if ($version_info['publish_time'] > $headers['publish_time']) {
+            return \show(1, '有更新哟!', $version_info, 200);
+        }else{
+            return \show(0, '已是最新版本','',200);
+        }
     }
 
     /**
