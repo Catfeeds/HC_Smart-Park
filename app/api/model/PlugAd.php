@@ -20,6 +20,7 @@ class PlugAd extends Model
 {
     /**
      * @var array
+     * 设置显示字段
      */
     protected $visible = [
         'plug_ad_id',
