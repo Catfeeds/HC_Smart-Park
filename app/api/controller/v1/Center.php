@@ -334,8 +334,19 @@ class Center extends AuthBase
         $list = Db::name('ServiceMeetingroomAppoint sma')
             ->join('ParkMeetingRoom pmr', 'sma.meetingroom_id=pmr.id')
             ->where('user_id', 'eq', $uid)
-            ->field('pmr.room_number,FROM_UNIXTIME(sma.s_time) as start_time,FROM_UNIXTIME(sma.e_time) as end_time,sma.status')
+            ->field('pmr.room_number,pmr.room_img,FROM_UNIXTIME(sma.s_time) as start_time,FROM_UNIXTIME(sma.e_time) as end_time,sma.status')
             ->select();
+        foreach ($list as &$v) {
+            $v['room_img'] = \request()->domain() . $v['room_img'];
+            if ($v['status'] == 1){
+                $v['status'] = '预约成功';
+            }elseif($v['status'] == 0){
+                $v['status'] = '预约中,请耐心等待';
+            }else{
+                $v['status'] = '预约失败';
+            }
+
+        }
         return \show(1, 'OK', $list, 200);
     }
 }
