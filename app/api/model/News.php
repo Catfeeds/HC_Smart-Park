@@ -144,7 +144,7 @@ class News extends Model
         $data =
             $this::with('author')->where($where)
                 ->order('news_time desc')
-                ->page($page, 2)
+                ->page($page, \config('paginate.list_rows'))
                 ->select();
         $da['total_num'] = $count;
         $da['data'] = $data;

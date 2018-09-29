@@ -11,7 +11,6 @@ namespace app\api\model;
 
 use think\Model;
 use think\Request;
-
 /**
  * Class PlugAd
  * @package app\api\model
@@ -19,6 +18,28 @@ use think\Request;
  */
 class PlugAd extends Model
 {
+    /**
+     * @var array
+     */
+    protected $visible = [
+        'plug_ad_id',
+        'plug_ad_name',
+        'plug_ad_pic',
+        'plug_ad_url',
+        'plug_ad_content',
+        'plug_ad_addtime'
+    ];
+
+    /**
+     * @param $plug_ad_addtime
+     * @return false|string
+     * 返回格式化时间
+     */
+    public function getPlugAdAddTimeAttr($plug_ad_addtime)
+    {
+        return \date('Y-m-d H:i:s', $plug_ad_addtime);
+    }
+
     /**
      * @param $plug_ad_pic
      * @return string
