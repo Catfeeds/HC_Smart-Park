@@ -28,6 +28,6 @@ return [
     'paginate' => [
         'type' => 'bootstrap',
         'var_page' => 'page',
-        'list_rows' => 10000000000000000,
+        'list_rows' => 1000000000000000,
     ],
 ];
