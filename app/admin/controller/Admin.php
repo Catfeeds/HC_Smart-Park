@@ -315,6 +315,8 @@ class Admin extends Base
         $admin['admin_avatar'] = $imgurl;
         //后台管理员头像
         $rst = Db::name('admin')->where(array('admin_id' => session('admin_auth.aid')))->update($admin);
+        //后台头像同步到前台
+        Db::name('MemberList')->where('member_list_username', 'eq', \trim($admin['admin_username']))->setField('member_list_headpic', $imgurl);
         if ($rst !== false) {
             session('admin_avatar', $imgurl);
             $this->success('头像更新成功', url('admin/Admin/profile'));
