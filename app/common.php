@@ -1883,22 +1883,44 @@ function getUserPhoneById($member_id)
  * @param int $number 如是正数以0为起点从左向右截  负数则从右向左截
  * @return string 返回截取的内容
  */
-function cut_str($str,$sign,$number){
-    $array=explode($sign, $str);
-    $length=count($array);
-    if($number<0){
-        $new_array=array_reverse($array);
-        $abs_number=abs($number);
-        if($abs_number>$length){
+function cut_str($str, $sign, $number)
+{
+    $array = explode($sign, $str);
+    $length = count($array);
+    if ($number < 0) {
+        $new_array = array_reverse($array);
+        $abs_number = abs($number);
+        if ($abs_number > $length) {
             return 'error';
-        }else{
-            return $new_array[$abs_number-1];
+        } else {
+            return $new_array[$abs_number - 1];
         }
-    }else{
-        if($number>=$length){
+    } else {
+        if ($number >= $length) {
             return 'error';
-        }else{
+        } else {
             return $array[$number];
         }
+    }
+}
+
+/**
+ * @param $name
+ * @return bool
+ * 检测用户名(前台或者后台用户名)是否有重复
+ */
+function check_unique_username($name)
+{
+    $name = trim($name);
+    $res1 = Db::name('Admin')
+        ->where('admin_username', 'eq', $name)
+        ->count();
+    $res2 = Db::name('MemberList')
+        ->where('member_list_username', 'eq', $name)
+        ->count();
+    if ($res1 > 0 || $res2 > 0) {
+        return false;
+    } else {
+        return true;
     }
 }

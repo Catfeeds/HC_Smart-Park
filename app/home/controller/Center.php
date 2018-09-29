@@ -35,13 +35,18 @@ class Center extends Base
     {
         if (request()->isPost()) {
             $post = input('post.');
-            $rst = Db::name('member_list')->where(array('member_list_id' => $this->user['member_list_id']))->update($post);
-            if ($rst !== false) {
-                $this->user = Db::name('member_list')->find($this->user['member_list_id']);
-                session('user', $this->user);
-                $this->success(lang('save success'), url("home/Center/edit"));
+            $name_check = \check_unique_username(\input('member_list_username'));
+            if ($name_check) {
+                $rst = Db::name('member_list')->where(array('member_list_id' => $this->user['member_list_id']))->update($post);
+                if ($rst !== false) {
+                    $this->user = Db::name('member_list')->find($this->user['member_list_id']);
+                    session('user', $this->user);
+                    $this->success(lang('save success'), url("home/Center/edit"));
+                } else {
+                    $this->error(lang('save failed'));
+                }
             } else {
-                $this->error(lang('save failed'));
+                $this->error('改昵称已被占用');
             }
         }
     }
