@@ -156,7 +156,7 @@ class Center extends AuthBase
                 $enterpriseInfo = \getEnterpriseBasicInfoByCode(\input('enterprise_code'));
                 $slqdata['member_list_enterprise'] = $enterpriseInfo['id'];
                 $rst = \model('MemberList')->save($slqdata, ['member_list_id' => $user_id]);
-                $info = Db::name('MemberList')
+                $info = \model('MemberList')
                     ->where('member_list_id', 'eq', $user_id)
                     ->field('member_list_id,member_list_enterprise,member_list_nickname,member_list_department')
                     ->find();

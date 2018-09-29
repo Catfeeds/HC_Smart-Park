@@ -25,7 +25,7 @@ class MemberList extends Model
         'member_list_groupid',
         'member_list_headpic',
         'member_list_tel',
-        ''
+        'member_list_enterprise'
     ];
 
     /**
