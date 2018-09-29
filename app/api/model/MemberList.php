@@ -19,6 +19,10 @@ use think\Request;
  */
 class MemberList extends Model
 {
+    /**
+     * @var array
+     * 设置显示字段
+     */
     protected $visible = [
         'member_list_id',
         'member_list_username',
