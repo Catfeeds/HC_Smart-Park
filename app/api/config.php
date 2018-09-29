@@ -13,12 +13,12 @@ return [
     'token_expires_time' => '2592000',
     //APP版本信息
     'app_version' => [
-        'version' => '1.0.1',
-        'publish_time' => '2018-09-20',
-        'size' => '15M',
-        'content' => '杀了一个程序员祭天,保佑国庆节不宕机',
-        'download_url' => 'http://dl-cdn.coolapkmarket.com/down/apk_file/2018/0904/Coolapk-8.7-1809041-coolapk-app-release.apk?_upt=d6bffa9d1538215745',
-        'is_force' => '1',
+        'version' => '',
+        'publish_time' => '',
+        'size' => '',
+        'content' => '',
+        'download_url' => '',
+        'is_force' => '',
     ],
     //七牛云的上传地址
     'upload_url' => 'http://up.qiniup.com/putb64/-1/key/',
