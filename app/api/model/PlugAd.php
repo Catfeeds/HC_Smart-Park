@@ -70,4 +70,21 @@ class PlugAd extends Model
             ->limit(3)
             ->select();
     }
+
+    /**
+     * @param $where
+     * @return false|\PDOStatement|string|\think\Collection
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 根据条件获取banner图,上面的其实都可以用这个,但是不想改了.
+     */
+    public function getBannerListByCondition($where)
+    {
+        return $this->where($where)
+            ->where('plug_ad_open', 'eq', 1)
+            ->order('plug_ad_order')
+            ->limit(3)
+            ->select();
+    }
 }

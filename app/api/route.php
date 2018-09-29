@@ -25,6 +25,9 @@ Route::resource('index', 'api/v1.index');
 Route::post('search', 'api/v1.search/search');
 //新闻接口
 Route::resource('news', 'api/v1.news');
+//党风建设
+Route::resource('pnews', 'api/v1.PartyNews');
+
 //轮播图接口
 Route::resource('banner', 'api/v1.banner');
 //短信验证码
