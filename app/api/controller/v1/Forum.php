@@ -31,13 +31,37 @@ class Forum extends Common
         return \show(1, 'OK', $list, 200);
     }
 
+
     /**
-     * @return mixed
-     * 帖子详情
+     * @return \think\response\Json
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 帖子详情_登录用户是否点赞
      */
     public function read()
     {
         $id = \input('id');
-        return \model('News')->getNewsDetailById($id);
+        $uid = \input('user_id');
+        $new_model = new \app\api\model\News();
+        $data['news_info'] = $new_model->getNewsDetailById($id);
+
+        if (!empty($uid)) {
+            $is_zan = Db::name('news_zan')
+                ->where('news_id', 'eq', $id)
+                ->where('user_id', 'eq', $uid)
+                ->count();
+            if ($is_zan > 0) {
+                $data['is_zan'] = 1;
+            } else {
+                $data['is_zan'] = 0;
+            }
+        } else {
+            $data['is_zan'] = 0;
+        }
+
+
+        return \show(1, 'OK', $data, 200);
     }
 }

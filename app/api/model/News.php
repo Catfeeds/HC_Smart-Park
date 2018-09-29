@@ -38,7 +38,8 @@ class News extends Model
         'news_time',
         'news_extra',
         'iszan',
-        'author'
+        'author',
+        'apply_status'
     ];
 
     /**
