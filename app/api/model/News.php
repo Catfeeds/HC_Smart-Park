@@ -29,6 +29,8 @@ class News extends Model
         'news_source',
         'news_content',
         'news_hold_time',
+        'news_hold_place',
+        'news_hold_number',
         'news_scontent',
         'news_hits',
         'news_zan',
@@ -36,7 +38,6 @@ class News extends Model
         'news_pic_allurl',
         'news_pic_content',
         'news_time',
-        'news_extra',
         'iszan',
         'author',
         'apply_status'
@@ -192,9 +193,14 @@ class News extends Model
         Db::name('News')
             ->where('n_id', 'eq', $id)
             ->setInc('news_hits');
-        return $detail = $this::with('author')
+        $detail = $this::with('author')
             ->where('n_id', 'eq', $id)
             ->find();
+        //如果设置了显示时间,则发布时间为显示时间
+        if (!empty($detail['news_extra'])) {
+            $detail['news_time'] = \json_decode($detail['news_extra'])->showdate;
+        }
+        return $detail;
     }
 
     /**
