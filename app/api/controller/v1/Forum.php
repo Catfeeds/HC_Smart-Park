@@ -19,15 +19,20 @@ use think\Db;
  */
 class Forum extends Common
 {
+
     /**
      * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      * 帖子列表
      */
     public function index()
     {
         $page = \input('page', 1);
         $key = \input('key', '');
-        $list = \model('News')->getNewsList($page, $key, 4);
+        $model = new \app\api\model\News();
+        $list = $model->getNewsList($page, $key, 4);
         return \show(1, 'OK', $list, 200);
     }
 

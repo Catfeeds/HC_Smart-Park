@@ -91,6 +91,24 @@ class News extends Model
     }
 
     /**
+     * @param $news_pic_allurl
+     * @return array
+     * 返回多图的完整地址
+     */
+    public function getNewsPicAllurlAttr($news_pic_allurl)
+    {
+        $request = Request::instance();
+        $arr = \explode(',', $news_pic_allurl);
+
+        foreach ($arr as &$v) {
+            if (!empty($v)) {
+                $v = $request->domain() . $v;
+            }
+        }
+        return array_filter($arr);
+    }
+
+    /**
      * @param $content
      * @return string
      * 拼接文章内容里的图片地址
