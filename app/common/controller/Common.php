@@ -49,10 +49,6 @@ class Common extends Controller
             $this->lang = config('default_lang');
         }
         $this->assign('lang', $this->lang);
-
-        if (\config('login_region_protect')) {
-            $this->check_login_region();
-        }
     }
 
 
@@ -92,20 +88,5 @@ class Common extends Controller
     protected function check_admin_login()
     {
         return model('admin/Admin')->is_login();
-    }
-
-    /**
-     *只允许淮安的ip登录
-     */
-    protected function check_login_region()
-    {
-        $ip = \request()->ip();
-        $content = file_get_contents('http://ip.taobao.com/service/getIpInfo.php?ip=' . $ip);
-        $ip_info = json_decode(trim($content), true);
-        if ((empty($ip_info['data']['region_id']) || $ip_info['data']['region_id'] != '320000')) {
-            header("HTTP/1.0 404 Not Found");
-            echo 'HTTP / 1.0 404 Not Found';
-            exit;
-        }
     }
 }
