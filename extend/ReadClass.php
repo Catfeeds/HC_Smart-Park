@@ -35,7 +35,8 @@ class ReadClass
                     $docComment = $method->getDocComment();
                     if ($docComment !== false) {
                         $docCommentArr = explode("\n", $docComment);
-                        $comment = trim($docCommentArr[1]);
+//                        dump($docCommentArr);
+                        $comment = trim($docCommentArr[0]);
                         $title = trim(substr($comment, strpos($comment, '*') + 1));
                     }
                     $ret[] = ['name' => $method->name, 'title' => $title];
@@ -93,7 +94,7 @@ class ReadClass
 
     /**
      * 列出某个目录下的文件
-     * @param string $dir     目录
+     * @param string $dir 目录
      * @param bool $recursion 是否递归
      * @return array
      */
