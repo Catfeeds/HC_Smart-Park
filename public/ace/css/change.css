@@ -1,0 +1,29 @@
+@media (min-width: 1200px){
+    .container {
+        width: 1600px;
+    }
+}
+
+body{
+    background-color: #eef4f9;
+}
+.nav-list>li .submenu {
+    display: block;
+}
+.navbar-brand img {
+    width: 50px;
+}
+.navbar {
+    background: #fff;
+}
+.ace-nav>li{
+    line-height: 70px;
+    height: 70px;
+}
+.ace-nav>li.purple>a,.ace-nav>li.light-blue>a{
+    background-color: #fff;
+    color: #667690;
+}
+.user-info {
+    top: 20px;
+}
