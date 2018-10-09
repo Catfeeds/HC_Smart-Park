@@ -53,7 +53,7 @@ class Park extends Base
         $model = new ParkRoom();
         $list = $model
             ->where($where)
-            ->order('create_time desc')
+            ->order('floor')
             ->paginate(config('paginate.list_rows'), false, ['query' => get_query()]);
         $show = $list->render();
         $show = preg_replace("(<a[^>]*page[=|/](\d+).+?>(.+?)<\/a>)", "<a href='javascript:ajax_page($1);'>$2</a>", $show);
@@ -300,6 +300,7 @@ class Park extends Base
             'room_pic_content' => \input('room_pic_content', ''),
             'content' => \htmlspecialchars_decode(input('news_content')),
             'listorder' => \input('listorder', 50, 'intval'),
+            'status' => \input('status'),
             'create_time' => \time()
         );
         if (!empty($img_one)) {
