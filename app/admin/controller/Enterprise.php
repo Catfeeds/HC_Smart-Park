@@ -218,9 +218,13 @@ class Enterprise extends Base
                         ->where('enterprise_id', $enterprise_id)
                         ->field('confirmer,room')
                         ->find();
-                    //将企业的id写入房源表里
+                    //将企业的id写入房源表里并改变状态
                     $room_num = \trim($info['room']);
-                    Db::name('ParkRoom')->where('room_number', 'eq', $room_num)->setField('status', $enterprise_info['enterprise_id']);
+                    $field = [
+                        'status' => 1,
+                        'enterprise_id' => $enterprise_info['enterprise_id'],
+                    ];
+                    Db::name('ParkRoom')->where('room_number', 'eq', $room_num)->setField($field);
                     $modelE->commit();
                     $modelD->commit();
                     $modleC->commit();
@@ -230,10 +234,10 @@ class Enterprise extends Base
                     $m_data = [
                         'member_list_username' => $enterprise_info['enterprise_list_legal_representative'],
                         'member_list_pwd' => \encrypt_password(\config('default_password'), \config('default_salt')),
-                        'member_list_salt'=>\config('default_salt'),
+                        'member_list_salt' => \config('default_salt'),
                         'member_list_tel' => $enterprise_info['enterprise_list_legal_phone_number'],
                         'member_list_groupid' => '2',       //分配一个会员组:企业主
-                        'member_list_open'=>'1',        //默认可用
+                        'member_list_open' => '1',        //默认可用
                         'member_list_addtime' => \time(),
                     ];
                     Db::name('MemberList')->insert($m_data);    //插入一个会员
