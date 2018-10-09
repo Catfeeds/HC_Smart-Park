@@ -167,8 +167,8 @@ class Enterprise extends Base
                 if ($enterprise_name_count > 0) {
                     $this->error('企业名已存在');
                 }
-                //插入企业基本信息表并返回企业id
 
+                //插入企业基本信息表并返回企业id
                 $modleA->startTrans();
                 $enterprise_id = $modleA->allowField(true)->save($enterprise_info);
 
@@ -218,9 +218,9 @@ class Enterprise extends Base
                         ->where('enterprise_id', $enterprise_id)
                         ->field('confirmer,room')
                         ->find();
-                    //根据企业房间号,需要更改房源的状态
+                    //将企业的id写入房源表里
                     $room_num = \trim($info['room']);
-                    Db::name('ParkRoom')->where('room_number', 'eq', $room_num)->setField('status', 1);
+                    Db::name('ParkRoom')->where('room_number', 'eq', $room_num)->setField('status', $enterprise_info['enterprise_id']);
                     $modelE->commit();
                     $modelD->commit();
                     $modleC->commit();
