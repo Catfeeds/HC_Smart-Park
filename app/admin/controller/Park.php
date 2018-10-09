@@ -163,6 +163,7 @@ class Park extends Base
             'area' => \input('area'),
             'price' => \input('price', 0),
             'decoration' => \input('decoration'),
+            'status' => \input('status'),
             'room_img' => $img_one,//封面图片路径
             'room_pic_type' => \input('room_pic_type'),
             'room_pic_allurl' => $picall_url,//多图路径
@@ -191,8 +192,17 @@ class Park extends Base
         $info = Db::name('ParkRoom')->where('id', 'eq', $id)->find();
         $text = $info['room_pic_allurl'];
         $pic_list = array_filter(explode(",", $text));
+        $status = [
+            0 => '未租',
+            1 => '已租',
+            2 => '自留',
+            3 => '已定',
+            4 => '已售'
+
+        ];
         $this->assign('info', $info);
         $this->assign('pic_list', $pic_list);
+        $this->assign('status', $status);
         return $this->fetch();
     }
 
