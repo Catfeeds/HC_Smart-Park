@@ -25,62 +25,6 @@ class Financial extends Base
     }
 
     /**
-     *收费项目
-     */
-    public function fee_item_list()
-    {
-
-    }
-
-    /**
-     *添加收费项目
-     */
-    public function fee_item_add()
-    {
-
-    }
-
-    /**
-     *执行添加操作
-     */
-    public function fee_item_runadd()
-    {
-
-    }
-
-    /**
-     *编辑收费项目
-     */
-    public function fee_item_edit()
-    {
-
-    }
-
-    /**
-     *执行编辑操作
-     */
-    public function fee_item_runedit()
-    {
-
-    }
-
-    /**
-     *费用项目状态（启用或者禁用）
-     */
-    public function fee_status()
-    {
-
-    }
-
-    /**
-     *删除费用项目
-     */
-    public function fee_delete()
-    {
-
-    }
-
-    /**
      *账单列表
      */
     public function bill_list()
