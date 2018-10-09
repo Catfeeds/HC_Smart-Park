@@ -14,10 +14,10 @@ return [
     //APP版本信息
     'app_version' => [
         'version' => '1.0.2',
-        'publish_time' => '2018/10/09',
+        'publish_time' => '2018/10/10',
         'size' => '',
         'content' => '',
-        'download_url' => 'http://ov7uxfxnm.bkt.clouddn.com/%E6%B7%AE%E5%AE%89%E7%95%99%E5%88%9B%E5%9B%ADv1.0.2.apk',
+        'download_url' => 'http://ov7uxfxnm.bkt.clouddn.com/%E6%B7%AE%E5%AE%89%E7%95%99%E5%88%9B%E5%9B%ADv1.0.3.apk',
         'is_force' => '',
     ],
     //七牛云的上传地址
