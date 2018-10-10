@@ -19,6 +19,8 @@ use think\Route;
  * update        PUT        test/:id        update
  * delete        DELETE    test/:id        delete
  */
+//自动生成账单接口,用于定时任务
+Route::get('bill','api/Bill/index');
 //检测更新
 Route::resource('version', 'api/Version');
 //首页接口
