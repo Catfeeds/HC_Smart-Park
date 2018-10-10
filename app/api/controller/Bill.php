@@ -11,8 +11,16 @@ namespace app\api\controller;
 
 use think\Db;
 
+/**
+ * Class Bill
+ * @package app\api\controller
+ * 生成企业账单
+ */
 class Bill extends Common
 {
+    /**
+     *方法
+     */
     public function index()
     {
         $limit_time = '-2 weeks';
@@ -24,10 +32,14 @@ class Bill extends Common
         for ($i = 0; $i < $length; $i++) {
             //当前企业id是$enterprise_ids[$i]
             //计算物业费
+            //查找物业费交费周期
+
             $property_amount = 1000;
             //计算房租
+            //查找房租交费周期
             $rent_amount = 2000;
-            //计算空调费用 总额= 面积*单价*交费周期
+            //计算空调费用 总额= 面积*单价*交费周期 一天0.45元
+            //查找空调费交费周期
             $aircon_amount = 3000;
             $sqldata = [
                 'enterprise_id' => $enterprise_ids[$i],
