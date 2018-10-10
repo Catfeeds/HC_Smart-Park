@@ -77,7 +77,7 @@ class Center extends AuthBase
             $user_id = \input('user_id');
             $new_phone = \input('phone');
             $count_phone = Db::name('MemberList')
-                ->where('member_list_phone', 'eq', $new_phone)
+                ->where('member_list_tel', 'eq', $new_phone)
                 ->count();
             if ($count_phone > 0) {
                 return \show('0', '手机号已存在');

@@ -270,7 +270,8 @@ $configs = [
 
     'default_salt' => 'sbsZsQaqLV',
 
-    'login_region_protect' => true,
+    //限制后台登录ip为淮安
+    'login_region_protect' => false,
 ];
 //动态设置
 if (file_exists($file = ROOT_PATH . "data/conf/config.php")) {
