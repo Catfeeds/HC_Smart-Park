@@ -50,7 +50,7 @@ class News extends Model
      */
     public function getNewsTimeAttr($news_time)
     {
-        return date('Y-m-d H:i:s', $news_time);
+        return date('Y-m-d', $news_time);
     }
 
     /**
