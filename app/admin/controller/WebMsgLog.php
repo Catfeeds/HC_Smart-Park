@@ -80,7 +80,7 @@ class WebMsgLog extends Base
     public function pushMsg()
     {
         $msg = \input('msg');
-        $toid = 123;
+        $toid = \input('toid');
         $fromid = \session('hid');
         $res = \pushWebMsg($toid, $fromid, $msg);
         return $res;
