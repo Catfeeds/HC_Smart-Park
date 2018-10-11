@@ -7,6 +7,8 @@
  */
 
 namespace app\admin\controller;
+
+use app\library\event\PushEvent;
 use think\Db;
 
 /**
@@ -71,12 +73,26 @@ class WebMsgLog extends Base
         }
     }
 
-//测试示例
-    public function test()
+
+    /**
+     *推送消息
+     */
+    public function pushMsg()
     {
-        $toid = 1;
-        $fromid = 2;
-        $msg = 'OK';
-        \sendWebMsg($toid, $fromid, $msg);
+        $msg = \input('msg');
+        $toid = 123;
+        $fromid = \session('hid');
+        $res = \pushWebMsg($toid, $fromid, $msg);
+        return $res;
+    }
+
+    /**
+     * 推送目标页
+     *
+     * @return \think\response\View
+     */
+    public function targetPage()
+    {
+        return view();
     }
 }

@@ -1,6 +1,7 @@
 <?php
 //error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
+use app\library\event\PushEvent;
 use Flc\Dysms\Request\SendSms;
 use think\Db;
 use think\Request;
@@ -1135,11 +1136,19 @@ function get_favorite_key($table, $object_id)
     return $key;
 }
 
+
 /**
- *发送站内信操作
+ * @param $toid
+ * @param $fromid
+ * @param $msg
+ * @return array
+ * 用workerman发送即时消息
  */
-function sendWebMsg($toid, $fromid, $msg)
+function pushWebMsg($toid, $fromid, $msg)
 {
+    $push = new PushEvent();
+    //推送消息
+    $push->setUser($toid)->setContent($msg)->push();
     $sqldata = [
         'toid' => $toid,
         'fromid' => $fromid,
@@ -1149,12 +1158,11 @@ function sendWebMsg($toid, $fromid, $msg)
 
     $res = \db('WebMsgLog')->insert($sqldata);
     if ($res) {
-        return ['发送成功'];
+        return '发送成功';
     } else {
-        return ['发送失败'];
+        return '发送失败';
     }
 }
-
 
 /**
  * @param $to
