@@ -82,7 +82,8 @@ class WebMsgLog extends Base
         $msg = \input('msg');
         $toid = \input('toid');
         $fromid = \session('hid');
-        $res = \pushWebMsg($toid, $fromid, $msg);
+        $type = \input('type');
+        $res = \pushWebMsg($toid, $fromid, $msg,$type);
         return $res;
     }
 

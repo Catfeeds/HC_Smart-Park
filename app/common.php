@@ -1144,7 +1144,7 @@ function get_favorite_key($table, $object_id)
  * @return array
  * 用workerman发送即时消息
  */
-function pushWebMsg($toid, $fromid, $msg)
+function pushWebMsg($toid, $fromid, $msg, $type)
 {
     $push = new PushEvent();
     //推送消息
@@ -1153,6 +1153,7 @@ function pushWebMsg($toid, $fromid, $msg)
         'toid' => $toid,
         'fromid' => $fromid,
         'content' => $msg,
+        'type' => $type,
         'sendtime' => \time()
     ];
 

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>消息</title>
+</head>
+<body>
+<strong id="count"></strong>
+
+<h1 id="target"></h1>
+</body>
+</html>
+<script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js'></script>
+<script>
+    jQuery(function ($) {
+
+        // 连接服务端
+        var socket = io('http://www.hacyy.com:2120'); //这里当然填写真实的地址了
+        // uid可以是自己网站的用户id，以便针对uid推送以及统计在线人数
+        uid = 123;
+        // socket连接后以uid登录
+        socket.on('connect', function () {
+            socket.emit('login', uid);
+        });
+        // 后端推送来消息时
+        socket.on('new_msg', function (msg) {
+            console.log("收到消息：" + msg);
+            $('#target').append(msg).append('<br>');
+        });
+        // 后端推送来在线数据时
+        socket.on('update_online_count', function (online_stat) {
+            console.log(online_stat);
+            $('#count').html(online_stat);
+        });
+    })
+
+</script>
