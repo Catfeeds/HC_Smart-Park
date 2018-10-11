@@ -11,6 +11,7 @@ namespace app\api\controller\v1;
 
 use app\api\controller\Common;
 use app\api\model\ParkMeetingRoom;
+use app\api\model\ServiceMeetingroomAppoint;
 use think\Db;
 
 /**
@@ -48,6 +49,27 @@ class MeetingRoom extends Common
         } else {
             return \show(0, '会议室不存在或不可用', '', 201);
         }
+    }
+
+    /**
+     * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 当天该会议室的预约状况
+     */
+    public function appoint()
+    {
+        $room_id = \input('room_id');
+        $day = \input('day');
+        $today = \date('Y-m-d');
+        if (empty($day))
+            $day = $today;
+        $day2 = date('Y-m-d', \strtotime($day) + 86400);
+        $model = new ServiceMeetingroomAppoint();
+        $appoint_list = $model->where('meetingroom_id', 'eq', $room_id)
+            ->where('s_time', 'between time', [$day, $day2])->select();
+        return \show(1, 'OK', $appoint_list, 200);
     }
 
     /**

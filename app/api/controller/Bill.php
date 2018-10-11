@@ -51,7 +51,7 @@ class Bill extends Common
                 'is_notify' => 0,
                 'status' => 0
             ];
-            //过滤一个月内相同信息的账单
+            //不生成一个月内相同信息的账单
             $rst = Db::name('EnterpriseBillList')
                 ->where('enterprise_id', $enterprise_ids[$i])
                 ->where('rent_amount', $rent_amount)

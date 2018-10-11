@@ -20,7 +20,7 @@ use think\Route;
  * delete        DELETE    test/:id        delete
  */
 //自动生成账单接口,用于定时任务
-Route::get('bill','api/Bill/index');
+Route::get('bill', 'api/Bill/index');
 //检测更新
 Route::resource('version', 'api/Version');
 //首页接口
@@ -82,6 +82,7 @@ Route::resource('complains', 'api/v1.complains');
 Route::resource('repair', 'api/v1.repair');
 //会议室模块
 Route::resource('meetingroom', 'api/v1.meetingroom');
+Route::post('appoint', 'api/v1.meetingroom/appoint');
 
 //点赞模块
 Route::resource('zan', 'api/v1.zan');
