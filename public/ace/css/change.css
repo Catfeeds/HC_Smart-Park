@@ -65,6 +65,9 @@ body{
     .container.main-container .sidebar+.main-content .h-sidebar.sidebar-fixed{
         width:100%;
     }
+    .main-content .h-sidebar.sidebar-fixed+.page-content{
+        margin-top: 45px;
+    }
 }
 
 .main-container.container:before{
@@ -142,3 +145,8 @@ body{
     color: #fff;
 }
 
+.gap{
+    width: 100%;
+    height: 40px;
+    background-color: #eef4f9;
+}
