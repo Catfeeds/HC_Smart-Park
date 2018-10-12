@@ -19,7 +19,7 @@ use think\Db;
 class Financial extends Base
 {
     /**
-     *财务总览
+     *合同管理
      */
     public function contract_list()
     {
