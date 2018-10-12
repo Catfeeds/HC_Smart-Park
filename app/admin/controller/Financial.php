@@ -9,6 +9,8 @@
 namespace app\admin\controller;
 
 
+use think\Db;
+
 /**
  * Class Financial
  * @package app\admin\controller
@@ -17,11 +19,28 @@ namespace app\admin\controller;
 class Financial extends Base
 {
     /**
-     *财务总览
+     *合同管理
      */
-    public function index()
+    public function contract_list()
     {
-
+        $key = \input('key');
+        $list = Db::name('EnterpriseBillList ebl')
+            ->join('EnterpriseEntryInfo eei', 'ebl.enterprise_id=eei.enterprise_id')
+            ->join('EnterpriseBank eb', 'ebl.enterprise_id=eb.enterprise_id')
+            ->join('EnterpriseList el', 'ebl.enterprise_id=el.id')
+            ->where('el.enterprise_list_name', 'like', "%" . $key . "%")
+            ->order('bill_time desc')
+            ->paginate(config('paginate.list_rows'));
+        $show = $list->render();
+        $show = preg_replace("(<a[^>]*page[=|/](\d+).+?>(.+?)<\/a>)", "<a href='javascript:ajax_page($1);'>$2</a>", $show);
+        $this->assign('list', $list);
+        $this->assign('page', $show);
+        $this->assign('val', $key);
+        if (\request()->isAjax()) {
+            return $this->fetch('ajax_contract_list');
+        } else {
+            return \view();
+        }
     }
 
     /**
@@ -29,7 +48,24 @@ class Financial extends Base
      */
     public function bill_list()
     {
-
+        $key = \input('key');
+        $list = Db::name('EnterpriseBillList ebl')
+            ->join('EnterpriseEntryInfo eei', 'ebl.enterprise_id=eei.enterprise_id')
+            ->join('EnterpriseBank eb', 'ebl.enterprise_id=eb.enterprise_id')
+            ->join('EnterpriseList el', 'ebl.enterprise_id=el.id')
+            ->where('el.enterprise_list_name', 'like', "%" . $key . "%")
+            ->order('bill_time desc')
+            ->paginate(config('paginate.list_rows'));
+        $show = $list->render();
+        $show = preg_replace("(<a[^>]*page[=|/](\d+).+?>(.+?)<\/a>)", "<a href='javascript:ajax_page($1);'>$2</a>", $show);
+        $this->assign('list', $list);
+        $this->assign('page', $show);
+        $this->assign('val', $key);
+        if (\request()->isAjax()) {
+            return $this->fetch('ajax_bill_list');
+        } else {
+            return \view();
+        }
     }
 
     /**

@@ -32,17 +32,19 @@ class Bill extends Common
         $enterprise_ids = $db->whereTime('pay_time', $limit_time)->column('enterprise_id');
         $length = \count($enterprise_ids);
         for ($i = 0; $i < $length; $i++) {
-            //企业id是$enterprise_ids[$i]
-            //计算物业费=物业费*面积*交费周期
-            //查找物业费交费周期
+            //企业id是$enterprise_ids[$i],查出当前企业的签约信息
+            $info = $db->where('enterprise_id', 'eq', $enterprise_ids[$i])->find();
 
-            $property_amount = 1000;
+            //计算物业费=物业费*面积*交费周期
+            $property_amount = $info['property_square'] * $info['area'] * $info['property_period'];
+
             //计算房租=单价*面积*交费周期
-            //查找房租交费周期
-            $rent_amount = 2000;
-            //计算空调费用 0.45*60*面积(按季度交费)
-            //查找空调费交费周期
-            $aircon_amount = 3000;
+            $rent_amount = $info['rent_square'] * $info['area'] * $info['rent_period'];
+
+            //计算空调费用
+            $aircon_amount = 0.45 * $info['area'] * $info['air_conditioner_period'];
+
+            //入库数据
             $sqldata = [
                 'enterprise_id' => $enterprise_ids[$i],
                 'rent_amount' => $rent_amount,
