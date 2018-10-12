@@ -1,0 +1,17 @@
+{foreach name="list" item="v"}
+<tr>
+    <td class="hidden-xs" height="28">{$v.id}</td>
+    <td>{$v.enterprise_list_name}</td>
+    <td>{$v.financial_office}</td>
+    <td>{$v.financial_office_phone}</td>
+    <td>{$v.financial_office_email}</td>
+    <td>{$v.room}</td>
+    <td>{$v.area}</td>
+    <td>{$v.margin}</td>
+    <td class="hidden-sm hidden-xs">{$v.signed_day|date='Y-m-d',###}</td>
+    <td>{$v.signer}</td>
+</tr>
+{/foreach}
+<tr>
+    <td height="50" colspan="12" align="left">{$page}</td>
+</tr>
