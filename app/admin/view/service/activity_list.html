@@ -1,15 +1,12 @@
 {extend name="admin@public/base" /}
 {block name="main-content"}
 <div class="page-content">
-
-    <div class="col-xs-5 col-sm-2  margintop5">
+    <button class="btn btn-sm btn-danger" >
+        <i class="ace-icon fa fa-bolt bigger-110"></i>
         <a href="{:url('admin/News/news_add',array('news_columnid'=>3))}" target="_blank">
-            <button class="btn btn-sm btn-danger">
-                <i class="ace-icon fa fa-bolt bigger-110"></i>
-                发布活动
-            </button>
+            发布活动
         </a>
-    </div>
+    </button>
 
     <div class="row">
         <div class="col-xs-12">
