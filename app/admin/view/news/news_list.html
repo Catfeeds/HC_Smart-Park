@@ -3,7 +3,7 @@
 	<div class="page-content">
 		<link rel="stylesheet" type="text/css" media="all" href="__PUBLIC__/sldate/daterangepicker-bs3.css" />
 		<form name="admin_list_sea" class="form-search form-horizontal" id="list-filter" method="post" action="{:url('admin/News/news_list')}">
-			<div class="row maintop">
+			<div class="row maintop change-maintop">
 				<div class="col-xs-12 col-sm-12 maintop">
 					<select name="keytype">
 						<option value="news_title" {if condition="($keytype eq 'news_title') or ($keytype eq '')"}selected{/if}>按标题</option>

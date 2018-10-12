@@ -2,15 +2,7 @@
 {block name="main-content"}
 	<div class="page-content">
 
-		<div class="row maintop">
-			<div class="col-xs-5 col-sm-2  margintop5">
-				<a href="{:url('admin/Park/room_add')}">
-					<button class="btn btn-sm btn-danger">
-						<i class="ace-icon fa fa-bolt bigger-110"></i>
-						添加办公室
-					</button>
-				</a>
-			</div>
+		<div class="row maintop change-maintop">
 			<form name="room_list_sea" class="form-search" id="list-filter" method="post" action="{:url('admin/Park/room_list')}">
 				<div class="col-xs-12 col-sm-4  margintop5">
 					<select name="status" class="ajax_change">
