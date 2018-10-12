@@ -228,7 +228,8 @@ class Service extends Base
     {
         $list = Db::name('ServiceMeetingroomAppoint sma')
             ->join('MemberList ml', 'sma.user_id=ml.member_list_id')
-            ->field('sma.*,ml.member_list_username,ml.member_list_tel')
+            ->join('ParkMeetingRoom pmr','sma.meetingroom_id=pmr.id')
+            ->field('sma.*,ml.member_list_username,ml.member_list_tel,pmr.room_number')
             ->order('sma.create_time desc')
             ->paginate(config('paginate.list_rows'));
         $show = $list->render();

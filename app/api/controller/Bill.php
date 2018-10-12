@@ -19,7 +19,9 @@ use think\Db;
 class Bill extends Common
 {
     /**
-     *方法
+     *此处为自动生成账单方法
+     * 根据入驻信息中的支付日期为初始时间计算
+     * 财务在后台确认交费后需要修改入驻信息表中的支付时间
      */
     public function index()
     {
@@ -30,15 +32,15 @@ class Bill extends Common
         $enterprise_ids = $db->whereTime('pay_time', $limit_time)->column('enterprise_id');
         $length = \count($enterprise_ids);
         for ($i = 0; $i < $length; $i++) {
-            //当前企业id是$enterprise_ids[$i]
-            //计算物业费
+            //企业id是$enterprise_ids[$i]
+            //计算物业费=物业费*面积*交费周期
             //查找物业费交费周期
 
             $property_amount = 1000;
-            //计算房租
+            //计算房租=单价*面积*交费周期
             //查找房租交费周期
             $rent_amount = 2000;
-            //计算空调费用 总额= 面积*单价*交费周期 一天0.45元
+            //计算空调费用 0.45*60*面积(按季度交费)
             //查找空调费交费周期
             $aircon_amount = 3000;
             $sqldata = [
