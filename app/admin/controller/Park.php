@@ -50,8 +50,7 @@ class Park extends Base
         if ($phase !== '') {
             $where['phase'] = $phase;
         }
-        $model = new ParkRoom();
-        $list = $model
+        $list = Db::name('ParkRoom')
             ->where($where)
             ->order('floor')
             ->paginate(config('paginate.list_rows'), false, ['query' => get_query()]);
