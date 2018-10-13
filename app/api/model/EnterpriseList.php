@@ -58,7 +58,7 @@ class EnterpriseList extends Model
     public function getEnterpriseListLogoAttr($enterprise_list_logo)
     {
         if (!empty($enterprise_list_logo)) {
-            return \request()->domain() . $enterprise_list_logo;
+            return \get_app_imgurl($enterprise_list_logo);
         } else {
             return '';
         }

@@ -82,9 +82,8 @@ class News extends Model
      */
     public function getNewsImgAttr($news_img)
     {
-        $reqeust = Request::instance();
         if (!empty($news_img)) {
-            return $reqeust->domain() . $news_img;
+            return \get_app_imgurl($news_img);
         } else {
             return 'http://ov7uxfxnm.bkt.clouddn.com/no_news.webp';
         }

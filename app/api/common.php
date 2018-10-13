@@ -38,6 +38,21 @@ function getimgsuffix($name)
 }
 
 /**
+ * @param $url
+ * @return string
+ * 返回图片完整路径
+ */
+function get_app_imgurl($url)
+{
+    if (stripos($url, 'http') !== false) {
+        //网络图片
+        return $url;
+    } else {
+        return request()->domain() . $url;
+    }
+}
+
+/**
  * @param $phone
  * @return mixed
  * 根据会员手机号获取ID

@@ -3,16 +3,10 @@
     <div class="nav-wrap-up pos-rel">
         <div class="nav-wrap">
             <ul class="nav nav-list">
-                <div class="gap"><h1>{$a_name}</h1></div>
+                <div class="gap"></div>
+                <h1 class="change-h1">{$a_name}</h1>
                 {if condition="($id_curr neq '') AND (!empty($menus_child))"}
                 {foreach name="menus_child" item="k"}
-                <li>
-                    <a href="{:url(''.$k['name'].'')}">
-                        <o class="font12 {if condition=" $id_curr eq $k[
-                        'id']"}rigbg{/if}">{$k.title}</o>
-                    </a>
-                    <b class="arrow"></b>
-                </li>
                 {/foreach}
                 {else /}
                 <li>

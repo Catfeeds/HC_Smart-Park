@@ -11,6 +11,7 @@ namespace app\api\model;
 
 use think\Model;
 use think\Request;
+
 /**
  * Class PlugAd
  * @package app\api\model
@@ -48,8 +49,7 @@ class PlugAd extends Model
      */
     public function getPlugAdPicAttr($plug_ad_pic)
     {
-        $reqeust = Request::instance();
-        return $reqeust->domain() . $plug_ad_pic;
+        return \get_app_imgurl($plug_ad_pic);
     }
 
     /**

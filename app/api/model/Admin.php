@@ -32,9 +32,8 @@ class Admin extends Model
      */
     public function getAdminAvatarAttr($admin_avatar)
     {
-        $reqeust = Request::instance();
         if (!empty($admin_avatar)) {
-            return $reqeust->domain() . '/data/upload/avatar/'.$admin_avatar;
+            return \get_app_imgurl($admin_avatar);
         } else {
             return '';
         }
