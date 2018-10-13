@@ -42,8 +42,11 @@ body{
     height: 60px;
 }
 .ace-nav>li.purple>a,.ace-nav>li.light-blue>a{
-    background-color: #fff;
+    background-color: #f3f6f9;
     color: #667690;
+}
+.ace-nav>li.light-blue>a:focus, .ace-nav>li.light-blue>a:hover, .ace-nav>li.open.light-blue>a{
+    background-color: #27aaf3;
 }
 .user-info {
     top: 20px;
@@ -68,6 +71,10 @@ body{
     .main-content .h-sidebar.sidebar-fixed+.page-content{
         margin-top: 70px;
     }
+    .sidebar.h-sidebar .nav-list{
+        border-bottom:none;
+    }
+
 }
 
 .main-container.container:before{
