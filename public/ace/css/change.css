@@ -23,13 +23,18 @@ body{
 .font12 {
     font-size: 15px;
 }
+/*.btn-purple, .btn-purple.focus, .btn-purple:focus{*/
+    /*background-color: #27aaf3!important;*/
+    /*border-color: #27aaf3;*/
+/*}*/
+
 
 /*顶部导航样式*/
 .nav-list>li .submenu {
     display: block;
 }
 .navbar-brand img {
-    width: 60px;
+    height: 50px;
 }
 .navbar {
     background: #f3f6f9;
@@ -53,6 +58,7 @@ body{
 }
 .pull-left {
     margin-left: 9%;
+    padding: 10px;
 }
 .pull-right {
     margin-right: 9%;
