@@ -50,10 +50,13 @@ class Park extends Base
         if ($phase !== '') {
             $where['phase'] = $phase;
         }
-        $list = Db::name('ParkRoom')
+        $list = Db::name('ParkRoom pr')
+            ->join('EnterpriseEntryInfo eei','pr.room_number=eei.room','LEFT')
+            ->field('pr.*,eei.enterprise_id')
             ->where($where)
-            ->order('floor')
+            ->order('floor,room_number')
             ->paginate(config('paginate.list_rows'), false, ['query' => get_query()]);
+//        \halt($list);
         $show = $list->render();
         $show = preg_replace("(<a[^>]*page[=|/](\d+).+?>(.+?)<\/a>)", "<a href='javascript:ajax_page($1);'>$2</a>", $show);
         $this->assign('status', $opentype_check);

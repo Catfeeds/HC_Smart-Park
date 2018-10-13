@@ -1875,6 +1875,18 @@ function getUserNameById($member_id)
 }
 
 /**
+ * @param $enterprise_id
+ * @return mixed
+ * 根据企业ID获取企业名称
+ */
+function getEnterpriseNameById($enterprise_id){
+    $name = Db::name('EnterpriseList')
+        ->where('id','eq',$enterprise_id)
+        ->value('enterprise_list_name');
+    return $name;
+}
+
+/**
  * @param $member_id
  * @return mixed
  * 根据会员id获取手机号

@@ -365,6 +365,11 @@ class Enterprise extends Base
         $id = \input('id');
         $rst = \db('EnterpriseList')->where('id', 'eq', $id)->setField('is_delete', 1);
         if ($rst !== false) {
+            $room_id = Db::name('EnterpriseEntryInfo')
+                ->where('enterprise_id','eq',$id)
+                ->value('room');
+            //删除企业后,将房源状态改为未租
+            Db::name('ParkRoom')->where('room_number','eq',$room_id)->setField('status',0);
             $this->success('删除成功', url('admin/Enterprise/enterprise_list', array('p' => $p)));
         } else {
             $this->error('删除失败', url('admin/Enterprise/enterprise_list', array('p' => $p)));

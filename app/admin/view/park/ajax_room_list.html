@@ -14,7 +14,8 @@
     {else}
     <td>简装</td>
     {/if}
-    <td class="hidden-sm hidden-xs">{$v.create_time|date='Y-m-d H:i:s',###}</td>
+    <td>{$v.enterprise_id|getEnterpriseNameById}</td>
+    <!--<td class="hidden-sm hidden-xs">{$v.create_time|date='Y-m-d H:i:s',###}</td>-->
     <td class="hidden-xs">
         {if $v.status eq 1}
         <span class="red" title="已租">
