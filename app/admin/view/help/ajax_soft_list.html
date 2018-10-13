@@ -40,16 +40,16 @@
     </td>
     <td>
         <div class="hidden-sm hidden-xs action-buttons">
-            <a class="green"
+            <a class="blue"
                href="{$v.soft_url}"
                title="下载软件" target="_blank">
                 <i class="ace-icon fa fa-cloud-download bigger-130"></i>
             </a>
-            <a class="green"  href="{:url('admin/Help/soft_edit',array('soft_id'=>$v['soft_id']))}" title="修改">
-                <i class="ace-icon fa fa-pencil bigger-130"></i>
+            <a class="blue"  href="{:url('admin/Help/soft_edit',array('soft_id'=>$v['soft_id']))}" title="修改">
+                <i class="ace-icon fa  bigger-130 iconfont icon-brush"></i>
             </a>
-            <a class="red confirm-rst-url-btn" href="{:url('admin/Help/soft_del',array('soft_id'=>$v['soft_id'],'p'=>input('p',1)))}" data-info="你确定要删除吗？" title="删除">
-                <i class="ace-icon fa fa-trash-o bigger-130"></i>
+            <a class="blue confirm-rst-url-btn" href="{:url('admin/Help/soft_del',array('soft_id'=>$v['soft_id'],'p'=>input('p',1)))}" data-info="你确定要删除吗？" title="删除">
+                <i class="ace-icon fa  bigger-130 iconfont icon-empty"></i>
             </a>
         </div>
 
@@ -61,7 +61,7 @@
                 </button>
                 <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
                     <li>
-                        <a class="green"
+                        <a class="blue"
                            href="{$v.soft_url}"
                            title="下载软件" target="_blank">
                             <i class="ace-icon fa fa-cloud-download bigger-130"></i>

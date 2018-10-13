@@ -52,13 +52,13 @@
 										<a class="blue" href="javascript:;" onclick="return addmenu({$v.model_id});" data-toggle="tooltip"   title="添加到后台左侧菜单">
 											<i class="ace-icon fa fa-plus-circle bigger-130"></i>													</a>
 										<a class="green confirm-url-btn"  href="{:url('admin/Model/model_edit',['model_id'=>$v.model_id])}" data-info="将重建数据库,原有数据自动备份，确认修改？" data-toggle="tooltip" title="修改">
-											<i class="ace-icon fa fa-pencil bigger-130"></i>
+											<i class="ace-icon fa  bigger-130 iconfont icon-brush"></i>
 										</a>
-										<a class="green"  href="{:url('admin/Model/model_copy',['model_id'=>$v.model_id])}"  data-toggle="tooltip" title="复制模型">
+										<a class="blue"  href="{:url('admin/Model/model_copy',['model_id'=>$v.model_id])}"  data-toggle="tooltip" title="复制模型">
 											<i class="ace-icon fa fa-exchange bigger-130"></i>
 										</a>
-										<a class="red confirm-rst-url-btn" href="{:url('admin/Model/model_del',array('model_id'=>$v['model_id']))}" data-info="你确定要删除吗？不建议直接删除" data-toggle="tooltip" title="删除">
-											<i class="ace-icon fa fa-trash-o bigger-130"></i>
+										<a class="blue confirm-rst-url-btn" href="{:url('admin/Model/model_del',array('model_id'=>$v['model_id']))}" data-info="你确定要删除吗？不建议直接删除" data-toggle="tooltip" title="删除">
+											<i class="ace-icon fa  bigger-130 iconfont icon-empty"></i>
 										</a>
 									</div>
 									<div class="hidden-md hidden-lg">

@@ -51,11 +51,11 @@
 		<td class="hidden-xs">{$v.news_time|date='Y-m-d',###}</td>
 		<td>
 			<div class="hidden-sm hidden-xs action-buttons">
-				<a class="green" href="{:url('admin/News/news_edit',array('n_id'=>$v['n_id']))}" data-toggle="tooltip" title="修改">
-					<i class="ace-icon fa fa-pencil bigger-130"></i>
+				<a class="blue" href="{:url('admin/News/news_edit',array('n_id'=>$v['n_id']))}" data-toggle="tooltip" title="修改">
+					<i class="ace-icon fa  bigger-130 iconfont icon-brush"></i>
 				</a>
 				<a class="red confirm-rst-url-btn" data-info="你确定要删除到回收站吗？" href="{:url('admin/News/news_del',array('n_id'=>$v['n_id'],'p'=>input('p',1)))}" title="回收站" data-toggle="tooltip">
-					<i class="ace-icon fa fa-trash-o bigger-130"></i>
+					<i class="ace-icon fa  bigger-130 iconfont icon-empty"></i>
 				</a>
 			</div>
 			<div class="hidden-md hidden-lg">

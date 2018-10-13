@@ -40,11 +40,11 @@
 									<td><input name="{$v.plug_linktype_id}" value="{$v.plug_linktype_order}" class="list_order center"/></td>
 									<td>
 										<div class="hidden-sm hidden-xs action-buttons">
-											<a class="green" href="javascript:;" onclick="return openWindow({$v.plug_linktype_id},'{$v.plug_linktype_name}',{$v.plug_linktype_order});" data-toggle="tooltip" title="修改">
-												<i class="ace-icon fa fa-pencil bigger-130"></i>
+											<a class="blue" href="javascript:;" onclick="return openWindow({$v.plug_linktype_id},'{$v.plug_linktype_name}',{$v.plug_linktype_order});" data-toggle="tooltip" title="修改">
+												<i class="ace-icon fa  bigger-130 iconfont icon-brush"></i>
 											</a>
-											<a class="red confirm-rst-url-btn" href="{:url('admin/Plug/plug_linktype_del',array('plug_linktype_id'=>$v['plug_linktype_id']))}" data-toggle="tooltip"  data-info="你确定要删除吗？" title="删除">
-												<i class="ace-icon fa fa-trash-o bigger-130"></i>
+											<a class="blue confirm-rst-url-btn" href="{:url('admin/Plug/plug_linktype_del',array('plug_linktype_id'=>$v['plug_linktype_id']))}" data-toggle="tooltip"  data-info="你确定要删除吗？" title="删除">
+												<i class="ace-icon fa  bigger-130 iconfont icon-empty"></i>
 											</a>
 										</div>
 										<div class="hidden-md hidden-lg">
@@ -54,7 +54,7 @@
 												</button>
 												<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
 													<li>
-														<a class="green" href="javascript:;" onclick="return openWindow({$v.plug_linktype_id},'{$v.plug_linktype_name}',{$v.plug_linktype_order});" data-toggle="tooltip" title="修改">
+														<a class="blue" href="javascript:;" onclick="return openWindow({$v.plug_linktype_id},'{$v.plug_linktype_name}',{$v.plug_linktype_order});" data-toggle="tooltip" title="修改">
 																	<span class="green">
 																		<i class="ace-icon fa fa-pencil bigger-120"></i>
 																	</span>

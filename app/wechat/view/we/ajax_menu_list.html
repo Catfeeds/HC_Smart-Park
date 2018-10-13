@@ -19,9 +19,9 @@
 		<td>
 			<div class="hidden-sm hidden-xs action-buttons">
 				<a class="green menuedit-btn" href="{:url('wechat/We/menu_edit')}" data-id="{$v.we_menu_id}" data-toggle="tooltip" title="修改">
-					<i class="ace-icon fa fa-pencil bigger-130"></i>																</a>
-				<a class="red confirm-rst-url-btn" href="{:url('wechat/We/menu_del',array('we_menu_id'=>$v['we_menu_id']))}" data-info="若存在子菜单，则子菜单将一起被删除，你确定要删除吗？" data-toggle="tooltip" title="删除">
-					<i class="ace-icon fa fa-trash-o bigger-130"></i>																</a>
+					<i class="ace-icon fa  bigger-130 iconfont icon-brush"></i>																</a>
+				<a class="blue confirm-rst-url-btn" href="{:url('wechat/We/menu_del',array('we_menu_id'=>$v['we_menu_id']))}" data-info="若存在子菜单，则子菜单将一起被删除，你确定要删除吗？" data-toggle="tooltip" title="删除">
+					<i class="ace-icon fa  bigger-130 iconfont icon-empty"></i>																</a>
 				{if condition="$v['we_menu_leftid'] eq 0"}
 				<a class="blue" href="javascript:;" onclick="return add_we_menu({$v.we_menu_id});"  data-toggle="tooltip" title="添加子类">
 					<i class="ace-icon fa fa-plus-circle bigger-130"></i>																</a>

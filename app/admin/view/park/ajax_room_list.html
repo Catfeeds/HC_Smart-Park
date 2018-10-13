@@ -41,18 +41,18 @@
 
     <td>
         <div class="hidden-sm hidden-xs action-buttons">
-            <a class="green" href="{:url('admin/Park/room_edit',array('id'=>$v['id']))}" title="修改">
-                <i class="ace-icon fa fa-pencil bigger-130"></i>
+            <a class="blue" href="{:url('admin/Park/room_edit',array('id'=>$v['id']))}" title="修改">
+                <i class="ace-icon fa  bigger-130 iconfont icon-brush"></i>
             </a>
             <a class="red confirm-rst-url-btn"
                href="{:url('admin/Park/room_delete',array('id'=>$v['id'],'p'=>input('p',1)))}" data-info="你确定要删除吗？"
                title="删除">
-                <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                <i class="ace-icon fa  bigger-130 iconfont icon-empty"></i>
             </a>
             {if $v.status eq 1}
-            <a class="green" href="{:url('admin/enterprise/enterprise_info',array('id'=>$v['enterprise_id']))}"
+            <a class="blue" href="{:url('admin/enterprise/enterprise_info',array('id'=>$v['enterprise_id']))}"
                title="查看入驻企业">
-                <i class="ace-icon fa fa-eye bigger-130"></i>
+                <i class="ace-icon fa  bigger-130 iconfont icon-chakan"></i>
             </a>
             {/if}
         </div>
