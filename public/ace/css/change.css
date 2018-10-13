@@ -23,10 +23,20 @@ body{
 .font12 {
     font-size: 15px;
 }
-/*.btn-purple, .btn-purple.focus, .btn-purple:focus{*/
-    /*background-color: #27aaf3!important;*/
-    /*border-color: #27aaf3;*/
-/*}*/
+.btn-purple, .btn-purple.focus, .btn-purple:focus{
+    background-color: #b8c2d4!important;
+    border-color: #b8c2d4;
+
+}
+.btn-purple.focus:hover, .btn-purple:active:hover, .btn-purple:focus:active, .btn-purple:focus:hover, .btn-purple:hover, .open>.btn-purple.dropdown-toggle, .open>.btn-purple.dropdown-toggle.focus, .open>.btn-purple.dropdown-toggle:active, .open>.btn-purple.dropdown-toggle:focus, .open>.btn-purple.dropdown-toggle:hover{
+    background-color: #27aaf3!important;
+    border-color: #27aaf3;
+}
+
+.btn-danger, .btn-danger.focus, .btn-danger:focus{
+    background-color: #27aaf3!important;
+    border-color: #27aaf3;
+}
 
 
 /*顶部导航样式*/
