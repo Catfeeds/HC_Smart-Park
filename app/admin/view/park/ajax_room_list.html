@@ -17,23 +17,23 @@
     <td class="hidden-sm hidden-xs">{$v.create_time|date='Y-m-d H:i:s',###}</td>
     <td class="hidden-xs">
         {if $v.status eq 1}
-        <span class="red open-btn" title="已租">
+        <span class="red" title="已租">
 					<div id="zt{$v.id}"><button class="btn btn-minier btn-danger">已租</button></div>
 				</span>
         {elseif $v.status eq 0}
-        <span class="red open-btn" title="未租">
+        <span class="red" title="未租">
 					<div id="zt{$v.id}"><button class="btn btn-minier btn-yellow">未租</button></div>
                 </span>
         {elseif $v.status eq 2}
-        <span class="red open-btn" title="自留">
+        <span class="red" title="自留">
 					<div id="zt{$v.id}"><button class="btn btn-minier btn-info">自留</button></div>
                 </span>
         {elseif $v.status eq 3}
-        <span class="red open-btn" title="已定">
+        <span class="red" title="已定">
 					<div id="zt{$v.id}"><button class="btn btn-minier btn-success">已定</button></div>
                 </span>
         {elseif $v.status eq 4}
-        <span class="red open-btn" title="已售">
+        <span class="red" title="已售">
 					<div id="zt{$v.id}"><button class="btn btn-minier btn-inverse">已售</button></div>
                 </span>
         {/if}
@@ -44,7 +44,7 @@
             <a class="blue" href="{:url('admin/Park/room_edit',array('id'=>$v['id']))}" title="修改">
                 <i class="ace-icon fa  bigger-130 iconfont icon-brush"></i>
             </a>
-            <a class="red confirm-rst-url-btn"
+            <a class="blue confirm-rst-url-btn"
                href="{:url('admin/Park/room_delete',array('id'=>$v['id'],'p'=>input('p',1)))}" data-info="你确定要删除吗？"
                title="删除">
                 <i class="ace-icon fa  bigger-130 iconfont icon-empty"></i>
