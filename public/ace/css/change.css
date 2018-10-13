@@ -95,7 +95,7 @@ body{
         background-color: #eef4f9;
     }
     .sidebar.h-sidebar .nav-list{
-        border-bottom:none;
+        border-bottom: none;
     }
     .breadcrumbs-fixed+.page-content{
         padding-top: 10px;
