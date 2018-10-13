@@ -85,10 +85,13 @@ body{
         width:100%;
     }
     .main-content .h-sidebar.sidebar-fixed+.page-content{
-        margin-top: 70px;
+        margin-top: 105px;
     }
     .sidebar.h-sidebar .nav-list{
         border-bottom:none;
+    }
+    .breadcrumbs-fixed+.page-content{
+        padding-top: 10px;
     }
 
 }
