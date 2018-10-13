@@ -2,14 +2,18 @@
 {block name="main-content"}
 <div class="page-content">
     <!-- 点击模态框（Modal） -->
-    <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">
-        <i class="ace-icon fa fa-bolt bigger-110"></i>
-        发布新公告
-    </button>
 
-    <div class="row">
-        <div class="col-xs-12">
-            <div>
+    <div class="row maintop">
+        <div class="col-xs-5 col-sm-1  margintop5">
+            <a href="{:url('admin/Enterprise/enterprise_add')}">
+                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">
+                    <i class="ace-icon fa fa-bolt bigger-110"></i>
+                    发布新公告
+                </button>
+            </a>
+        </div>
+
+        <div class="col-xs-12 maintop">
                 <form id="alldel" name="alldel" method="post" action="{:url('admin/Announcement/announcement_alldelete')}">
                     <input name="p" id="p" value="{:input('p',1)}" type="hidden"/>
                     <div class="table-responsive">
@@ -47,7 +51,7 @@
                                 <td class="hidden-sm hidden-xs">{$v.addtime|date='Y-m-d H:i:s',###}</td>
                                 <td>
                                     <div class="action-buttons">
-                                        <a class="red confirm-rst-url-btn" data-info="确定删除吗？"
+                                        <a class="blue confirm-rst-url-btn" data-info="确定删除吗？"
                                            href="{:url('admin/Announcement/announcement_delete',array('id'=>$v['id'],'p'=>input('p',1)))}"
                                            title="删除">
                                             <i class="ace-icon fa  bigger-130 iconfont icon-empty"></i>
@@ -68,7 +72,6 @@
                         </table>
                     </div>
                 </form>
-            </div>
         </div>
     </div>
 </div><!-- /.page-content -->

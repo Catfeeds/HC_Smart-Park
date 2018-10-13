@@ -10,13 +10,13 @@
     <td class="hidden-sm hidden-xs">{$v.plug_ad_addtime|date='Y-m-d',###}</td>
     <td>
         {if condition='$v.plug_ad_open eq 1'}
-        <a class="red open-btn" href="{:url('admin/Plug/plug_ad_state')}" data-id="{$v.plug_ad_id}" title="已开启">
+        <a class="blue open-btn" href="{:url('admin/Plug/plug_ad_state')}" data-id="{$v.plug_ad_id}" title="已开启">
             <div id="zt{$v.plug_ad_id}">
                 <button class="btn btn-minier btn-yellow">开启</button>
             </div>
         </a>
         {else/}
-        <a class="red open-btn" href="{:url('admin/Plug/plug_ad_state')}" data-id="{$v.plug_ad_id}" title="已禁用">
+        <a class="blue open-btn" href="{:url('admin/Plug/plug_ad_state')}" data-id="{$v.plug_ad_id}" title="已禁用">
             <div id="zt{$v.plug_ad_id}">
                 <button class="btn btn-minier btn-danger">禁用</button>
             </div>
@@ -27,7 +27,7 @@
         <div class="hidden-sm hidden-xs action-buttons">
             <a class="blue" href="{:url('admin/Plug/plug_ad_edit',array('plug_ad_id'=>$v['plug_ad_id']))}" title="修改">
                 <i class="ace-icon fa  bigger-130 iconfont icon-brush"></i> </a>
-            <a class="red confirm-rst-url-btn"
+            <a class="blue confirm-rst-url-btn"
                href="{:url('admin/Plug/plug_ad_del',array('plug_ad_id'=>$v['plug_ad_id'],'p'=>input('p',1)))}"
                data-info="你确定要删除吗？" title="删除">
                 <i class="ace-icon fa  bigger-130 iconfont icon-empty"></i> </a></div>

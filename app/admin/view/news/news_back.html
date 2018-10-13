@@ -4,7 +4,7 @@
 		<link rel="stylesheet" type="text/css" media="all" href="__PUBLIC__/sldate/daterangepicker-bs3.css" />
 		<form name="admin_list_sea" class="form-search form-horizontal" id="list-filter" method="post" action="{:url('admin/News/news_back')}">
 			<div class="row maintop">
-				<div class="col-xs-12 col-sm-5">
+				<div class="col-xs-12 col-sm-3">
 					<select name="keytype">
 						<option value="news_title" {if condition="($keytype eq 'news_title') or ($keytype eq '')"}selected{/if}>按标题搜</option>
 						<option value="news_auto" {if condition="$keytype eq 'news_auto'"}selected{/if}>按发布人ID</option>

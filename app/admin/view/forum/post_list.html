@@ -5,7 +5,7 @@
     <form name="admin_list_sea" class="form-search form-horizontal" id="list-filter" method="post"
           action="{:url('admin/Forum/post_list')}">
         <div class="row maintop">
-            <div class="col-xs-12 col-sm-12 maintop">
+            <div class="col-xs-12 col-sm-3">
                 <select name="keytype">
                     <option value="news_title" {if condition="($keytype eq 'news_title') or ($keytype eq '')" }selected{
                     /if}>按标题</option>
@@ -22,18 +22,17 @@
                     <option value="0" {if condition="$opentype_check eq '0'" }selected="selected" {
                     /if} >未审</option>
                 </select>
-
+                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">
                     <i class="ace-icon fa fa-bolt bigger-110"></i>
-                    <a href="{:url('admin/News/news_add',['news_columnid'=>'4'])}" target="_blank">
-                        发表新帖
-                    </a>
+                    <a href="{:url('admin/News/news_add',['news_columnid'=>'4'])}" target="_blank">发表新帖</a>
+                </button>
             </div>
 
-            <div class="col-xs-12 col-sm-5 hidden-xs btn-sespan">
+            <div class="col-xs-12 col-sm-3 hidden-xs btn-sespan">
                 <div class="input-group">
-										<span class="input-group-addon">
-											<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-										</span>
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                    </span>
                     <input type="text" name="reservation" id="reservation" class="sl-date" value="{$sldate}"
                            placeholder="点击选择日期范围"/>
                 </div>

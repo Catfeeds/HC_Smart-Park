@@ -31,9 +31,9 @@
 		<td class="hidden-xs">{$v.news_time|date='Y-m-d',###}</td>
 		<td>
 			<div class="action-buttons">
-				<a class="red confirm-rst-url-btn" data-info="你确定要还原文章到文章列表吗？" href="{:url('admin/News/news_back_open',array('n_id'=>$v['n_id'],'p'=>input('p',1)))}" title="还原">
+				<a class="blue confirm-rst-url-btn" data-info="你确定要还原文章到文章列表吗？" href="{:url('admin/News/news_back_open',array('n_id'=>$v['n_id'],'p'=>input('p',1)))}" title="还原">
 					<i class="ace-icon fa fa-check bigger-130"></i>																</a>
-				<a class="red confirm-rst-url-btn" data-info="你确定要彻底删除文章吗？" href="{:url('admin/News/news_back_del',array('n_id'=>$v['n_id'],'p'=>input('p',1)))}" title="删除">
+				<a class="blue confirm-rst-url-btn" data-info="你确定要彻底删除文章吗？" href="{:url('admin/News/news_back_del',array('n_id'=>$v['n_id'],'p'=>input('p',1)))}" title="删除">
 					<i class="ace-icon fa fa-close bigger-130"></i>																</a>												</div>
 			<div class="hidden-md hidden-lg hidden-sm hidden-xs">
 				<div class="inline position-relative">
