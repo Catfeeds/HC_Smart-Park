@@ -1,6 +1,6 @@
-{foreach name="list" item="v"}
+{foreach $list as $k=>$v}
 <tr>
-    <td class="hidden-xs" height="28">{$v.id}</td>
+    <td class="hidden-xs" height="28">{$k+1}</td>
     <td>{$v.enterprise_list_name}</td>
     <td>{$v.financial_office}</td>
     <td>{$v.financial_office_phone}</td>
