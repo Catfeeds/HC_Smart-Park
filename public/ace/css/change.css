@@ -4,6 +4,7 @@ html{
 body{
     background-color: #eef4f9;
     font-size: 14px;
+    overflow-x: hidden;
 }
 .rigbg{
     color: #667690;
