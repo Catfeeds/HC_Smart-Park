@@ -90,6 +90,14 @@ class Park extends Base
         if (!request()->isAjax()) {
             $this->error('提交方式不正确', url('admin/Park/room_list'));
         }
+        //检测是否已存在改房间号
+        $count = Db::name('ParkRoom')
+            ->where('floor', 'eq', \input('floor'))
+            ->where('room_number', 'eq', \input('room_number'))
+            ->count();
+        if ($count > 0) {
+            $this->error('改房源已存在');
+        }
         //上传图片部分
         $img_one = '';
         $picall_url = '';
@@ -166,7 +174,9 @@ class Park extends Base
             'floor' => \input('floor'),
             'room_number' => \trim(\input('room_number')),
             'area' => \input('area'),
-            'price' => \input('price', 0),
+            'price' => \input('price', 0),  //房租
+            'property' => \input('property', 0),     //物业费
+            'aircon' => \input('aircon', 0),     //空调费
             'decoration' => \input('decoration'),
             'status' => \input('status'),
             'room_img' => $img_one,//封面图片路径
@@ -300,6 +310,9 @@ class Park extends Base
             'room_number' => \trim(\input('room_number')),
             'area' => \input('area'),
             'price' => \input('price', 0),
+            'property' => \input('property', 0),     //物业费
+            'aircon' => \input('aircon', 0),     //空调费
+            'decoration' => \input('decoration'),
             'decoration' => \input('decoration'),
             'room_img' => $img_one,//封面图片路径
             'room_pic_type' => \input('room_pic_type'),
