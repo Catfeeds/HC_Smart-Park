@@ -51,7 +51,7 @@ class Park extends Base
             $where['phase'] = $phase;
         }
         $list = Db::name('ParkRoom pr')
-            ->join('EnterpriseEntryInfo eei','pr.room_number=eei.room','LEFT')
+            ->join('EnterpriseEntryInfo eei', 'pr.room_number=eei.room', 'LEFT')
             ->field('pr.*,eei.enterprise_id')
             ->where($where)
             ->order('floor,room_number')
@@ -75,6 +75,8 @@ class Park extends Base
      */
     public function room_add()
     {
+        $building = Db::name('ParkBuilding')->where('status', 'eq', 1)->select();
+        $this->assign('building',$building);
         return $this->fetch();
     }
 
