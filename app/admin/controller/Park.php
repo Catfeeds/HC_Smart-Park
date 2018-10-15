@@ -76,7 +76,7 @@ class Park extends Base
     public function room_add()
     {
         $building = Db::name('ParkBuilding')->where('status', 'eq', 1)->select();
-        $this->assign('building',$building);
+        $this->assign('building', $building);
         return $this->fetch();
     }
 
@@ -204,7 +204,7 @@ class Park extends Base
 
         ];
         $building = Db::name('ParkBuilding')->where('status', 'eq', 1)->select();
-        $this->assign('building',$building);
+        $this->assign('building', $building);
         $this->assign('info', $info);
         $this->assign('pic_list', $pic_list);
         $this->assign('status', $status);

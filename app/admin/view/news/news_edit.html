@@ -14,7 +14,7 @@
                         <select name="news_columnid"  class="col-sm-3 " required>
                             <option value="">请选择所属栏目</option>
                             {foreach name="menu" item="vo"}
-                            <option value="{$vo.id}"  {if condition="$vo.id eq $news_list['news_columnid']"} selected {/if} {if condition="$vo.menu_type eq 1"}disabled class="bgccc"{else/}class="bgc"{/if}>{$vo.lefthtml}{$vo.menu_name}({if condition="$vo.menu_l eq 'zh-cn'"}中{else /}英{/if}) {if condition="$vo.menu_type eq 1"}(频道页){/if}</option>
+                            <option value="{$vo.id}"  {if condition="$vo.id eq $news_list['news_columnid']"} selected {/if} {if condition="$vo.menu_type eq 1"}disabled class="bgccc"{else/}class="bgc"{/if}>{$vo.lefthtml}{$vo.menu_name}{if condition="$vo.menu_type eq 1"}(频道页){/if}</option>
                             {/foreach}
                         </select>
                     </div>
