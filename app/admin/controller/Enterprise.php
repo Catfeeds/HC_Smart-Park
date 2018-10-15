@@ -97,9 +97,13 @@ class Enterprise extends Base
     public function enterprise_add()
     {
         $building = Db::name('ParkBuilding')->where('status', 'eq', 1)->select();
-        $this->assign('building', $building);
         $room_id = \input('room_id','');
+        $phase = \input('phase','');
+
+        $this->assign('building', $building);
         $this->assign('room',$room_id);
+        $this->assign('phase',$phase);
+
         return \view();
     }
 
