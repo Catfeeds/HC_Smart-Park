@@ -11,7 +11,7 @@
 					</select>
 
 					<select name="phase" class="ajax_change">
-						<option value="">按期数</option>
+						<option value="">按园区</option>
 						<option value="1" {if condition="$phase eq '1'"}selected="selected"{/if}>一期</option>
 						<option value="2" {if condition="$phase eq '2'"}selected="selected"{/if} >二期</option>
 					</select>
@@ -44,12 +44,12 @@
 						<thead>
 						<tr>
 							<th class="hidden-xs">ID</th>
-							<th>期数</th>
+							<th>园区</th>
 							<th>楼层</th>
                             <th>房间号</th>
 							<th class="hidden-sm hidden-xs">面积㎡</th>
 							<th class="hidden-sm hidden-xs">装修</th>
-							<!--<th class="hidden-sm hidden-xs">添加时间</th>-->
+							<th class="hidden-sm hidden-xs">入驻企业</th>
 							<th class="hidden-xs">状态</th>
 							<th style="border-right:#CCC solid 1px;">操作</th>
 						</tr>
