@@ -56,7 +56,6 @@ class Park extends Base
             ->where($where)
             ->order('floor,room_number')
             ->paginate(config('paginate.list_rows'), false, ['query' => get_query()]);
-//        \halt($list);
         $show = $list->render();
         $show = preg_replace("(<a[^>]*page[=|/](\d+).+?>(.+?)<\/a>)", "<a href='javascript:ajax_page($1);'>$2</a>", $show);
         $this->assign('status', $opentype_check);

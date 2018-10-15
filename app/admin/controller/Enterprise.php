@@ -363,7 +363,7 @@ class Enterprise extends Base
     {
         $p = input('p');
         $id = \input('id');
-        $rst = \db('EnterpriseList')->where('id', 'eq', $id)->setField('is_delete', 1);
+        $rst = \db('EnterpriseList')->where('id', 'eq', $id)->delete();
         if ($rst !== false) {
             $room_id = Db::name('EnterpriseEntryInfo')
                 ->where('enterprise_id','eq',$id)
