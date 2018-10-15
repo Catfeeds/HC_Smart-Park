@@ -98,6 +98,8 @@ class Enterprise extends Base
     {
         $building = Db::name('ParkBuilding')->where('status', 'eq', 1)->select();
         $this->assign('building', $building);
+        $room_id = \input('room_id','');
+        $this->assign('room',$room_id);
         return \view();
     }
 
