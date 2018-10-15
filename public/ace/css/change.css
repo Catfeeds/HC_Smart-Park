@@ -15,7 +15,9 @@ body{
 .btn-purple, .btn-purple.focus, .btn-purple:focus{
     background-color: #b8c2d4!important;
     border-color: #b8c2d4;
-
+}
+a:focus, a:hover{
+    color: #27aaf3;
 }
 .btn-purple.focus:hover, .btn-purple:active:hover, .btn-purple:focus:active, .btn-purple:focus:hover, .btn-purple:hover, .open>.btn-purple.dropdown-toggle, .open>.btn-purple.dropdown-toggle.focus, .open>.btn-purple.dropdown-toggle:active, .open>.btn-purple.dropdown-toggle:focus, .open>.btn-purple.dropdown-toggle:hover{
     background-color: #27aaf3!important;
@@ -25,6 +27,53 @@ body{
     background-color: #27aaf3!important;
     border-color: #27aaf3;
 }
+
+
+/*首页样式修改*/
+.common-count {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 49%;
+    padding: 10px;
+    background-color: #f3f6f9;
+    margin-bottom: 15px;
+}
+.common-count h3{
+    margin: 10px;
+    padding: 5px;
+    color: #667690;
+}
+.common-number {
+    box-sizing: border-box;
+    width: 32%;
+    display: inline-block;
+    text-align: center;
+}
+
+.common-number h5 {
+    color: #667690;
+}
+.common-room {
+    box-sizing: border-box;
+    width: 99%;
+    padding: 10px;
+    background-color: #f3f6f9;
+    margin-bottom: 15px;
+}
+.common-room h3{
+    margin: 10px;
+    padding: 5px;
+    color: #667690;
+}
+.common-room .common-number{
+    width: 16%;
+}
+.common-number h3{
+    color: #27aaf3;
+}
+
+
+
 
 
 /*顶部导航样式*/
@@ -152,6 +201,8 @@ body{
 
 
 
+
+/*屏幕适配*/
 @media (min-width: 1200px){
     .container {
         max-width: 1600px;
@@ -161,8 +212,7 @@ body{
         background-color: #eef4f9;
     }
     .container.main-container .sidebar~.footer .footer-inner {
-        margin-left: 51px;
-        width: 1562px;
+        max-width: 1562px;
     }
 }
 
@@ -171,7 +221,8 @@ body{
         width:100%;
     }
     .main-content .h-sidebar.sidebar-fixed+.page-content{
-        margin-top: 178px;
+        /*margin-top: 178px;*/
+        margin-top: 148px;
         padding: 0;
         background-color: #eef4f9;
     }

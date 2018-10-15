@@ -41,6 +41,9 @@
 
     <td>
         <div class="hidden-sm hidden-xs action-buttons">
+            <a class="blue" href="{:url('admin/Park/room_edit',array('id'=>$v['id']))}" title="添加企业">
+                <i class="ace-icon fa  bigger-130 iconfont icon-jia1"></i>
+            </a>
             <a class="blue" href="{:url('admin/Park/room_edit',array('id'=>$v['id']))}" title="修改">
                 <i class="ace-icon fa  bigger-130 iconfont icon-brush"></i>
             </a>
@@ -64,9 +67,18 @@
                 <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
                     <li>
                         <a href="{:url('admin/Park/room_edit',array('id'=>$v['id']))}" class="tooltip-success"
+                           data-rel="tooltip" title="" data-original-title="添加企业">
+											<span class="green">
+												<i class="ace-icon fa iconfont icon-jia1 bigger-120"></i>
+											</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{:url('admin/Park/room_edit',array('id'=>$v['id']))}" class="tooltip-success"
                            data-rel="tooltip" title="" data-original-title="修改">
 											<span class="green">
-												<i class="ace-icon fa fa-pencil bigger-120"></i>
+												<i class="ace-icon fa iconfont icon-brush bigger-120"></i>
 											</span>
                         </a>
                     </li>
@@ -76,7 +88,7 @@
                            class="tooltip-error confirm-rst-url-btn" data-info="你确定要删除吗？" data-rel="tooltip" title=""
                            data-original-title="删除">
 											<span class="red">
-												<i class="ace-icon fa fa-trash-o bigger-120"></i>
+												<i class="ace-icon fa iconfont icon-empty bigger-120"></i>
 											</span>
                         </a>
                     </li>
@@ -85,7 +97,7 @@
                         <a href="{:url('admin/enterprise/enterprise_info',array('id'=>$v['enterprise_id']))}"
                            class="tooltip-success" data-rel="tooltip" title="" data-original-title="查看企业信息">
 											<span class="green">
-												<i class="ace-icon fa fa-eye bigger-120"></i>
+												<i class="ace-icon iconfont icon-chakan bigger-120"></i>
 											</span>
                         </a>
                     </li>
