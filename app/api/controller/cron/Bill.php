@@ -2,24 +2,29 @@
 /**
  * Created by PhpStorm.
  * User: xpwsgg
- * Date: 2018/10/10
- * Time: 14:48
+ * Date: 2018/10/15
+ * Time: 13:38
  */
 
-namespace app\api\controller;
+namespace app\api\controller\cron;
 
 
+use app\api\controller\Common;
 use think\Db;
 
 /**
- * Class Bill
- * @package app\api\controller
+ * Class Bill1
+ * @package app\api\controller\v1
  * 生成企业账单
  */
 class Bill extends Common
 {
     /**
-     *此处为自动生成账单方法
+     * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 此处为自动生成账单方法
      * 根据入驻信息中的支付日期为初始时间计算
      * 财务在后台确认交费后需要修改入驻信息表中的支付时间
      */
@@ -65,6 +70,7 @@ class Bill extends Common
                 ->count();
             if ($rst < 1) {
                 Db::name('EnterpriseBillList')->insert($sqldata);
+                return \show('1', 'OK','','200');
             }
         }
     }
