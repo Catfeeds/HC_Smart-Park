@@ -41,7 +41,7 @@
 
     <td>
         <div class="hidden-sm hidden-xs action-buttons">
-            <a class="blue" href="{:url('admin/Park/room_edit',array('id'=>$v['id']))}" title="添加企业">
+            <a class="blue" href="{:url('admin/Enterprise/enterprise_add',array('room_id'=>$v['room_number'],'phase'=>$v['phase']))}" title="添加企业">
                 <i class="ace-icon fa  bigger-130 iconfont icon-jia1"></i>
             </a>
             <a class="blue" href="{:url('admin/Park/room_edit',array('id'=>$v['id']))}" title="修改">
@@ -66,7 +66,7 @@
                 </button>
                 <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
                     <li>
-                        <a href="{:url('admin/Park/room_edit',array('id'=>$v['id']))}" class="tooltip-success"
+                        <a href="{:url('admin/Enterprise/enterprise_add',array('room_id'=>$v['room_number'],'phase'=>$v['phase']))}" class="tooltip-success"
                            data-rel="tooltip" title="" data-original-title="添加企业">
 											<span class="green">
 												<i class="ace-icon fa iconfont icon-jia1 bigger-120"></i>
