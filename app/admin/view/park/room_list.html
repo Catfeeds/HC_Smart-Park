@@ -12,9 +12,14 @@
 
 					<select name="phase" class="ajax_change">
 						<option value="">按园区</option>
-						<option value="1" {if condition="$phase eq '1'"}selected="selected"{/if}>一期</option>
-						<option value="2" {if condition="$phase eq '2'"}selected="selected"{/if} >二期</option>
-					</select>
+						<option value="1" {if condition="$phase eq '1'"}selected="selected"{/if}>海创大厦一期</option>
+						<option value="2" {if condition="$phase eq '2'"}selected="selected"{/if} >海创大厦二期</option>
+                        <option value="3" {if condition="$phase eq '3'"}selected="selected"{/if} >梧桐苑商业群房</option>
+                        <option value="4" {if condition="$phase eq '4'"}selected="selected"{/if} >孵化楼A</option>
+                        <option value="5" {if condition="$phase eq '5'"}selected="selected"{/if} >孵化楼B</option>
+                        <option value="6" {if condition="$phase eq '6'"}selected="selected"{/if} >孵化楼C</option>
+                        <option value="7" {if condition="$phase eq '7'"}selected="selected"{/if} >孵化楼D</option>
+                    </select>
 
                     <select name="floor" id="floor" class="ajax_change">
                         <option value="">按楼层</option>
