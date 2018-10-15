@@ -58,6 +58,8 @@ class Park extends Base
             ->paginate(config('paginate.list_rows'), false, ['query' => get_query()]);
         $show = $list->render();
         $show = preg_replace("(<a[^>]*page[=|/](\d+).+?>(.+?)<\/a>)", "<a href='javascript:ajax_page($1);'>$2</a>", $show);
+        $building = Db::name('ParkBuilding')->where('status', 'eq', 1)->select();
+        $this->assign('building', $building);
         $this->assign('status', $opentype_check);
         $this->assign('floor', $floor);
         $this->assign('phase', $phase);
