@@ -1,6 +1,5 @@
 {foreach name="list" item="v"}
 <tr>
-    <td class="hidden-xs" height="28">{$v.id}</td>
     {if $v.phase eq 1}
     <td>一期</td>
     {else}
@@ -14,6 +13,7 @@
     {else}
     <td>简装</td>
     {/if}
+    <td>{$v.enterprise_id|getEnterpriseNameById}</td>
     <!--<td class="hidden-sm hidden-xs">{$v.create_time|date='Y-m-d H:i:s',###}</td>-->
     <td class="hidden-xs">
         {if $v.status eq 1}

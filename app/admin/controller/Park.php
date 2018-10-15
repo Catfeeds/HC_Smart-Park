@@ -51,10 +51,8 @@ class Park extends Base
             $where['phase'] = $phase;
         }
         $list = Db::name('ParkRoom pr')
-            ->join('EnterpriseEntryInfo eei', 'pr.room_number=eei.room', 'LEFT')
-            ->field('pr.*,eei.enterprise_id')
             ->where($where)
-            ->order('floor,room_number')
+            ->order('phase,floor,room_number')
             ->paginate(config('paginate.list_rows'), false, ['query' => get_query()]);
         $show = $list->render();
         $show = preg_replace("(<a[^>]*page[=|/](\d+).+?>(.+?)<\/a>)", "<a href='javascript:ajax_page($1);'>$2</a>", $show);
@@ -231,6 +229,15 @@ class Park extends Base
         if (!request()->isAjax()) {
             $this->error('提交方式不正确', url('admin/Park/room_list'));
         }
+        //检测是否已存在改房间号
+        $count = Db::name('ParkRoom')
+            ->where('floor', 'eq', \input('floor'))
+            ->where('room_number', 'eq', \input('room_number'))
+            ->count();
+        if ($count > 0) {
+            $this->error('该房源已存在');
+        }
+
         //获取图片上传后路径
         $pic_oldlist = input('pic_oldlist');//老多图字符串
         $img_one = '';

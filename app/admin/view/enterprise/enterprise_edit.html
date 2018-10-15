@@ -324,11 +324,17 @@
                     <!--入驻信息开始-->
                     <div id="entry" class="tab-pane fade">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 楼层： </label>
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 楼宇： </label>
                             <div class="col-sm-9">
-                                <input type="text" name="floor" id="floor" value="{$info['floor']}" placeholder=""
-                                       class="col-xs-10 col-sm-5" required/>
-                                </span>
+                                <select name="phase" id="phase">
+                                    {foreach $building as $b}
+                                    <option value="{$b.id}" {if $info['phase'] eq $b.id}selected{/if}>{$b.name}</option>
+                                    {/foreach}
+                                </select>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>多个房间号请以"|"分割</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res26"></span>
+							</span>
                             </div>
                         </div>
                         <div class="space-4"></div>
@@ -342,70 +348,13 @@
                             </div>
                         </div>
                         <div class="space-4"></div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 装修状态： </label>
-                            <div class="col-sm-9">
-                                <select name="decorate"  class="col-sm-5 selector" required>
-                                   {if $info['decorate'] eq 1}
-                                    <option value="1" selected>毛坯</option>
-                                    <option value="2">简装</option>
-                                    {else}
-                                    <option value="1">毛坯</option>
-                                    <option value="2" selected>简装</option>
-                                    {/if}
-                                </select>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="space-4"></div>
+
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 保证金： </label>
                             <div class="col-sm-9">
                                 <input type="text" name="margin" id="margin" value="{$info['margin']}" placeholder=""
                                        class="col-xs-10 col-sm-5" required/>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="space-4"></div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 面积： </label>
-                            <div class="col-sm-9">
-                                <input type="text" name="area" id="area" value="{$info['area']}" placeholder=""
-                                       class="col-xs-10 col-sm-5" required/>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="space-4"></div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 每平米租金： </label>
-                            <div class="col-sm-9">
-                                <input type="text" name="rent_square" id="rent_square" value="{$info['rent_square']}"
-                                       placeholder="" class="col-xs-10 col-sm-5" required/>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="space-4"></div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 每平米物业费： </label>
-                            <div class="col-sm-9">
-                                <input type="text" name="property_square" id="property_square"
-                                       value="{$info['property_square']}" placeholder="" class="col-xs-10 col-sm-5"
-                                       required/>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="space-4"></div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 空调费： </label>
-                            <div class="col-sm-9">
-                                <input type="text" name="air_conditioner" id="air_conditioner"
-                                       value="{$info['air_conditioner']}" placeholder="" class="col-xs-10 col-sm-5"
-                                       required/>
                                 </span>
                             </div>
                         </div>

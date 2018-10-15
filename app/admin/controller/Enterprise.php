@@ -96,6 +96,8 @@ class Enterprise extends Base
      */
     public function enterprise_add()
     {
+        $building = Db::name('ParkBuilding')->where('status', 'eq', 1)->select();
+        $this->assign('building', $building);
         return \view();
     }
 
@@ -218,13 +220,16 @@ class Enterprise extends Base
                         ->where('enterprise_id', $enterprise_id)
                         ->field('confirmer,room')
                         ->find();
-                    //将企业的id写入房源表里并改变状态
+                    //将企业的id写入房源表里并改变状态,多房间
                     $room_num = \trim($info['room']);
+                    $room_num = \explode('|', $room_num);
                     $field = [
                         'status' => 1,
                         'enterprise_id' => $enterprise_info['enterprise_id'],
                     ];
-                    Db::name('ParkRoom')->where('room_number', 'eq', $room_num)->setField($field);
+                    Db::name('ParkRoom')
+                        ->where('phase','eq',$info['phase'])
+                        ->where('room_number', 'in', $room_num)->setField($field);
                     $modelE->commit();
                     $modelD->commit();
                     $modleC->commit();
@@ -266,11 +271,15 @@ class Enterprise extends Base
 
         $info = $basic_info + $business_info + $contact_info + $bank_info + $entry_info;
         $this->assign('info', $info);
+        $building = Db::name('ParkBuilding')->where('status', 'eq', 1)->select();
+        $this->assign('building', $building);
         return \view();
     }
 
     /**
      *执行编辑操作
+     * 1,清空原来的房源信息和房源表同步
+     * 2,添加修改后的房源信息和房源表同步
      */
     public function enterprise_runedit()
     {
@@ -316,6 +325,15 @@ class Enterprise extends Base
             //原有图片
             $data['enterprise_list_logo'] = input('oldcheckpicname');
         }
+        //更新之前先清空原有的房间信息
+        $old_room_num = Db::name('EnterpriseEntryInfo')->where('enterprise_id', 'eq', $data['id'])->value('room');
+        $old_room_num = \explode('|', $old_room_num);
+        $fields0 = [
+            'status' => 0,
+            'enterprise_id' => ''
+        ];
+        Db::name('ParkRoom')->where('room_number', 'in', $old_room_num)->setField($fields0);
+
         \model('EnterpriseList')->allowField(true)->save($data, ['id' => $data['id']]);
         \model('EnterpriseBusiness')->allowField(true)->save($data, ['enterprise_id' => $data['id']]);
         \model('EnterpriseContact')->allowField(true)->save($data, ['enterprise_id' => $data['id']]);
@@ -325,11 +343,19 @@ class Enterprise extends Base
         //入库之后找出需要的信息进行相关操作
         $info = Db::name('EnterpriseEntryInfo')
             ->where('enterprise_id', $data['id'])
-            ->field('confirmer,room')
+            ->field('confirmer,room,phase')
             ->find();
-        //根据企业房间号,需要更改房源的状态
+        //根据企业房间号,需要更改房源的状态,
         $room_num = \trim($info['room']);
-        Db::name('ParkRoom')->where('room_number', 'eq', $room_num)->setField('status', 1);
+        $room_num = \explode('|', $room_num);
+        $fields = [
+            'status' => 1,
+            'enterprise_id' => $data['id']
+        ];
+        Db::name('ParkRoom')
+            ->where('phase','eq',$info['phase'])
+            ->where('room_number', 'in', $room_num)
+            ->setField($fields);
         if (empty($info['confirmer'])) {
             $this->error('修改失败');
         } else {
@@ -366,10 +392,10 @@ class Enterprise extends Base
         $rst = \db('EnterpriseList')->where('id', 'eq', $id)->delete();
         if ($rst !== false) {
             $room_id = Db::name('EnterpriseEntryInfo')
-                ->where('enterprise_id','eq',$id)
+                ->where('enterprise_id', 'eq', $id)
                 ->value('room');
             //删除企业后,将房源状态改为未租
-            Db::name('ParkRoom')->where('room_number','eq',$room_id)->setField('status',0);
+            Db::name('ParkRoom')->where('room_number', 'eq', $room_id)->setField('status', 0);
             $this->success('删除成功', url('admin/Enterprise/enterprise_list', array('p' => $p)));
         } else {
             $this->error('删除失败', url('admin/Enterprise/enterprise_list', array('p' => $p)));
