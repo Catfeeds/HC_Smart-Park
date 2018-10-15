@@ -8,6 +8,9 @@
 						<option value="">按租赁状态</option>
 						<option value="1" {if condition="$status eq '1'"}selected="selected"{/if}>已租</option>
 						<option value="0" {if condition="$status eq '0'"}selected="selected"{/if} >未租</option>
+                        <option value="2" {if condition="$status eq '2'"}selected="selected"{/if} >已售</option>
+                        <option value="3" {if condition="$status eq '3'"}selected="selected"{/if} >已定</option>
+                        <option value="4" {if condition="$status eq '4'"}selected="selected"{/if} >自留</option>
 					</select>
 
 					<select name="phase" class="ajax_change">

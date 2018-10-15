@@ -19,12 +19,12 @@ use think\Route;
  * update        PUT        test/:id        update
  * delete        DELETE    test/:id        delete
  */
-//-------用于定时任务-------------------------
+//-------用于定时任务接口-------------------------
 //自动生成账单接口,
 Route::get('bill', 'api/cron.Bill/index');
 //自动删除runtime文件夹
 Route::get('deldir', 'api/cron.Runtime/index');
-
+//-----------定时任务列表结束-----------------------
 
 //检测更新
 Route::resource('version', 'api/Version');
