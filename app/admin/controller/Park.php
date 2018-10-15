@@ -203,6 +203,8 @@ class Park extends Base
             4 => '已售'
 
         ];
+        $building = Db::name('ParkBuilding')->where('status', 'eq', 1)->select();
+        $this->assign('building',$building);
         $this->assign('info', $info);
         $this->assign('pic_list', $pic_list);
         $this->assign('status', $status);
