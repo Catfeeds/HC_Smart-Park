@@ -229,14 +229,6 @@ class Park extends Base
         if (!request()->isAjax()) {
             $this->error('提交方式不正确', url('admin/Park/room_list'));
         }
-        //检测是否已存在改房间号
-        $count = Db::name('ParkRoom')
-            ->where('floor', 'eq', \input('floor'))
-            ->where('room_number', 'eq', \input('room_number'))
-            ->count();
-        if ($count > 0) {
-            $this->error('该房源已存在');
-        }
 
         //获取图片上传后路径
         $pic_oldlist = input('pic_oldlist');//老多图字符串
