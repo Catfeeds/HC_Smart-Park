@@ -77,16 +77,26 @@ class Enterprise extends Base
         $id = \input('id');
         //基本信息
         $basic_info = Db::name('EnterpriseList')->where('id', $id)->find();
+        if (empty($bank_info))
+            $bank_info = [];
         //业务信息
         $business_info = Db::name('EnterpriseBusiness')->where('enterprise_id', $id)->find();
+        if (empty($business_info))
+            $business_info = [];
         //联系信息
         $contact_info = Db::name('EnterpriseContact')->where('enterprise_id', $id)->find();
+        if (empty($contact_info))
+            $contact_info = [];
         //银行信息
         $bank_info = Db::name('EnterpriseBank')->where('enterprise_id', $id)->find();
+        if (empty($bank_info))
+            $bank_info = [];
         //入驻信息
         $entry_info = Db::name('EnterpriseEntryInfo')->where('enterprise_id', $id)->find();
+        if (empty($entry_info))
+            $entry_info = [];
 
-        $info = $basic_info + $business_info + $contact_info + $bank_info + $entry_info;
+        $info = \array_merge($basic_info, $business_info, $contact_info, $bank_info, $entry_info);
         $this->assign('info', $info);
         return $this->fetch();
     }
@@ -97,12 +107,12 @@ class Enterprise extends Base
     public function enterprise_add()
     {
         $building = Db::name('ParkBuilding')->where('status', 'eq', 1)->select();
-        $room_id = \input('room_id','');
-        $phase = \input('phase','');
+        $room_id = \input('room_id', '');
+        $phase = \input('phase', '');
 
         $this->assign('building', $building);
-        $this->assign('room',$room_id);
-        $this->assign('phase',$phase);
+        $this->assign('room', $room_id);
+        $this->assign('phase', $phase);
 
         return \view();
     }
@@ -127,42 +137,97 @@ class Enterprise extends Base
 
             if ($enterprise_info['confirmer'] != '') {
                 //logo图片
-                $checkpic = input('checkpic');
-                $oldcheckpic = input('oldcheckpic');
                 $img_url = '';
-                if ($checkpic != $oldcheckpic) {
-                    $file = request()->file('file0');
-                    if (!empty($file)) {
-                        if (config('storage.storage_open')) {
-                            //七牛
-                            $upload = \Qiniu::instance();
-                            $info = $upload->upload();
-                            $error = $upload->getError();
-                            if ($info) {
-                                $img_url = config('storage.domain') . $info[0]['key'];
-                            } else {
-                                $this->error($error);//否则就是上传错误，显示错误原因
-                            }
+                $file = request()->file('file0');
+                if (!empty($file)) {
+                    if (config('storage.storage_open')) {
+                        //七牛
+                        $upload = \Qiniu::instance();
+                        $info = $upload->upload();
+                        $error = $upload->getError();
+                        if ($info) {
+                            $img_url = config('storage.domain') . $info[0]['key'];
                         } else {
-                            //本地
-                            $validate = config('upload_validate');
-                            $info = $file->validate($validate)->rule('uniqid')->move(ROOT_PATH . config('upload_path') . DS . date('Y-m-d'));
-                            if ($info) {
-                                $img_url = config('upload_path') . '/' . date('Y-m-d') . '/' . $info->getFilename();
-                                //写入数据库
-                                $data['uptime'] = time();
-                                $data['filesize'] = $info->getSize();
-                                $data['path'] = $img_url;
-                                Db::name('plug_files')->insert($data);
-                            } else {
-                                $this->error($file->getError());//否则就是上传错误，显示错误原因
-                            }
+                            $this->error($error);//否则就是上传错误，显示错误原因
                         }
-                        $enterprise_info['enterprise_list_logo'] = $img_url;
+                    } else {
+                        //本地
+                        $validate = config('upload_validate');
+                        $info = $file->validate($validate)->rule('uniqid')->move(ROOT_PATH . config('upload_path') . DS . date('Y-m-d'));
+                        if ($info) {
+                            $img_url = config('upload_path') . '/' . date('Y-m-d') . '/' . $info->getFilename();
+                            //写入数据库
+                            $data['uptime'] = time();
+                            $data['filesize'] = $info->getSize();
+                            $data['path'] = $img_url;
+                            Db::name('plug_files')->insert($data);
+                        } else {
+                            $this->error($file->getError());//否则就是上传错误，显示错误原因
+                        }
                     }
-                } else {
-                    //原有图片
-                    $enterprise_info['enterprise_list_logo'] = input('oldcheckpicname');
+                    $enterprise_info['enterprise_list_logo'] = $img_url;
+                }
+
+                //营业执照图片
+                $file1 = request()->file('file1');
+                if (!empty($file1)) {
+                    if (config('storage.storage_open')) {
+                        //七牛
+                        $upload1 = \Qiniu::instance();
+                        $info1 = $upload1->upload();
+                        $error1 = $upload1->getError();
+                        if ($info1) {
+                            $img_url1 = config('storage.domain') . $info1[0]['key'];
+                        } else {
+                            $this->error($error1);//否则就是上传错误，显示错误原因
+                        }
+                    } else {
+                        //本地
+                        $validate1 = config('upload_validate');
+                        $info1 = $file1->validate($validate1)->rule('uniqid')->move(ROOT_PATH . config('upload_path') . DS . date('Y-m-d'));
+                        if ($info1) {
+                            $img_url1 = config('upload_path') . '/' . date('Y-m-d') . '/' . $info1->getFilename();
+                            //写入数据库
+                            $data1['uptime'] = time();
+                            $data1['filesize'] = $info1->getSize();
+                            $data1['path'] = $img_url1;
+                            Db::name('plug_files')->insert($data1);
+                        } else {
+                            $this->error($file1->getError());//否则就是上传错误，显示错误原因
+                        }
+                    }
+                    $enterprise_info['enterprise_list_license_img'] = $img_url1;
+                }
+
+                //租房合同照片
+                $file2 = request()->file('file2');
+                if (!empty($file2)) {
+                    if (config('storage.storage_open')) {
+                        //七牛
+                        $upload2 = \Qiniu::instance();
+                        $info2 = $upload2->upload();
+                        $error2 = $upload2->getError();
+                        if ($info2) {
+                            $img_url2 = config('storage.domain') . $info2[0]['key'];
+                        } else {
+                            $this->error($error2);//否则就是上传错误，显示错误原因
+                        }
+                    } else {
+                        //本地
+                        $validate2 = config('upload_validate');
+                        $info2 = $file2->validate($validate2)->rule('uniqid')->move(ROOT_PATH . config('upload_path') . DS . date('Y-m-d'));
+                        if ($info2) {
+                            $img_url2 = config('upload_path') . '/' . date('Y-m-d') . '/' . $info2->getFilename();
+                            //写入数据库
+                            $data2['uptime'] = time();
+                            $data2['filesize'] = $info2->getSize();
+                            $data2['path'] = $img_url2;
+                            Db::name('plug_files')->insert($data2);
+                        } else {
+                            $this->error($file2->getError());//否则就是上传错误，显示错误原因
+                        }
+                    }
+                    $enterprise_info['contract_img'] = $img_url2;
                 }
                 //企业基本信息写入
                 $enterprise_info['enterprise_list_legal_setup_day'] = \strtotime($enterprise_info['enterprise_list_legal_setup_day']);//成立日期转时间戳
@@ -224,7 +289,7 @@ class Enterprise extends Base
                     //入库之后找出需要的信息进行相关操作
                     $info = Db::name('EnterpriseEntryInfo')
                         ->where('enterprise_id', $enterprise_id)
-                        ->field('confirmer,room')
+                        ->field('confirmer,room,phase')
                         ->find();
                     //将企业的id写入房源表里并改变状态,多房间
                     $room_num = \trim($info['room']);
@@ -234,7 +299,7 @@ class Enterprise extends Base
                         'enterprise_id' => $enterprise_info['enterprise_id'],
                     ];
                     Db::name('ParkRoom')
-                        ->where('phase','eq',$info['phase'])
+                        ->where('phase', 'eq', $info['phase'])
                         ->where('room_number', 'in', $room_num)->setField($field);
                     $modelE->commit();
                     $modelD->commit();
@@ -359,7 +424,7 @@ class Enterprise extends Base
             'enterprise_id' => $data['id']
         ];
         Db::name('ParkRoom')
-            ->where('phase','eq',$info['phase'])
+            ->where('phase', 'eq', $info['phase'])
             ->where('room_number', 'in', $room_num)
             ->setField($fields);
         if (empty($info['confirmer'])) {

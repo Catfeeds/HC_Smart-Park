@@ -1879,9 +1879,10 @@ function getUserNameById($member_id)
  * @return mixed
  * 根据企业ID获取企业名称
  */
-function getEnterpriseNameById($enterprise_id){
+function getEnterpriseNameById($enterprise_id)
+{
     $name = Db::name('EnterpriseList')
-        ->where('id','eq',$enterprise_id)
+        ->where('id', 'eq', $enterprise_id)
         ->value('enterprise_list_name');
     return $name;
 }
@@ -1944,4 +1945,15 @@ function check_unique_username($name)
     } else {
         return true;
     }
+}
+
+/**
+ * @param $id
+ * @return mixed
+ * 获取楼宇的中文名称
+ */
+function getBuildingNameById($id)
+{
+    $name = Db::name('ParkBuilding')->where('id', 'eq', $id)->value('name');
+    return $name;
 }

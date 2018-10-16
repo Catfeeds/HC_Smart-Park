@@ -712,6 +712,22 @@ $("#file0").change(function () {
         $("#img0").attr("src", objUrl);
     }
 });
+
+$("#file1").change(function () {
+    var objUrl = getObjectURL(this.files[0]);
+    console.log("objUrl = " + objUrl);
+    if (objUrl) {
+        $("#img1").attr("src", objUrl);
+    }
+});
+
+$("#file2").change(function () {
+    var objUrl = getObjectURL(this.files[0]);
+    console.log("objUrl = " + objUrl);
+    if (objUrl) {
+        $("#img2").attr("src", objUrl);
+    }
+});
 //
 $("input[id^=file_]").change(function () {
     var field=$(this).data('field'),objUrl = getObjectURL2(this.files[0],field);
@@ -756,6 +772,16 @@ function backpic2(picurl,field) {
 function backpic(picurl) {
     $("#img0").attr("src", picurl);//还原修改前的图片
     $('#file0').val("");//清空文本框的值
+    $("input[name='oldcheckpic']").val(picurl);//清空文本框的值
+}
+function backpic1(picurl) {
+    $("#img1").attr("src", picurl);//还原修改前的图片
+    $('#file1').val("");//清空文本框的值
+    $("input[name='oldcheckpic']").val(picurl);//清空文本框的值
+}
+function backpic12(picurl) {
+    $("#img2").attr("src", picurl);//还原修改前的图片
+    $('#file2').val("");//清空文本框的值
     $("input[name='oldcheckpic']").val(picurl);//清空文本框的值
 }
 /* 新闻多图删除 */

@@ -32,9 +32,6 @@
                         <div class="form-group" id="pic_list">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 企业LOGO </label>
                             <div class="col-sm-9">
-                                <input type="hidden" name="checkpic" id="checkpic" value=""/>
-                                <input type="hidden" name="oldcheckpic" id="oldcheckpic" value=""/>
-                                <input type="hidden" name="oldcheckpicname" id="oldcheckpic" value=""/>
                                 <a href="javascript:;" class="file" title="点击选择所要上传的图片">
                                     <input type="file" name="file0" id="file0" multiple="multiple"/>
                                     选择上传文件
@@ -45,6 +42,23 @@
                                 撤销上传
                             </a>
                                 <div><img src="__PUBLIC__/img/no_img.jpg" height="70" id="img0"></div>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group" id="pic_list1">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 营业执照 </label>
+                            <div class="col-sm-9">
+                                <a href="javascript:;" class="file" title="点击选择所要上传的图片">
+                                    <input type="file" name="file1" id="file1" multiple="multiple"/>
+                                    选择上传文件
+                                </a>
+                                &nbsp;&nbsp;<a href="javascript:;"
+                                               onclick="return backpic1('__PUBLIC__/img/no_img.jpg');" title="还原修改前的图片"
+                                               class="file">
+                                撤销上传
+                            </a>
+                                <div><img src="__PUBLIC__/img/no_img.jpg" height="70" id="img1"></div>
                             </div>
                         </div>
                         <div class="space-4"></div>
@@ -478,18 +492,6 @@
                         </div>
                         <div class="space-4"></div>
 
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 费用总计： </label>
-                            <div class="col-sm-9">
-                                <input type="text" name="total_cost" id="total_cost" value="" placeholder=""
-                                       class="col-xs-10 col-sm-5" required/>
-                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
-                                <span class="help-inline col-xs-12 col-sm-7">
-								<span class="middle" id="res36"></span>
-							</span>
-                            </div>
-                        </div>
-                        <div class="space-4"></div>
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 费用生效日期： </label>
@@ -516,6 +518,24 @@
                             </div>
                         </div>
                         <div class="space-4"></div>
+
+                        <div class="form-group" id="pic_list2">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 租房合同 </label>
+                            <div class="col-sm-9">
+                                <a href="javascript:;" class="file" title="点击选择所要上传的图片">
+                                    <input type="file" name="file2" id="file2" multiple="multiple"/>
+                                    选择上传文件
+                                </a>
+                                &nbsp;&nbsp;<a href="javascript:;"
+                                               onclick="return backpic12('__PUBLIC__/img/no_img.jpg');" title="还原修改前的图片"
+                                               class="file">
+                                撤销上传
+                            </a>
+                                <div><img src="__PUBLIC__/img/no_img.jpg" height="70" id="img2"></div>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 签订人： </label>
