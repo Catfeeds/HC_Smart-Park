@@ -714,7 +714,7 @@ $("#file0").change(function () {
 });
 
 $("#file1").change(function () {
-    var objUrl = getObjectURL(this.files[0]);
+    var objUrl = getObjectURL1(this.files[0]);
     console.log("objUrl = " + objUrl);
     if (objUrl) {
         $("#img1").attr("src", objUrl);
@@ -722,7 +722,7 @@ $("#file1").change(function () {
 });
 
 $("#file2").change(function () {
-    var objUrl = getObjectURL(this.files[0]);
+    var objUrl = getObjectURL12(this.files[0]);
     console.log("objUrl = " + objUrl);
     if (objUrl) {
         $("#img2").attr("src", objUrl);
@@ -746,6 +746,34 @@ function getObjectURL(file) {
         url = window.URL.createObjectURL(file);
     } else if (window.webkitURL != undefined) { // webkit or chrome
         $("#oldcheckpic").val("nopic");
+        url = window.webkitURL.createObjectURL(file);
+    }
+    return url;
+}
+function getObjectURL1(file) {
+    var url = null;
+    if (window.createObjectURL != undefined) { // basic
+        $("#oldcheckpic1").val("nopic");
+        url = window.createObjectURL(file);
+    } else if (window.URL != undefined) { // mozilla(firefox)
+        $("#oldcheckpic1").val("nopic");
+        url = window.URL.createObjectURL(file);
+    } else if (window.webkitURL != undefined) { // webkit or chrome
+        $("#oldcheckpic1").val("nopic");
+        url = window.webkitURL.createObjectURL(file);
+    }
+    return url;
+}
+function getObjectURL12(file) {
+    var url = null;
+    if (window.createObjectURL != undefined) { // basic
+        $("#oldcheckpic2").val("nopic");
+        url = window.createObjectURL(file);
+    } else if (window.URL != undefined) { // mozilla(firefox)
+        $("#oldcheckpic2").val("nopic");
+        url = window.URL.createObjectURL(file);
+    } else if (window.webkitURL != undefined) { // webkit or chrome
+        $("#oldcheckpic2").val("nopic");
         url = window.webkitURL.createObjectURL(file);
     }
     return url;

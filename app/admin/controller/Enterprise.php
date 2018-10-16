@@ -396,6 +396,85 @@ class Enterprise extends Base
             //原有图片
             $data['enterprise_list_logo'] = input('oldcheckpicname');
         }
+
+        //营业执照
+        $checkpic1 = input('checkpic1');
+        $oldcheckpic1 = input('oldcheckpic1');
+        $img_url1 = '';
+        if ($checkpic1 != $oldcheckpic1) {
+            $file1 = request()->file('file1');
+            if (!empty($file1)) {
+                if (config('storage.storage_open')) {
+                    //七牛
+                    $upload1 = \Qiniu::instance();
+                    $info1 = $upload1->upload();
+                    $error1 = $upload1->getError();
+                    if ($info1) {
+                        $img_url1 = config('storage.domain') . $info1[0]['key'];
+                    } else {
+                        $this->error($error1);//否则就是上传错误，显示错误原因
+                    }
+                } else {
+                    //本地
+                    $validate1 = config('upload_validate');
+                    $info1 = $file1->validate($validate1)->rule('uniqid')->move(ROOT_PATH . config('upload_path') . DS . date('Y-m-d'));
+                    if ($info1) {
+                        $img_url1 = config('upload_path') . '/' . date('Y-m-d') . '/' . $info1->getFilename();
+                        //写入数据库
+                        $datai1['uptime'] = time();
+                        $datai1['filesize'] = $info1->getSize();
+                        $datai1['path'] = $img_url1;
+                        Db::name('plug_files')->insert($datai1);
+                    } else {
+                        $this->error($file1->getError());//否则就是上传错误，显示错误原因
+                    }
+                }
+                $data['enterprise_list_license_img'] = $img_url1;
+            }
+        } else {
+            //原有图片
+            $data['enterprise_list_license_img'] = input('oldcheckpicname1');
+        }
+
+        //租房合同
+        $checkpic2 = input('checkpic2');
+        $oldcheckpic2 = input('oldcheckpic2');
+        $img_url2 = '';
+        if ($checkpic2 != $oldcheckpic2) {
+            $file2 = request()->file('file2');
+            if (!empty($file2)) {
+                if (config('storage.storage_open')) {
+                    //七牛
+                    $upload2 = \Qiniu::instance();
+                    $info2 = $upload2->upload();
+                    $error2 = $upload2->getError();
+                    if ($info2) {
+                        $img_url2 = config('storage.domain') . $info2[0]['key'];
+                    } else {
+                        $this->error($error2);//否则就是上传错误，显示错误原因
+                    }
+                } else {
+                    //本地
+                    $validate2 = config('upload_validate');
+                    $info2 = $file2->validate($validate2)->rule('uniqid')->move(ROOT_PATH . config('upload_path') . DS . date('Y-m-d'));
+                    if ($info2) {
+                        $img_url2 = config('upload_path') . '/' . date('Y-m-d') . '/' . $info2->getFilename();
+                        //写入数据库
+                        $datai2['uptime'] = time();
+                        $datai2['filesize'] = $info2->getSize();
+                        $datai2['path'] = $img_url2;
+                        Db::name('plug_files')->insert($datai2);
+                    } else {
+                        $this->error($file2->getError());//否则就是上传错误，显示错误原因
+                    }
+                }
+                $data['contract_img'] = $img_url2;
+            }
+        } else {
+            //原有图片
+            $data['contract_img'] = input('oldcheckpicname2');
+        }
+
         //更新之前先清空原有的房间信息
         $old_room_num = Db::name('EnterpriseEntryInfo')->where('enterprise_id', 'eq', $data['id'])->value('room');
         $old_room_num = \explode('|', $old_room_num);
@@ -410,6 +489,8 @@ class Enterprise extends Base
         \model('EnterpriseContact')->allowField(true)->save($data, ['enterprise_id' => $data['id']]);
         \model('EnterpriseBank')->allowField(true)->save($data, ['enterprise_id' => $data['id']]);
         \model('EnterpriseEntryInfo')->allowField(true)->save($data, ['enterprise_id' => $data['id']]);
+        //图片怎么也改不了,mmp的直接这么写就好了,不过为什么!!!!!
+        Db::name('EnterpriseEntryInfo')->where('enterprise_id', 'eq', $data['id'])->setField('contract_img', $data['contract_img']);
 
         //入库之后找出需要的信息进行相关操作
         $info = Db::name('EnterpriseEntryInfo')

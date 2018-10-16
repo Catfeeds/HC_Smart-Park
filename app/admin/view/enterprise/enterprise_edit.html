@@ -45,6 +45,26 @@
                         </div>
                         <div class="space-4"></div>
 
+                        <div class="form-group" id="pic_list1">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 营业执照 </label>
+                            <div class="col-sm-9">
+                                <input type="hidden" name="checkpic1" id="checkpic1" value="{$info.enterprise_list_license_img}" />
+                                <input type="hidden" name="oldcheckpic1" id="oldcheckpic1" value="{$info.enterprise_list_license_img}" />
+                                <input type="hidden" name="oldcheckpicname1" id="oldcheckpic1" value="{$info.enterprise_list_license_img}" />
+                                <a href="javascript:;" class="file" title="点击选择所要上传的图片">
+                                    <input type="file" name="file1" id="file1" multiple="multiple"/>
+                                    选择上传文件
+                                </a>
+                                <span class="lbl">&nbsp;&nbsp;
+								<img src="{$info.enterprise_list_license_img|get_imgurl}" width="100" height="70" id="img1">
+							</span>&nbsp;&nbsp;
+                                &nbsp;&nbsp;<a href="javascript:;" onclick="return backpic1('{$info.enterprise_list_license_img}');" title="还原修改前的图片" class="file">
+                                撤销上传
+                            </a>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
                         <input type="hidden" name="id" value="{$info['enterprise_id']}">
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1">
@@ -331,9 +351,7 @@
                                     <option value="{$b.id}" {if $info['phase'] eq $b.id}selected{/if}>{$b.name}</option>
                                     {/foreach}
                                 </select>
-                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>多个房间号请以"|"分割</span>
-                                <span class="help-inline col-xs-12 col-sm-7">
-								<span class="middle" id="res26"></span>
+
 							</span>
                             </div>
                         </div>
@@ -344,7 +362,9 @@
                             <div class="col-sm-9">
                                 <input type="text" name="room" id="room" value="{$info['room']}" placeholder=""
                                        class="col-xs-10 col-sm-5" required/>
-                                </span>
+                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>多个房间号请以"|"分割</span>
+                                <span class="help-inline col-xs-12 col-sm-7">
+								<span class="middle" id="res26"></span>
                             </div>
                         </div>
                         <div class="space-4"></div>
@@ -393,16 +413,6 @@
                         <div class="space-4"></div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 费用总计： </label>
-                            <div class="col-sm-9">
-                                <input type="text" name="total_cost" id="total_cost" value="{$info['total_cost']}"
-                                       placeholder="" class="col-xs-10 col-sm-5" required/>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="space-4"></div>
-
-                        <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 签订日期： </label>
                             <div class="col-sm-9">
                                 <input type="text" name="signed_day" id="signed_day"
@@ -420,6 +430,26 @@
                                        value="{$info['pay_time']|date='Y-m-d H:i:s',###}" placeholder=""
                                        class="col-xs-10 col-sm-5" required/>
                                 </span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group" id="pic_list2">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 租房合同 </label>
+                            <div class="col-sm-9">
+                                <input type="hidden" name="checkpic2" id="checkpic2" value="{$info.contract_img}" />
+                                <input type="hidden" name="oldcheckpic2" id="oldcheckpic2" value="{$info.contract_img}" />
+                                <input type="hidden" name="oldcheckpicname2" id="oldcheckpic2" value="{$info.contract_img}" />
+                                <a href="javascript:;" class="file" title="点击选择所要上传的图片">
+                                    <input type="file" name="file2" id="file2" multiple="multiple"/>
+                                    选择上传文件
+                                </a>
+                                <span class="lbl">&nbsp;&nbsp;
+								<img src="{$info.contract_img|get_imgurl}" width="100" height="70" id="img2">
+							</span>&nbsp;&nbsp;
+                                &nbsp;&nbsp;<a href="javascript:;" onclick="return backpic12('{$info.contract_img}');" title="还原修改前的图片" class="file">
+                                撤销上传
+                            </a>
                             </div>
                         </div>
                         <div class="space-4"></div>
