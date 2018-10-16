@@ -123,16 +123,16 @@
                     <div class="col-sm-10">
                         <div class="radio">
                             <label>
-                                <input name="news_pic_type" {if condition="$news_list['news_pic_type'] eq 1" }checked{/if}
+                                <input name="news_pic_type" {if $news_list['news_pic_type'] eq 1 }checked{/if}
                                 id="news_pic_list" checked type="radio" class="ace" value="1"/>
                                 <span class="lbl"> 无图模式</span>
                             </label>
                             <label>
-                                <input name="news_pic_type" {if condition="$news_list['news_pic_type'] eq 2" }checked{/if}
+                                <input name="news_pic_type" {if $news_list['news_pic_type'] eq 2 }checked{/if}
                                 id="news_pic_qqlist" type="radio" class="ace" value="2"/>
                                 <span class="lbl"> 多图模式</span>
                             </label>
-                            {if condition="$news_list['news_pic_type'] eq 2"}
+                            {if $news_list['news_pic_type'] eq 2}
                             <label>
                                 <span class="btn btn-minier btn-success" data-toggle="modal" data-target="#myModal">查看已上传的图片</span>
                             </label>
@@ -144,9 +144,7 @@
                 <link href="__PUBLIC__/ppy/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
                 <script src="__PUBLIC__/ppy/js/fileinput.js" type="text/javascript"></script>
                 <script src="__PUBLIC__/ppy/js/fileinput_locale_zh.js" type="text/javascript"></script>
-                <div class="form-group" id="pic_list" {if condition="$news_list['news_pic_type'] eq 1"
-                     }style="display:none" {
-                /if}>
+                <div class="form-group" id="pic_list" {if $news_list['news_pic_type'] eq 1}style="display:none" {/if}>
                 <div class="col-sm-10 col-sm-offset-2" style="padding-top:5px;">
                     <input id="file-5" name="pic_all[]" type="file" class="file" multiple data-preview-file-type="any"
                            data-upload-url="#" data-preview-file-icon=""><br/>
