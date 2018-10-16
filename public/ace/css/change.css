@@ -72,7 +72,23 @@ a:focus, a:hover{
     color: #27aaf3;
 }
 
-
+/*首页财务相关样式*/
+.index-financial{
+    width: 60.5%;
+}
+.index-financial-number h5{
+    display: inline-block;
+}
+.index-financial-number h3{
+    display: inline-block;
+}
+/*首页企业相关样式*/
+.index-enterprise {
+    width: 38%;
+}
+.index-enterprise  .common-number{
+    width: 49%;
+}
 
 
 
