@@ -484,13 +484,67 @@ class Enterprise extends Base
         ];
         Db::name('ParkRoom')->where('room_number', 'in', $old_room_num)->setField($fields0);
 
-        \model('EnterpriseList')->allowField(true)->save($data, ['id' => $data['id']]);
-        \model('EnterpriseBusiness')->allowField(true)->save($data, ['enterprise_id' => $data['id']]);
-        \model('EnterpriseContact')->allowField(true)->save($data, ['enterprise_id' => $data['id']]);
-        \model('EnterpriseBank')->allowField(true)->save($data, ['enterprise_id' => $data['id']]);
-        \model('EnterpriseEntryInfo')->allowField(true)->save($data, ['enterprise_id' => $data['id']]);
-        //图片怎么也改不了,mmp的直接这么写就好了,不过为什么!!!!!删除runtime后又好了, 先留着吧,万一哪天不好了呢
-        //Db::name('EnterpriseEntryInfo')->where('enterprise_id', 'eq', $data['id'])->setField('contract_img', $data['contract_img']);
+        $sql_data1 = [
+            'enterprise_list_name' => $data['enterprise_list_name'],
+            'enterprise_list_logo' => $data['enterprise_list_logo'],
+            'enterprise_list_license_img' => $data['enterprise_list_license_img'],
+            'enterprise_list_credit_code'=>$data['enterprise_list_credit_code'],
+            'enterprise_list_legal_representative'=>$data['enterprise_list_legal_representative'],
+            'enterprise_list_legal_id_number'=>$data['enterprise_list_legal_id_number'],
+            'enterprise_list_legal_phone_number'=>$data['enterprise_list_legal_phone_number'],
+            'enterprise_list_legal_setup_day'=>$data['enterprise_list_legal_setup_day'],
+            'enterprise_list_legal_registered_capital'=>$data['enterprise_list_legal_registered_capital'],
+            'enterprise_list_legal_registered_address'=>$data['enterprise_list_legal_registered_address'],
+            'enterprise_list_legal_business_address'=>$data['enterprise_list_legal_business_address'],
+            'enterprise_list_legal_book_address'=>$data['enterprise_list_legal_book_address'],
+            'enterprise_list_legal_tax_type'=>$data['enterprise_list_legal_tax_type']
+        ];
+        Db::name('EnterpriseList')->where('id','eq',$data['id'])->update($sql_data1);
+
+        $sql_data2=[
+            'registration_type'=>$data['registration_type'],
+            'enterprise_category'=>$data['enterprise_category'],
+            'technical_field'=>$data['technical_field'],
+            'website_url'=>$data['website_url']
+        ];
+        Db::name('EnterpriseBusiness')->where('enterprise_id','eq',$data['id'])->update($sql_data2);
+
+        $sql_data3=[
+          'contact_address'=>$data['contact_address'],
+            'zip_code'=>$data['zip_code'],
+            'contact'=>$data['contact'],
+            'contact_number'=>$data['contact_number'],
+            'fax'=>$data['fax']
+        ];
+        Db::name('EnterpriseContact')->where('enterprise_id','eq',$data['id'])->update($sql_data3);
+
+        $sql_data4=[
+          'bank_name'=>$data['bank_name'],
+          'bank_deposit'=>$data['bank_deposit'],
+          'account'=>$data['account'],
+          'financial_office'=>$data['financial_office'],
+            'financial_office_phone'=>$data['financial_office_phone'],
+            'financial_office_email'=>$data['financial_office_email'],
+        ];
+        Db::name('EnterpriseBank')->where('enterprise_id','eq',$data['id'])->update($sql_data4);
+
+        $sql_data5=[
+          'phase'=>$data['phase'],
+          'room'=>\trim($data['room']),
+          'margin'=>\trim($data['margin']),
+          'rent_period'=>\trim($data['rent_period']),
+          'property_period'=>\trim($data['property_period']),
+            'air_conditioner_period'=>\trim($data['air_conditioner_period']),
+            'signed_day'=>\strtotime($data['signed_day']),
+            'pay_time'=>\strtotime($data['pay_time']),
+            'contract_img'=>$data['contract_img'],
+            'signer'=>$data['signer'],
+            'operator'=>$data['operator'],
+            'drawer'=>$data['drawer'],
+            'confirmer'=>$data['confirmer']
+        ];
+        Db::name('EnterpriseEntryInfo')->where('enterprise_id', 'eq', $data['id'])->update($sql_data5);
+
 
         //入库之后找出需要的信息进行相关操作
         $info = Db::name('EnterpriseEntryInfo')
