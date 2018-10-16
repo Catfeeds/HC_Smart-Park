@@ -489,8 +489,8 @@ class Enterprise extends Base
         \model('EnterpriseContact')->allowField(true)->save($data, ['enterprise_id' => $data['id']]);
         \model('EnterpriseBank')->allowField(true)->save($data, ['enterprise_id' => $data['id']]);
         \model('EnterpriseEntryInfo')->allowField(true)->save($data, ['enterprise_id' => $data['id']]);
-        //图片怎么也改不了,mmp的直接这么写就好了,不过为什么!!!!!
-        Db::name('EnterpriseEntryInfo')->where('enterprise_id', 'eq', $data['id'])->setField('contract_img', $data['contract_img']);
+        //图片怎么也改不了,mmp的直接这么写就好了,不过为什么!!!!!删除runtime后又好了, 先留着吧,万一哪天不好了呢
+        //Db::name('EnterpriseEntryInfo')->where('enterprise_id', 'eq', $data['id'])->setField('contract_img', $data['contract_img']);
 
         //入库之后找出需要的信息进行相关操作
         $info = Db::name('EnterpriseEntryInfo')
@@ -542,12 +542,20 @@ class Enterprise extends Base
         $p = input('p');
         $id = \input('id');
         $rst = \db('EnterpriseList')->where('id', 'eq', $id)->delete();
+
         if ($rst !== false) {
             $room_id = Db::name('EnterpriseEntryInfo')
                 ->where('enterprise_id', 'eq', $id)
                 ->value('room');
+            $room_id = \explode('|', $room_id);
             //删除企业后,将房源状态改为未租
-            Db::name('ParkRoom')->where('room_number', 'eq', $room_id)->setField('status', 0);
+            Db::name('ParkRoom')->where('room_number', 'in', $room_id)->setField('status', 0);
+
+            //删除企业一并删除其他表中的记录
+            Db::name('EnterpriseBank')->where('enterprise_id', 'eq', $id)->delete();
+            Db::name('EnterpriseBusiness')->where('enterprise_id', 'eq', $id)->delete();
+            Db::name('EnterpriseContact')->where('enterprise_id', 'eq', $id)->delete();
+            Db::name('EnterpriseEntryInfo')->where('enterprise_id', 'eq', $id)->delete();
             $this->success('删除成功', url('admin/Enterprise/enterprise_list', array('p' => $p)));
         } else {
             $this->error('删除失败', url('admin/Enterprise/enterprise_list', array('p' => $p)));
