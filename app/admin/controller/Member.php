@@ -304,8 +304,8 @@ class Member extends Base
         $sl_data['member_group_id'] = $member_group['member_group_id'];
         $sl_data['member_group_name'] = $member_group['member_group_name'];
         $sl_data['member_group_open'] = $member_group['member_group_open'];
-        $sl_data['member_group_toplimit'] = $member_group['member_group_toplimit'];
-        $sl_data['member_group_bomlimit'] = $member_group['member_group_bomlimit'];
+//        $sl_data['member_group_toplimit'] = $member_group['member_group_toplimit'];
+//        $sl_data['member_group_bomlimit'] = $member_group['member_group_bomlimit'];
         $sl_data['member_group_order'] = $member_group['member_group_order'];
         $sl_data['code'] = 1;
         return json($sl_data);
