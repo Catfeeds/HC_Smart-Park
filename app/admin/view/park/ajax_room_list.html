@@ -41,9 +41,16 @@
 
     <td>
         <div class="hidden-sm hidden-xs action-buttons">
+            {if $v.status eq 0}
             <a class="blue" href="{:url('admin/Enterprise/enterprise_add',array('room_id'=>$v['room_number'],'phase'=>$v['phase']))}" title="添加企业">
                 <i class="ace-icon fa  bigger-130 iconfont icon-jia1"></i>
             </a>
+            {else}
+            <a class="blue" href="{:url('admin/enterprise/enterprise_info',array('id'=>$v['enterprise_id']))}"
+               title="查看入驻企业">
+                <i class="ace-icon fa  bigger-130 iconfont icon-chakan"></i>
+            </a>
+            {/if}
             <a class="blue" href="{:url('admin/Park/room_edit',array('id'=>$v['id']))}" title="修改">
                 <i class="ace-icon fa  bigger-130 iconfont icon-brush"></i>
             </a>
@@ -52,12 +59,6 @@
                title="删除">
                 <i class="ace-icon fa  bigger-130 iconfont icon-empty"></i>
             </a>
-            {if $v.status eq 1}
-            <a class="blue" href="{:url('admin/enterprise/enterprise_info',array('id'=>$v['enterprise_id']))}"
-               title="查看入驻企业">
-                <i class="ace-icon fa  bigger-130 iconfont icon-chakan"></i>
-            </a>
-            {/if}
         </div>
         <div class="hidden-md hidden-lg">
             <div class="inline position-relative">
