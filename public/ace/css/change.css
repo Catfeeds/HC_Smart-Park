@@ -91,6 +91,21 @@ a:focus, a:hover{
 }
 
 
+.common-echarts {
+    box-sizing: border-box;
+    width: 99%;
+    padding: 10px;
+    background-color: #f3f6f9;
+    margin-bottom: 15px;
+}
+#index-pie{
+    height:400px;
+}
+
+
+
+
+
 
 /*顶部导航样式*/
 .nav-list>li .submenu {
