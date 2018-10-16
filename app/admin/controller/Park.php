@@ -9,6 +9,7 @@
 namespace app\admin\controller;
 
 
+use app\admin\model\ParkBuilding;
 use app\admin\model\ParkMeetingRoom;
 use app\admin\model\ParkRoom;
 use think\Db;
@@ -571,6 +572,77 @@ class Park extends Base
             } else {
                 $this->error("删除失败！", url('admin/Park/meeting_room_list', array('p' => $p)));
             }
+        }
+    }
+
+
+    /**
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 楼宇列表
+     */
+    public function add_building()
+    {
+        $model = new ParkBuilding();
+        $list = $model->select();
+        $this->assign('list', $list);
+        return $this->fetch();
+    }
+
+    /**
+     *添加楼宇
+     */
+    public function building_runadd()
+    {
+        $sqldata = [
+            'name' => \input('name'),
+            'status' => \input('status'),
+            'create_time' => \date('Y-m-d H:i:s')
+        ];
+        $res = Db::name('ParkBuilding')->insert($sqldata);
+        if ($res) {
+            $this->success('添加成功');
+        } else {
+            $this->error('添加失败');
+        }
+    }
+
+    /**
+     *修改楼宇状态
+     */
+    public function building_state()
+    {
+        $id = input('x');
+        if (!$id) {
+            $this->error('ID:' . $id . '不存在', url('admin/Park/add_building'));
+        }
+        $status = Db::name('ParkBuilding')->where(array('id' => $id))->value('status');//判断当前状态情况
+        if ($status == 1) {
+            $statedata = array('status' => 0);
+            Db::name('ParkBuilding')->where(array('id' => $id))->setField($statedata);
+            $this->success('状态禁止');
+        } else {
+            $statedata = array('status' => 1);
+            Db::name('ParkBuilding')->where(array('id' => $id))->setField($statedata);
+            $this->success('状态开启');
+        }
+    }
+
+    /**
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     * 删除楼宇
+     */
+    public function building_del()
+    {
+        $id = \input('id');
+        $res = Db::name('ParkBuilding')->where('id', 'eq', $id)->delete();
+        if ($res) {
+            $this->success('删除成功');
+        } else {
+            $this->error('删除失败');
         }
     }
 }

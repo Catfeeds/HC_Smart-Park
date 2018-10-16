@@ -10,6 +10,7 @@ namespace app\api\controller\v1;
 
 
 use app\api\controller\Common;
+use app\api\model\EnterpriseList;
 
 /**
  * Class Enterprise
@@ -32,14 +33,19 @@ class Enterprise extends Common
         return \show(1, 'OK', $list,200);
     }
 
+
     /**
      * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      * 企业详情
      */
     public function read()
     {
         $id = \input('id');
-        $detail = \model('EnterpriseList')->getEnterpriseDetailById($id);
+        $model = new EnterpriseList();
+        $detail = $model->getEnterpriseDetailById($id);
         return \show('1', 'OK',$detail, 200);
     }
 }
