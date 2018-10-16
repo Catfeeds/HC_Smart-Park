@@ -325,6 +325,8 @@ class Park extends Base
         );
         if (!empty($img_one)) {
             $sl_data['room_img'] = $img_one;
+        }else{
+            $sl_data['room_img'] = \input('oldcheckpic');
         }
         $sl_data['room_pic_allurl'] = $pic_oldlist . $picall_url;
         $model = new ParkRoom();
