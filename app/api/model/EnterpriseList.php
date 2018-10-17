@@ -37,7 +37,8 @@ class EnterpriseList extends Model
 
         'entry_info.id',
         'entry_info.enterprise_id',
-        'entry_info.floor'
+        'entry_info.floor',
+        'entry_info.decorate'
     ];
 
     /**
