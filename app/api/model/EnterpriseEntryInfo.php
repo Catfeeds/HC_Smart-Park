@@ -9,6 +9,7 @@
 namespace app\api\model;
 
 
+use think\Db;
 use think\Model;
 
 /**
@@ -17,10 +18,61 @@ use think\Model;
  */
 class EnterpriseEntryInfo extends Model
 {
-//    返回拼接好的公司地址
+    /**
+     * @param $room
+     * @return string
+     * 返回拼接好的公司地址
+     */
     public function getRoomAttr($room)
     {
         $address = '淮安市通源路9号海创空间大厦' . $room . '室';
         return $address;
+    }
+
+    /**
+     * @param $time
+     * @return false|string
+     * 格式化的签订日期
+     */
+    public function getSignedDayAttr($time)
+    {
+        return \date('Y-m-d', $time);
+    }
+
+    /**
+     * @param $time
+     * @return false|string
+     * 格式化的支付日期
+     */
+    public function getPayTimeAttr($time)
+    {
+        return \date('Y-m-d H:i:s', $time);
+    }
+
+    /**
+     * @param $phase
+     * @return mixed
+     * 获取楼宇的中文名
+     */
+    public function getPhaseAttr($phase)
+    {
+        $name = Db::name('ParkBuilding')->where('id', 'eq', $phase)->value('name');
+        return $name;
+    }
+
+    /**
+     * @param $decorate
+     * @return string
+     * 返回装修状态
+     */
+    public function getDecorateAttr($decorate)
+    {
+        if ($decorate == 1) {
+            $value = '毛坯';
+        } elseif ($decorate == 2) {
+            $value = '简装';
+        }
+
+        return $value;
     }
 }

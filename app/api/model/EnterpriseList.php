@@ -21,13 +21,54 @@ class EnterpriseList extends Model
      * @var array
      * 显示字段
      */
-    protected $visible = [
+    protected $hidden = [
         'id',
-        'enterprise_list_name',
-        'enterprise_list_logo',
-        'enterprise_list_addtime',
-        'entry_info.room'
+        'enterprise_list_open',
+        'is_delete',
+
+        'bank_info.id',
+        'bank_info.enterprise_id',
+
+        'enterprise_business.id',
+        'enterprise_business.enterprise_id',
+
+        'enterprise_contact.id',
+        'enterprise_contact.enterprise_id',
+
+        'entry_info.id',
+        'entry_info.enterprise_id',
+        'entry_info.floor'
     ];
+
+    /**
+     * @return \think\model\relation\HasOne
+     * 关联银行信息
+     */
+    function BankInfo()
+    {
+        return $this->hasOne('EnterpriseBank', 'enterprise_id', 'id')
+            ->setEagerlyType(1);
+    }
+
+    /**
+     * @return \think\model\relation\HasOne
+     *关联业务信息
+     */
+    function EnterpriseBusiness()
+    {
+        return $this->hasOne('EnterpriseBusiness', 'enterprise_id', 'id')
+            ->setEagerlyType(1);
+    }
+
+    /**
+     * @return \think\model\relation\HasOne
+     * 关联联系方式
+     */
+    function EnterpriseContact()
+    {
+        return $this->hasOne('EnterpriseContact', 'enterprise_id', 'id')
+            ->setEagerlyType(1);
+    }
 
     /**
      * @return \think\model\relation\HasOne
@@ -51,6 +92,16 @@ class EnterpriseList extends Model
     }
 
     /**
+     * @param $time
+     * @return false|string
+     * 返回格式化的成立日期
+     */
+    public function getEnterpriseListLegalSetupDayAttr($time)
+    {
+        return \date('Y-m-d', $time);
+    }
+
+    /**
      * @param $enterprise_list_logo
      * @return string
      * 返回拼接好打企业logo地址
@@ -59,6 +110,20 @@ class EnterpriseList extends Model
     {
         if (!empty($enterprise_list_logo)) {
             return \get_app_imgurl($enterprise_list_logo);
+        } else {
+            return '';
+        }
+    }
+
+    /**
+     * @param $pic
+     * @return string
+     * 返回拼接好打企业营业执照地址
+     */
+    public function getEnterpriseListLicenseImgAttr($pic)
+    {
+        if (!empty($pic)) {
+            return \get_app_imgurl($pic);
         } else {
             return '';
         }
@@ -100,7 +165,7 @@ class EnterpriseList extends Model
     public function getEnterpriseDetailById($id)
     {
         return $this
-            ::with('EntryInfo')
+            ::with('BankInfo,EnterpriseBusiness,EnterpriseContact,EntryInfo')
             ->where('id', 'eq', $id)
             ->find();
     }
