@@ -90,16 +90,17 @@ a:focus, a:hover{
     width: 49%;
 }
 
-
+/*图表样式*/
 .common-echarts {
     box-sizing: border-box;
     width: 99%;
-    padding: 10px;
-    background-color: #f3f6f9;
+    background-color: #eef4f9;
     margin-bottom: 15px;
 }
-#index-pie{
+.common-charts-style {
     height:400px;
+    background-color: #f3f6f9;
+    margin-bottom: 15px;
 }
 
 
