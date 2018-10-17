@@ -243,7 +243,7 @@ class Enterprise extends Base
 
                 //插入企业基本信息表并返回企业id
                 $modleA->startTrans();
-                $enterprise_id = $modleA->allowField(true)->save($enterprise_info);
+                $modleA->allowField(true)->save($enterprise_info);
 
                 //企业ID
                 $enterprise_info['enterprise_id'] = $modleA->id;
@@ -286,21 +286,6 @@ class Enterprise extends Base
                     $modelB->rollback();
                     $modleA->rollback();
                 } else {
-                    //入库之后找出需要的信息进行相关操作
-                    $info = Db::name('EnterpriseEntryInfo')
-                        ->where('enterprise_id', $enterprise_id)
-                        ->field('confirmer,room,phase')
-                        ->find();
-                    //将企业的id写入房源表里并改变状态,多房间
-                    $room_num = \trim($info['room']);
-                    $room_num = \explode('|', $room_num);
-                    $field = [
-                        'status' => 1,
-                        'enterprise_id' => $enterprise_info['enterprise_id'],
-                    ];
-                    Db::name('ParkRoom')
-                        ->where('phase', 'eq', $info['phase'])
-                        ->where('room_number', 'in', $room_num)->setField($field);
                     $modelE->commit();
                     $modelD->commit();
                     $modleC->commit();
@@ -317,10 +302,92 @@ class Enterprise extends Base
                         'member_list_addtime' => \time(),
                     ];
                     Db::name('MemberList')->insert($m_data);    //插入一个会员
+
+                    //入库之后找出企业的入驻信息进行相关操作
+                    $entryinfo = Db::name('EnterpriseEntryInfo')
+                        ->where('enterprise_id', $enterprise_info['enterprise_id'])
+                        ->find();
+                    //将企业的id写入房源表里并改变状态,多房间
+                    $room_num = \trim($entryinfo['room']);
+                    $room_num = \explode('|', $room_num);
+                    $field = [
+                        'status' => 1,
+                        'enterprise_id' => $enterprise_info['enterprise_id'],
+                    ];
+                    Db::name('ParkRoom')
+                        ->where('phase', 'eq', $entryinfo['phase'])
+                        ->where('room_number', 'in', $room_num)->setField($field);
+
+                    //入驻时候添加首个账单
+                    $bill = $this->getAmount($entryinfo);
+                    $rent_amount = $bill['rent_amount'];
+                    $property_amount = $bill['property_amount'];
+                    $aircon_amount = $bill['aircon_amount'];
+                    $amount = $rent_amount + $property_amount + $aircon_amount;
+                    $bill_data = [
+                        'enterprise_id' => $entryinfo['enterprise_id'],
+                        'rent_amount' => $rent_amount,
+                        'property_amount' => $property_amount,
+                        'aircon_amount' => $aircon_amount,
+                        'discounted_amount' => 0,     //可手动调整金额
+                        'amount' => $amount,
+                        'bill_time' => $entryinfo['signed_day'],
+                        'is_notify' => 0, //默认未通知
+                        'status' => 0,       //默认待缴费
+                    ];
+                    Db::name('EnterpriseBillList')->insert($bill_data);
+
                     $this->success('添加成功');
                 }
             }
         }
+    }
+
+    /**
+     * @param $info
+     * @return float|int
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 计算首次的账单
+     */
+    function getAmount($info)
+    {
+        if (empty($info)) {
+            $data = [
+                'rent_amount' => 0,
+                'property_amount' => 0,
+                'aircon_amount' => 0,
+                'amount' => 0,
+            ];
+            return $data;
+        }
+        $rent_amount = 0;
+        $property_amount = 0;
+        $aircon_amount = 0;
+        $phase = $info['phase'];
+        $room_num = \trim($info['room']);
+        $room_num = \explode('|', $room_num);
+        foreach ($room_num as $v) {
+            $room_info = Db::name('ParkRoom')
+                ->where('phase', 'eq', $phase)
+                ->where('room_number', 'eq', $v)
+                ->find();
+            $per_rent = $room_info['price'] * $room_info['area'] * $info['rent_period']; //每间房的房租
+            $rent_amount += $per_rent;      //所有房间的房租
+            $per_property = $room_info['property'] * $room_info['area'] * $info['property_period']; //每间房的物业费
+            $property_amount += $per_property;//所有房间的物业费
+            $per_aircon = $room_info['aircon'] * $room_info['area'] * $info['air_conditioner_period'];  //每间房的空调费
+            $aircon_amount += $per_aircon;  //所有房间的空调费
+        }
+        $amount = $rent_amount + $per_property + $aircon_amount;
+        $data = [
+            'rent_amount' => $rent_amount,
+            'property_amount' => $property_amount,
+            'aircon_amount' => $aircon_amount,
+            'amount' => $amount,
+        ];
+        return $data;
     }
 
     /**
@@ -488,60 +555,60 @@ class Enterprise extends Base
             'enterprise_list_name' => $data['enterprise_list_name'],
             'enterprise_list_logo' => $data['enterprise_list_logo'],
             'enterprise_list_license_img' => $data['enterprise_list_license_img'],
-            'enterprise_list_credit_code'=>$data['enterprise_list_credit_code'],
-            'enterprise_list_legal_representative'=>$data['enterprise_list_legal_representative'],
-            'enterprise_list_legal_id_number'=>$data['enterprise_list_legal_id_number'],
-            'enterprise_list_legal_phone_number'=>$data['enterprise_list_legal_phone_number'],
-            'enterprise_list_legal_setup_day'=>$data['enterprise_list_legal_setup_day'],
-            'enterprise_list_legal_registered_capital'=>$data['enterprise_list_legal_registered_capital'],
-            'enterprise_list_legal_registered_address'=>$data['enterprise_list_legal_registered_address'],
-            'enterprise_list_legal_business_address'=>$data['enterprise_list_legal_business_address'],
-            'enterprise_list_legal_book_address'=>$data['enterprise_list_legal_book_address'],
-            'enterprise_list_legal_tax_type'=>$data['enterprise_list_legal_tax_type']
+            'enterprise_list_credit_code' => $data['enterprise_list_credit_code'],
+            'enterprise_list_legal_representative' => $data['enterprise_list_legal_representative'],
+            'enterprise_list_legal_id_number' => $data['enterprise_list_legal_id_number'],
+            'enterprise_list_legal_phone_number' => $data['enterprise_list_legal_phone_number'],
+            'enterprise_list_legal_setup_day' => $data['enterprise_list_legal_setup_day'],
+            'enterprise_list_legal_registered_capital' => $data['enterprise_list_legal_registered_capital'],
+            'enterprise_list_legal_registered_address' => $data['enterprise_list_legal_registered_address'],
+            'enterprise_list_legal_business_address' => $data['enterprise_list_legal_business_address'],
+            'enterprise_list_legal_book_address' => $data['enterprise_list_legal_book_address'],
+            'enterprise_list_legal_tax_type' => $data['enterprise_list_legal_tax_type']
         ];
-        Db::name('EnterpriseList')->where('id','eq',$data['id'])->update($sql_data1);
+        Db::name('EnterpriseList')->where('id', 'eq', $data['id'])->update($sql_data1);
 
-        $sql_data2=[
-            'registration_type'=>$data['registration_type'],
-            'enterprise_category'=>$data['enterprise_category'],
-            'technical_field'=>$data['technical_field'],
-            'website_url'=>$data['website_url']
+        $sql_data2 = [
+            'registration_type' => $data['registration_type'],
+            'enterprise_category' => $data['enterprise_category'],
+            'technical_field' => $data['technical_field'],
+            'website_url' => $data['website_url']
         ];
-        Db::name('EnterpriseBusiness')->where('enterprise_id','eq',$data['id'])->update($sql_data2);
+        Db::name('EnterpriseBusiness')->where('enterprise_id', 'eq', $data['id'])->update($sql_data2);
 
-        $sql_data3=[
-          'contact_address'=>$data['contact_address'],
-            'zip_code'=>$data['zip_code'],
-            'contact'=>$data['contact'],
-            'contact_number'=>$data['contact_number'],
-            'fax'=>$data['fax']
+        $sql_data3 = [
+            'contact_address' => $data['contact_address'],
+            'zip_code' => $data['zip_code'],
+            'contact' => $data['contact'],
+            'contact_number' => $data['contact_number'],
+            'fax' => $data['fax']
         ];
-        Db::name('EnterpriseContact')->where('enterprise_id','eq',$data['id'])->update($sql_data3);
+        Db::name('EnterpriseContact')->where('enterprise_id', 'eq', $data['id'])->update($sql_data3);
 
-        $sql_data4=[
-          'bank_name'=>$data['bank_name'],
-          'bank_deposit'=>$data['bank_deposit'],
-          'account'=>$data['account'],
-          'financial_office'=>$data['financial_office'],
-            'financial_office_phone'=>$data['financial_office_phone'],
-            'financial_office_email'=>$data['financial_office_email'],
+        $sql_data4 = [
+            'bank_name' => $data['bank_name'],
+            'bank_deposit' => $data['bank_deposit'],
+            'account' => $data['account'],
+            'financial_office' => $data['financial_office'],
+            'financial_office_phone' => $data['financial_office_phone'],
+            'financial_office_email' => $data['financial_office_email'],
         ];
-        Db::name('EnterpriseBank')->where('enterprise_id','eq',$data['id'])->update($sql_data4);
+        Db::name('EnterpriseBank')->where('enterprise_id', 'eq', $data['id'])->update($sql_data4);
 
-        $sql_data5=[
-          'phase'=>$data['phase'],
-          'room'=>\trim($data['room']),
-          'margin'=>\trim($data['margin']),
-          'rent_period'=>\trim($data['rent_period']),
-          'property_period'=>\trim($data['property_period']),
-            'air_conditioner_period'=>\trim($data['air_conditioner_period']),
-            'signed_day'=>\strtotime($data['signed_day']),
-            'pay_time'=>\strtotime($data['pay_time']),
-            'contract_img'=>$data['contract_img'],
-            'signer'=>$data['signer'],
-            'operator'=>$data['operator'],
-            'drawer'=>$data['drawer'],
-            'confirmer'=>$data['confirmer']
+        $sql_data5 = [
+            'phase' => $data['phase'],
+            'room' => \trim($data['room']),
+            'margin' => \trim($data['margin']),
+            'rent_period' => \trim($data['rent_period']),
+            'property_period' => \trim($data['property_period']),
+            'air_conditioner_period' => \trim($data['air_conditioner_period']),
+            'signed_day' => \strtotime($data['signed_day']),
+            'pay_time' => \strtotime($data['pay_time']),
+            'contract_img' => $data['contract_img'],
+            'signer' => $data['signer'],
+            'operator' => $data['operator'],
+            'drawer' => $data['drawer'],
+            'confirmer' => $data['confirmer']
         ];
         Db::name('EnterpriseEntryInfo')->where('enterprise_id', 'eq', $data['id'])->update($sql_data5);
 
@@ -595,6 +662,7 @@ class Enterprise extends Base
     {
         $p = input('p');
         $id = \input('id');
+        $info = Db::name('EnterpriseList')->where('id','eq',$id)->find();
         $rst = \db('EnterpriseList')->where('id', 'eq', $id)->delete();
 
         if ($rst !== false) {
@@ -610,6 +678,8 @@ class Enterprise extends Base
             Db::name('EnterpriseBusiness')->where('enterprise_id', 'eq', $id)->delete();
             Db::name('EnterpriseContact')->where('enterprise_id', 'eq', $id)->delete();
             Db::name('EnterpriseEntryInfo')->where('enterprise_id', 'eq', $id)->delete();
+            //同时删除用户表中的法人账户
+            Db::name('MemberList')->where('member_list_username','eq',$info['enterprise_list_legal_representative'])->delete();
             $this->success('删除成功', url('admin/Enterprise/enterprise_list', array('p' => $p)));
         } else {
             $this->error('删除失败', url('admin/Enterprise/enterprise_list', array('p' => $p)));
