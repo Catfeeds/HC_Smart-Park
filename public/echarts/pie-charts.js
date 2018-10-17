@@ -111,8 +111,8 @@ if (option1 && typeof option1 === "object") {
 }
 
 // 每月企业入驻数据
-var dom1 = document.getElementById("index-line-enterprise");
-var myChart = echarts.init(dom1);
+var dom2 = document.getElementById("index-line-enterprise");
+var myChart = echarts.init(dom2);
 var app = {};
 option2 = null;
 option2 = {
@@ -152,4 +152,135 @@ option2 = {
 ;
 if (option2 && typeof option2 === "object") {
     myChart.setOption(option2, true);
+}
+
+
+//注册用户数
+var dom3 = document.getElementById("index-line-user");
+var myChart = echarts.init(dom3);
+var app = {};
+option3 = null;
+option3 = {
+    title: {
+        text: '每月注册、认证用户',
+        textStyle: {
+            color: '#667690',
+            fontSize:22,
+            fontWeight: 500,
+        },
+        padding: 5,
+        left: 10,
+        top: 10,
+        subtext: '',
+        x:'left',
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        orient: 'vertical',
+        right: 0,
+        top: 80,
+        itemGap: 38,
+        data:['注册用户','认证用户']
+    },
+    toolbox: {
+        show: true,
+        right: 30,
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    color:['#0071c4','#93d6fc','#5bbaf0', '#b7d4e4', '#3ba2dc'],
+    xAxis:  {
+        type: 'category',
+        boundaryGap: false,
+        data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'注册用户',
+            type:'line',
+            data:[11, 15, 13, 12, 13, 10, 11, 15, 13, 12, 13, 10],
+        },
+        {
+            name:'认证用户',
+            type:'line',
+            data:[13, 10, 11, 2, 5, 3, 2, 10, 13, 10, 11,],
+        }
+    ]
+};
+if (option3 && typeof option3 === "object") {
+    myChart.setOption(option3, true);
+}
+
+
+//各楼层入驻情况
+var dom4 = document.getElementById("index-line-floor");
+var myChart = echarts.init(dom4);
+var app = {};
+option4 = null;
+option4 = {
+    color:['#0071c4','#93d6fc','#5bbaf0', '#b7d4e4', '#3ba2dc'],
+    title: {
+        text: '各楼层入驻情况',
+        textStyle: {
+            color: '#667690',
+            fontSize:22,
+            fontWeight: 500,
+        },
+        padding: 5,
+        left: 10,
+        top: 10,
+        subtext: '',
+        x:'left',
+    },
+    toolbox: {
+        show: true,
+        right: 30,
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'category',
+            data : ['一楼', '二楼', '三楼', '四楼', '五楼', '六楼', '七楼', '八楼', '九楼', '十楼', '十一楼', '十二楼', '十三楼', '十四楼', '十五楼', '十六楼', '十七楼', '十八楼', '十九楼', '二十楼', '二十一楼', '二十二楼', '二十三楼'],
+            axisTick: {
+                alignWithLabel: true
+            }
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'直接访问',
+            type:'bar',
+            barWidth: '60%',
+            data:[0, 0 , 0, 0, 10, 8, 5, 3, 3, 6, 5, 2, 4 ,6 ,5, 5,2,1,3,5,1,2,3]
+        }
+    ]
+};
+;
+if (option4 && typeof option4 === "object") {
+    myChart.setOption(option4, true);
 }

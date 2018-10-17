@@ -235,6 +235,11 @@ a:focus, a:hover{
 
 
 /*屏幕适配*/
+@media screen and (min-width:1200px) and (max-width:1380px){
+    .sidebar+.main-content{
+        margin-left: 210px;
+    }
+}
 @media (min-width: 1200px){
     .container {
         max-width: 1600px;
