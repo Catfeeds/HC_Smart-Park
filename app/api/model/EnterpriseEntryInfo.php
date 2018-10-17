@@ -75,4 +75,18 @@ class EnterpriseEntryInfo extends Model
 
         return $value;
     }
+
+    /**
+     * @param $pic
+     * @return string
+     * 返回企业的租房合同
+     */
+    public function getContractImgAttr($pic)
+    {
+        if (!empty($pic)) {
+            return \get_app_imgurl($pic);
+        } else {
+            return '';
+        }
+    }
 }
