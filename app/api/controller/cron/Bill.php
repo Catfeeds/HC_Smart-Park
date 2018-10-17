@@ -30,7 +30,6 @@ class Bill extends Common
      */
     public function index()
     {
-        $limit_time = '-2 weeks';
         //两周内需要续费的企业id/s
         $enterprise_ids = Db::name('EnterpriseBillList')->whereTime('bill_time', $limit_time)->column('enterprise_id');
         if (empty($enterprise_ids)) {
