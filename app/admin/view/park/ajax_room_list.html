@@ -1,10 +1,6 @@
 {foreach name="list" item="v"}
 <tr>
-    {if $v.phase eq 1}
-    <td>一期</td>
-    {else}
-    <td>二期</td>
-    {/if}
+    <td>{$v.phase|getBuildingNameById}</td>
     <td>{$v.floor}</td>
     <td>{$v.room_number}</td>
     <td>{$v.area}</td>
