@@ -12,10 +12,10 @@ namespace app\api\controller\cron;
 use app\api\controller\Common;
 use think\Db;
 
+
 /**
- * Class Bill1
- * @package app\api\controller\v1
- * 生成企业账单
+ * Class Bill
+ * @package app\api\controller\cron
  */
 class Bill extends Common
 {
@@ -31,46 +31,90 @@ class Bill extends Common
     public function index()
     {
         $limit_time = '-2 weeks';
-        $db = Db::name('EnterpriseEntryInfo');
+        //两周内需要续费的企业id/s
+        $enterprise_ids = Db::name('EnterpriseBillList')->whereTime('bill_time', $limit_time)->column('enterprise_id');
+        if (empty($enterprise_ids)) {
+            return '本次没有新账单!';
+        } else {
+            $length = \count($enterprise_ids);
+            for ($i = 0; $i < $length; $i++) {
+                //企业id是$enterprise_ids[$i],查出当前企业的签约信息
+                $info = Db::name('EnterpriseEntryInfo')
+                    ->where('enterprise_id', 'eq', $enterprise_ids[$i])
+                    ->find();
+                $room_id = $info['room'];
+                //可能存在一起多房,所以转为数组
+                $room_id = \explode('|', $room_id);
 
-        //支付时间小于两周的企业的id
-        $enterprise_ids = $db->whereTime('pay_time', $limit_time)->column('enterprise_id');
-        $length = \count($enterprise_ids);
-        for ($i = 0; $i < $length; $i++) {
-            //企业id是$enterprise_ids[$i],查出当前企业的签约信息
-            $info = $db->where('enterprise_id', 'eq', $enterprise_ids[$i])->find();
+                //该企业的上次交费信息
+                $last_bill_info = Db::name('EnterpriseBillList')
+                    ->where('enterprise_id', 'eq', $enterprise_ids[$i])
+                    ->order('bill_time desc')
+                    ->find();
 
-            //计算物业费=物业费*面积*交费周期
-            $property_amount = $info['property_square'] * $info['area'] * $info['property_period'];
+                $rent_amount = 0;
+                $property_amount = 0;
+                $aircon_amount = 0;
 
-            //计算房租=单价*面积*交费周期
-            $rent_amount = $info['rent_square'] * $info['area'] * $info['rent_period'];
+                foreach ($room_id as $v) {
+                    //找出该企业的房间信息
+                    $room_info = Db::name('ParkRoom')
+                        ->where('phase', 'eq', $info['phase'])
+                        ->where('room_number', 'eq', $v)
+                        ->find();
 
-            //计算空调费用
-            $aircon_amount = 0.45 * $info['area'] * $info['air_conditioner_period'];
+                    //如果缴费日期在两星期内就生成房租账单
+                    if ($last_bill_info['next_rent_time'] - \time() < 1209600) {
+                        //每间房的房租
+                        $per_rent = $room_info['price'] * $room_info['area'] * $info['rent_period'];
+                    } else {
+                        $per_rent = 0;
+                    }
+                    $rent_amount += $per_rent;      //所有房间的房租
 
-            //入库数据
-            $sqldata = [
-                'enterprise_id' => $enterprise_ids[$i],
-                'rent_amount' => $rent_amount,
-                'property_amount' => $property_amount,
-                'aircon_amount' => $aircon_amount,
-                'amount' => $rent_amount + $property_amount + $aircon_amount,
-                'bill_time' => \time(),
-                'is_notify' => 0,
-                'status' => 0
-            ];
-            //不生成一个月内相同信息的账单
-            $rst = Db::name('EnterpriseBillList')
-                ->where('enterprise_id', $enterprise_ids[$i])
-                ->where('rent_amount', $rent_amount)
-                ->where('property_amount', $property_amount)
-                ->where('aircon_amount', $aircon_amount)
-                ->whereTime('bill_time', '-1 month')
-                ->count();
-            if ($rst < 1) {
-                Db::name('EnterpriseBillList')->insert($sqldata);
-                return \show('1', 'OK','','200');
+                    //如果缴费日期在两星期内就生成物业费账单
+                    if ($last_bill_info['next_rent_time'] - \time() < 1209600) {
+                        //每间房的物业费
+                        $per_property = $room_info['property'] * $room_info['area'] * $info['property_period'];
+                    } else {
+                        $per_property = 0;
+                    }
+                    $property_amount += $per_property;//所有房间的物业费
+
+                    if ($last_bill_info['next_rent_time'] - \time() < 1209600) {
+                        //每间房的空调费
+                        $per_aircon = $room_info['aircon'] * $room_info['area'] * $info['air_conditioner_period'];
+                    } else {
+                        $per_aircon = 0;
+                    }
+                    $aircon_amount += $per_aircon;  //所有房间的空调费
+                }
+                //入库数据
+                $sqldata = [
+                    'enterprise_id' => $enterprise_ids[$i],
+                    'rent_amount' => $rent_amount,
+                    'property_amount' => $property_amount,
+                    'aircon_amount' => $aircon_amount,
+                    'amount' => $rent_amount + $property_amount + $aircon_amount,
+                    'discounted_amount' => 0,
+                    'bill_time' => \time(),
+                    'is_notify' => 0,
+                    'status' => 0
+                ];
+                //账单周期至少一个月,所以不生成一个月内相同信息的账单
+                $rst = Db::name('EnterpriseBillList')
+                    ->where('enterprise_id', 'eq', $enterprise_ids[$i])
+                    ->where('rent_amount', 'eq', $last_bill_info['rent_amount'])
+                    ->where('property_amount', 'eq', $last_bill_info['property_amount'])
+                    ->where('aircon_amount', 'eq', $last_bill_info['aircon_amount'])
+                    ->whereTime('bill_time', 'month')
+                    ->count();
+                if ($rst < 1 && $sqldata['amount'] > 0) {
+                    Db::name('EnterpriseBillList')->insert($sqldata);
+                    return \show('1', '出账成功', $sqldata, '200');
+                } else {
+                    return '本次没有新账单';
+                }
             }
         }
     }

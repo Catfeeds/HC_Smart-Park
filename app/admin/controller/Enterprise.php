@@ -324,6 +324,11 @@ class Enterprise extends Base
                     $property_amount = $bill['property_amount'];
                     $aircon_amount = $bill['aircon_amount'];
                     $amount = $rent_amount + $property_amount + $aircon_amount;
+
+                    //下次交费的时间点
+                    $next_rent_time = \strtotime('+' . $entryinfo['rent_period'] . 'month');
+                    $next_property_time = \strtotime('+' . $entryinfo['property_period'] . 'month');
+                    $next_aircon_time = \strtotime('+' . $entryinfo['air_conditioner_period'] . 'month');
                     $bill_data = [
                         'enterprise_id' => $entryinfo['enterprise_id'],
                         'rent_amount' => $rent_amount,
@@ -332,6 +337,9 @@ class Enterprise extends Base
                         'discounted_amount' => 0,     //可手动调整金额
                         'amount' => $amount,
                         'bill_time' => $entryinfo['signed_day'],
+                        'next_rent_time' => $next_rent_time,
+                        'next_property_time' => $next_property_time,
+                        'next_aircon_time' => $next_aircon_time,
                         'is_notify' => 0, //默认未通知
                         'status' => 0,       //默认待缴费
                     ];
@@ -662,7 +670,7 @@ class Enterprise extends Base
     {
         $p = input('p');
         $id = \input('id');
-        $info = Db::name('EnterpriseList')->where('id','eq',$id)->find();
+        $info = Db::name('EnterpriseList')->where('id', 'eq', $id)->find();
         $rst = \db('EnterpriseList')->where('id', 'eq', $id)->delete();
 
         if ($rst !== false) {
@@ -679,7 +687,7 @@ class Enterprise extends Base
             Db::name('EnterpriseContact')->where('enterprise_id', 'eq', $id)->delete();
             Db::name('EnterpriseEntryInfo')->where('enterprise_id', 'eq', $id)->delete();
             //同时删除用户表中的法人账户
-            Db::name('MemberList')->where('member_list_username','eq',$info['enterprise_list_legal_representative'])->delete();
+            Db::name('MemberList')->where('member_list_username', 'eq', $info['enterprise_list_legal_representative'])->delete();
             $this->success('删除成功', url('admin/Enterprise/enterprise_list', array('p' => $p)));
         } else {
             $this->error('删除失败', url('admin/Enterprise/enterprise_list', array('p' => $p)));
