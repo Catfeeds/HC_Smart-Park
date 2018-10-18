@@ -30,8 +30,10 @@ class Bill extends Common
      */
     public function index()
     {
+        $limit_time = '-2 weeks';
         //两周内需要续费的企业id/s
         $enterprise_ids = Db::name('EnterpriseBillList')->whereTime('bill_time', $limit_time)->column('enterprise_id');
+        \halt($enterprise_ids);
         if (empty($enterprise_ids)) {
             return '本次没有新账单!';
         } else {
@@ -66,8 +68,11 @@ class Bill extends Common
                     if ($last_bill_info['next_rent_time'] - \time() < 1209600) {
                         //每间房的房租
                         $per_rent = $room_info['price'] * $room_info['area'] * $info['rent_period'];
+                        //下次房租费的时间点
+                        $next_rent_time = \strtotime('+' . $info['rent_period'] . 'month');
                     } else {
                         $per_rent = 0;
+                        $next_rent_time = $info['next_rent_time'];
                     }
                     $rent_amount += $per_rent;      //所有房间的房租
 
@@ -75,16 +80,22 @@ class Bill extends Common
                     if ($last_bill_info['next_rent_time'] - \time() < 1209600) {
                         //每间房的物业费
                         $per_property = $room_info['property'] * $room_info['area'] * $info['property_period'];
+                        //下次物业费的时间点
+                        $next_property_time = \strtotime('+' . $info['property_period'] . 'month');
                     } else {
                         $per_property = 0;
+                        $next_property_time = $info['next_property_time'];
                     }
                     $property_amount += $per_property;//所有房间的物业费
 
                     if ($last_bill_info['next_rent_time'] - \time() < 1209600) {
                         //每间房的空调费
                         $per_aircon = $room_info['aircon'] * $room_info['area'] * $info['air_conditioner_period'];
+                        //下次空调费的时间点
+                        $next_aircon_time = \strtotime('+' . $info['air_conditioner_period'] . 'month');
                     } else {
                         $per_aircon = 0;
+                        $next_aircon_time = $info['next_aircon_time'];
                     }
                     $aircon_amount += $per_aircon;  //所有房间的空调费
                 }
@@ -97,6 +108,9 @@ class Bill extends Common
                     'amount' => $rent_amount + $property_amount + $aircon_amount,
                     'discounted_amount' => 0,
                     'bill_time' => \time(),
+                    'next_rent_time' => $next_rent_time,
+                    'next_property_time' => $next_property_time,
+                    'next_aircon_time' => $next_aircon_time,
                     'is_notify' => 0,
                     'status' => 0
                 ];
