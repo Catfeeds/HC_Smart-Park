@@ -162,7 +162,7 @@ var app = {};
 option3 = null;
 option3 = {
     title: {
-        text: '每月注册、认证用户',
+        text: '每月注册用户',
         textStyle: {
             color: '#667690',
             fontSize:22,
@@ -182,7 +182,7 @@ option3 = {
         right: 0,
         top: 80,
         itemGap: 38,
-        data:['注册用户','认证用户']
+        data:['注册用户']
     },
     toolbox: {
         show: true,
@@ -206,11 +206,6 @@ option3 = {
             type:'line',
             data:[11, 15, 13, 12, 13, 10, 11, 15, 13, 12, 13, 10],
         },
-        {
-            name:'认证用户',
-            type:'line',
-            data:[13, 10, 11, 2, 5, 3, 2, 10, 13, 10, 11,],
-        }
     ]
 };
 if (option3 && typeof option3 === "object") {
