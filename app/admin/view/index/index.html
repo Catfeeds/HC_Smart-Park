@@ -22,20 +22,20 @@
            <div class="common-count">
                <h3>用户统计</h3>
                <div class="common-number">
-                   <a href="">
-                   <h3>42</h3>
+                   <a href="{:url('admin/Park/room_list',['status'=>1])}" target="_blank">
+                   <h3>{$rented_room_number}</h3>
                    </a>
-                   <h5>出租房源</h5>
+                   <h5>已租房源</h5>
                </div>
                <div class="common-number">
-                   <a href="">
-                       <h3>22</h3>
+                   <a href="{:url('admin/Enterprise/enterprise_list')}" target="_blank">
+                       <h3>{$enterprise_number}</h3>
                    </a>
                    <h5>入驻企业数</h5>
                </div>
                <div class="common-number">
-                   <a href="">
-                       <h3>142</h3>
+                   <a href="{:url('admin/member/member_list')}" target="_blank">
+                       <h3>{$user_number}</h3>
                    </a>
                    <h5>注册用户数</h5>
                </div>
@@ -45,22 +45,22 @@
             <div class="common-count">
                 <h3>待处理统计</h3>
                 <div class="common-number">
-                    <a href="">
-                        <h3>2</h3>
+                    <a href="{:url('admin/service/meeting_room_order_list')}" target="_blank">
+                        <h3>{$meeting_room_appoint}</h3>
                     </a>
                     <h5>会议室新预订</h5>
                 </div>
                 <div class="common-number">
-                    <a href="">
-                        <h3>1</h3>
+                    <a href="{:url('admin/service/repair_list')}" target="_blank">
+                        <h3>{$to_repair_number}</h3>
                     </a>
                     <h5>物业新报修</h5>
                 </div>
                 <div class="common-number">
-                    <a href="">
-                        <h3>0</h3>
+                    <a href="{:url('admin/service/complaints_list')}" target="_blank">
+                        <h3>{$to_complains_number}</h3>
                     </a>
-                    <h5>投诉新处理</h5>
+                    <h5>待处理投诉</h5>
                 </div>
             </div>
 
@@ -68,20 +68,20 @@
             <div class="common-count">
                 <h3>发布文案</h3>
                 <div class="common-number">
-                    <a href="">
-                        <h3>32</h3>
+                    <a href="{:url('admin/news/news_list')}" target="_blank">
+                        <h3>{$article_number}</h3>
                     </a>
                     <h5>发布文章数</h5>
                 </div>
                 <div class="common-number">
-                    <a href="">
-                        <h3>5</h3>
+                    <a href="{:url('admin/news/news_list',['news_columnid'=>3])}" target="_blank">
+                        <h3>{$activity_number}</h3>
                     </a>
                     <h5>发布活动数</h5>
                 </div>
                 <div class="common-number">
-                    <a href="">
-                        <h3>9</h3>
+                    <a href="{:url('admin/announcement/announcement_list')}" target="_blank">
+                        <h3>{$announcement_number}</h3>
                     </a>
                     <h5>发布公告数</h5>
                 </div>
@@ -91,20 +91,20 @@
             <div class="common-count">
                 <h3>社区统计</h3>
                 <div class="common-number">
-                    <a href="">
-                        <h3>12</h3>
+                    <a href="{:url('admin/news/news_list',['news_columnid'=>4])}" target="_blank">
+                        <h3>{$post_all}</h3>
                     </a>
                     <h5>发帖数</h5>
                 </div>
                 <div class="common-number">
-                    <a href="">
-                        <h3>4</h3>
+                    <a href="{:url('admin/news/news_list',['news_columnid'=>4,'news_open'=>0])}" target="_blank">
+                        <h3>{$post_to_check}</h3>
                     </a>
                     <h5>待审核数</h5>
                 </div>
                 <div class="common-number">
-                    <a href="">
-                        <h3>25</h3>
+                    <a href="{:url('admin/news/news_list',['news_columnid'=>4])}" target="_blank">
+                        <h3>{$post_ok}</h3>
                     </a>
                     <h5>成功发帖</h5>
                 </div>
@@ -114,38 +114,38 @@
             <div class="common-room">
                 <h3>房源信息</h3>
                 <div class="common-number">
-                    <a href="">
-                        <h3>242</h3>
+                    <a href="{:url('admin/park/room_list')}" target="_blank">
+                        <h3>{$room_all}</h3>
                     </a>
                     <h5>房源总数</h5>
                 </div>
                 <div class="common-number">
-                    <a href="">
-                        <h3>60</h3>
+                    <a href="{:url('admin/park/room_list',['status'=>0])}" target="_blank">
+                        <h3>{$room_0}</h3>
                     </a>
                     <h5>未租</h5>
                 </div>
                 <div class="common-number">
-                    <a href="">
-                        <h3>32</h3>
+                    <a href="{:url('admin/park/room_list',['status'=>1])}" target="_blank">
+                        <h3>{$rented_room_number}</h3>
                     </a>
                     <h5>已租</h5>
                 </div>
                 <div class="common-number">
-                    <a href="">
-                        <h3>65</h3>
+                    <a href="{:url('admin/park/room_list',['status'=>2])}" target="_blank">
+                        <h3>{$room_2}</h3>
                     </a>
                     <h5>已售</h5>
                 </div>
                 <div class="common-number">
-                    <a href="">
-                        <h3>42</h3>
+                    <a href="{:url('admin/park/room_list',['status'=>3])}" target="_blank">
+                        <h3>{$room_3}</h3>
                     </a>
                     <h5>已定</h5>
                 </div>
                 <div class="common-number">
-                    <a href="">
-                        <h3>12</h3>
+                    <a href="{:url('admin/park/room_list',['status'=>4])}" target="_blank">
+                        <h3>{$room_4}</h3>
                     </a>
                     <h5>自留</h5>
                 </div>
@@ -156,20 +156,20 @@
                 <h3>财务相关</h3>
                 <div class="common-number index-financial-number">
                     <h5>待缴费</h5>
-                    <a href="">
-                        <h3>12</h3>
+                    <a href="{:url('admin/financial/bill_list',['status'=>0])}" target="_blank">
+                        <h3>{$bill0}</h3>
                     </a>
                 </div>
                 <div class="common-number index-financial-number">
                     <h5>待开票</h5>
-                    <a href="">
-                        <h3>4</h3>
+                    <a href="{:url('admin/financial/bill_list',['status'=>1])}" target="_blank">
+                        <h3>{$bill1}</h3>
                     </a>
                 </div>
                 <div class="common-number index-financial-number">
                     <h5>已完成</h5>
-                    <a href="">
-                        <h3>25</h3>
+                    <a href="{:url('admin/financial/bill_list',['status'=>2])}" target="_blank">
+                        <h3>{$bill2}</h3>
                     </a>
                 </div>
             </div>
@@ -179,14 +179,14 @@
                 <h3>企业管理</h3>
                 <div class="common-number index-financial-number">
                     <h5>企业总数</h5>
-                    <a href="">
-                        <h3>12</h3>
+                    <a href="{:url('admin/Enterprise/enterprise_list')}" target="_blank">
+                        <h3>{$enterprise_number}</h3>
                     </a>
                 </div>
                 <div class="common-number index-financial-number">
                     <h5>会员总数</h5>
-                    <a href="">
-                        <h3>4</h3>
+                    <a href="{:url('admin/member/member_list')}" target="_blank">
+                        <h3>{$user_number}</h3>
                     </a>
                 </div>
             </div>

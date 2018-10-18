@@ -25,7 +25,7 @@ class Service extends Base
     public function complaints_list()
     {
         $list = \model('ServiceComplains')
-            ->order('create_time desc')
+            ->order('status,create_time')
             ->paginate(config('paginate.list_rows'));
 
         $show = $list->render();
@@ -87,7 +87,7 @@ class Service extends Base
     {
         $model = new ServiceRepair();
         $list = $model
-            ->order('create_time desc')
+            ->order('status,create_time')
             ->paginate(config('paginate.list_rows'));
         $show = $list->render();
 
@@ -230,7 +230,7 @@ class Service extends Base
             ->join('MemberList ml', 'sma.user_id=ml.member_list_id')
             ->join('ParkMeetingRoom pmr','sma.meetingroom_id=pmr.id')
             ->field('sma.*,ml.member_list_username,ml.member_list_tel,pmr.room_number')
-            ->order('sma.create_time desc')
+            ->order('sma.status,sma.create_time')
             ->paginate(config('paginate.list_rows'));
         $show = $list->render();
         $show = preg_replace("(<a[^>]*page[=|/](\d+).+?>(.+?)<\/a>)", "<a href='javascript:ajax_page($1);'>$2</a>", $show);

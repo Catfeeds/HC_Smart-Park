@@ -15,69 +15,86 @@ class Index extends Base
      */
     public function index()
     {
-//        $this->redirect(\url('admin/park/index'));
-        $news_model = new NewsModel;
-        $member_model = new MemberList;
-        //热门文章排行
-        $news_list = $news_model->where('news_l', $this->lang)->order('news_hits desc')->limit(0, 10)->select();
-        $this->assign('news_list', $news_list);
-        //总文章数
-        $news_count = $news_model->count();
-        $this->assign('news_count', $news_count);
-        //总会员数
-        $members_count = $member_model->count();
-        $this->assign('members_count', $members_count);
-        //总留言数
-        $sugs_count = Db::name('plug_sug')->count();
-        $this->assign('sugs_count', $sugs_count);
-        //总评论数
-        $coms_count = Db::name('comments')->count();
-        $this->assign('coms_count', $coms_count);
+        //已租房源
+        $rented_room_number = Db::name('ParkRoom')->where('status', 'eq', 1)->count();
+        $this->assign('rented_room_number', $rented_room_number);
 
-        //日期时间戳
-        list($start_t, $end_t) = Time::today();
-        list($start_y, $end_y) = Time::yesterday();
+        //入驻企业数
+        $enterprise_number = Db::name('EnterpriseList')->count();
+        $this->assign('enterprise_number', $enterprise_number);
 
-        //今日发表文章数
-        $tonews_count = $news_model->whereTime('news_time', 'between', [$start_t, $end_t])->count();
-        $this->assign('tonews_count', $tonews_count);
+        //注册用户数
+        $user_number = Db::name('MemberList')->count();
+        $this->assign('user_number', $user_number);
 
-        //昨日文章数
-        $ztnews_count = $news_model->whereTime('news_time', 'between', [$start_y, $end_y])->count();
-        $this->assign('ztnews_count', $ztnews_count);
-        //今日提升比
-        $difday = ($ztnews_count > 0) ? ($tonews_count - $ztnews_count) / $ztnews_count * 100 : 0;
-        $this->assign('difday', $difday);
+        //待处理会议室预定
+        $meeting_room_appoint = Db::name('ServiceMeetingroomAppoint')->where('status', 0)->count();
+        $this->assign('meeting_room_appoint', $meeting_room_appoint);
 
-        //今日增加会员
-        $tomembers_count = $member_model->whereTime('member_list_addtime', 'between', [$start_t, $end_t])->count();
-        $this->assign('tomembers_count', $tomembers_count);
-        //昨日会员数
-        $ztmembers_count = $member_model->whereTime('member_list_addtime', 'between', [$start_y, $end_y])->count();
-        $this->assign('ztmembers_count', $ztmembers_count);
-        //今日提升比
-        $difday_m = ($ztmembers_count > 0) ? ($tomembers_count - $ztmembers_count) / $ztmembers_count * 100 : 0;
-        $this->assign('difday_m', $difday_m);
+        //待处理物业报修
+        $to_repair_number = Db::name('ServiceRepair')->where('status', 'in',[0,3])->count();
+        $this->assign('to_repair_number', $to_repair_number);
 
-        //今日留言
-        $tosugs_count = Db::name('plug_sug')->whereTime('plug_sug_addtime', 'between', [$start_t, $end_t])->count();
-        $this->assign('tosugs_count', $tosugs_count);
-        //昨日留言
-        $ztsugs_count = Db::name('plug_sug')->whereTime('plug_sug_addtime', 'between', [$start_y, $end_y])->count();
-        $this->assign('ztsugs_count', $ztsugs_count);
-        //今日提升比
-        $difday_s = ($ztsugs_count > 0) ? ($tosugs_count - $ztsugs_count) / $ztsugs_count * 100 : 0;
-        $this->assign('difday_s', $difday_s);
+        //待处理投诉
+        $to_complains_number = Db::name('ServiceComplains')->where('status', 0)->count();
+        $this->assign('to_complains_number', $to_complains_number);
 
-        //今日评论
-        $tocoms_count = Db::name('comments')->whereTime('createtime', 'between', [$start_t, $end_t])->count();
-        $this->assign('tocoms_count', $tocoms_count);
-        //昨日评论
-        $ztcoms_count = Db::name('comments')->whereTime('createtime', 'between', [$start_y, $end_y])->count();
-        $this->assign('ztcoms_count', $ztcoms_count);
-        //今日提升比
-        $difday_c = ($ztcoms_count > 0) ? ($tocoms_count - $ztcoms_count) / $ztcoms_count * 100 : 0;
-        $this->assign('difday_c', $difday_c);
+        //发布文章数
+        $article_number = Db::name('News')->where('news_columnid', 'in', [1, 2])->count();
+        $this->assign('article_number', $article_number);
+
+        //发布活动数量
+        $activity_number = Db::name('News')->where('news_columnid', 'eq', 3)->count();
+        $this->assign('activity_number', $activity_number);
+
+        //发布公告数量
+        $announcement_number = Db::name('Announcement')->count();
+        $this->assign('announcement_number', $announcement_number);
+
+        //论坛帖子总数
+        $post_all = Db::name('News')->where('news_columnid', 'eq', 4)->where('news_back',1)->count();
+        $this->assign('post_all', $post_all);
+
+        //待审核帖子数量
+        $post_to_check = Db::name('News')->where('news_columnid', 'eq', 4)->where('news_back',1)->where('news_open', 0)->count();
+        $this->assign('post_to_check', $post_to_check);
+
+        //发帖成功数量
+        $post_ok = Db::name('News')->where('news_columnid', 'eq', 4)->where('news_back',1)->where('news_open', 1)->count();
+        $this->assign('post_ok', $post_ok);
+
+        //房源总数
+        $room_all = Db::name('ParkRoom')->count();
+        $this->assign('room_all',$room_all);
+        
+        //未租房源
+        $room_0 = Db::name('ParkRoom')->where('status',0)->count();
+        $this->assign('room_0',$room_0);
+
+        //已售房源
+        $room_2 = Db::name('ParkRoom')->where('status',2)->count();
+        $this->assign('room_2',$room_2);
+
+        //已定房源
+        $room_3 = Db::name('ParkRoom')->where('status',3)->count();
+        $this->assign('room_3',$room_3);
+
+        //自留房源
+        $room_4 = Db::name('ParkRoom')->where('status',4)->count();
+        $this->assign('room_4',$room_4);
+
+        //代缴费账单
+        $bill0 = Db::name('EnterpriseBillList')->where('status','eq',0)->count();
+        $this->assign('bill0',$bill0);
+
+        //代开票账单
+        $bill1 = Db::name('EnterpriseBillList')->where('status','eq',1)->count();
+        $this->assign('bill1',$bill1);
+
+        //已完成账单
+        $bill2 = Db::name('EnterpriseBillList')->where('status','eq',2)->count();
+        $this->assign('bill2',$bill2);
+
 
         //浏览器信息
         $broswerinfo = \getBroswer();
