@@ -313,6 +313,7 @@ class Enterprise extends Base
                     $field = [
                         'status' => 1,
                         'enterprise_id' => $enterprise_info['enterprise_id'],
+                        'enrty_time' => \time(),
                     ];
                     Db::name('ParkRoom')
                         ->where('phase', 'eq', $entryinfo['phase'])
@@ -631,7 +632,8 @@ class Enterprise extends Base
         $room_num = \explode('|', $room_num);
         $fields = [
             'status' => 1,
-            'enterprise_id' => $data['id']
+            'enterprise_id' => $data['id'],
+            'entry_time' => \time(),
         ];
         Db::name('ParkRoom')
             ->where('phase', 'eq', $info['phase'])
@@ -678,7 +680,7 @@ class Enterprise extends Base
                 ->where('enterprise_id', 'eq', $id)
                 ->value('room');
             $room_id = \explode('|', $room_id);
-            //删除企业后,将房源状态改为未租
+            //删除企业后,将房源状态改为未租,其他字段可以不更改,因为不影响查找,其他企业入驻也会覆盖原来数据
             Db::name('ParkRoom')->where('room_number', 'in', $room_id)->setField('status', 0);
 
             //删除企业一并删除其他表中的记录
