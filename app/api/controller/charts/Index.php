@@ -16,6 +16,7 @@ use think\Db;
 /**
  * Class Index
  * @package app\api\controller\charts
+ * 首页图表接口
  */
 class Index extends Common
 {
@@ -94,15 +95,97 @@ class Index extends Common
         return ['data' => $data];
     }
 
+    /**
+     * @return array
+     * 海创二七大楼每层入驻情况(4~23层)
+     */
     public function one_floor_entry()
     {
         for ($i = 5; $i < 24; $i++) {
             $data[] = Db::name('ParkRoom')
-                ->where('phase', 'eq', 2)   //默认为海创二期大楼
+                ->where('phase', 'eq', 2)//默认为海创二期大楼
                 ->where('floor', 'eq', $i)
                 ->where('status', 'eq', 1)
                 ->count();
         }
         return ['data' => $data];
     }
+
+    /**
+     * @return array|false|\PDOStatement|string|\think\Collection
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 二期大楼每层的入驻情况
+     */
+    public function build_floor()
+    {
+        if (\request()->isPost()) {
+            $floor = \input('floor', 1);
+            switch ($floor) {
+                case ($floor == 1):
+                    $data = [
+                        'title' => '1F',
+                        'content' => '人才市场'
+                    ];
+                    return \show(1, 'OK', $data, 200);
+                    break;
+                case ($floor == 2):
+                    $data = [
+                        'title' => '2F',
+                        'content' => '人才中心'
+                    ];
+                    return \show(1, 'OK', $data, 200);
+                    break;
+                case ($floor == 3):
+                    $data = [
+                        'title' => '3F',
+                        'content' => '会议室+健身房'
+                    ];
+                    return \show(1, 'OK', $data, 200);
+                    break;
+                case($floor == 4):
+                    $data = [
+                        'title' => '4F',
+                        'content' => '众创中心'
+                    ];
+                    return \show(1, 'OK', $data, 200);
+                    break;
+                default:
+                    $model = new \app\admin\model\ParkRoom();
+                    $floor_info = $model
+                        ->where('phase', 'eq', 2)
+                        ->where('floor', 'eq', $floor)
+                        ->select();
+                    return \show(1, 'OK', $floor_info, 200);
+                    break;
+            }
+        } else {
+            return \show(0, '提交方式不正确', '', 201);
+        }
+    }
+
+    /**
+     * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 每间房的详情
+     */
+    public function room_info()
+    {
+        $room_id = \input('room_id',501);
+        $data = Db::name('ParkRoom pr')
+            ->join('EnterpriseList el', 'pr.enterprise_id=el.id','LEFT')
+            ->where('phase',2)
+            ->where('room_number', $room_id)
+            ->field('floor,room_number,area')
+            ->select();
+        if (empty($data)) {
+            return \show(1, 'OK', '请输入正确的房间号', 200);
+        } else {
+            return \show(1, 'OK', $data, 200);
+        }
+    }
+
 }
