@@ -313,7 +313,7 @@ class Enterprise extends Base
                     $field = [
                         'status' => 1,
                         'enterprise_id' => $enterprise_info['enterprise_id'],
-                        'enrty_time' => \time(),
+                        'entry_time' => \time(),
                     ];
                     Db::name('ParkRoom')
                         ->where('phase', 'eq', $entryinfo['phase'])

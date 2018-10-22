@@ -53,11 +53,9 @@
 
                             <td>
                                 <div class="hidden-sm hidden-xs action-buttons">
-                                    <a class="blue confirm-rst-url-btn"
-                                       href="{:url('admin/Park/building_del',array('id'=>$v['id']))}"
-                                       data-info="你确定要删除吗？" title="删除">
-                                        <i class="ace-icon fa  bigger-130 iconfont icon-empty"></i>
-                                    </a>
+                                    <a class="blue buildingedit-btn" href="{:url('admin/Park/building_edit')}"
+                                       data-id="{$v.id}" title="修改">
+                                        <i class="ace-icon fa  bigger-130 iconfont icon-brush"></i> </a>
                                 </div>
                                 <div class="hidden-md hidden-lg">
                                     <div class="inline position-relative">
@@ -66,14 +64,12 @@
                                             <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
                                         </button>
                                         <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-
-
                                             <li>
-                                                <a href="{:url('admin/Park/building_del',array('id'=>$v['id']))}"
-                                                   class="tooltip-error confirm-rst-url-btn" data-info="你确定要删除吗？"
-                                                   data-rel="tooltip" title="" data-original-title="删除">
-																	<span class="red">
-																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                <a href="{:url('admin/Park/building_edit')}"
+                                                   data-id="{$v.id}" class="tooltip-success buildingedit-btn"
+                                                   data-rel="tooltip" title="" data-original-title="修改" data-target="myModalLabel">
+																	<span class="green">
+																		<i class="ace-icon fa fa-pencil bigger-120"></i>
 																	</span>
                                                 </a>
                                             </li>
@@ -159,10 +155,10 @@
 <!-- 显示模态框（Modal） -->
 <div class="modal fade in" id="myModaledit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
-    <div class="modal-backdrop fade in" id="gbbb" style="height: 100%;"></div>
-    <form class="form-horizontal ajaxForm2" name="member_group_runedit" method="post"
-          action="{:url('admin/Member/member_group_runedit')}">
-        <input type="hidden" name="id" id="editid" value=""/>
+    <div class="modal-backdrop fade in" id="gbbb" style="height:100%;"></div>
+    <form class="form-horizontal ajaxForm2" name="plug_adtype_runedit" method="post"
+          action="{:url('admin/Park/building_runedit')}">
+        <input type="hidden" name="building_id" id="building_id" value="{$v.id}"/>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -170,7 +166,7 @@
                             aria-hidden="true">×
                     </button>
                     <h4 class="modal-title" id="myModalLabel">
-                        修改用户组
+                        修改楼宇
                     </h4>
                 </div>
                 <div class="modal-body">
@@ -178,12 +174,11 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-
                             <div class="form-group">
                                 <label class="col-sm-2 control-label no-padding-right" for="form-field-1">
-                                    会员组名称： </label>
+                                    楼宇名称： </label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="member_group_name" id="editmember_group_name" value=""
+                                    <input type="text" name="building_name" id="building_name" placeholder="输入楼宇名称"
                                            class="col-xs-10 col-sm-5" required/>
                                 </div>
                             </div>
@@ -191,7 +186,6 @@
 
                         </div>
                     </div>
-
 
                 </div>
                 <div class="modal-footer">

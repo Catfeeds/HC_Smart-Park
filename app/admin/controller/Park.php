@@ -325,7 +325,7 @@ class Park extends Base
         );
         if (!empty($img_one)) {
             $sl_data['room_img'] = $img_one;
-        }else{
+        } else {
             $sl_data['room_img'] = \input('oldcheckpic');
         }
         $sl_data['room_pic_allurl'] = $pic_oldlist . $picall_url;
@@ -608,6 +608,46 @@ class Park extends Base
             $this->success('添加成功');
         } else {
             $this->error('添加失败');
+        }
+    }
+
+    /**
+     * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 编辑楼宇信息
+     */
+    public function building_edit()
+    {
+        $building_id = input('id');
+        $building = Db::name('ParkBuilding')->where('id', $building_id)->find();
+        $data = [
+            'code' => 1,
+            'id' => $building_id,
+            'name' => $building['name'],
+        ];
+        return \json($data);
+    }
+
+
+    /**
+     *执行编辑楼宇操作
+     */
+    public function building_runedit()
+    {
+        if (!request()->isAjax()) {
+            $this->error('提交方式不正确', url('admin/Park/add_building'));
+        } else {
+            $rst = Db::name('ParkBuilding')
+                ->where('id', \input('building_id'))
+                ->setField('name', \input('building_name'));
+            if ($rst !== false) {
+                $this->success('修改成功', url('admin/Park/add_building'));
+            } else {
+                $this->error('修改失败', url('admin/Park/add_building'));
+            }
+
         }
     }
 

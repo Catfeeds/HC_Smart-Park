@@ -1,7 +1,7 @@
 <?php	return array (
   'yfcmf_version' => 'V2.9.9',
   'update_check' => false,
-  'app_debug' => false,
+  'app_debug' => true,
   'app_trace' => false,
   'think_sdk_qq' => 
   array (

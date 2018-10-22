@@ -600,6 +600,26 @@ $(function () {
         return false;
     });
 });
+
+/* 楼宇名称编辑 */
+$(function () {
+    $('body').on('click','.buildingedit-btn',function () {
+        var $url = this.href,
+            val = $(this).data('id');
+        $.post($url, {id: val}, function (data) {
+            if (data.code == 1) {
+                $("#myModaledit").show(300);
+                $("#building_id").val(data.id);
+                $("#building_name").val(data.name);
+            } else {
+                layer.alert(data.msg, {icon: 5});
+            }
+        }, "json");
+        return false;
+    });
+});
+
+
 /* 回复留言 */
 $(function () {
 	$('body').on('click','.sugreply-btn',function () {
