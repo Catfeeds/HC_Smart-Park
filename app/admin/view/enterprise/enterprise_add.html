@@ -167,7 +167,7 @@
                                 <input type="text" name="enterprise_list_legal_tax_type"
                                        id="enterprise_list_legal_tax_type" value="" placeholder=""
                                        class="col-xs-10 col-sm-5"/>
-							</span>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -209,7 +209,7 @@
                             <div class="col-sm-9">
                                 <input type="text" name="website_url" id="website_url" value="" placeholder=""
                                        class="col-xs-10 col-sm-5"/>
-							</span>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -231,7 +231,7 @@
                             <div class="col-sm-9">
                                 <input type="text" name="zip_code" id="zip_code" value="" placeholder=""
                                        class="col-xs-10 col-sm-5"/>
-							</span>
+                                </span>
                             </div>
                         </div>
                         <div class="space-4"></div>
@@ -241,7 +241,7 @@
                             <div class="col-sm-9">
                                 <input type="text" name="contact" id="contact" value="" placeholder=""
                                        class="col-xs-10 col-sm-5"/>
-							</span>
+                                </span>
                             </div>
                         </div>
                         <div class="space-4"></div>
@@ -251,7 +251,7 @@
                             <div class="col-sm-9">
                                 <input type="text" name="contact_number" id="contact_number" value="" placeholder=""
                                        class="col-xs-10 col-sm-5"/>
-							</span>
+                                </span>
                             </div>
                         </div>
                         <div class="space-4"></div>
@@ -272,7 +272,7 @@
                             <div class="col-sm-9">
                                 <input type="text" name="bank_name" id="bank_name" value="" placeholder=""
                                        class="col-xs-10 col-sm-5"/>
-							</span>
+                                </span>
                             </div>
                         </div>
                         <div class="space-4"></div>
@@ -282,7 +282,7 @@
                             <div class="col-sm-9">
                                 <input type="text" name="bank_deposit" id="bank_deposit" value="" placeholder=""
                                        class="col-xs-10 col-sm-5"/>
-							</span>
+                                </span>
                             </div>
                         </div>
                         <div class="space-4"></div>
@@ -292,7 +292,7 @@
                             <div class="col-sm-9">
                                 <input type="text" name="account" id="account" value="" placeholder=""
                                        class="col-xs-10 col-sm-5"/>
-							</span>
+                                </span>
                             </div>
                         </div>
                         <div class="space-4"></div>
@@ -302,7 +302,7 @@
                             <div class="col-sm-9">
                                 <input type="text" name="financial_office" id="financial_office" value="" placeholder=""
                                        class="col-xs-10 col-sm-5"/>
-							</span>
+                                </span>
                             </div>
                         </div>
                         <div class="space-4"></div>
@@ -312,7 +312,7 @@
                             <div class="col-sm-9">
                                 <input type="text" name="financial_office_phone" id="financial_office_phone" value=""
                                        placeholder="" class="col-xs-10 col-sm-5"/>
-							</span>
+                                </span>
                             </div>
                         </div>
                         <div class="space-4"></div>
@@ -322,7 +322,7 @@
                             <div class="col-sm-9">
                                 <input type="text" name="financial_office_email" id="financial_office_email" value=""
                                        placeholder="" class="col-xs-10 col-sm-5"/>
-							</span>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -335,7 +335,8 @@
                             <div class="col-sm-9">
                                 <select name="phase" id="phase">
                                     {foreach $building as $b}
-                                    <option value="{$b.id}" {if $phase eq $b.id}selected{/if}>{$b.name}</option>
+                                    <option value="{$b.id}" {if $phase eq $b.id}selected{
+                                    /if}>{$b.name}</option>
                                     {/foreach}
                                 </select>
                             </div>
@@ -426,7 +427,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 支付时间： </label>
                             <div class="col-sm-9">
-                                <input type="datetime-local" name="pay_time" id="pay_time" value="" placeholder=""
+                                <input type="date" name="pay_time" id="pay_time" value="" placeholder=""
                                        class="col-xs-10 col-sm-5" required/>
                                 <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
                                 <span class="help-inline col-xs-12 col-sm-7">
@@ -436,19 +437,16 @@
                         </div>
                         <div class="space-4"></div>
 
-                        <div class="form-group" id="pic_list2">
+                        <link href="__PUBLIC__/ppy/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+                        <script src="__PUBLIC__/ppy/js/fileinput.js" type="text/javascript"></script>
+                        <script src="__PUBLIC__/ppy/js/fileinput_locale_zh.js" type="text/javascript"></script>
+                        <div class="form-group" id="pic_many_list">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 租房合同 </label>
-                            <div class="col-sm-9">
-                                <a href="javascript:;" class="file" title="点击选择所要上传的图片">
-                                    <input type="file" name="file2" id="file2" multiple="multiple"/>
-                                    选择上传文件
-                                </a>
-                                &nbsp;&nbsp;<a href="javascript:;"
-                                               onclick="return backpic12('__PUBLIC__/img/no_img.jpg');" title="还原修改前的图片"
-                                               class="file">
-                                撤销上传
-                            </a>
-                                <div><img src="__PUBLIC__/img/no_img.jpg" height="70" id="img2"></div>
+                            <div class="col-sm-10 col-sm-offset-2" style="padding-top:5px;">
+                                <input id="file-5" name="pic_many[]" type="file" class="file" multiple
+                                       data-preview-file-type="any" data-upload-url="#" data-preview-file-icon=""><br/>
+                                <textarea name="news_pic_content" class="col-xs-12 col-sm-12" id="news_pic_content"
+                                          placeholder="选择多图时请一次性选择。多图对应文字说明，例如： 图片一说明 | 图片二说明 | 图片三说明    每个文字说明以 | 分割"></textarea>
                             </div>
                         </div>
                         <div class="space-4"></div>
@@ -458,11 +456,8 @@
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 签订人： </label>
                             <div class="col-sm-9">
                                 <input type="text" name="signer" id="signer" value="" placeholder=""
-                                       class="col-xs-10 col-sm-5" required/>
-                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
-                                <span class="help-inline col-xs-12 col-sm-7">
-								<span class="middle" id="res39"></span>
-							</span>
+                                       class="col-xs-10 col-sm-5"/>
+                                </span>
                             </div>
                         </div>
                         <div class="space-4"></div>
@@ -471,11 +466,8 @@
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 操作人： </label>
                             <div class="col-sm-9">
                                 <input type="text" name="operator" id="operator" value="" placeholder=""
-                                       class="col-xs-10 col-sm-5" required/>
-                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
-                                <span class="help-inline col-xs-12 col-sm-7">
-								<span class="middle" id="res40"></span>
-							</span>
+                                       class="col-xs-10 col-sm-5"/>
+                                </span>
                             </div>
                         </div>
                         <div class="space-4"></div>
@@ -484,11 +476,8 @@
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 开票人： </label>
                             <div class="col-sm-9">
                                 <input type="text" name="drawer" id="drawer" value="" placeholder=""
-                                       class="col-xs-10 col-sm-5" required/>
-                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
-                                <span class="help-inline col-xs-12 col-sm-7">
-								<span class="middle" id="res41"></span>
-							</span>
+                                       class="col-xs-10 col-sm-5"/>
+                                </span>
                             </div>
                         </div>
                         <div class="space-4"></div>
@@ -498,11 +487,8 @@
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 确认人： </label>
                             <div class="col-sm-9">
                                 <input type="text" name="confirmer" id="confirmer" value="" placeholder=""
-                                       class="col-xs-10 col-sm-5" required/>
-                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
-                                <span class="help-inline col-xs-12 col-sm-7">
-								<span class="middle" id="res42"></span>
-							</span>
+                                       class="col-xs-10 col-sm-5"/>
+                                </span>
                             </div>
                         </div>
                         <div class="space-4"></div>

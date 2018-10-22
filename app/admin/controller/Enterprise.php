@@ -96,6 +96,10 @@ class Enterprise extends Base
         if (empty($entry_info))
             $entry_info = [];
 
+        //多图图片
+        $pic_many = $entry_info['pic_many_img'];
+        $pic_many = \array_filter(\explode(',', $pic_many));
+        $entry_info['pic_many_img'] = $pic_many;
         $info = \array_merge($basic_info, $business_info, $contact_info, $bank_info, $entry_info);
         $this->assign('info', $info);
         return $this->fetch();
@@ -117,11 +121,14 @@ class Enterprise extends Base
         return \view();
     }
 
+
     /**
-     *执行添加操作
-     * 1,提交的数据中如果没有表单最后一项:confirmer,说明数据没有提交完全则不进行添加操作.
-     * 2,confirmer数据存在则说明入库完成,返回成功提示.
-     * 因为提交页面写法的原因,也是因为没时间慢慢写数据验证和数据库操作,所以采取了这种做法.有时间重写.
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     * 执行添加企业操作
+     * 单图的租房合同前端已删除,这里懒得处理了.后来的请无视
      */
     public function enterprise_runadd()
     {
@@ -129,225 +136,276 @@ class Enterprise extends Base
         if (!\request()->isPost()) {
             $this->error('提交方式不正确');
         } else {
+            //检查企业名是否存在
+            $enterprise_count = Db::name('EnterpriseList')->where('enterprise_list_name', \trim(\input(['enterprise_list_name'])))->count();
+            //检查房间号是否有入驻
+            $room_count = Db::name('EnterpriseList')->where('room', \trim(\input('room')))->count();
+            if ($enterprise_count > 0) {
+                $this->error('该企业名已存在');
+            }
+            if ($room_count > 0) {
+                $this->error('该房间已有入驻');
+            }
             $modleA = new EnterpriseList();
             $modelB = new EnterpriseBusiness();
             $modleC = new EnterpriseContact();
             $modelD = new EnterpriseBank();
             $modelE = new EnterpriseEntryInfo();
 
-            if ($enterprise_info['confirmer'] != '') {
-                //logo图片
-                $img_url = '';
-                $file = request()->file('file0');
-                if (!empty($file)) {
-                    if (config('storage.storage_open')) {
-                        //七牛
-                        $upload = \Qiniu::instance();
-                        $info = $upload->upload();
-                        $error = $upload->getError();
-                        if ($info) {
-                            $img_url = config('storage.domain') . $info[0]['key'];
-                        } else {
-                            $this->error($error);//否则就是上传错误，显示错误原因
-                        }
+            //logo图片
+            $img_url = '';
+            $file = request()->file('file0');
+            if (!empty($file)) {
+                if (config('storage.storage_open')) {
+                    //七牛
+                    $upload = \Qiniu::instance();
+                    $info = $upload->upload();
+                    $error = $upload->getError();
+                    if ($info) {
+                        $img_url = config('storage.domain') . $info[0]['key'];
                     } else {
-                        //本地
-                        $validate = config('upload_validate');
-                        $info = $file->validate($validate)->rule('uniqid')->move(ROOT_PATH . config('upload_path') . DS . date('Y-m-d'));
-                        if ($info) {
-                            $img_url = config('upload_path') . '/' . date('Y-m-d') . '/' . $info->getFilename();
-                            //写入数据库
-                            $data['uptime'] = time();
-                            $data['filesize'] = $info->getSize();
-                            $data['path'] = $img_url;
-                            Db::name('plug_files')->insert($data);
-                        } else {
-                            $this->error($file->getError());//否则就是上传错误，显示错误原因
-                        }
+                        $this->error($error);//否则就是上传错误，显示错误原因
                     }
-                    $enterprise_info['enterprise_list_logo'] = $img_url;
-                }
-
-                //营业执照图片
-                $file1 = request()->file('file1');
-                if (!empty($file1)) {
-                    if (config('storage.storage_open')) {
-                        //七牛
-                        $upload1 = \Qiniu::instance();
-                        $info1 = $upload1->upload();
-                        $error1 = $upload1->getError();
-                        if ($info1) {
-                            $img_url1 = config('storage.domain') . $info1[0]['key'];
-                        } else {
-                            $this->error($error1);//否则就是上传错误，显示错误原因
-                        }
-                    } else {
-                        //本地
-                        $validate1 = config('upload_validate');
-                        $info1 = $file1->validate($validate1)->rule('uniqid')->move(ROOT_PATH . config('upload_path') . DS . date('Y-m-d'));
-                        if ($info1) {
-                            $img_url1 = config('upload_path') . '/' . date('Y-m-d') . '/' . $info1->getFilename();
-                            //写入数据库
-                            $data1['uptime'] = time();
-                            $data1['filesize'] = $info1->getSize();
-                            $data1['path'] = $img_url1;
-                            Db::name('plug_files')->insert($data1);
-                        } else {
-                            $this->error($file1->getError());//否则就是上传错误，显示错误原因
-                        }
-                    }
-                    $enterprise_info['enterprise_list_license_img'] = $img_url1;
-                }
-
-                //租房合同照片
-                $file2 = request()->file('file2');
-                if (!empty($file2)) {
-                    if (config('storage.storage_open')) {
-                        //七牛
-                        $upload2 = \Qiniu::instance();
-                        $info2 = $upload2->upload();
-                        $error2 = $upload2->getError();
-                        if ($info2) {
-                            $img_url2 = config('storage.domain') . $info2[0]['key'];
-                        } else {
-                            $this->error($error2);//否则就是上传错误，显示错误原因
-                        }
-                    } else {
-                        //本地
-                        $validate2 = config('upload_validate');
-                        $info2 = $file2->validate($validate2)->rule('uniqid')->move(ROOT_PATH . config('upload_path') . DS . date('Y-m-d'));
-                        if ($info2) {
-                            $img_url2 = config('upload_path') . '/' . date('Y-m-d') . '/' . $info2->getFilename();
-                            //写入数据库
-                            $data2['uptime'] = time();
-                            $data2['filesize'] = $info2->getSize();
-                            $data2['path'] = $img_url2;
-                            Db::name('plug_files')->insert($data2);
-                        } else {
-                            $this->error($file2->getError());//否则就是上传错误，显示错误原因
-                        }
-                    }
-                    $enterprise_info['contract_img'] = $img_url2;
-                }
-                //企业基本信息写入
-                $enterprise_info['enterprise_list_legal_setup_day'] = \strtotime($enterprise_info['enterprise_list_legal_setup_day']);//成立日期转时间戳
-                $enterprise_info['enterprise_list_addtime'] = \time();
-                //企业码
-                $enterprise_info['enterprise_list_code'] = substr(md5(microtime(true)), 0, 6);
-                $enterprise_name_count = Db::name('EnterpriseList')
-                    ->where('enterprise_list_name', 'eq', $enterprise_info['enterprise_list_name'])
-                    ->count();
-                if ($enterprise_name_count > 0) {
-                    $this->error('企业名已存在');
-                }
-
-                //插入企业基本信息表并返回企业id
-                $modleA->startTrans();
-                $modleA->allowField(true)->save($enterprise_info);
-
-                //企业ID
-                $enterprise_info['enterprise_id'] = $modleA->id;
-                if (empty($enterprise_info['enterprise_id'])) {
-                    //list模型事务回滚
-                    $modleA->rollback();
-                    $this->error('添加失败,企业ID不存在');
-                }
-
-                //企业业务信息写入
-                $modelB->allowField(true)->save($enterprise_info);
-                if (empty($modelB->id)) {
-                    $modelB->rollback();
-                    $modleA->rollback();
-                }
-                //企业联系信息写入
-                $modleC->allowField(true)->save($enterprise_info);
-                if (empty($modleC->id)) {
-                    $modleC->rollback();
-                    $modelB->rollback();
-                    $modleA->rollback();
-                }
-                //企业银行信息写入
-                $modelD->allowField(true)->save($enterprise_info);
-                if (empty($modelD->id)) {
-                    $modelD->rollback();
-                    $modleC->rollback();
-                    $modelB->rollback();
-                    $modleA->rollback();
-                }
-                //企业入驻信息写入
-                $enterprise_info['signed_day'] = \strtotime($enterprise_info['signed_day']);        //签订日期转时间戳
-                $enterprise_info['pay_time'] = \strtotime($enterprise_info['pay_time']);        //支付时间转时间戳
-
-                $modelE->allowField(true)->save($enterprise_info);
-                if (empty($modelE->id)) {
-                    $modelE->rollback();
-                    $modelD->rollback();
-                    $modleC->rollback();
-                    $modelB->rollback();
-                    $modleA->rollback();
                 } else {
-                    $modelE->commit();
-                    $modelD->commit();
-                    $modleC->commit();
-                    $modelB->commit();
-                    $modleA->commit();
-                    //添加企业后需要将法人注册为用户
-                    $m_data = [
-                        'member_list_username' => $enterprise_info['enterprise_list_legal_representative'],
-                        'member_list_pwd' => \encrypt_password(\config('default_password'), \config('default_salt')),
-                        'member_list_salt' => \config('default_salt'),
-                        'member_list_tel' => $enterprise_info['enterprise_list_legal_phone_number'],
-                        'member_list_groupid' => '2',       //分配一个会员组:企业主
-                        'member_list_open' => '1',        //默认可用
-                        'member_list_addtime' => \time(),
-                    ];
-                    Db::name('MemberList')->insert($m_data);    //插入一个会员
-
-                    //入库之后找出企业的入驻信息进行相关操作
-                    $entryinfo = Db::name('EnterpriseEntryInfo')
-                        ->where('enterprise_id', $enterprise_info['enterprise_id'])
-                        ->find();
-                    //将企业的id写入房源表里并改变状态,多房间
-                    $room_num = \trim($entryinfo['room']);
-                    $room_num = \explode('|', $room_num);
-                    $field = [
-                        'status' => 1,
-                        'enterprise_id' => $enterprise_info['enterprise_id'],
-                        'entry_time' => \time(),
-                    ];
-                    Db::name('ParkRoom')
-                        ->where('phase', 'eq', $entryinfo['phase'])
-                        ->where('room_number', 'in', $room_num)->setField($field);
-
-                    //入驻时候添加首个账单
-                    $bill = $this->getAmount($entryinfo);
-                    $rent_amount = $bill['rent_amount'];
-                    $property_amount = $bill['property_amount'];
-                    $aircon_amount = $bill['aircon_amount'];
-                    $amount = $rent_amount + $property_amount + $aircon_amount;
-
-                    //下次交费的时间点
-                    $next_rent_time = \strtotime('+' . $entryinfo['rent_period'] . 'month');
-                    $next_property_time = \strtotime('+' . $entryinfo['property_period'] . 'month');
-                    $next_aircon_time = \strtotime('+' . $entryinfo['air_conditioner_period'] . 'month');
-                    $bill_data = [
-                        'enterprise_id' => $entryinfo['enterprise_id'],
-                        'rent_amount' => $rent_amount,
-                        'property_amount' => $property_amount,
-                        'aircon_amount' => $aircon_amount,
-                        'discounted_amount' => 0,     //可手动调整金额
-                        'amount' => $amount,
-                        'bill_time' => $entryinfo['signed_day'],
-                        'next_rent_time' => $next_rent_time,
-                        'next_property_time' => $next_property_time,
-                        'next_aircon_time' => $next_aircon_time,
-                        'is_notify' => 0, //默认未通知
-                        'status' => 0,       //默认待缴费
-                    ];
-                    Db::name('EnterpriseBillList')->insert($bill_data);
-
-                    $this->success('添加成功');
+                    //本地
+                    $validate = config('upload_validate');
+                    $info = $file->validate($validate)->rule('uniqid')->move(ROOT_PATH . config('upload_path') . DS . date('Y-m-d'));
+                    if ($info) {
+                        $img_url = config('upload_path') . '/' . date('Y-m-d') . '/' . $info->getFilename();
+                        //写入数据库
+                        $data['uptime'] = time();
+                        $data['filesize'] = $info->getSize();
+                        $data['path'] = $img_url;
+                        Db::name('plug_files')->insert($data);
+                    } else {
+                        $this->error($file->getError());//否则就是上传错误，显示错误原因
+                    }
                 }
+                $enterprise_info['enterprise_list_logo'] = $img_url;
+            }
+
+            //营业执照图片
+            $file1 = request()->file('file1');
+            if (!empty($file1)) {
+                if (config('storage.storage_open')) {
+                    //七牛
+                    $upload1 = \Qiniu::instance();
+                    $info1 = $upload1->upload();
+                    $error1 = $upload1->getError();
+                    if ($info1) {
+                        $img_url1 = config('storage.domain') . $info1[0]['key'];
+                    } else {
+                        $this->error($error1);//否则就是上传错误，显示错误原因
+                    }
+                } else {
+                    //本地
+                    $validate1 = config('upload_validate');
+                    $info1 = $file1->validate($validate1)->rule('uniqid')->move(ROOT_PATH . config('upload_path') . DS . date('Y-m-d'));
+                    if ($info1) {
+                        $img_url1 = config('upload_path') . '/' . date('Y-m-d') . '/' . $info1->getFilename();
+                        //写入数据库
+                        $data1['uptime'] = time();
+                        $data1['filesize'] = $info1->getSize();
+                        $data1['path'] = $img_url1;
+                        Db::name('plug_files')->insert($data1);
+                    } else {
+                        $this->error($file1->getError());//否则就是上传错误，显示错误原因
+                    }
+                }
+                $enterprise_info['enterprise_list_license_img'] = $img_url1;
+            }
+
+            //租房合同照片
+            $file2 = request()->file('file2');
+            if (!empty($file2)) {
+                if (config('storage.storage_open')) {
+                    //七牛
+                    $upload2 = \Qiniu::instance();
+                    $info2 = $upload2->upload();
+                    $error2 = $upload2->getError();
+                    if ($info2) {
+                        $img_url2 = config('storage.domain') . $info2[0]['key'];
+                    } else {
+                        $this->error($error2);//否则就是上传错误，显示错误原因
+                    }
+                } else {
+                    //本地
+                    $validate2 = config('upload_validate');
+                    $info2 = $file2->validate($validate2)->rule('uniqid')->move(ROOT_PATH . config('upload_path') . DS . date('Y-m-d'));
+                    if ($info2) {
+                        $img_url2 = config('upload_path') . '/' . date('Y-m-d') . '/' . $info2->getFilename();
+                        //写入数据库
+                        $data2['uptime'] = time();
+                        $data2['filesize'] = $info2->getSize();
+                        $data2['path'] = $img_url2;
+                        Db::name('plug_files')->insert($data2);
+                    } else {
+                        $this->error($file2->getError());//否则就是上传错误，显示错误原因
+                    }
+                }
+                $enterprise_info['contract_img'] = $img_url2;
+            }
+
+            //多图上传
+            $files = request()->file('pic_many');
+            $picall_url = '';
+            if ($files) {
+                if (config('storage.storage_open')) {
+                    //七牛
+                    $upload = \Qiniu::instance();
+                    $info = $upload->upload();
+                    $error = $upload->getError();
+                    if ($info) {
+                        if (!empty($files)) {
+                            foreach ($info as $file) {
+                                $many_img_url = config('storage.domain') . $file['key'];
+                                $picall_url = $many_img_url . ',' . $picall_url;
+                            }
+                        } else {
+                            $this->error($error, url('admin/Enterprise/enterprise_add'));
+                        }
+                    }
+                } else {
+                    $validate = config('upload_validate');
+                    if (!empty($files)) {
+                        foreach ($files as $file) {
+                            $info = $file->validate($validate)->rule('uniqid')->move(ROOT_PATH . config('upload_path') . DS . date('Y-m-d'));
+                            if ($info) {
+                                $many_img_url = config('upload_path') . '/' . date('Y-m-d') . '/' . $info->getFilename();
+                                //写入数据库
+                                $data['uptime'] = time();
+                                $data['filesize'] = $info->getSize();
+                                $data['path'] = $many_img_url;
+                                Db::name('plug_files')->insert($data);
+                                $picall_url = $many_img_url . ',' . $picall_url;
+                            } else {
+                                $this->error($file->getError(), url('admin/Enterprise/enterprise_add'));//否则就是上传错误，显示错误原因
+                            }
+                        }
+                        $enterprise_info['pic_many_img'] = $picall_url;
+                    }
+                }
+            }
+
+            //企业基本信息写入
+            $enterprise_info['enterprise_list_legal_setup_day'] = \strtotime($enterprise_info['enterprise_list_legal_setup_day']);//成立日期转时间戳
+            $enterprise_info['enterprise_list_addtime'] = \time();
+            //企业码
+            $enterprise_info['enterprise_list_code'] = substr(md5(microtime(true)), 0, 6);
+            $enterprise_name_count = Db::name('EnterpriseList')
+                ->where('enterprise_list_name', 'eq', $enterprise_info['enterprise_list_name'])
+                ->count();
+            if ($enterprise_name_count > 0) {
+                $this->error('企业名已存在');
+            }
+
+            //插入企业基本信息表并返回企业id
+            $modleA->startTrans();
+            $modleA->allowField(true)->save($enterprise_info);
+
+            //企业ID
+            $enterprise_info['enterprise_id'] = $modleA->id;
+            if (empty($enterprise_info['enterprise_id'])) {
+                //list模型事务回滚
+                $modleA->rollback();
+                $this->error('添加失败,企业ID不存在');
+            }
+
+            //企业业务信息写入
+            $modelB->allowField(true)->save($enterprise_info);
+            if (empty($modelB->id)) {
+                $modelB->rollback();
+                $modleA->rollback();
+            }
+            //企业联系信息写入
+            $modleC->allowField(true)->save($enterprise_info);
+            if (empty($modleC->id)) {
+                $modleC->rollback();
+                $modelB->rollback();
+                $modleA->rollback();
+            }
+            //企业银行信息写入
+            $modelD->allowField(true)->save($enterprise_info);
+            if (empty($modelD->id)) {
+                $modelD->rollback();
+                $modleC->rollback();
+                $modelB->rollback();
+                $modleA->rollback();
+            }
+            //企业入驻信息写入
+            $enterprise_info['signed_day'] = \strtotime($enterprise_info['signed_day']);        //签订日期转时间戳
+            $enterprise_info['pay_time'] = \strtotime($enterprise_info['pay_time']);        //支付时间转时间戳
+            $enterprise_info['pic_many_content'] = \input('pic_many_content');      //多图文字说明
+
+            $modelE->allowField(true)->save($enterprise_info);
+            if (empty($modelE->id)) {
+                $modelE->rollback();
+                $modelD->rollback();
+                $modleC->rollback();
+                $modelB->rollback();
+                $modleA->rollback();
+            } else {
+                $modelE->commit();
+                $modelD->commit();
+                $modleC->commit();
+                $modelB->commit();
+                $modleA->commit();
+                //添加企业后需要将法人注册为用户
+                $m_data = [
+                    'member_list_username' => $enterprise_info['enterprise_list_legal_representative'],
+                    'member_list_pwd' => \encrypt_password(\config('default_password'), \config('default_salt')),
+                    'member_list_salt' => \config('default_salt'),
+                    'member_list_tel' => $enterprise_info['enterprise_list_legal_phone_number'],
+                    'member_list_groupid' => '2',       //分配一个会员组:企业主
+                    'member_list_open' => '1',        //默认可用
+                    'member_list_addtime' => \time(),
+                ];
+                Db::name('MemberList')->insert($m_data);    //插入一个会员
+
+                //入库之后找出企业的入驻信息进行相关操作
+                $entryinfo = Db::name('EnterpriseEntryInfo')
+                    ->where('enterprise_id', $enterprise_info['enterprise_id'])
+                    ->find();
+                //将企业的id写入房源表里并改变状态,多房间
+                $room_num = \trim($entryinfo['room']);
+                $room_num = \explode('|', $room_num);
+                $field = [
+                    'status' => 1,
+                    'enterprise_id' => $enterprise_info['enterprise_id'],
+                    'entry_time' => \time(),
+                ];
+                Db::name('ParkRoom')
+                    ->where('phase', 'eq', $entryinfo['phase'])
+                    ->where('room_number', 'in', $room_num)->setField($field);
+
+                //入驻时候添加首个账单
+                $bill = $this->getAmount($entryinfo);
+                $rent_amount = $bill['rent_amount'];
+                $property_amount = $bill['property_amount'];
+                $aircon_amount = $bill['aircon_amount'];
+                $amount = $rent_amount + $property_amount + $aircon_amount;
+
+                //下次交费的时间点
+                $next_rent_time = \strtotime('+' . $entryinfo['rent_period'] . 'month');
+                $next_property_time = \strtotime('+' . $entryinfo['property_period'] . 'month');
+                $next_aircon_time = \strtotime('+' . $entryinfo['air_conditioner_period'] . 'month');
+                $bill_data = [
+                    'enterprise_id' => $entryinfo['enterprise_id'],
+                    'rent_amount' => $rent_amount,
+                    'property_amount' => $property_amount,
+                    'aircon_amount' => $aircon_amount,
+                    'discounted_amount' => 0,     //可手动调整金额
+                    'amount' => $amount,
+                    'bill_time' => $entryinfo['signed_day'],
+                    'next_rent_time' => $next_rent_time,
+                    'next_property_time' => $next_property_time,
+                    'next_aircon_time' => $next_aircon_time,
+                    'is_notify' => 0, //默认未通知
+                    'status' => 0,       //默认待缴费
+                ];
+                Db::name('EnterpriseBillList')->insert($bill_data);
+
+                $this->success('添加成功');
             }
         }
     }
@@ -625,7 +683,7 @@ class Enterprise extends Base
         //入库之后找出需要的信息进行相关操作
         $info = Db::name('EnterpriseEntryInfo')
             ->where('enterprise_id', $data['id'])
-            ->field('confirmer,room,phase')
+            ->field('room,phase')
             ->find();
         //根据企业房间号,需要更改房源的状态,
         $room_num = \trim($info['room']);
@@ -639,7 +697,7 @@ class Enterprise extends Base
             ->where('phase', 'eq', $info['phase'])
             ->where('room_number', 'in', $room_num)
             ->setField($fields);
-        if (empty($info['confirmer'])) {
+        if (empty($info)) {
             $this->error('修改失败');
         } else {
             $this->success('修改成功');

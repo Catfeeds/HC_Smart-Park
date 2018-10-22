@@ -253,11 +253,11 @@ $configs = [
     'data_auth_key' => 'GLZpriHMdRo5Slmau9zeFxkhIBNwPEOyW6104UT3',
     //验证码
     'verify' => [
-        'fontSize' => 20,
+        'fontSize' => 13,
         'fontttf' => '4.ttf',
-        'imageH' => 42,
-        'imageW' => 250,
-        'length' => 5,
+        'imageH' => 24,
+        'imageW' => 110,
+        'length' => 4,
         'useCurve' => false,
     ],
     //短信有效期

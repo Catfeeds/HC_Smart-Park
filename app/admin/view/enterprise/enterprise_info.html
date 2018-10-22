@@ -403,7 +403,9 @@
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 租房合同： </label>
                             <div class="col-sm-9">
                                <span class="lbl">&nbsp;&nbsp;
-								<img src="{$info['contract_img']|get_imgurl}" width="100" height="70" id="img2">
+                                   {foreach $info.pic_many_img as $p}
+								<img src="{$p|get_imgurl}" width="100" height="70" id="img2">
+                                   {/foreach}
 							</span>
                             </div>
                         </div>
