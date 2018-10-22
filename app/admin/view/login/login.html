@@ -31,129 +31,37 @@
     <script src="__PUBLIC__/others/html5shiv.min.js"></script>
     <script src="__PUBLIC__/others/respond.min.js"></script>
     <![endif]-->
-
     <style>
-        *{
-            margin: 0px;
-            padding: 0px;
+        body{
+            background-image: url("__PUBLIC__/img/login_bg.png");
         }
-        video{
-            position: fixed;
-            bottom: 0px;
-            min-width: 100%;
-            min-height: 100%;
-            height: auto;
-            width: auto;
-            /*加滤镜*/
-            /*-webkit-filter: grayscale(100%);*/
-            /*filter:grayscale(100%);*/
-            z-index:-11
-        }
-        #login-box{
-            width: 400px;
-            position: relative;
-            left: 60%;
-            top: 200px;
-        }
-        .widget-body{
-
-        }
-        .widget-body{
-            padding: 20px;
-        }
-        .login-title {
-            font-size: 18px;
-            color: #496086;
-            padding-top: 40px;
-            padding-bottom: 30px;
-        }
-        label{
-            margin-bottom: 20px;
-        }
-        .login-footer{
-            text-align: center;
+        .login-box{
             position: absolute;
-            width: 100%;
-            bottom: 0;;
+            width: 890px;
+            height: 450px;
+            border-radius: 5px;
+            background-color: #fff;
+            top: 50%;
+            left: 50%;
+            margin-top: -225px;
+            margin-left: -445px;
         }
+
+        .video-box{
+            height: 400px;
+            width: 400px;
+            padding: 10px;
+            border: 1px solid ;
+            margin-top: 25px;
+        }
+
     </style>
 </head>
 <body>
-<video src="http://www.hacyy.com/public/video/hac.mp4" width="100%" autoplay muted></video>
-<div id="login-box" class="login-box visible widget-box no-border">
-        <div class="widget-body">
-            <div class="widget-main">
-                <h4 class="login-title text-center">
-                    淮安留创园后台管理系统
-                </h4>
 
-                <form class="ajaxForm3" name="runlogin" id="runlogin" method="post"
-                      action="{:url('admin/Login/runlogin')}">
-                    <fieldset>
-                        <label class="block clearfix">
-                            <span class="block input-icon input-icon-right">
-                                <input type="text" class="form-control" name="admin_username" id="admin_username" placeholder="用户名" required/>
-                                <i class="ace-icon fa fa-user"></i>
-                            </span>
-                        </label>
-
-                        <label class="block clearfix">
-                            <span class="block input-icon input-icon-right">
-                                <input type="password" class="form-control" name="admin_pwd" id="admin_pwd" placeholder="输入密码" required/>
-                                <i class="ace-icon fa fa-lock"></i>
-                            </span>
-                        </label>
-                        <!--开发模式关闭验证码-->
-                        {//if condition="config('app_debug') neq 1"}
-                        <!--极验验证码开关-->
-                        {if condition="config('geetest.geetest_on')"}
-                        <div id="captcha"></div>
-                        <div class="space-6"></div>
-                        {else /}
-                        <label class="block clearfix">
-                            <span class="block input-icon input-icon-right">
-                                <input type="text" class="form-control" name="verify" id="verify" placeholder="输入验证码" required/>
-                                <i class="ace-icon fa fa-sort-alpha-asc"></i>
-                            </span>
-                        </label>
-                        <label class="block clearfix">
-                            <span class="block text-center">
-                                <img class="verify_img" id="verify_img" src="{:url('admin/Login/verify')}" onClick="this.src='{:url('admin/Login/verify')}'+'?'+Math.random()" style="cursor: pointer;width:100%;border: 1px solid #d5d5d5;" title="点击获取">
-                            </span>
-                        </label>
-                        {///if}
-                        {/if}
-
-                        <div class="clearfix">
-                            <label class="inline">
-                                <input name="rememberme" type="checkbox" class="ace"/>
-                                <span class="lbl"> 记住信息</span>
-                            </label>
-
-                            <button type="submit"
-                                    class="width-35 pull-right btn btn-sm btn-primary">
-                                <i class="ace-icon fa fa-key"></i>
-                                <span class="bigger-110">登录</span>
-                            </button>
-                        </div>
-
-                        <div class="space-4"></div>
-                    </fieldset>
-                </form>
-            </div><!-- /.widget-main -->
-        </div><!-- /.widget-body -->
-</div><!-- /.login-box -->
-
-
-<div class="login-footer">
-    <p>Copyright&copy;2015-2018 ALL rights reserved.
-        <a class="link_a" href="#" rel="nofollow" >沪ICP备17024837号-1</a>
-    </p>
-    <p>技术支持:
-        <a href="http://www.qiniuniu.com/" rel="nofollow">
-            <img class="qiniuniu" src="__PUBLIC__/public/img/qiniuniu.png" />
-        </a>
-    </p>
+<div class="login-box">
+    <div class="video-box"></div>
+    <div class="user-login"></div>
 </div>
 
 
