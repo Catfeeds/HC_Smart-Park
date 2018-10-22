@@ -39,7 +39,6 @@
         }
         video{
             position: fixed;
-            right: 0px;
             bottom: 0px;
             min-width: 100%;
             min-height: 100%;
@@ -71,6 +70,12 @@
         label{
             margin-bottom: 20px;
         }
+        .login-footer{
+            text-align: center;
+            position: absolute;
+            width: 100%;
+            bottom: 0;;
+        }
     </style>
 </head>
 <body>
@@ -99,7 +104,7 @@
                             </span>
                         </label>
                         <!--开发模式关闭验证码-->
-                        {if condition="config('app_debug') neq 1"}
+                        {//if condition="config('app_debug') neq 1"}
                         <!--极验验证码开关-->
                         {if condition="config('geetest.geetest_on')"}
                         <div id="captcha"></div>
@@ -116,7 +121,7 @@
                                 <img class="verify_img" id="verify_img" src="{:url('admin/Login/verify')}" onClick="this.src='{:url('admin/Login/verify')}'+'?'+Math.random()" style="cursor: pointer;width:100%;border: 1px solid #d5d5d5;" title="点击获取">
                             </span>
                         </label>
-                        {/if}
+                        {///if}
                         {/if}
 
                         <div class="clearfix">
@@ -137,7 +142,19 @@
                 </form>
             </div><!-- /.widget-main -->
         </div><!-- /.widget-body -->
-    </div><!-- /.login-box -->
+</div><!-- /.login-box -->
+
+
+<div class="login-footer">
+    <p>Copyright&copy;2015-2018 ALL rights reserved.
+        <a class="link_a" href="#" rel="nofollow" >沪ICP备17024837号-1</a>
+    </p>
+    <p>技术支持:
+        <a href="http://www.qiniuniu.com/" rel="nofollow">
+            <img class="qiniuniu" src="__PUBLIC__/public/img/qiniuniu.png" />
+        </a>
+    </p>
+</div>
 
 
 
