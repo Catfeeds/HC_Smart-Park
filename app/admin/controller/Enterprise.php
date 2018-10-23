@@ -717,8 +717,8 @@ class Enterprise extends Base
             'rent_period' => \trim($data['rent_period']),
             'property_period' => \trim($data['property_period']),
             'air_conditioner_period' => \trim($data['air_conditioner_period']),
-            'signed_day' => \strtotime($data['signed_day']),
-            'pay_time' => \strtotime($data['pay_time']),
+            'signed_day' => $data['signed_day'],
+            'pay_time' => $data['pay_time'],
             'contract_img' => $data['contract_img'],
             //多图路径
             'pic_many_img' => $pic_oldlist . $picall_url,

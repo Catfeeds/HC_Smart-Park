@@ -419,8 +419,8 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 签订日期： </label>
                             <div class="col-sm-9">
-                                <input type="text" name="signed_day" id="signed_day"
-                                       value="{$info['signed_day']|date='Y/m/d',###}" placeholder=""
+                                <input type="date" name="signed_day" id="signed_day"
+                                       value="{$info['signed_day']|date='Y-m-d',###}" placeholder=""
                                        class="col-xs-10 col-sm-5" required/>
                                 <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
                                 <span class="help-inline col-xs-12 col-sm-7">
@@ -432,8 +432,8 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 支付时间： </label>
                             <div class="col-sm-9">
-                                <input type="text" name="pay_time" id="pay_time"
-                                       value="{$info['pay_time']|date='Y-m-d H:i:s',###}" placeholder=""
+                                <input type="date" name="pay_time" id="pay_time"
+                                       value="{$info['pay_time']|date='Y-m-d',###}" placeholder=""
                                        class="col-xs-10 col-sm-5" required/>
                                 <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
                                 <span class="help-inline col-xs-12 col-sm-7">
