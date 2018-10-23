@@ -136,10 +136,12 @@ class Enterprise extends Base
         if (!\request()->isPost()) {
             $this->error('提交方式不正确');
         } else {
+
             //检查企业名是否存在
-            $enterprise_count = Db::name('EnterpriseList')->where('enterprise_list_name', \trim(\input(['enterprise_list_name'])))->count();
+            $enterprise_count = Db::name('EnterpriseList')->where('enterprise_list_name', \trim(\input('enterprise_list_name')))->count();
+
             //检查房间号是否有入驻
-            $room_count = Db::name('EnterpriseList')->where('room', \trim(\input('room')))->count();
+            $room_count = Db::name('EnterpriseEntryInfo')->where('room', \trim(\input('room')))->count();
             if ($enterprise_count > 0) {
                 $this->error('该企业名已存在');
             }
@@ -336,7 +338,6 @@ class Enterprise extends Base
             $enterprise_info['signed_day'] = \strtotime($enterprise_info['signed_day']);        //签订日期转时间戳
             $enterprise_info['pay_time'] = \strtotime($enterprise_info['pay_time']);        //支付时间转时间戳
             $enterprise_info['pic_many_content'] = \input('pic_many_content');      //多图文字说明
-
             $modelE->allowField(true)->save($enterprise_info);
             if (empty($modelE->id)) {
                 $modelE->rollback();
@@ -666,7 +667,7 @@ class Enterprise extends Base
         Db::name('ParkRoom')->where('room_number', 'in', $old_room_num)->setField($fields0);
 
         $sql_data1 = [
-            'enterprise_list_name' => \input('enterprise_list_name',''),
+            'enterprise_list_name' => \input('enterprise_list_name', ''),
             'enterprise_list_logo' => $data['enterprise_list_logo'],
             'enterprise_list_license_img' => $data['enterprise_list_license_img'],
             'enterprise_list_credit_code' => $data['enterprise_list_credit_code'],
@@ -720,7 +721,7 @@ class Enterprise extends Base
             'pay_time' => \strtotime($data['pay_time']),
             'contract_img' => $data['contract_img'],
             //多图路径
-            'pic_many_img'=>$pic_oldlist.$picall_url,
+            'pic_many_img' => $pic_oldlist . $picall_url,
             'pic_many_content' => $data['pic_many_content'],
             'signer' => $data['signer'],
             'operator' => $data['operator'],

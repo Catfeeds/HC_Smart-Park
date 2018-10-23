@@ -52,13 +52,15 @@ class Index extends Common
     public function room_month_status()
     {
 
-        //一企多房的情况!!!!需要改
         for ($i = 1; $i < 13; $i++) {
             //每个月开始时间
             $m_s = \date('Y' . '-' . $i . '-' . '01');
             //每个月结束时间
             $m_e = \date('Y' . '-' . $i . '-' . 't');
-            $data[] = Db::name('ParkRoom')->where('entry_time', 'between time', [$m_s, $m_e])->count();
+            $data[] = Db::name('ParkRoom')
+                ->where('entry_time', 'between time', [$m_s, $m_e])
+                ->where('status','eq',1)
+                ->count();
         }
         return ['data' => $data];
     }
