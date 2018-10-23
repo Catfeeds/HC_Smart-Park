@@ -1165,3 +1165,10 @@ $(function () {
         $("#geetest").toggle(200);
     });
 });
+<!--JS导出表格插件-->
+$("#jsexport").click(function(){
+    $("#dynamic-table").tableExport({
+        type:"xlsx",
+        escape:"false",
+    });
+});

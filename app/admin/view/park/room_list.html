@@ -1,73 +1,87 @@
 {extend name="admin@public/base" /}
 {block name="main-content"}
-	<div class="page-content">
-		<div class="row maintop">
-			<form name="room_list_sea" class="form-search" id="list-filter" method="post" action="{:url('admin/Park/room_list')}">
-				<div class="col-xs-10 col-sm-5  margintop5">
-					<select name="status" class="ajax_change">
-						<option value="">按租赁状态</option>
-						<option value="1" {if condition="$status eq '1'"}selected="selected"{/if}>已租</option>
-						<option value="0" {if condition="$status eq '0'"}selected="selected"{/if} >未租</option>
-                        <option value="2" {if condition="$status eq '2'"}selected="selected"{/if} >已售</option>
-                        <option value="3" {if condition="$status eq '3'"}selected="selected"{/if} >已定</option>
-                        <option value="4" {if condition="$status eq '4'"}selected="selected"{/if} >自留</option>
-					</select>
+<div class="page-content">
+    <div class="row maintop">
+        <div class="col-xs-12 col-sm-4">
 
-					<select name="phase" class="ajax_change">
-						<option value="">按园区</option>
-                        {foreach $building as $b}
-						<option value="{$b.id}" {if $phase eq $b.id}selected{/if}>{$b.name}</option>
-                        {/foreach}
-                    </select>
+            <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="" id="jsexport">
+                <i class="ace-icon fa fa-bolt bigger-110"></i>
+                导出表格
+            </button>
+        </div>
+        <form name="room_list_sea" class="form-search" id="list-filter" method="post"
+              action="{:url('admin/Park/room_list')}">
+            <div class="col-xs-10 col-sm-5  margintop5">
+                <select name="status" class="ajax_change">
+                    <option value="">按租赁状态</option>
+                    <option value="1" {if condition="$status eq '1'" }selected="selected" {
+                    /if}>已租</option>
+                    <option value="0" {if condition="$status eq '0'" }selected="selected" {
+                    /if} >未租</option>
+                    <option value="2" {if condition="$status eq '2'" }selected="selected" {
+                    /if} >已售</option>
+                    <option value="3" {if condition="$status eq '3'" }selected="selected" {
+                    /if} >已定</option>
+                    <option value="4" {if condition="$status eq '4'" }selected="selected" {
+                    /if} >自留</option>
+                </select>
 
-                    <select name="floor" id="floor" class="ajax_change">
-                        <option value="">按楼层</option>
-                        {for start="1" end="24"}
-                        <option value={$i} {if condition="$floor eq $i"}selected="selected">{$i}层</option>
-                        {/for}
-                    </select>
+                <select name="phase" class="ajax_change">
+                    <option value="">按园区</option>
+                    {foreach $building as $b}
+                    <option value="{$b.id}" {if $phase eq $b.id}selected{
+                    /if}>{$b.name}</option>
+                    {/foreach}
+                </select>
 
-				</div>
-				<div class="col-xs-4 col-sm-3 margintop5">
-					<div class="input-group-btn">
-						<a href="{:url('admin/Park/room_list')}">
-							<button type="button" class="btn btn-sm  btn-purple ajax-display-all">
-								<span class="ace-icon fa fa-globe icon-on-right bigger-110"></span>
-								显示全部
-							</button>
-						</a>
-					</div>
-				</div>
-			</form>
-		</div>
+                <select name="floor" id="floor" class="ajax_change">
+                    <option value="">按楼层</option>
+                    {for start="1" end="24"}
+                    <option value={$i} {if condition="$floor eq $i" }selected="selected">{$i}层</option>
+                    {/for}
+                </select>
 
-		<div class="row">
-			<div class="col-xs-12">
-				<div>
-					<table class="table table-striped table-bordered table-hover" id="dynamic-table">
-						<thead>
-						<tr>
-							<th>园区</th>
-							<th>楼层</th>
-                            <th>房间号</th>
-							<th class="hidden-sm hidden-xs">面积(㎡)</th>
-							<th>房租(元/㎡)</th>
-                            <th>物业费(元/㎡)</th>
-                            <th>空调费(元/㎡)</th>
-							<th class="hidden-sm hidden-xs">装修</th>
-							<th class="hidden-sm hidden-xs">入驻企业</th>
-							<th class="hidden-xs">状态</th>
-							<th style="border-right:#CCC solid 1px;">操作</th>
-						</tr>
-						</thead>
+            </div>
+            <div class="col-xs-4 col-sm-3 margintop5">
+                <div class="input-group-btn">
+                    <a href="{:url('admin/Park/room_list')}">
+                        <button type="button" class="btn btn-sm  btn-purple ajax-display-all">
+                            <span class="ace-icon fa fa-globe icon-on-right bigger-110"></span>
+                            显示全部
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
 
-						<tbody id="ajax-data">
-							{include file="park/ajax_room_list"/}
-						</tbody>
-					</table>
+    <div class="row">
+        <div class="col-xs-12">
+            <div>
+                <table class="table table-striped table-bordered table-hover" id="dynamic-table">
+                    <thead>
+                    <tr>
+                        <th>园区</th>
+                        <th>楼层</th>
+                        <th>房间号</th>
+                        <th class="hidden-sm hidden-xs">面积(㎡)</th>
+                        <th>房租(元/㎡)</th>
+                        <th>物业费(元/㎡)</th>
+                        <th>空调费(元/㎡)</th>
+                        <th class="hidden-sm hidden-xs">装修</th>
+                        <th class="hidden-sm hidden-xs">入驻企业</th>
+                        <th class="hidden-xs">状态</th>
+                        <th style="border-right:#CCC solid 1px;">操作</th>
+                    </tr>
+                    </thead>
 
-				</div>
-			</div>
-		</div>
-	</div><!-- /.page-content -->
+                    <tbody id="ajax-data">
+                    {include file="park/ajax_room_list"/}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div><!-- /.page-content -->
 {/block}
