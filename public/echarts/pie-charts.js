@@ -3,6 +3,7 @@ var myChart = echarts.init(dom);
 var app = {};
 option = null;
 option = {
+    color:['#0071c4','#93d6fc','#5bbaf0', '#b7d4e4', '#3ba2dc'],
     title : {
         text: '二期房源分布图',
         textStyle: {
@@ -16,9 +17,9 @@ option = {
         subtext: '',
         x:'left'
     },
-    tooltip : {
+    tooltip: {
         trigger: 'item',
-        formatter: "{a} <br/>{b} : {c} ({d}%)"
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
     },
     toolbox: {
         show: true,
@@ -35,34 +36,165 @@ option = {
         itemGap: 38,
         data: ['已租','未租','已售出','已预订','房自留']
     },
-    color:['#0071c4','#93d6fc','#5bbaf0', '#b7d4e4', '#3ba2dc'],
-    series : [
+    series: [
         {
-            name: '二期房源分布图',
-            type: 'pie',
-            radius : '55%',
-            center: ['50%', '60%'],
+            name:'二期房源分布图',
+            type:'pie',
+            selectedMode: 'single',
+            radius: [0, '30%'],
+
+            label: {
+                normal: {
+                    position: 'inner'
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
             data:[
                 {value:42, name:'已租'},
                 {value:123, name:'未租'},
                 {value:12, name:'已售出'},
                 {value:8, name:'已预订'},
                 {value:46, name:'房自留'}
-            ],
-            itemStyle: {
-                emphasis: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+            ]
+        },
+        {
+            name:'二期房源分布图',
+            type:'pie',
+            radius: ['40%', '55%'],
+            label: {
+                normal: {
+                    formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                    backgroundColor: '#eee',
+                    borderColor: '#aaa',
+                    borderWidth: 1,
+                    borderRadius: 4,
+                    rich: {
+                        a: {
+                            color: '#999',
+                            lineHeight: 22,
+                            align: 'center'
+                        },
+                        hr: {
+                            borderColor: '#aaa',
+                            width: '100%',
+                            borderWidth: 0.5,
+                            height: 0
+                        },
+                        b: {
+                            fontSize: 16,
+                            lineHeight: 33
+                        },
+                        per: {
+                            color: '#eee',
+                            backgroundColor: '#334455',
+                            padding: [2, 4],
+                            borderRadius: 2
+                        }
+                    }
                 }
-            }
+            },
+            data:[
+                {value:42, name:'已租'},
+                {value:123, name:'未租'},
+                {value:12, name:'已售出'},
+                {value:12, name:'已预订'},
+                {value:46, name:'房自留'}
+            ]
         }
     ]
 };
-;
 if (option && typeof option === "object") {
     myChart.setOption(option, true);
 }
+
+// var dom = document.getElementById("index-pie");
+// var myChart = echarts.init(dom);
+// var app = {};
+// option = null;
+// option = {
+//     title : {
+//         text: '二期房源分布图',
+//         textStyle: {
+//             color: '#667690',
+//             fontSize:22,
+//             fontWeight: 500,
+//         },
+//         padding: 5,
+//         left: 10,
+//         top: 10,
+//         subtext: '',
+//         x:'left'
+//     },
+//     tooltip : {
+//         trigger: 'item',
+//         formatter: "{a} <br/>{b} : {c} ({d}%)"
+//     },
+//     toolbox: {
+//         show: true,
+//         right: 30,
+//         top: 20,
+//         feature:{
+//             saveAsImage:{}
+//         }
+//     },
+//     legend: {
+//         orient: 'vertical',
+//         right: 80,
+//         top: 110,
+//         itemGap: 38,
+//         data: ['已租','未租','已售出','已预订','房自留']
+//     },
+//     color:['#0071c4','#93d6fc','#5bbaf0', '#b7d4e4', '#3ba2dc'],
+//     series : [
+//         {
+//             name: '二期房源分布图',
+//             type: 'pie',
+//             radius : '55%',
+//             center: ['50%', '60%'],
+//             data:[
+//                 {value:42, name:'已租'},
+//                 {value:123, name:'未租'},
+//                 {value:12, name:'已售出'},
+//                 {value:8, name:'已预订'},
+//                 {value:46, name:'房自留'}
+//             ],
+//             itemStyle: {
+//                 emphasis: {
+//                     shadowBlur: 10,
+//                     shadowOffsetX: 0,
+//                     shadowColor: 'rgba(0, 0, 0, 0.5)'
+//                 }
+//             }
+//         }
+//     ]
+// };
+// ;
+// if (option && typeof option === "object") {
+//     myChart.setOption(option, true);
+// }
+
+//echarts表单异步获取数据
+// $.get('data.json').done(function (data) {
+//     // 填入数据
+//     myChart.setOption({
+//         xAxis: {
+//             data: data.categories
+//         },
+//         series: [{
+//             // 根据名字对应到相应的系列
+//             name: '销量',
+//             data: data.data
+//         }]
+//     });
+// });
+
+
+
+
 
 
 // 折线图
