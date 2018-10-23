@@ -35,6 +35,13 @@
         body{
             background-image: url("__PUBLIC__/img/login_bg.png");
         }
+        .fa{
+            color: #667690;
+        }
+        input[type=email], input[type=url], input[type=search], input[type=tel], input[type=color], input[type=text], input[type=password], input[type=datetime], input[type=datetime-local], input[type=date], input[type=month], input[type=time], input[type=week], input[type=number], textarea{
+            background-color: #f3f6f9;
+        }
+
         .login-box{
             position: absolute;
             width: 890px;
@@ -45,23 +52,175 @@
             left: 50%;
             margin-top: -225px;
             margin-left: -445px;
+            padding: 25px;
         }
 
         .video-box{
+            float: left;
+            height: 400px;
+            width: 400px;
+        }
+        .video-box img {
+            width: 100%;
+        }
+
+
+        .user-login{
+            float: left;
             height: 400px;
             width: 400px;
             padding: 10px;
-            border: 1px solid ;
-            margin-top: 25px;
+            margin-left: 25px;
+        }
+        .user-login-title {
+            font-size: 18px;
+            color: #496086;
+            font-weight: 600;
         }
 
+        .user-login-name{
+            width: 350px;
+            margin: 20px auto;
+        }
+        .user-login-icon{
+            border: 1px solid #ccc;
+            padding: 13px;
+            background-color: #f3f6f9;
+            font-size: 22px;
+            float: left;
+            border-right: none;
+        }
+        .user-login-username{
+            float: left;
+            height: 50px;
+            width: 300px;
+        }
+        .fa-lock:before{
+            padding: 2px;
+        }
+        .user-login-yzm{
+            margin: 20px auto;
+            height: 50px;
+            width: 350px;
+        }
+        .user-login-yzm1{
+            width: 190px;
+            height: 50px;
+            text-align: center;
+            margin-right: 15px;
+        }
+
+        .user-login-rember{
+            display: block;
+            margin: 28px auto;
+            width: 350px;
+        }
+
+        .user-login-log{
+            display: block;
+            width: 350px;
+            height: 60px;
+            margin: 0 auto;
+            background-color: #6b8de8;
+            border-radius: 3px;
+            color: #fff;
+            font-size: 20px;
+            letter-spacing: 12px;
+            border: 2px solid;
+        }
+
+        .login-footer{
+            text-align: center;
+            position: absolute;
+            width: 100%;
+            bottom: 0;;
+            color: #f3f6f9;
+        }
+        .qiniuniu{
+            width: 40px;
+        }
+
+        .login-footer p{
+            margin: 0;
+            padding: 0;
+        }
+        .login-footer a{
+            color: #f3f6f9;
+        }
     </style>
 </head>
 <body>
 
-<div class="login-box">
-    <div class="video-box"></div>
-    <div class="user-login"></div>
+<div class="login-box clearfix">
+    <div class="video-box">
+        <img src="__PUBLIC__/img/video_place.png" alt="">
+        <!--<video src="__PUBLIC__/video/hac.mp4" width="100%" height="100%" autoplay loop muted></video>-->
+    </div>
+    <div class="user-login">
+        <h4 class="user-login-title text-center">
+            淮安留创园后台管理系统
+        </h4>
+        <form class="ajaxForm3" name="runlogin" id="runlogin" method="post" action="{:url('admin/Login/runlogin')}">
+            <fieldset>
+                <div class="user-login-name clearfix">
+                    <i class="ace-icon fa fa-user user-login-icon"></i>
+                    <input type="text" class="user-login-username" name="admin_username" id="admin_username" placeholder="用户名" required/>
+                </div>
+
+                <div class="user-login-name clearfix">
+                    <i class="ace-icon fa fa-lock user-login-icon"></i>
+                    <input type="password" class="user-login-username" name="admin_pwd" id="admin_pwd" placeholder="输入密码" required/>
+                </div>
+
+                <!--开发模式关闭验证码-->
+                {//if condition="config('app_debug') neq 1"}
+                <!--极验验证码开关-->
+                {if condition="config('geetest.geetest_on')"}
+                <div id="captcha"></div>
+                <div class="space-6"></div>
+                {else /}
+
+                <div class="user-login-yzm">
+                    <input type="text" class="user-login-yzm1" name="verify" id="verify" placeholder="请输入验证码" required/>
+                    <img class="user-login-yzm2" id="verify_img" src="{:url('admin/Login/verify')}" onClick="this.src='{:url('admin/Login/verify')}'+'?'+Math.random()" style="cursor:pointer;border: 1px solid #d5d5d5;width: 110px;height: 47px;" title="点击获取">
+                </div>
+
+                <!--<label class="block clearfix">-->
+                <!--<span class="block text-center">-->
+                <!--<img class="verify_img" id="verify_img" src="{:url('admin/Login/verify')}" onClick="this.src='{:url('admin/Login/verify')}'+'?'+Math.random()" style="cursor: pointer;width:100%;border: 1px solid #d5d5d5;" title="点击获取">-->
+                <!--</span>-->
+                <!--</label>-->
+                {///if}
+                {/if}
+
+                <label class="user-login-rember">
+                    <input name="rememberme" type="checkbox" class="ace"/>
+                    <span class="lbl"> 记住信息</span>
+                </label>
+
+                <button  type="submit" class="user-login-log">
+                    <span class="">登录</span>
+                </button>
+
+
+                <!--<button type="submit" class="btn btn-login">-->
+                        <!--<span class="bigger-110">登录</span>-->
+                <!--</button>-->
+
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<div class="login-footer">
+    <p>Copyright&copy;2015-2018 ALL rights reserved.
+        <a class="link_a" href="#" rel="nofollow" >沪ICP备17024837号-1</a>
+    </p>
+    <p>技术支持:
+        <a href="http://www.qiniuniu.com/" rel="nofollow">
+            <img class="qiniuniu" src="__PUBLIC__/img/qiniuniu.png" />
+        </a>
+    </p>
 </div>
 
 
