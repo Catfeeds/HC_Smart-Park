@@ -27,6 +27,7 @@ class Financial extends Base
         $list = Db::name('EnterpriseEntryInfo eei')
             ->join('EnterpriseBank eb', 'eei.enterprise_id=eb.enterprise_id')
             ->join('EnterpriseList el', 'eei.enterprise_id=el.id')
+            ->join('EnterpriseBillList ebl','eei.enterprise_id=ebl.enterprise_id')
             ->where('el.enterprise_list_name', 'like', "%" . $key . "%")
             ->order('enterprise_list_addtime desc')
             ->paginate(config('paginate.list_rows'));
@@ -52,6 +53,7 @@ class Financial extends Base
             ->join('EnterpriseEntryInfo eei', 'ebl.enterprise_id=eei.enterprise_id')
             ->join('EnterpriseBank eb', 'ebl.enterprise_id=eb.enterprise_id')
             ->join('EnterpriseList el', 'ebl.enterprise_id=el.id')
+            ->join('EnterpriseBillList ebl','eei.enterprise_id=ebl.enterprise_id')
             ->where('el.enterprise_list_name', 'like', "%" . $key . "%")
             ->order('bill_time desc')
             ->paginate(config('paginate.list_rows'));

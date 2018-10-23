@@ -34,7 +34,6 @@
     'baidumap_ak' => 'D91c810554767b49e3bdd2a7b25d97c1',
     'upload_validate' =>
         array(
-            'size' => 10485760,
             'ext' =>
                 array(
                     0 => 'jpg',
@@ -47,6 +46,7 @@
                     7 => 'xls',
                     8 => 'xlsx',
                 ),
+            'size' => 10485760,
         ),
     'upload_path' => '/data/upload',
     'url_route_on' => true,

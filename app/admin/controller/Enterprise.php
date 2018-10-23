@@ -390,11 +390,13 @@ class Enterprise extends Base
                 $next_rent_time = \strtotime('+' . $entryinfo['rent_period'] . 'month');
                 $next_property_time = \strtotime('+' . $entryinfo['property_period'] . 'month');
                 $next_aircon_time = \strtotime('+' . $entryinfo['air_conditioner_period'] . 'month');
+                //账单数据
                 $bill_data = [
                     'enterprise_id' => $entryinfo['enterprise_id'],
                     'rent_amount' => $rent_amount,
                     'property_amount' => $property_amount,
                     'aircon_amount' => $aircon_amount,
+                    'area' => $bill['area'],
                     'discounted_amount' => 0,     //可手动调整金额
                     'amount' => $amount,
                     'bill_time' => $entryinfo['signed_day'],
@@ -433,6 +435,7 @@ class Enterprise extends Base
         $rent_amount = 0;
         $property_amount = 0;
         $aircon_amount = 0;
+        $all_room_area = 0;
         $phase = $info['phase'];
         $room_num = \trim($info['room']);
         $room_num = \explode('|', $room_num);
@@ -441,12 +444,15 @@ class Enterprise extends Base
                 ->where('phase', 'eq', $phase)
                 ->where('room_number', 'eq', $v)
                 ->find();
+
             $per_rent = $room_info['price'] * $room_info['area'] * $info['rent_period']; //每间房的房租
             $rent_amount += $per_rent;      //所有房间的房租
             $per_property = $room_info['property'] * $room_info['area'] * $info['property_period']; //每间房的物业费
             $property_amount += $per_property;//所有房间的物业费
             $per_aircon = $room_info['aircon'] * $room_info['area'] * $info['air_conditioner_period'];  //每间房的空调费
             $aircon_amount += $per_aircon;  //所有房间的空调费
+            $singer_room_area = $room_info['area'];     //单个房间面积
+            $all_room_area += $singer_room_area;     //所有房间面积
         }
         $amount = $rent_amount + $per_property + $aircon_amount;
         $data = [
@@ -454,6 +460,7 @@ class Enterprise extends Base
             'property_amount' => $property_amount,
             'aircon_amount' => $aircon_amount,
             'amount' => $amount,
+            'area' => $all_room_area,
         ];
         return $data;
     }
