@@ -29,20 +29,22 @@
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 企业logo： </label>
                             <div class="col-sm-9">
                                <span class="lbl">&nbsp;&nbsp;
-								<img src="{$info['enterprise_list_logo']|get_imgurl}" width="100" height="70" id="img0">
+								<img src="{$info['enterprise_list_logo']|get_imgurl}" class="img-click img-min" width="100" id="img0">
 							</span>
                             </div>
                         </div>
+
                         <div class="space-4"></div>
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 营业执照： </label>
                             <div class="col-sm-9">
                                <span class="lbl">&nbsp;&nbsp;
-								<img src="{$info['enterprise_list_license_img']|get_imgurl}" width="100" height="70" id="img1">
+								<img src="{$info['enterprise_list_license_img']|get_imgurl}" width="100" class="img-click img-min" id="img1">
 							</span>
                             </div>
                         </div>
+
                         <div class="space-4"></div>
 
                         <div class="form-group">
@@ -404,7 +406,7 @@
                             <div class="col-sm-9">
                                <span class="lbl">&nbsp;&nbsp;
                                    {foreach $info.pic_many_img as $p}
-								<img src="{$p|get_imgurl}" width="100" height="70" id="img2">
+								<img src="{$p|get_imgurl}" width="100" class="img-click img-min" id="img2">
                                    {/foreach}
 							</span>
                             </div>
@@ -473,5 +475,15 @@
             </form>
         </div>
     </div>
+
+    <script>
+        $(function () {
+            $('.img-click').click(function () {
+                $(this).toggleClass('img-min');
+                $(this).toggleClass('img-max');
+            })
+        })
+    </script>
+
 </div><!-- /.page-content -->
 {/block}

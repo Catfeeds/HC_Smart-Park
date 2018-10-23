@@ -37,8 +37,9 @@ option = {
         data: ['已租','未租','已售出','已预订','房自留']
     },
     series: [
+        //内层饼状图
         {
-            name:'二期房源分布图',
+            name:'二期房源分布图1',
             type:'pie',
             selectedMode: 'single',
             radius: [0, '30%'],
@@ -61,8 +62,9 @@ option = {
                 {value:46, name:'房自留'}
             ]
         },
+        //外层饼状图
         {
-            name:'二期房源分布图',
+            name:'二期房源分布图2',
             type:'pie',
             radius: ['40%', '55%'],
             label: {
@@ -111,86 +113,19 @@ if (option && typeof option === "object") {
     myChart.setOption(option, true);
 }
 
-// var dom = document.getElementById("index-pie");
-// var myChart = echarts.init(dom);
-// var app = {};
-// option = null;
-// option = {
-//     title : {
-//         text: '二期房源分布图',
-//         textStyle: {
-//             color: '#667690',
-//             fontSize:22,
-//             fontWeight: 500,
-//         },
-//         padding: 5,
-//         left: 10,
-//         top: 10,
-//         subtext: '',
-//         x:'left'
-//     },
-//     tooltip : {
-//         trigger: 'item',
-//         formatter: "{a} <br/>{b} : {c} ({d}%)"
-//     },
-//     toolbox: {
-//         show: true,
-//         right: 30,
-//         top: 20,
-//         feature:{
-//             saveAsImage:{}
-//         }
-//     },
-//     legend: {
-//         orient: 'vertical',
-//         right: 80,
-//         top: 110,
-//         itemGap: 38,
-//         data: ['已租','未租','已售出','已预订','房自留']
-//     },
-//     color:['#0071c4','#93d6fc','#5bbaf0', '#b7d4e4', '#3ba2dc'],
-//     series : [
-//         {
-//             name: '二期房源分布图',
-//             type: 'pie',
-//             radius : '55%',
-//             center: ['50%', '60%'],
-//             data:[
-//                 {value:42, name:'已租'},
-//                 {value:123, name:'未租'},
-//                 {value:12, name:'已售出'},
-//                 {value:8, name:'已预订'},
-//                 {value:46, name:'房自留'}
-//             ],
-//             itemStyle: {
-//                 emphasis: {
-//                     shadowBlur: 10,
-//                     shadowOffsetX: 0,
-//                     shadowColor: 'rgba(0, 0, 0, 0.5)'
-//                 }
-//             }
-//         }
-//     ]
-// };
-// ;
-// if (option && typeof option === "object") {
-//     myChart.setOption(option, true);
-// }
-
-//echarts表单异步获取数据
-// $.get('data.json').done(function (data) {
-//     // 填入数据
-//     myChart.setOption({
-//         xAxis: {
-//             data: data.categories
-//         },
-//         series: [{
-//             // 根据名字对应到相应的系列
-//             name: '销量',
-//             data: data.data
-//         }]
-//     });
-// });
+// echarts表单异步获取数据
+$.get('/api/charts.index/room_status').done(function (data) {
+    //填入数据
+    myChart.setOption({
+        series: [{
+            name: '二期房源分布图1',
+            data: data
+        },{
+            name: '二期房源分布图2',
+            data: data
+        }]
+    });
+});
 
 
 
@@ -200,7 +135,7 @@ if (option && typeof option === "object") {
 // 折线图
 // 每月出租房源趋势图
 var dom1 = document.getElementById("index-line-room");
-var myChart = echarts.init(dom1);
+var myChart1 = echarts.init(dom1);
 var app = {};
 option1 = null;
 option1 = {
@@ -239,12 +174,24 @@ option1 = {
 };
 ;
 if (option1 && typeof option1 === "object") {
-    myChart.setOption(option1, true);
+    myChart1.setOption(option1, true);
 }
+$.get('/api/charts.index/room_month_status').done(function (data) {
+    //填入数据
+    myChart1.setOption({
+        series: [{
+            data: data.data
+        }]
+    });
+});
+
+
+
+
 
 // 每月企业入驻数据
 var dom2 = document.getElementById("index-line-enterprise");
-var myChart = echarts.init(dom2);
+var myChart2 = echarts.init(dom2);
 var app = {};
 option2 = null;
 option2 = {
@@ -283,13 +230,23 @@ option2 = {
 };
 ;
 if (option2 && typeof option2 === "object") {
-    myChart.setOption(option2, true);
+    myChart2.setOption(option2, true);
 }
+$.get('/api/charts.index/enterprise_entry_month').done(function (data) {
+    //填入数据
+    myChart2.setOption({
+        series: [{
+            data: data.data
+        }]
+    });
+});
+
+
 
 
 //注册用户数
 var dom3 = document.getElementById("index-line-user");
-var myChart = echarts.init(dom3);
+var myChart3 = echarts.init(dom3);
 var app = {};
 option3 = null;
 option3 = {
@@ -341,13 +298,22 @@ option3 = {
     ]
 };
 if (option3 && typeof option3 === "object") {
-    myChart.setOption(option3, true);
+    myChart3.setOption(option3, true);
 }
+$.get('/api/charts.index/user_month').done(function (data) {
+    //填入数据
+    myChart3.setOption({
+        series: [{
+            data: data.data
+        }]
+    });
+});
+
 
 
 //各楼层入驻情况
 var dom4 = document.getElementById("index-line-floor");
-var myChart = echarts.init(dom4);
+var myChart4 = echarts.init(dom4);
 var app = {};
 option4 = null;
 option4 = {
@@ -409,5 +375,13 @@ option4 = {
 };
 ;
 if (option4 && typeof option4 === "object") {
-    myChart.setOption(option4, true);
+    myChart4.setOption(option4, true);
 }
+$.get('/api/charts.index/one_floor_entry').done(function (data) {
+    //填入数据
+    myChart4.setOption({
+        series: [{
+            data: data.data
+        }]
+    });
+});

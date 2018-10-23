@@ -27,6 +27,12 @@ a:focus, a:hover{
     background-color: #27aaf3!important;
     border-color: #27aaf3;
 }
+.img-min{
+    width: 100px;
+}
+.img-max{
+    width: 500px;
+}
 
 
 /*首页样式修改*/
