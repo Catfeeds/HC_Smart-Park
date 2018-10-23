@@ -335,8 +335,7 @@
                             <div class="col-sm-9">
                                 <select name="phase" id="phase">
                                     {foreach $building as $b}
-                                    <option value="{$b.id}" {if $phase eq $b.id}selected{
-                                    /if}>{$b.name}</option>
+                                    <option value="{$b.id}" {if $phase eq $b.id}selected{/if}>{$b.name}</option>
                                     {/foreach}
                                 </select>
                             </div>
@@ -445,7 +444,7 @@
                             <div class="col-sm-10 col-sm-offset-2" style="padding-top:5px;">
                                 <input id="file-5" name="pic_many[]" type="file" class="file" multiple
                                        data-preview-file-type="any" data-upload-url="#" data-preview-file-icon=""><br/>
-                                <textarea name="news_pic_content" class="col-xs-12 col-sm-12" id="news_pic_content"
+                                <textarea name="pic_many_content" class="col-xs-12 col-sm-12" id="pic_many_content"
                                           placeholder="选择多图时请一次性选择。多图对应文字说明，例如： 图片一说明 | 图片二说明 | 图片三说明    每个文字说明以 | 分割"></textarea>
                             </div>
                         </div>

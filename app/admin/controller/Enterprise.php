@@ -473,6 +473,10 @@ class Enterprise extends Base
         $bank_info = Db::name('EnterpriseBank')->where('enterprise_id', $id)->find();
         //入驻信息
         $entry_info = Db::name('EnterpriseEntryInfo')->where('enterprise_id', $id)->find();
+        //多图图片
+        $pic_many = $entry_info['pic_many_img'];
+        $pic_many = \array_filter(\explode(',', $pic_many));
+        $entry_info['pic_many_img_arr'] = $pic_many;
 
         $info = $basic_info + $business_info + $contact_info + $bank_info + $entry_info;
         $this->assign('info', $info);
@@ -570,7 +574,7 @@ class Enterprise extends Base
             $data['enterprise_list_license_img'] = input('oldcheckpicname1');
         }
 
-        //租房合同
+        //租房合同----单图的不要了
         $checkpic2 = input('checkpic2');
         $oldcheckpic2 = input('oldcheckpic2');
         $img_url2 = '';
@@ -609,6 +613,49 @@ class Enterprise extends Base
             $data['contract_img'] = input('oldcheckpicname2');
         }
 
+        //租房合同---多图
+        $pic_oldlist = input('pic_oldlist');//老多图字符串
+        $files = request()->file('pic_many');
+        $picall_url = '';
+        if ($files) {
+            if (config('storage.storage_open')) {
+                //七牛
+                $upload = \Qiniu::instance();
+                $info = $upload->upload();
+                $error = $upload->getError();
+                if ($info) {
+                    if (!empty($files)) {
+                        foreach ($info as $file) {
+                            $many_img_url = config('storage.domain') . $file['key'];
+                            $picall_url = $many_img_url . ',' . $picall_url;
+                        }
+                    } else {
+                        $this->error($error, url('admin/Enterprise/enterprise_edit'));
+                    }
+                }
+            } else {
+                $validate = config('upload_validate');
+                if (!empty($files)) {
+                    foreach ($files as $file) {
+                        $info = $file->validate($validate)->rule('uniqid')->move(ROOT_PATH . config('upload_path') . DS . date('Y-m-d'));
+                        if ($info) {
+                            $many_img_url = config('upload_path') . '/' . date('Y-m-d') . '/' . $info->getFilename();
+                            //写入数据库
+                            $datap['uptime'] = time();
+                            $datap['filesize'] = $info->getSize();
+                            $datap['path'] = $many_img_url;
+                            Db::name('plug_files')->insert($datap);
+                            $picall_url = $many_img_url . ',' . $picall_url;
+                        } else {
+                            $this->error($file->getError(), url('admin/Enterprise/enterprise_edit'));//否则就是上传错误，显示错误原因
+                        }
+                    }
+                }
+            }
+        } else {
+            $enterprise_info['pic_many_img'] = \input('pic_oldlist');
+        }
+
         //更新之前先清空原有的房间信息
         $old_room_num = Db::name('EnterpriseEntryInfo')->where('enterprise_id', 'eq', $data['id'])->value('room');
         $old_room_num = \explode('|', $old_room_num);
@@ -619,7 +666,7 @@ class Enterprise extends Base
         Db::name('ParkRoom')->where('room_number', 'in', $old_room_num)->setField($fields0);
 
         $sql_data1 = [
-            'enterprise_list_name' => $data['enterprise_list_name'],
+            'enterprise_list_name' => \input('enterprise_list_name',''),
             'enterprise_list_logo' => $data['enterprise_list_logo'],
             'enterprise_list_license_img' => $data['enterprise_list_license_img'],
             'enterprise_list_credit_code' => $data['enterprise_list_credit_code'],
@@ -672,6 +719,9 @@ class Enterprise extends Base
             'signed_day' => \strtotime($data['signed_day']),
             'pay_time' => \strtotime($data['pay_time']),
             'contract_img' => $data['contract_img'],
+            //多图路径
+            'pic_many_img'=>$pic_oldlist.$picall_url,
+            'pic_many_content' => $data['pic_many_content'],
             'signer' => $data['signer'],
             'operator' => $data['operator'],
             'drawer' => $data['drawer'],

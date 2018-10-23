@@ -442,37 +442,34 @@
                         </div>
                         <div class="space-4"></div>
 
-                        <div class="form-group" id="pic_list2">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 租房合同 </label>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 租房合同： </label>
                             <div class="col-sm-9">
-                                <input type="hidden" name="checkpic2" id="checkpic2" value="{$info.contract_img}"/>
-                                <input type="hidden" name="oldcheckpic2" id="oldcheckpic2"
-                                       value="{$info.contract_img}"/>
-                                <input type="hidden" name="oldcheckpicname2" id="oldcheckpic2"
-                                       value="{$info.contract_img}"/>
-                                <a href="javascript:;" class="file" title="点击选择所要上传的图片">
-                                    <input type="file" name="file2" id="file2" multiple="multiple"/>
-                                    选择上传文件
-                                </a>
-                                <span class="lbl">&nbsp;&nbsp;
-								<img src="{$info.contract_img|get_imgurl}" width="100" height="70" id="img2">
-							</span>&nbsp;&nbsp;
-                                &nbsp;&nbsp;<a href="javascript:;" onclick="return backpic12('{$info.contract_img}');"
-                                               title="还原修改前的图片" class="file">
-                                撤销上传
-                            </a>
+                                        <span class="btn btn-minier btn-success" data-toggle="modal" data-target="#myModal">查看已上传的图片</span>
                             </div>
                         </div>
                         <div class="space-4"></div>
+                        <link href="__PUBLIC__/ppy/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+                        <script src="__PUBLIC__/ppy/js/fileinput.js" type="text/javascript"></script>
+                        <script src="__PUBLIC__/ppy/js/fileinput_locale_zh.js" type="text/javascript"></script>
+                        <div class="form-group" id="pic_many_list">
+                        <div class="col-sm-10 col-sm-offset-2" style="padding-top:5px;">
+                            <input id="file-5" name="pic_many[]" type="file" class="file" multiple data-preview-file-type="any"
+                                   data-upload-url="#" data-preview-file-icon=""><br/>
+                            <textarea name="pic_many_content" class="col-xs-12 col-sm-12" id="pic_many_content"
+                                      placeholder="选择多图时请一次性选择。多图对应文字说明，例如： 图片一说明 | 图片二说明 | 图片三说明    每个文字说明以 | 分割">{$info['pic_many_content']}</textarea>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <!--老多图字符串-->
+                    <input name="pic_oldlist" type="hidden" id="pic_oldlist" type="text" size="130"
+                           value="{$info.pic_many_img}">
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 签订人： </label>
                             <div class="col-sm-9">
                                 <input type="text" name="signer" id="signer" value="{$info['signer']}" placeholder=""
-                                       class="col-xs-10 col-sm-5" required/>
-                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
-                                <span class="help-inline col-xs-12 col-sm-7">
-								<span class="middle" id="res26"></span>
+                                       class="col-xs-10 col-sm-5"/>
                             </div>
                         </div>
                         <div class="space-4"></div>
@@ -481,10 +478,7 @@
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 操作人： </label>
                             <div class="col-sm-9">
                                 <input type="text" name="operator" id="operator" value="{$info['operator']}"
-                                       placeholder="" class="col-xs-10 col-sm-5" required/>
-                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
-                                <span class="help-inline col-xs-12 col-sm-7">
-								<span class="middle" id="res26"></span>
+                                       placeholder="" class="col-xs-10 col-sm-5"/>
                             </div>
                         </div>
                         <div class="space-4"></div>
@@ -493,10 +487,7 @@
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 开票人： </label>
                             <div class="col-sm-9">
                                 <input type="text" name="drawer" id="drawer" value="{$info['drawer']}" placeholder=""
-                                       class="col-xs-10 col-sm-5" required/>
-                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
-                                <span class="help-inline col-xs-12 col-sm-7">
-								<span class="middle" id="res26"></span>
+                                       class="col-xs-10 col-sm-5"/>
                             </div>
                         </div>
                         <div class="space-4"></div>
@@ -506,32 +497,88 @@
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 确认人： </label>
                             <div class="col-sm-9">
                                 <input type="text" name="confirmer" id="confirmer" value="{$info['confirmer']}"
-                                       placeholder="" class="col-xs-10 col-sm-5" required/>
-                                <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
-                                <span class="help-inline col-xs-12 col-sm-7">
-								<span class="middle" id="res26"></span>
+                                       placeholder="" class="col-xs-10 col-sm-5"/>
                             </div>
                         </div>
                         <div class="space-4"></div>
-                    </div>
-                    <!--入驻信息结束-->
-                    <div class="clearfix form-actions">
-                        <div class="col-sm-offset-3 col-sm-9">
-                            <button class="btn btn-info" type="submit">
-                                <i class="ace-icon fa fa-check bigger-110"></i>
-                                保存
-                            </button>
 
-                            &nbsp; &nbsp; &nbsp;
-                            <button class="btn" type="reset">
-                                <i class="ace-icon fa fa-undo bigger-110"></i>
-                                重置
-                            </button>
+                        <div class="clearfix form-actions">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <button class="btn btn-info" type="submit">
+                                    <i class="ace-icon fa fa-check bigger-110"></i>
+                                    保存
+                                </button>
+
+                                &nbsp; &nbsp; &nbsp;
+                                <button class="btn" type="reset">
+                                    <i class="ace-icon fa fa-undo bigger-110"></i>
+                                    重置
+                                </button>
+                            </div>
                         </div>
                     </div>
+                    <!--入驻信息结束-->
+
                 </div>
             </form>
         </div>
+        <!-- 显示模态框（Modal） -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="width:80%">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">×
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            操作已上传的多图
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+
+
+                                <div class="form-group">
+                                    <div class="col-sm-10">
+                                        <ul>
+                                            {volist name="info.pic_many_img_arr" id="p"}
+
+                                            <div class="file-preview-frame" data-fileindex="0" id="id{$i}">
+                                                <img src="{$p|get_imgurl}" class="file-preview-image"
+                                                     style="width:auto;height:160px;">
+                                                <div class="file-thumbnail-footer">
+                                                    <div class="file-actions">
+                                                        <div class="file-footer-buttons">
+                                                            <a class="red" href="javascript:;"
+                                                               onclick="return delall({$i},'{$p}');" title="回收站">
+                                                                <i class="ace-icon fa  bigger-130 iconfont icon-empty"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {/volist}
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="space-4"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary">
+                            若想取消修改，请刷新当前页面
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            关闭
+                        </button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
     </div>
 </div><!-- /.page-content -->
 {/block}
