@@ -54,7 +54,7 @@ class Financial extends Base
             ->join('EnterpriseBank eb', 'ebl.enterprise_id=eb.enterprise_id', 'LEFT')
             ->join('EnterpriseList el', 'ebl.enterprise_id=el.id', 'LEFT')
             ->where('el.enterprise_list_name', 'like', "%" . $key . "%")
-            ->field('ebl.id,el.enterprise_list_name,ebl.rent_amount,ebl.property_amount,ebl.aircon_amount,ebl.discounted_amount,ebl.amount,eei.margin,eei.signed_day,eei.signer,ebl.is_notify,ebl.status')
+            ->field('ebl.id,el.enterprise_list_name,ebl.rent_amount,ebl.property_amount,ebl.aircon_amount,ebl.discounted_amount,ebl.amount,ebl.invoice_handler,eei.margin,eei.signed_day,eei.signer,ebl.is_notify,ebl.status')
             ->order('bill_time')
             ->paginate(config('paginate.list_rows'));
         $show = $list->render();
@@ -102,7 +102,7 @@ class Financial extends Base
         $res = \sendsms($account, $type, $templateCode, $amount);
         if ($res['code'] == 1) {
             //发送成功后修改通知状态
-            Db::name('EnterpriseBillList')->where('id', $bill_id)->setField('is_notify', 1);
+            Db::name('EnterpriseBillList')->where('id', $bill_id)->setField('is_notify', \session('hid'));
             $this->success('发送成功!');
         } else {
             $this->error('发送失败');
