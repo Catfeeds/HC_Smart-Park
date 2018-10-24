@@ -111,6 +111,64 @@ a:focus, a:hover{
 
 
 
+/*首页楼层平面样式*/
+.index-build-plane{
+    display: inline-block;
+    vertical-align: top;
+    width: 30%;
+}
+.index-bulid-list,.index-room-info ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.index-floor{
+    width: 300px;
+    height: 20px;
+    background-color: #27aaf3;
+    border: 2px solid #fff;
+    cursor: pointer;
+}
+.index-floor:hover{
+    transform: scale(1.1);
+}
+
+
+
+.index-room-container{
+    display: inline-block;
+}
+.index-room-plane{
+    text-align: center;
+}
+.index-room-info{
+    box-sizing: border-box;
+    background-color: #e9f1f8;
+    color: #667690;
+    padding-left: 9%;
+    font-size: 16px;
+    font-weight: 600;
+    min-width: 650px;
+}
+.index-room-info-title{
+    background-color: #e4edf5;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin: 0;
+    font-weight: 600;
+}
+.inline-block{
+    display: inline-block;
+}
+.index-room-left{
+    width: 30%;
+}
+.index-room-left li ,.index-room-right li{
+    margin: 20px 0;
+}
+.index-room-right{
+    width: 60%;
+}
 
 
 
