@@ -98,3 +98,54 @@ function getEnterpriseBasicInfoByCode($code)
 {
     return Db::name('EnterpriseList')->where('enterprise_list_code', 'eq', $code)->find();
 }
+
+//XLS导出
+
+/**
+ * $name  string 文件名称
+ * $header array 列标题
+ * $dataResult  数组
+ **/
+function ExcelPull($name, $header, $dataResult)
+{
+    //这一行没啥用,根据具体情况优化下
+    $headTitle = "xx详情";
+    $headtitle = "<tr style='height:50px;border-style:none;><td border=\"0\" style='height:90px;width:470px;font-size:22px;' colspan='11' >{$headTitle}</th></tr>";
+    $titlename = "<tr>";
+    foreach ($header as $v) {
+        $titlename .= "<td>$v</td>";
+    }
+    $titlename .= "</tr>";
+    $fileName = date("Y-m-d") . "-" . $name . ".xls";
+    excelData($dataResult, $titlename, $headtitle, $fileName);
+}
+
+
+/**
+ * @param $data
+ * @param $titlename
+ * @param $title
+ * @param $filename
+ */
+function excelData($data, $titlename, $title, $filename)
+{
+    $str = "<html xmlns:o=\"urn:schemas-microsoft-com:office:office\"\r\nxmlns:x=\"urn:schemas-microsoft-com:office:excel\"\r\nxmlns=\"http://www.w3.org/TR/REC-html40\">\r\n<head>\r\n<meta http-equiv=Content-Type content=\"text/html; charset=utf-8\">\r\n</head>\r\n<body>";
+    $str .= "<table border=1>" . $titlename;
+    $str .= '';
+    foreach ($data as $key => $rt) {
+        $str .= "<tr>";
+        foreach ($rt as $v) {
+            $str .= "<td >{$v}</td>";
+        }
+        $str .= "</tr>\n";
+    }
+    $str .= "</table></body></html>";
+    $str .= "<span>creator:" . '管理员' . "</span>";
+    header("Content-Type: application/vnd.ms-excel; name='excel'");
+    header("Content-type: application/octet-stream");
+    header("Content-Disposition: attachment; filename=" . $filename);
+    header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+    header("Pragma: no-cache");
+    header("Expires: 0");
+    exit($str);
+}
