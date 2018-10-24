@@ -1728,7 +1728,7 @@ function data_signature($data = [])
  * @throws \think\exception\PDOException
  * * 发送短信验证码,阿里大鱼已废弃,此处为阿里云通信!!!
  */
-function sendsms($account, $type, $templateCode)
+function sendsms($account, $type, $templateCode,$code)
 {
     $where['sms_type'] = $type;
     $where['sms_tel'] = $account;
@@ -1741,7 +1741,7 @@ function sendsms($account, $type, $templateCode)
     }
     $rst_sms = false;
     $error = '未设置短信平台配置';
-    $code = random(6, 'number');
+
     if (config('think_sdk_sms.sms_open')) {
         $config = array(
             'accessKeyId' => config('think_sdk_sms.AccessKeyId'),

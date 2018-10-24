@@ -27,7 +27,7 @@ class Financial extends Base
         $list = Db::name('EnterpriseEntryInfo eei')
             ->join('EnterpriseBank eb', 'eei.enterprise_id=eb.enterprise_id')
             ->join('EnterpriseList el', 'eei.enterprise_id=el.id')
-            ->join('EnterpriseBillList ebl','eei.enterprise_id=ebl.enterprise_id')
+            ->join('EnterpriseBillList ebl', 'eei.enterprise_id=ebl.enterprise_id')
             ->where('el.enterprise_list_name', 'like', "%" . $key . "%")
             ->order('enterprise_list_addtime desc')
             ->paginate(config('paginate.list_rows'));
@@ -54,8 +54,9 @@ class Financial extends Base
             ->join('EnterpriseBank eb', 'ebl.enterprise_id=eb.enterprise_id')
             ->join('EnterpriseList el', 'ebl.enterprise_id=el.id')
             ->where('el.enterprise_list_name', 'like', "%" . $key . "%")
-            ->order('bill_time desc')
+            ->order('bill_time')
             ->paginate(config('paginate.list_rows'));
+//        \halt($list);
         $show = $list->render();
         $show = preg_replace("(<a[^>]*page[=|/](\d+).+?>(.+?)<\/a>)", "<a href='javascript:ajax_page($1);'>$2</a>", $show);
         $this->assign('list', $list);
@@ -65,6 +66,42 @@ class Financial extends Base
             return $this->fetch('ajax_bill_list');
         } else {
             return \view();
+        }
+    }
+
+    /**
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     * 发送账单
+     */
+    public function sendSms()
+    {
+        $enterprise_id = \input('id');
+        //先找财务负责人
+        $account = Db::name('EnterpriseBank')
+            ->where('enterprise_id', $enterprise_id)
+            ->value('financial_office_phone');  //根据企业id找到需要发通知的人的手机号
+        if (empty($account)) {
+            //没有财务负责人,则找企业法人
+            $account = Db::name('EnterpriseList')
+                ->where('id', $enterprise_id)
+                ->value('enterprise_list_legal_phone_number');
+            if (empty($account)) {
+                $this->error('联系人不存在!');
+            }
+        }
+        $templateCode = 'SMS_148862288';    //短信模板id
+        $amount = \input('amount');     //账单总金额
+        $type = 3;
+        $res = \sendsms($account, $type, $templateCode, $amount);
+        if ($res['code'] == 1) {
+            $this->success('发送成功!');
+
+        } else {
+            $this->error('发送失败');
         }
     }
 

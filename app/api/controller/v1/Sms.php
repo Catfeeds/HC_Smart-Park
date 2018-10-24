@@ -26,6 +26,7 @@ class Sms extends Common
     {
         $phone = \input('phone');
         $type = \input('type');
+        $code = random(6, 'number');
         if ($type == 1) {
             //注册模板
             $templateCode = 'SMS_145187285';
@@ -47,7 +48,7 @@ class Sms extends Common
         if (!$rst) {
             return \show(0, '手机号不正确', '',201);
         } else {
-            return \sendsms($phone, $type, $templateCode);
+            return \sendsms($phone, $type, $templateCode,$code);
 
         }
     }

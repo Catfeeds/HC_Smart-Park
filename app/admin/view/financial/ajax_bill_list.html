@@ -2,11 +2,13 @@
 <tr>
     <td class="hidden-xs" height="28">{$k+1}</td>
     <td>{$v.enterprise_list_name}</td>
-    <td>{$v.financial_office}</td>
-    <td>{$v.financial_office_phone}</td>
-    <td>{$v.financial_office_email}</td>
-    <td>{$v.room}</td>
-    <td>{$v.area}</td>
+    <td>{$v.rent_amount}</td>
+    <td>{$v.property_amount}</td>
+    <td>{$v.aircon_amount}</td>
+    <td>{$v.discounted_amount}</td>
+    <td>{$v.amount}</td>
+    <!--<td>{$v.room}</td>-->
+    <!--<td>{$v.area}</td>-->
     <td>{$v.margin}</td>
     <td class="hidden-sm hidden-xs">{$v.signed_day|date='Y-m-d',###}</td>
     <td>{$v.signer}</td>
@@ -15,62 +17,27 @@
     {else}
     <td>未通知</td>
     {/if}
+    {if $v.status eq 0}
+    <td>待缴费</td>
+    {elseif $v.status eq 1 /}
+    <td>待开票</td>
+    {else}
+    <td>已完成</td>
+    {/if}
     <td>
         <div class="hidden-sm hidden-xs action-buttons">
 
-            <a class="blue" href="{:url('admin/enterprise/enterprise_info',array('id'=>$v['id']))}" title="查看">
+            <a class="blue" href="{:url('admin/enterprise/enterprise_info',array('id'=>$v['id']))}" title="查看企业信息">
                 <i class="ace-icon fa  bigger-130 iconfont icon-chakan"></i>
             </a>
 
-            <a class="blue" href="{:url('admin/enterprise/enterprise_edit',array('id'=>$v['id']))}" title="修改">
-                <i class="ace-icon fa  bigger-130 iconfont icon-brush"></i>
+            <a class="confirm-rst-url-btn" data-info="发送短信?" href="{:url('admin/financial/sendSms',array('id'=>$v['id'],'amount'=>$v['amount']))}" title="发送短信通知" data-toggle="tooltip">
+                <i class="ace-icon fa fa-commenting-o bigger-130"></i>
             </a>
-
-            <a class="blue confirm-rst-url-btn"
-               href="{:url('admin/enterprise/enterprise_delete',array('id'=>$v['id'],'p'=>input('p',1)))}"
-               data-info="你确定要删除吗？" title="删除">
-                <i class="ace-icon fa  bigger-130 iconfont icon-empty"></i>
-            </a>
-        </div>
-        <div class="hidden-md hidden-lg">
-            <div class="inline position-relative">
-                <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                    <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-                </button>
-                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                    <li>
-                        <a href="{:url('admin/enterprise/enterprise_info',array('id'=>$v['id']))}"
-                           class="tooltip-success" data-rel="tooltip" title="" data-original-title="修改">
-											<span class="green">
-												<i class="ace-icon fa fa-eye bigger-120"></i>
-											</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="{:url('admin/enterprise/enterprise_edit',array('id'=>$v['id']))}"
-                           class="tooltip-success" data-rel="tooltip" title="" data-original-title="修改">
-											<span class="green">
-												<i class="ace-icon fa fa-pencil bigger-120"></i>
-											</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="{:url('admin/enterprise/enterprise_delete',array('id'=>$v['id'],'p'=>input('p',1)))}"
-                           class="tooltip-error confirm-rst-url-btn" data-info="你确定要删除吗？" data-rel="tooltip" title=""
-                           data-original-title="删除">
-											<span class="red">
-												<i class="ace-icon fa fa-trash-o bigger-120"></i>
-											</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
         </div>
     </td>
 </tr>
 {/foreach}
 <tr>
-    <td height="50" colspan="12" align="left">{$page}</td>
+    <td height="50" colspan="14" align="left">{$page}</td>
 </tr>
