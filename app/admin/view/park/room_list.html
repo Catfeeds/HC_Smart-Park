@@ -4,10 +4,12 @@
     <div class="row maintop">
         <div class="col-xs-12 col-sm-4">
 
-            <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="" id="jsexport">
-                <i class="ace-icon fa fa-bolt bigger-110"></i>
-                导出表格
-            </button>
+            <a href="{:url('api/excel.index/roomList')}">
+                <button class="btn btn-sm btn-danger">
+                    <i class="ace-icon fa fa-bolt bigger-110"></i>
+                    导出房源
+                </button>
+            </a>
         </div>
         <form name="room_list_sea" class="form-search" id="list-filter" method="post"
               action="{:url('admin/Park/room_list')}">

@@ -22,7 +22,6 @@ class EnterpriseList extends Model
      * 显示字段
      */
     protected $hidden = [
-        'id',
         'enterprise_list_open',
         'is_delete',
 

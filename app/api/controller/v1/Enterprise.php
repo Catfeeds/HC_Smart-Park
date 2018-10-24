@@ -19,8 +19,12 @@ use app\api\model\EnterpriseList;
  */
 class Enterprise extends Common
 {
+
     /**
      * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      * 企业列表带搜索
      */
     public function index()

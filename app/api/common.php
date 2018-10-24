@@ -106,7 +106,7 @@ function getEnterpriseBasicInfoByCode($code)
  * $header array 列标题
  * $dataResult  数组
  **/
-function ExcelPull($name, $header, $dataResult)
+function ExcelPull($name, $header, $data)
 {
     //这一行没啥用,根据具体情况优化下
     $headTitle = "xx详情";
@@ -117,7 +117,7 @@ function ExcelPull($name, $header, $dataResult)
     }
     $titlename .= "</tr>";
     $fileName = date("Y-m-d") . "-" . $name . ".xls";
-    excelData($dataResult, $titlename, $headtitle, $fileName);
+    excelData($data, $titlename, $headtitle, $fileName);
 }
 
 
