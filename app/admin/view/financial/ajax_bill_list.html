@@ -20,7 +20,7 @@
     {elseif $v.status eq 1 /}
     <td>待开票</td>
     {else}
-    <td>已完成/{$v.invoice_handler|getAdminUserNameById}</td>
+    <td>已完成【{$v.invoice_handler|getAdminUserNameById}】</td>
     {/if}
     <td>
         <div class="hidden-sm hidden-xs action-buttons">
