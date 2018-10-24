@@ -7,8 +7,6 @@
     <td>{$v.aircon_amount}</td>
     <td>{$v.discounted_amount}</td>
     <td>{$v.amount}</td>
-    <!--<td>{$v.room}</td>-->
-    <!--<td>{$v.area}</td>-->
     <td>{$v.margin}</td>
     <td class="hidden-sm hidden-xs">{$v.signed_day|date='Y-m-d',###}</td>
     <td>{$v.signer}</td>
@@ -31,7 +29,7 @@
                 <i class="ace-icon fa  bigger-130 iconfont icon-chakan"></i>
             </a>
 
-            <a class="confirm-rst-url-btn" data-info="发送短信?" href="{:url('admin/financial/sendSms',array('id'=>$v['id'],'amount'=>$v['amount']))}" title="发送短信通知" data-toggle="tooltip">
+            <a class="confirm-rst-url-btn" data-info="发送短信?" href="{:url('admin/financial/sendSms',array('id'=>$v['id']))}" title="发送短信通知" data-toggle="tooltip">
                 <i class="ace-icon fa fa-commenting-o bigger-130"></i>
             </a>
         </div>

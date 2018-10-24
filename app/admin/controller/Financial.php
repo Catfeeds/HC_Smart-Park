@@ -50,13 +50,13 @@ class Financial extends Base
     {
         $key = \input('key');
         $list = Db::name('EnterpriseBillList ebl')
-            ->join('EnterpriseEntryInfo eei', 'ebl.enterprise_id=eei.enterprise_id')
-            ->join('EnterpriseBank eb', 'ebl.enterprise_id=eb.enterprise_id')
-            ->join('EnterpriseList el', 'ebl.enterprise_id=el.id')
+            ->join('EnterpriseEntryInfo eei', 'ebl.enterprise_id=eei.enterprise_id', 'LEFT')
+            ->join('EnterpriseBank eb', 'ebl.enterprise_id=eb.enterprise_id', 'LEFT')
+            ->join('EnterpriseList el', 'ebl.enterprise_id=el.id', 'LEFT')
             ->where('el.enterprise_list_name', 'like', "%" . $key . "%")
+            ->field('ebl.id,el.enterprise_list_name,ebl.rent_amount,ebl.property_amount,ebl.aircon_amount,ebl.discounted_amount,ebl.amount,eei.margin,eei.signed_day,eei.signer,ebl.is_notify,ebl.status')
             ->order('bill_time')
             ->paginate(config('paginate.list_rows'));
-//        \halt($list);
         $show = $list->render();
         $show = preg_replace("(<a[^>]*page[=|/](\d+).+?>(.+?)<\/a>)", "<a href='javascript:ajax_page($1);'>$2</a>", $show);
         $this->assign('list', $list);
@@ -79,27 +79,31 @@ class Financial extends Base
      */
     public function sendSms()
     {
-        $enterprise_id = \input('id');
+        $bill_id = \input('id');
+        $bill_info = Db::name('EnterpriseBillList')
+            ->where('id', $bill_id)
+            ->find();
         //先找财务负责人
         $account = Db::name('EnterpriseBank')
-            ->where('enterprise_id', $enterprise_id)
+            ->where('enterprise_id', $bill_info['enterprise_id'])
             ->value('financial_office_phone');  //根据企业id找到需要发通知的人的手机号
         if (empty($account)) {
             //没有财务负责人,则找企业法人
             $account = Db::name('EnterpriseList')
-                ->where('id', $enterprise_id)
+                ->where('id', $bill_info['enterprise_id'])
                 ->value('enterprise_list_legal_phone_number');
             if (empty($account)) {
                 $this->error('联系人不存在!');
             }
         }
         $templateCode = 'SMS_148862288';    //短信模板id
-        $amount = \input('amount');     //账单总金额
+        $amount = $bill_info['amount'];     //账单总金额
         $type = 3;
         $res = \sendsms($account, $type, $templateCode, $amount);
         if ($res['code'] == 1) {
+            //发送成功后修改通知状态
+            Db::name('EnterpriseBillList')->where('id', $bill_id)->setField('is_notify', 1);
             $this->success('发送成功!');
-
         } else {
             $this->error('发送失败');
         }
