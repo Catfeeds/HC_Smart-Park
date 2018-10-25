@@ -197,6 +197,7 @@
         <div class="common-room">
             <h3>房源平面图</h3>
             <div class="index-build-plane">
+                <h3 id="index-build-floor"><span class="index-room-floor">4F</span></h3>
                 <ul class="index-bulid-list">
                     <li class="index-floor" data-float="23">23F</li>
                     <li class="index-floor" data-float="22">22F</li>
@@ -445,7 +446,7 @@
 
                 </div>
                 <div class="index-room-info">
-                    <h4 class="index-room-info-title">401室详情</h4>
+                    <h4 class="index-room-info-title"><span class="index-room-num">401</span>室详情</h4>
                     <ul class="inline-block index-room-left">
                         <li>楼栋：<span class="index-room-floor">4F</span></li>
                         <li>门牌：<span class="index-room-num">401</span></li>
@@ -455,7 +456,7 @@
                     <ul class="inline-block index-room-right">
                         <li>项目名称：<span class="index-room-times">海创空间大厦二期</span></li>
                         <li>企业入驻：<span class="index-room-enterprise">暂未有企业入驻</span></li>
-                        <li>地点：<span class="index-room-add">通源路海创空间大厦二期401</span></li>
+                        <li>地点：<span class="index-room-add">通源路海创空间大厦二期<span class="index-room-num">401</span>室</span></li>
                     </ul>
                 </div>
             </div>
@@ -475,34 +476,96 @@
     </div><!-- /.row -->
 </div>
 <script>
-    $('.index-bulid-list').on('mouseenter','.index-floor',function () {
+
+    //点击楼层显示平面和默认信息
+    $('.index-bulid-list').on('click','.index-floor',showPlane)
+    //鼠标悬浮楼层显示平面和默认信息
+    //$('.index-bulid-list').on('mouseenter','.index-floor',showPlane)
+
+
+
+    //点击房间改变状态
+    $('.index-room-plane').on('click','.room',showRoom)
+    //鼠标悬浮房间改变状态
+    $('.index-room-plane').on('mouseenter','.room',showRoom)
+
+
+
+    // 楼层平面所需js
+    function getNumReg(num) {
+        num = String(num);
+        return num.substr(num.length - 2);
+    }
+
+    function getJsonLength(jsonData){
+        var jsonLength = 0;
+        for(var item in jsonData){
+            jsonLength++;
+        }
+
+        return jsonLength;
+    }
+
+    function showPlane() {
         var floatNum = this.getAttribute("data-float");
+        localStorage.setItem("floatNum",floatNum);
         $.ajax({
             url:'/api/charts.index/build_floor/floor/' + floatNum,
             type:'get',
             dataType:'json',
             success:function(data){
-                //$('.index-room-plane').replaceWith(data.data.svg)
+                $('.index-room-num').html(data.data[0].room_number)
+                $('.index-room-floor').html(data.data[0].floor)
+                $('.index-room-squ').html(data.data[0].area)
+                $('.index-room-times').html(data.data[0].phase)
+                $('.index-room-enterprise').html(data.data[0].enterprise_id)
                 $('.index-room-plane')[0].innerHTML = data.data.svg;
+
+                if( getJsonLength(data.data) > 2 ) {
+                    for (var i = 0; i < 12; i++) {
+                        var floatInfo = data.data[i];
+                        switch (floatInfo.status) {
+                            case 0:
+                                document.getElementById("room_" + getNumReg(floatInfo.room_number)).style.fill = "#0071c4";
+                                break;
+                            case 1:
+                                document.getElementById("room_" + getNumReg(floatInfo.room_number)).style.fill = "#93d6fc";
+                                break;
+                            case 2:
+                                document.getElementById("room_" + getNumReg(floatInfo.room_number)).style.fill = "#5bbaf0";
+                                break;
+                            case 3:
+                                document.getElementById("room_" + getNumReg(floatInfo.room_number)).style.fill = "#b7d4e4";
+                                break;
+                            case 4:
+                                document.getElementById("room_" + getNumReg(floatInfo.room_number)).style.fill = "#3ba2dc";
+                                break;
+                        }
+                    }
+                }
+
             }
         })
-    })
+    }
 
-    $('.index-bulid-list').on('click','.index-floor',function () {
-        var floatNum = this.getAttribute("data-float");
+    function showRoom() {
+        var roomNum = localStorage.getItem("floatNum") + this.getAttribute("data-room");
         $.ajax({
-            url:'/api/charts.index/build_floor/floor/' + floatNum,
-            type:'get',
+            url:'/api/charts.index/room_info',
+            type:'post',
+            data: {
+                room_id: roomNum
+            },
             dataType:'json',
             success:function(data){
-                //$('.index-room-plane').replaceWith(data.data.svg)
-                $('.index-room-plane')[0].innerHTML = data.data.svg;
+                $('.index-room-num').html(data.data[0].room_number)
+                $('.index-room-floor').html(data.data[0].floor)
+                $('.index-room-squ').html(data.data[0].area)
+                $('.index-room-times').html(data.data[0].phase)
+                $('.index-room-enterprise').html(data.data[0].enterprise_id)
             }
         })
-    })
-
-
-
+    }
 
 </script>
 {/block}

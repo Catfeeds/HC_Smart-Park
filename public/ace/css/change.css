@@ -114,8 +114,10 @@ a:focus, a:hover{
 /*首页楼层平面样式*/
 .index-build-plane{
     display: inline-block;
+    padding: 10px;
     vertical-align: top;
     width: 30%;
+    background-image: url("__PUBLIC__");
 }
 .index-bulid-list,.index-room-info ul{
     list-style: none;
@@ -274,7 +276,7 @@ a:focus, a:hover{
 }
 
 .sidebar+.main-content{
-    margin-left: 290px;
+    margin-left: 216px;
 }
 .btn-danger a{
     color: #fff;

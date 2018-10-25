@@ -55,11 +55,11 @@ option = {
                 }
             },
             data:[
-                {value:42, name:'已租'},
-                {value:123, name:'未租'},
-                {value:12, name:'已售出'},
-                {value:8, name:'已预订'},
-                {value:46, name:'房自留'}
+                {value:0, name:'已租'},
+                {value:0, name:'未租'},
+                {value:0, name:'已售出'},
+                {value:0, name:'已预订'},
+                {value:0, name:'房自留'}
             ]
         },
         //外层饼状图
@@ -100,11 +100,11 @@ option = {
                 }
             },
             data:[
-                {value:42, name:'已租'},
-                {value:123, name:'未租'},
-                {value:12, name:'已售出'},
-                {value:12, name:'已预订'},
-                {value:46, name:'房自留'}
+                {value:0, name:'已租'},
+                {value:0, name:'未租'},
+                {value:0, name:'已售出'},
+                {value:0, name:'已预订'},
+                {value:0, name:'房自留'}
             ]
         }
     ]
@@ -168,7 +168,7 @@ option1 = {
         type: 'value'
     },
     series: [{
-        data: [8, 2, 3, 5, 5, 1, 7, 22, 3, 6, 12, 6],
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         type: 'line'
     }]
 };
@@ -224,7 +224,7 @@ option2 = {
         type: 'value'
     },
     series: [{
-        data: [0, 12, 3,7, 5, 7, 7, 12, 5, 6, 8, 6],
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         type: 'line'
     }]
 };
@@ -293,7 +293,7 @@ option3 = {
         {
             name:'注册用户',
             type:'line',
-            data:[11, 15, 13, 12, 13, 10, 11, 15, 13, 12, 13, 10],
+            data:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         },
     ]
 };
@@ -369,7 +369,7 @@ option4 = {
             name:'入驻数量',
             type:'bar',
             barWidth: '60%',
-            data:[0, 0 , 0, 0, 10, 8, 5, 3, 3, 6, 5, 2, 4 ,6 ,5, 5,2,1,3,5,1,2,3]
+            data:[0, 0 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0 ,0, 0,0,0,0,0,0,0,0]
         }
     ]
 };
