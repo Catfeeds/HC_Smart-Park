@@ -1390,7 +1390,7 @@ EFO;
                 return \show(1, 'OK', $data, 200);
                 break;
             default:
-                $model = new ParkRoom();
+                $model = new \app\admin\model\ParkRoom();
                 $data = $model
                     ->where('phase', 'eq', 2)
                     ->where('floor', 'eq', $floor)

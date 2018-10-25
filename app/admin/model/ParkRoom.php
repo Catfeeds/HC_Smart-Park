@@ -9,6 +9,7 @@
 namespace app\admin\model;
 
 
+use think\Db;
 use think\Model;
 use think\Request;
 
@@ -22,10 +23,17 @@ class ParkRoom extends Model
         'floor',
         'room_number',
         'area',
-        'status'
-
+        'status',
+        'enterprise_id',
     ];
-
+    /**
+     * @return \think\model\relation\BelongsTo
+     * 关联企业信息
+     */
+    function EnterpriseList()
+    {
+        return $this->belongsTo('EnterpriseList', 'enterprise_id', 'id');
+    }
 
     /**
      * @param $room_img
@@ -75,5 +83,18 @@ class ParkRoom extends Model
             }
         }
         return array_filter($arr);
+    }
+
+    /**
+     * @param $e
+     * @return mixed
+     * 获取入驻企业的名称
+     */
+    public function getEnterpriseIdAttr($e)
+    {
+        $name = Db::name('EnterpriseList')
+            ->where('id', $e)
+            ->value('enterprise_list_name');
+        return $name;
     }
 }
