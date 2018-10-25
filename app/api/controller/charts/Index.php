@@ -126,10 +126,13 @@ class Index extends Common
         switch ($floor) {
             case ($floor == 1):
                 $data = [
-                    'title' => '1F',
-                    'content' => '人才市场'
+                    'floor' => '1',
+                    'phase' => '海创空间大厦二期',
+                    'enterprise_id' => '人才市场',
+                    'room_number' => 101,
+                    'area' => 1442.1
                 ];
-                $data['svg']=<<<EFO
+                $data['svg'] = <<<EFO
 <svg id="组_22" data-name="组 22" xmlns="http://www.w3.org/2000/svg" width="650" height="248" viewBox="0 0 1662 725">
 <defs>
     <style>
@@ -372,10 +375,13 @@ EFO;
                 break;
             case ($floor == 2):
                 $data = [
-                    'title' => '2F',
-                    'content' => '人才中心'
+                    'floor' => '2',
+                    'phase' => '海创空间大厦二期',
+                    'enterprise_id' => '人才中心',
+                    'room_number' => 201,
+                    'area' => 1442.1
                 ];
-                $data['svg']=<<<EFO
+                $data['svg'] = <<<EFO
 <svg id="组_17" data-name="组 17" xmlns="http://www.w3.org/2000/svg" width="650" height="248" viewBox="0 0 1662 725">
 <defs>
     <style>
@@ -596,10 +602,13 @@ EFO;
                 break;
             case ($floor == 3):
                 $data = [
-                    'title' => '3F',
-                    'content' => '会议室+健身房'
+                    'floor' => '3',
+                    'phase' => '海创空间大厦二期',
+                    'enterprise_id' => '会议室&健身房',
+                    'room_number' => 301,
+                    'area' => 1442.1
                 ];
-                $data['svg']=<<<EFO
+                $data['svg'] = <<<EFO
 <svg id="组_11" data-name="组 11" xmlns="http://www.w3.org/2000/svg" width="650" height="248" viewBox="0 0 1792 706">
 <defs>
     <style>
@@ -875,10 +884,13 @@ EFO;
                 break;
             case($floor == 4):
                 $data = [
-                    'title' => '4F',
-                    'content' => '众创中心'
+                    'floor' => '4',
+                    'phase' => '海创空间大厦二期',
+                    'enterprise_id' => '众创中心',
+                    'room_number' => 401,
+                    'area' => 1442.1
                 ];
-                $data['svg']=<<<EFO
+                $data['svg'] = <<<EFO
 <svg id="组_21" data-name="组 21" xmlns="http://www.w3.org/2000/svg" width="650" height="248" viewBox="0 0 1621 620">
 <defs>
     <style>
@@ -1081,10 +1093,13 @@ EFO;
                 break;
             case($floor == 22):
                 $data = [
-                    'title' => '22F',
-                    'content' => '园区管理办公室'
+                    'floor' => '22',
+                    'phase' => '海创空间大厦二期',
+                    'enterprise_id' => '园区管理办公室',
+                    'room_number' => 2201,
+                    'area' => 1442.1
                 ];
-                $data['svg']=<<<EFO
+                $data['svg'] = <<<EFO
 <svg id="边" xmlns="http://www.w3.org/2000/svg" width="650" height="248" viewBox="0 0 1621 620">
 <defs>
     <style>
@@ -1337,12 +1352,15 @@ EFO;
 
                 return \show(1, 'OK', $data, 200);
                 break;
-            case ($floor==23):
-                $data=[
-                    'title' => '23F',
-                    'content' => '园区管理办公室'
+            case ($floor == 23):
+                $data = [
+                    'floor' => '23',
+                    'phase' => '海创空间大厦二期',
+                    'enterprise_id' => '园区管理办公室',
+                    'room_number' => 2301,
+                    'area' => 1442.1
                 ];
-                $data['svg']=<<<EFO
+                $data['svg'] = <<<EFO
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="650" height="248" viewBox="0 0 1500 600">
 <defs>
     <style>
@@ -1377,7 +1395,7 @@ EFO;
                     ->where('phase', 'eq', 2)
                     ->where('floor', 'eq', $floor)
                     ->select();
-                $data['svg']=<<<EFO
+                $data['svg'] = <<<EFO
 <svg id="边" xmlns="http://www.w3.org/2000/svg" width="650" height="248" viewBox="0 0 1621 620">
 <defs>
     <style>
