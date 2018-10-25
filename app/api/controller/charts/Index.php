@@ -125,7 +125,7 @@ class Index extends Common
         $floor = \input('floor', 1);
         switch ($floor) {
             case ($floor == 1):
-                $data = [
+                $data[0] = [
                     'floor' => '1',
                     'phase' => '海创空间大厦二期',
                     'enterprise_id' => '人才市场',
@@ -374,7 +374,7 @@ EFO;
                 return \show(1, 'OK', $data, 200);
                 break;
             case ($floor == 2):
-                $data = [
+                $data[0] = [
                     'floor' => '2',
                     'phase' => '海创空间大厦二期',
                     'enterprise_id' => '人才中心',
@@ -601,7 +601,7 @@ EFO;
                 return \show(1, 'OK', $data, 200);
                 break;
             case ($floor == 3):
-                $data = [
+                $data[0] = [
                     'floor' => '3',
                     'phase' => '海创空间大厦二期',
                     'enterprise_id' => '会议室&健身房',
@@ -883,7 +883,7 @@ EFO;
                 return \show(1, 'OK', $data, 200);
                 break;
             case($floor == 4):
-                $data = [
+                $data[0] = [
                     'floor' => '4',
                     'phase' => '海创空间大厦二期',
                     'enterprise_id' => '众创中心',
@@ -1092,7 +1092,7 @@ EFO;
                 return \show(1, 'OK', $data, 200);
                 break;
             case($floor == 22):
-                $data = [
+                $data[0] = [
                     'floor' => '22',
                     'phase' => '海创空间大厦二期',
                     'enterprise_id' => '园区管理办公室',
@@ -1353,7 +1353,7 @@ EFO;
                 return \show(1, 'OK', $data, 200);
                 break;
             case ($floor == 23):
-                $data = [
+                $data[0] = [
                     'floor' => '23',
                     'phase' => '海创空间大厦二期',
                     'enterprise_id' => '园区管理办公室',
