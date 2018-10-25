@@ -99,11 +99,11 @@ class Index extends Common
 
     /**
      * @return array
-     * 海创二七大楼每层入驻情况(4~23层)
+     * 海创二七大楼每层入驻情况(5~21层)
      */
     public function one_floor_entry()
     {
-        for ($i = 5; $i < 24; $i++) {
+        for ($i = 1; $i < 24; $i++) {
             $data[] = Db::name('ParkRoom')
                 ->where('phase', 'eq', 2)//默认为海创二期大楼
                 ->where('floor', 'eq', $i)
