@@ -1462,18 +1462,18 @@ EFO;
     <rect id="矩形_4_拷贝_8-3" data-name="矩形 4 拷贝 8" class="cls-1" x="422" y="111" width="14" height="14"/>
     <rect id="矩形_3_拷贝_22-3" data-name="矩形 3 拷贝 22" class="cls-1" x="427" y="98" width="4" height="166"/>
   </g>
-  <rect id="矩形_5" data-name="矩形 5" class="cls-2" x="275" y="106" width="141" height="157"/>
-  <rect id="矩形_5_拷贝_2" data-name="矩形 5 拷贝 2" class="cls-2" x="275" y="325" width="141" height="179"/>
-  <rect id="矩形_5_拷贝_3" data-name="矩形 5 拷贝 3" class="cls-2" x="441" y="325" width="141" height="179"/>
-  <rect id="矩形_5_拷贝_4" data-name="矩形 5 拷贝 4" class="cls-2" x="607" y="325" width="161" height="179"/>
-  <rect id="矩形_5_拷贝_5" data-name="矩形 5 拷贝 5" class="cls-2" x="796" y="325" width="161" height="179"/>
-  <rect id="矩形_5_拷贝_6" data-name="矩形 5 拷贝 6" class="cls-2" x="985" y="325" width="146" height="179"/>
-  <rect id="矩形_5_拷贝_7" data-name="矩形 5 拷贝 7" class="cls-2" x="1154" y="325" width="146" height="179"/>
-  <rect id="矩形_5_拷贝" data-name="矩形 5 拷贝" class="cls-2" x="792" y="106" width="268" height="157"/>
-  <path id="矩形_6" data-name="矩形 6" class="cls-3" d="M108,119h98V106h47V263H108V119Z"/>
-  <path id="矩形_6_拷贝_2" data-name="矩形 6 拷贝 2" class="cls-3" d="M107,467H207v37h45V325H107V467Z"/>
-  <path id="矩形_6_拷贝" data-name="矩形 6 拷贝" class="cls-3" d="M1465,125h-92V106h-47V263h139V125Z"/>
-  <path id="矩形_6_拷贝_3" data-name="矩形 6 拷贝 3" class="cls-3" d="M1464,468h-97v34h-47V325h144V468Z"/>
+  <rect id="room_11" data-name="矩形 5" class="cls-2 room" data-room="11" x="275" y="106" width="141" height="157"/>
+  <rect id="room_07" data-name="矩形 5 拷贝 2" class="cls-2 room" data-room="07" x="275" y="325" width="141" height="179"/>
+  <rect id="room_06" data-name="矩形 5 拷贝 3" class="cls-2 room" data-room="06" x="441" y="325" width="141" height="179"/>
+  <rect id="room_05" data-name="矩形 5 拷贝 4" class="cls-2 room" data-room="05" x="607" y="325" width="161" height="179"/>
+  <rect id="room_04" data-name="矩形 5 拷贝 5" class="cls-2 room" data-room="04" x="796" y="325" width="161" height="179"/>
+  <rect id="room_03" data-name="矩形 5 拷贝 6" class="cls-2 room" data-room="03" x="985" y="325" width="146" height="179"/>
+  <rect id="room_02" data-name="矩形 5 拷贝 7" class="cls-2 room" data-room="02" x="1154" y="325" width="146" height="179"/>
+  <rect id="room_10" data-name="矩形 5 拷贝" class="cls-2 room" data-room="10" x="792" y="106" width="268" height="157"/>
+  <path id="room_12" data-name="矩形 6" class="cls-3 room" data-room="12" d="M108,119h98V106h47V263H108V119Z"/>
+  <path id="room_08" data-name="矩形 6 拷贝 2" class="cls-3 room" data-room="08" d="M107,467H207v37h45V325H107V467Z"/>
+  <path id="room_09" data-name="矩形 6 拷贝" class="cls-3 room" data-room="09" d="M1465,125h-92V106h-47V263h139V125Z"/>
+  <path id="room_01" data-name="矩形 6 拷贝 3" class="cls-3 room" data-room="01" d="M1464,468h-97v34h-47V325h144V468Z"/>
   <rect id="矩形_4_拷贝_9" data-name="矩形 4 拷贝 9" class="cls-1" x="422" y="319" width="14" height="14"/>
   <rect id="矩形_4_拷贝_9-2" data-name="矩形 4 拷贝 9" class="cls-1" x="422" y="466" width="14" height="14"/>
   <rect id="矩形_3_拷贝_24" data-name="矩形 3 拷贝 24" class="cls-1" x="427" y="326" width="4" height="184"/>
@@ -1651,8 +1651,15 @@ EFO;
             ->join('EnterpriseList el', 'pr.enterprise_id=el.id', 'LEFT')
             ->where('phase', 2)
             ->where('room_number', $room_id)
-            ->field('floor,room_number,area')
+            ->field('phase,floor,room_number,area,enterprise_id')
             ->select();
+        foreach ($data as $k=>$v) {
+            $data[$k]['phase']='海创空间大厦二期';
+            if (!empty($v['enterprise_id'])) {
+                $enterprise_name = Db::name('EnterpriseList')->where('id', $v['enterprise_id'])->value('enterprise_list_name');
+                $data[$k]['enterprise_id']=$enterprise_name;
+            }
+        }
         if (empty($data)) {
             return \show(1, 'OK', '请输入正确的房间号', 200);
         } else {
