@@ -142,11 +142,11 @@ a:focus, a:hover{
 
 .index-floor:nth-child(23) img{
     width: 417px;
-    height: 24px;
+    height: 15px;
 }
 .index-floor:nth-child(22) img{
     width: 417px;
-    height: 24px;
+    height: 15px;
 }
 .index-floor:nth-child(21) img{
     width: 417px;
@@ -168,21 +168,31 @@ a:focus, a:hover{
     position: relative;
     top: -9px;
 }
+.index-floor:nth-child(23),.index-floor:nth-child(22){
+    height: 15px;
+    top: -14px;
+}
 
 .index-floor:hover{
-    transform: scale(1.1);
+    transition: all .3s;
+    transform: scale(1.05);
 }
 
 .legend{
     padding: 10px;
     text-align: center;
-    margin-bottom: 46px;
+    margin-bottom: 31px;
 }
 .legend-text{
     padding-left: 10px;
     padding-right: 20px;
 }
 
+
+.index-room-plane .room:hover{
+    transform: scale(1.01);
+    transition: all .2s;
+}
 
 
 
