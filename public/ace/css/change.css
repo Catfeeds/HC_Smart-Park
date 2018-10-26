@@ -113,24 +113,65 @@ a:focus, a:hover{
 
 /*首页楼层平面样式*/
 .index-build-plane{
+    position: relative;
     display: inline-block;
     padding: 10px;
     vertical-align: top;
-    width: 30%;
-    background-image: url("__PUBLIC__");
+    width: 437px;
+    background-image: url("http://www.hacyy.com/public/img/floor_img/floor_bg.png");
 }
+
+#index-build-floor{
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}
+
 .index-bulid-list,.index-room-info ul{
     list-style: none;
     margin: 0;
     padding: 0;
 }
 .index-floor{
-    width: 300px;
-    height: 20px;
-    background-color: #27aaf3;
-    border: 2px solid #fff;
+    width: 417px;
     cursor: pointer;
 }
+.index-floor img{
+    width: 100%;
+}
+
+.index-floor:nth-child(23) img{
+    width: 417px;
+    height: 24px;
+}
+.index-floor:nth-child(22) img{
+    width: 417px;
+    height: 24px;
+}
+.index-floor:nth-child(21) img{
+    width: 417px;
+    height: 35px;
+}
+
+.common-floor-width {
+    margin: 0 auto;
+    width: 286px;
+    height: 20px;
+    position: relative;
+    z-index: 999;
+}
+.common-floor-width:first-child{
+    height: 36px;
+}
+
+.common-floor-bottom{
+    position: relative;
+    top: -9px;
+}
+
+
+
+
 .index-floor:hover{
     transform: scale(1.1);
 }
