@@ -895,197 +895,187 @@ EFO;
 <defs>
     <style>
       .cls-1, .cls-2 {
-        fill: #54befc;
-      }
-
-      .cls-1, .cls-4 {
-        fill-rule: evenodd;
-      }
-
-      .cls-3, .cls-4 {
         fill: #585b7a;
+      }
+
+      .cls-2 {
+        fill-rule: evenodd;
       }
     </style>
   </defs>
-  <path id="矩形_6" data-name="矩形 6" class="cls-1" d="M105,120h98V107H421V264H105V120Z"/>
-  <path id="矩形_6_拷贝_3" data-name="矩形 6 拷贝 3" class="cls-1" d="M105,466H210v38H771V326H105V466Z"/>
-  <rect id="矩形_7" data-name="矩形 7" class="cls-2" x="798" y="107" width="263" height="157"/>
-  <rect id="矩形_7_拷贝" data-name="矩形 7 拷贝" class="cls-2" x="980" y="326" width="318" height="178"/>
-  <rect id="矩形_7_拷贝_2" data-name="矩形 7 拷贝 2" class="cls-2" x="793" y="326" width="168" height="178"/>
-  <path id="矩形_6_拷贝" data-name="矩形 6 拷贝" class="cls-1" d="M1465,126h-92V107h-51V264h143V126Z"/>
-  <path id="矩形_6_拷贝_2" data-name="矩形 6 拷贝 2" class="cls-1" d="M1464,467h-98v37h-44V326h142V467Z"/>
-  <rect id="矩形_3_拷贝_70" data-name="矩形 3 拷贝 70" class="cls-3" x="469.281" y="194" width="53.719" height="4"/>
-  <rect id="矩形_3_拷贝_71" data-name="矩形 3 拷贝 71" class="cls-3" x="468" y="154" width="53.719" height="4"/>
-  <rect id="矩形_3_拷贝_72" data-name="矩形 3 拷贝 72" class="cls-3" x="467" y="147" width="4" height="18"/>
-  <rect id="矩形_3_拷贝_73" data-name="矩形 3 拷贝 73" class="cls-3" x="467" y="116" width="4" height="10"/>
-  <rect id="矩形_1" data-name="矩形 1" class="cls-3" x="199" y="510" width="1180" height="6"/>
-  <rect id="矩形_3_拷贝_14" data-name="矩形 3 拷贝 14" class="cls-3" x="192" y="93" width="6" height="19"/>
-  <rect id="矩形_3_拷贝_18" data-name="矩形 3 拷贝 18" class="cls-3" x="1373" y="475" width="6" height="41"/>
-  <rect id="矩形_3_拷贝_20" data-name="矩形 3 拷贝 20" class="cls-3" x="193" y="475" width="6" height="41"/>
-  <rect id="矩形_3_拷贝_21" data-name="矩形 3 拷贝 21" class="cls-3" x="91" y="475" width="102" height="6"/>
-  <rect id="矩形_3_拷贝_8" data-name="矩形 3 拷贝 8" class="cls-3" x="1475" y="117" width="6" height="360"/>
-  <rect id="矩形_3_拷贝_5" data-name="矩形 3 拷贝 5" class="cls-3" x="91" y="106" width="6" height="370"/>
-  <rect id="矩形_3_拷贝_17" data-name="矩形 3 拷贝 17" class="cls-3" x="1382" y="94" width="6" height="24"/>
-  <rect id="矩形_3_拷贝_9" data-name="矩形 3 拷贝 9" class="cls-3" x="1387" y="112" width="94" height="6"/>
-  <rect id="矩形_3_拷贝_13" data-name="矩形 3 拷贝 13" class="cls-3" x="94" y="106" width="98" height="6"/>
-  <rect id="矩形_3_拷贝_11" data-name="矩形 3 拷贝 11" class="cls-3" x="197" y="93" width="1191" height="6"/>
-  <rect id="矩形_3_拷贝_7" data-name="矩形 3 拷贝 7" class="cls-3" x="1377" y="475" width="104" height="6"/>
-  <rect id="矩形_3_拷贝_23" data-name="矩形 3 拷贝 23" class="cls-3" x="1353" y="315" width="124" height="4"/>
-  <rect id="矩形_3_拷贝_30" data-name="矩形 3 拷贝 30" class="cls-3" x="1356" y="270" width="120" height="4"/>
-  <rect id="矩形_4_拷贝_4" data-name="矩形 4 拷贝 4" class="cls-3" x="92" y="466" width="14" height="14"/>
-  <rect id="矩形_4_拷贝_5" data-name="矩形 4 拷贝 5" class="cls-3" x="91" y="111" width="14" height="14"/>
-  <rect id="矩形_4" data-name="矩形 4" class="cls-3" x="1467" y="257" width="14" height="14"/>
-  <rect id="矩形_4_拷贝" data-name="矩形 4 拷贝" class="cls-3" x="1467" y="112" width="14" height="14"/>
-  <rect id="矩形_4_拷贝-2" data-name="矩形 4 拷贝" class="cls-3" x="1467" y="315" width="14" height="14"/>
-  <rect id="矩形_4_拷贝_3" data-name="矩形 4 拷贝 3" class="cls-3" x="1467" y="467" width="14" height="14"/>
-  <rect id="矩形_4_拷贝_6" data-name="矩形 4 拷贝 6" class="cls-3" x="91" y="318" width="14" height="14"/>
-  <rect id="矩形_4_拷贝_15" data-name="矩形 4 拷贝 15" class="cls-3" x="91" y="257" width="14" height="14"/>
-  <rect id="矩形_3_拷贝_4" data-name="矩形 3 拷贝 4" class="cls-3" x="93" y="315" width="132" height="4"/>
-  <rect id="矩形_3_拷贝_6" data-name="矩形 3 拷贝 6" class="cls-3" x="282" y="315" width="184" height="4"/>
-  <rect id="矩形_3_拷贝_38" data-name="矩形 3 拷贝 38" class="cls-3" x="813" y="271" width="225" height="4"/>
-  <rect id="矩形_3_拷贝_55" data-name="矩形 3 拷贝 55" class="cls-3" x="306" y="271" width="130" height="4"/>
-  <rect id="矩形_3_拷贝_56" data-name="矩形 3 拷贝 56" class="cls-3" x="94" y="271" width="130" height="4"/>
-  <rect id="矩形_3_拷贝_57" data-name="矩形 3 拷贝 57" class="cls-3" x="251" y="271" width="26" height="4"/>
-  <rect id="矩形_3_拷贝_10" data-name="矩形 3 拷贝 10" class="cls-3" x="455" y="315" width="146" height="4"/>
-  <rect id="矩形_3_拷贝_12" data-name="矩形 3 拷贝 12" class="cls-3" x="634" y="315" width="155" height="4"/>
-  <rect id="矩形_3_拷贝_15" data-name="矩形 3 拷贝 15" class="cls-3" x="821" y="315" width="157" height="4"/>
-  <rect id="矩形_3_拷贝_16" data-name="矩形 3 拷贝 16" class="cls-3" x="1027" y="315" width="104" height="4"/>
-  <rect id="矩形_3_拷贝_19" data-name="矩形 3 拷贝 19" class="cls-3" x="1182" y="315" width="135" height="4"/>
-  <rect id="矩形_4_拷贝_7" data-name="矩形 4 拷贝 7" class="cls-3" x="422" y="257" width="14" height="14"/>
-  <rect id="矩形_4_拷贝_8" data-name="矩形 4 拷贝 8" class="cls-3" x="422" y="111" width="14" height="14"/>
-  <rect id="矩形_3_拷贝_22" data-name="矩形 3 拷贝 22" class="cls-3" x="427" y="98" width="4" height="166"/>
-  <rect id="矩形_4_拷贝_11" data-name="矩形 4 拷贝 11" class="cls-3" x="775" y="319" width="14" height="14"/>
-  <rect id="矩形_4_拷贝_11-2" data-name="矩形 4 拷贝 11" class="cls-3" x="775" y="466" width="14" height="14"/>
-  <rect id="矩形_3_拷贝_26" data-name="矩形 3 拷贝 26" class="cls-3" x="780" y="326" width="4" height="184"/>
-  <rect id="矩形_4_拷贝_12" data-name="矩形 4 拷贝 12" class="cls-3" x="964" y="319" width="14" height="14"/>
-  <rect id="矩形_4_拷贝_12-2" data-name="矩形 4 拷贝 12" class="cls-3" x="964" y="466" width="14" height="14"/>
-  <rect id="矩形_3_拷贝_27" data-name="矩形 3 拷贝 27" class="cls-3" x="969" y="326" width="4" height="184"/>
-  <rect id="矩形_4_拷贝_14" data-name="矩形 4 拷贝 14" class="cls-3" x="1303" y="319" width="14" height="14"/>
-  <rect id="矩形_4_拷贝_14-2" data-name="矩形 4 拷贝 14" class="cls-3" x="1303" y="466" width="14" height="14"/>
-  <rect id="矩形_3_拷贝_29" data-name="矩形 3 拷贝 29" class="cls-3" x="1308" y="326" width="4" height="184"/>
-  <rect id="矩形_3_拷贝_40" data-name="矩形 3 拷贝 40" class="cls-3" x="727" y="271" width="64" height="4"/>
-  <rect id="矩形_3_拷贝_41" data-name="矩形 3 拷贝 41" class="cls-3" x="727" y="112" width="64" height="4"/>
-  <rect id="矩形_3_拷贝_42" data-name="矩形 3 拷贝 42" class="cls-3" x="727" y="165" width="64" height="2"/>
-  <rect id="矩形_3_拷贝_43" data-name="矩形 3 拷贝 43" class="cls-3" x="727" y="211" width="64" height="2"/>
-  <rect id="矩形_3_拷贝_39" data-name="矩形 3 拷贝 39" class="cls-3" x="787" y="99" width="4" height="174"/>
-  <rect id="矩形_3_拷贝_44" data-name="矩形 3 拷贝 44" class="cls-3" x="727" y="112" width="4" height="20"/>
-  <rect id="矩形_3_拷贝_45" data-name="矩形 3 拷贝 45" class="cls-3" x="727" y="154" width="4" height="24"/>
-  <rect id="矩形_3_拷贝_46" data-name="矩形 3 拷贝 46" class="cls-3" x="727" y="200" width="4" height="34"/>
-  <rect id="矩形_3_拷贝_47" data-name="矩形 3 拷贝 47" class="cls-3" x="727" y="246" width="4" height="29"/>
-  <rect id="矩形_3_拷贝_48" data-name="矩形 3 拷贝 48" class="cls-3" x="590" y="271" width="64" height="4"/>
-  <rect id="矩形_3_拷贝_51" data-name="矩形 3 拷贝 51" class="cls-3" x="507" y="271" width="85" height="4"/>
-  <rect id="矩形_3_拷贝_52" data-name="矩形 3 拷贝 52" class="cls-3" x="467" y="211" width="56" height="4"/>
-  <rect id="矩形_3_拷贝_54" data-name="矩形 3 拷贝 54" class="cls-3" x="455" y="271" width="26" height="4"/>
-  <rect id="矩形_3_拷贝_53" data-name="矩形 3 拷贝 53" class="cls-3" x="467" y="183" width="4" height="88"/>
-  <rect id="矩形_3_拷贝_48-2" data-name="矩形 3 拷贝 48" class="cls-3" x="467" y="112" width="186" height="4"/>
-  <rect id="矩形_3_拷贝_48-3" data-name="矩形 3 拷贝 48" class="cls-3" x="590" y="165" width="64" height="2"/>
-  <rect id="矩形_3_拷贝_48-4" data-name="矩形 3 拷贝 48" class="cls-3" x="590" y="211" width="64" height="2"/>
-  <rect id="矩形_3_拷贝_48-5" data-name="矩形 3 拷贝 48" class="cls-3" x="590" y="99" width="4" height="174"/>
-  <rect id="矩形_3_拷贝_49" data-name="矩形 3 拷贝 49" class="cls-3" x="519" y="115" width="4" height="112"/>
-  <rect id="矩形_3_拷贝_48-6" data-name="矩形 3 拷贝 48" class="cls-3" x="650" y="112" width="4" height="20"/>
-  <rect id="矩形_3_拷贝_48-7" data-name="矩形 3 拷贝 48" class="cls-3" x="650" y="154" width="4" height="24"/>
-  <rect id="矩形_3_拷贝_48-8" data-name="矩形 3 拷贝 48" class="cls-3" x="650" y="200" width="4" height="34"/>
-  <rect id="矩形_3_拷贝_50" data-name="矩形 3 拷贝 50" class="cls-3" x="519" y="255" width="4" height="20"/>
-  <rect id="矩形_3_拷贝_48-9" data-name="矩形 3 拷贝 48" class="cls-3" x="650" y="246" width="4" height="29"/>
-  <rect id="矩形_5_拷贝_17" data-name="矩形 5 拷贝 17" class="cls-3" x="598" y="178" width="1" height="24"/>
-  <rect id="矩形_5_拷贝_17-2" data-name="矩形 5 拷贝 17" class="cls-3" x="639" y="174" width="1" height="32"/>
-  <rect id="矩形_5_拷贝_17-3" data-name="矩形 5 拷贝 17" class="cls-3" x="610" y="174" width="1" height="32"/>
-  <path id="矩形_5_拷贝_17-4" data-name="矩形 5 拷贝 17" class="cls-4" d="M610,173h1l29,34h-1Z"/>
-  <path id="矩形_5_拷贝_17-5" data-name="矩形 5 拷贝 17" class="cls-4" d="M610,206l30-33v1l-30,33v-1Z"/>
-  <rect id="矩形_5_拷贝_17-6" data-name="矩形 5 拷贝 17" class="cls-3" x="604" y="178" width="1" height="24"/>
-  <rect id="矩形_5_拷贝_17-7" data-name="矩形 5 拷贝 17" class="cls-3" x="598" y="201" width="6" height="1"/>
-  <rect id="矩形_5_拷贝_17-8" data-name="矩形 5 拷贝 17" class="cls-3" x="598" y="178" width="6" height="1"/>
-  <rect id="矩形_5_拷贝_17-9" data-name="矩形 5 拷贝 17" class="cls-3" x="610" y="173" width="30" height="1"/>
-  <rect id="矩形_5_拷贝_17-10" data-name="矩形 5 拷贝 17" class="cls-3" x="610" y="206" width="30" height="1"/>
-  <rect id="矩形_5_拷贝_17-11" data-name="矩形 5 拷贝 17" class="cls-3" x="598" y="130" width="1" height="24"/>
-  <rect id="矩形_5_拷贝_17-12" data-name="矩形 5 拷贝 17" class="cls-3" x="639" y="126" width="1" height="32"/>
-  <rect id="矩形_5_拷贝_17-13" data-name="矩形 5 拷贝 17" class="cls-3" x="610" y="126" width="1" height="32"/>
-  <path id="矩形_5_拷贝_17-14" data-name="矩形 5 拷贝 17" class="cls-4" d="M610,125h1l29,34h-1Z"/>
-  <path id="矩形_5_拷贝_17-15" data-name="矩形 5 拷贝 17" class="cls-4" d="M610,158l30-33v1l-30,33v-1Z"/>
-  <rect id="矩形_5_拷贝_17-16" data-name="矩形 5 拷贝 17" class="cls-3" x="604" y="130" width="1" height="24"/>
-  <rect id="矩形_5_拷贝_17-17" data-name="矩形 5 拷贝 17" class="cls-3" x="598" y="153" width="6" height="1"/>
-  <rect id="矩形_5_拷贝_17-18" data-name="矩形 5 拷贝 17" class="cls-3" x="598" y="130" width="6" height="1"/>
-  <rect id="矩形_5_拷贝_17-19" data-name="矩形 5 拷贝 17" class="cls-3" x="610" y="125" width="30" height="1"/>
-  <rect id="矩形_5_拷贝_17-20" data-name="矩形 5 拷贝 17" class="cls-3" x="610" y="158" width="30" height="1"/>
-  <rect id="矩形_5_拷贝_17-21" data-name="矩形 5 拷贝 17" class="cls-3" x="777" y="178" width="1" height="24"/>
-  <rect id="矩形_5_拷贝_17-22" data-name="矩形 5 拷贝 17" class="cls-3" x="736" y="174" width="1" height="32"/>
-  <rect id="矩形_5_拷贝_17-23" data-name="矩形 5 拷贝 17" class="cls-3" x="765" y="174" width="1" height="32"/>
-  <path id="矩形_5_拷贝_17-24" data-name="矩形 5 拷贝 17" class="cls-4" d="M766,173h-1l-29,34h1Z"/>
-  <path id="矩形_5_拷贝_17-25" data-name="矩形 5 拷贝 17" class="cls-4" d="M766,206l-30-33v1l30,33v-1Z"/>
-  <rect id="矩形_5_拷贝_17-26" data-name="矩形 5 拷贝 17" class="cls-3" x="771" y="178" width="1" height="24"/>
-  <rect id="矩形_5_拷贝_17-27" data-name="矩形 5 拷贝 17" class="cls-3" x="772" y="201" width="6" height="1"/>
-  <rect id="矩形_5_拷贝_17-28" data-name="矩形 5 拷贝 17" class="cls-3" x="772" y="178" width="6" height="1"/>
-  <rect id="矩形_5_拷贝_17-29" data-name="矩形 5 拷贝 17" class="cls-3" x="736" y="173" width="30" height="1"/>
-  <rect id="矩形_5_拷贝_17-30" data-name="矩形 5 拷贝 17" class="cls-3" x="736" y="206" width="30" height="1"/>
-  <rect id="矩形_5_拷贝_17-31" data-name="矩形 5 拷贝 17" class="cls-3" x="777" y="130" width="1" height="24"/>
-  <rect id="矩形_5_拷贝_17-32" data-name="矩形 5 拷贝 17" class="cls-3" x="736" y="126" width="1" height="32"/>
-  <rect id="矩形_5_拷贝_17-33" data-name="矩形 5 拷贝 17" class="cls-3" x="765" y="126" width="1" height="32"/>
-  <path id="矩形_5_拷贝_17-34" data-name="矩形 5 拷贝 17" class="cls-4" d="M766,125h-1l-29,34h1Z"/>
-  <path id="矩形_5_拷贝_17-35" data-name="矩形 5 拷贝 17" class="cls-4" d="M766,158l-30-33v1l30,33v-1Z"/>
-  <rect id="矩形_5_拷贝_17-36" data-name="矩形 5 拷贝 17" class="cls-3" x="771" y="130" width="1" height="24"/>
-  <rect id="矩形_5_拷贝_17-37" data-name="矩形 5 拷贝 17" class="cls-3" x="772" y="153" width="6" height="1"/>
-  <rect id="矩形_5_拷贝_17-38" data-name="矩形 5 拷贝 17" class="cls-3" x="772" y="130" width="6" height="1"/>
-  <rect id="矩形_5_拷贝_17-39" data-name="矩形 5 拷贝 17" class="cls-3" x="736" y="125" width="30" height="1"/>
-  <rect id="矩形_5_拷贝_17-40" data-name="矩形 5 拷贝 17" class="cls-3" x="736" y="158" width="30" height="1"/>
-  <rect id="矩形_3_拷贝_31" data-name="矩形 3 拷贝 31" class="cls-3" x="1237" y="271" width="83" height="4"/>
-  <rect id="矩形_3_拷贝_35" data-name="矩形 3 拷贝 35" class="cls-3" x="1180" y="271" width="18" height="4"/>
-  <rect id="矩形_3_拷贝_36" data-name="矩形 3 拷贝 36" class="cls-3" x="1068" y="271" width="79" height="4"/>
-  <rect id="矩形_3_拷贝_37" data-name="矩形 3 拷贝 37" class="cls-3" x="1143" y="257" width="4" height="18"/>
-  <rect id="矩形_3_拷贝_61" data-name="矩形 3 拷贝 61" class="cls-3" x="1216" y="216" width="76" height="4"/>
-  <rect id="矩形_3_拷贝_62" data-name="矩形 3 拷贝 62" class="cls-3" x="1251" y="94" width="2" height="124"/>
-  <rect id="矩形_3_拷贝_22-2" data-name="矩形 3 拷贝 22" class="cls-3" x="1311" y="97" width="4" height="174"/>
-  <rect id="矩形_3_拷贝_32" data-name="矩形 3 拷贝 32" class="cls-3" x="1194" y="97" width="4" height="178"/>
-  <rect id="矩形_3_拷贝_33" data-name="矩形 3 拷贝 33" class="cls-3" x="1068" y="97" width="4" height="174"/>
-  <rect id="矩形_3_拷贝_34" data-name="矩形 3 拷贝 34" class="cls-3" x="1143" y="97" width="4" height="129"/>
-  <rect id="矩形_4-2" data-name="矩形 4" class="cls-3" x="1306" y="257" width="14" height="14"/>
-  <rect id="矩形_4_拷贝-3" data-name="矩形 4 拷贝" class="cls-3" x="1306" y="111" width="14" height="14"/>
-  <rect id="矩形_5_拷贝_17-41" data-name="矩形 5 拷贝 17" class="cls-3" x="1159" y="109" width="24" height="1"/>
-  <rect id="矩形_5_拷贝_17-42" data-name="矩形 5 拷贝 17" class="cls-3" x="1155" y="150" width="32" height="1"/>
-  <rect id="矩形_5_拷贝_17-43" data-name="矩形 5 拷贝 17" class="cls-3" x="1155" y="121" width="32" height="1"/>
-  <path id="矩形_5_拷贝_17-44" data-name="矩形 5 拷贝 17" class="cls-4" d="M1154,121v1l34,29v-1Z"/>
-  <path id="矩形_5_拷贝_17-45" data-name="矩形 5 拷贝 17" class="cls-4" d="M1187,121l-33,30h1l33-30h-1Z"/>
-  <rect id="矩形_5_拷贝_17-46" data-name="矩形 5 拷贝 17" class="cls-3" x="1159" y="115" width="24" height="1"/>
-  <rect id="矩形_5_拷贝_17-47" data-name="矩形 5 拷贝 17" class="cls-3" x="1182" y="109" width="1" height="6"/>
-  <rect id="矩形_5_拷贝_17-48" data-name="矩形 5 拷贝 17" class="cls-3" x="1159" y="109" width="1" height="6"/>
-  <rect id="矩形_5_拷贝_17-49" data-name="矩形 5 拷贝 17" class="cls-3" x="1154" y="121" width="1" height="30"/>
-  <rect id="矩形_5_拷贝_17-50" data-name="矩形 5 拷贝 17" class="cls-3" x="1187" y="121" width="1" height="30"/>
-  <rect id="矩形_3_拷贝_69" data-name="矩形 3 拷贝 69" class="cls-3" x="1144" y="159" width="11" height="4"/>
-  <rect id="矩形_3_拷贝_76" data-name="矩形 3 拷贝 76" class="cls-3" x="1186" y="159" width="11" height="4"/>
-  <rect id="矩形_5_拷贝_29" data-name="矩形 5 拷贝 29" class="cls-3" x="529" y="183" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-2" data-name="矩形 5 拷贝 29" class="cls-3" x="529" y="187" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-3" data-name="矩形 5 拷贝 29" class="cls-3" x="529" y="207" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-4" data-name="矩形 5 拷贝 29" class="cls-3" x="529" y="211" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-5" data-name="矩形 5 拷贝 29" class="cls-3" x="529" y="191" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-6" data-name="矩形 5 拷贝 29" class="cls-3" x="529" y="195" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-7" data-name="矩形 5 拷贝 29" class="cls-3" x="529" y="199" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-8" data-name="矩形 5 拷贝 29" class="cls-3" x="529" y="203" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-9" data-name="矩形 5 拷贝 29" class="cls-3" x="559" y="162" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-10" data-name="矩形 5 拷贝 29" class="cls-3" x="559" y="166" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-11" data-name="矩形 5 拷贝 29" class="cls-3" x="559" y="153" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-12" data-name="矩形 5 拷贝 29" class="cls-3" x="559" y="157" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-13" data-name="矩形 5 拷贝 29" class="cls-3" x="559" y="170" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-14" data-name="矩形 5 拷贝 29" class="cls-3" x="559" y="174" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-15" data-name="矩形 5 拷贝 29" class="cls-3" x="559" y="178" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-16" data-name="矩形 5 拷贝 29" class="cls-3" x="559" y="182" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-17" data-name="矩形 5 拷贝 29" class="cls-3" x="556" y="147" width="1" height="71"/>
-  <rect id="矩形_5_拷贝_29-18" data-name="矩形 5 拷贝 29" class="cls-3" x="1079" y="183" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-19" data-name="矩形 5 拷贝 29" class="cls-3" x="1079" y="187" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-20" data-name="矩形 5 拷贝 29" class="cls-3" x="1079" y="207" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-21" data-name="矩形 5 拷贝 29" class="cls-3" x="1079" y="211" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-22" data-name="矩形 5 拷贝 29" class="cls-3" x="1079" y="191" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-23" data-name="矩形 5 拷贝 29" class="cls-3" x="1079" y="195" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-24" data-name="矩形 5 拷贝 29" class="cls-3" x="1079" y="199" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-25" data-name="矩形 5 拷贝 29" class="cls-3" x="1079" y="203" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-26" data-name="矩形 5 拷贝 29" class="cls-3" x="1109" y="162" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-27" data-name="矩形 5 拷贝 29" class="cls-3" x="1109" y="166" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-28" data-name="矩形 5 拷贝 29" class="cls-3" x="1109" y="153" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-29" data-name="矩形 5 拷贝 29" class="cls-3" x="1109" y="157" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-30" data-name="矩形 5 拷贝 29" class="cls-3" x="1109" y="170" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-31" data-name="矩形 5 拷贝 29" class="cls-3" x="1109" y="174" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-32" data-name="矩形 5 拷贝 29" class="cls-3" x="1109" y="178" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-33" data-name="矩形 5 拷贝 29" class="cls-3" x="1109" y="182" width="25" height="1"/>
-  <rect id="矩形_5_拷贝_29-34" data-name="矩形 5 拷贝 29" class="cls-3" x="1106" y="147" width="1" height="71"/>
+  <rect id="矩形_3_拷贝_70" data-name="矩形 3 拷贝 70" class="cls-1" x="469.281" y="194" width="53.719" height="4"/>
+  <rect id="矩形_3_拷贝_71" data-name="矩形 3 拷贝 71" class="cls-1" x="468" y="154" width="53.719" height="4"/>
+  <rect id="矩形_3_拷贝_72" data-name="矩形 3 拷贝 72" class="cls-1" x="467" y="147" width="4" height="18"/>
+  <rect id="矩形_3_拷贝_73" data-name="矩形 3 拷贝 73" class="cls-1" x="467" y="116" width="4" height="10"/>
+  <rect id="矩形_1" data-name="矩形 1" class="cls-1" x="199" y="510" width="1180" height="6"/>
+  <rect id="矩形_3_拷贝_14" data-name="矩形 3 拷贝 14" class="cls-1" x="192" y="93" width="6" height="19"/>
+  <rect id="矩形_3_拷贝_18" data-name="矩形 3 拷贝 18" class="cls-1" x="1373" y="475" width="6" height="41"/>
+  <rect id="矩形_3_拷贝_20" data-name="矩形 3 拷贝 20" class="cls-1" x="193" y="475" width="6" height="41"/>
+  <rect id="矩形_3_拷贝_21" data-name="矩形 3 拷贝 21" class="cls-1" x="91" y="475" width="102" height="6"/>
+  <rect id="矩形_3_拷贝_8" data-name="矩形 3 拷贝 8" class="cls-1" x="1475" y="117" width="6" height="360"/>
+  <rect id="矩形_3_拷贝_5" data-name="矩形 3 拷贝 5" class="cls-1" x="91" y="106" width="6" height="370"/>
+  <rect id="矩形_3_拷贝_17" data-name="矩形 3 拷贝 17" class="cls-1" x="1382" y="94" width="6" height="24"/>
+  <rect id="矩形_3_拷贝_9" data-name="矩形 3 拷贝 9" class="cls-1" x="1387" y="112" width="94" height="6"/>
+  <rect id="矩形_3_拷贝_13" data-name="矩形 3 拷贝 13" class="cls-1" x="94" y="106" width="98" height="6"/>
+  <rect id="矩形_3_拷贝_11" data-name="矩形 3 拷贝 11" class="cls-1" x="197" y="93" width="1191" height="6"/>
+  <rect id="矩形_3_拷贝_7" data-name="矩形 3 拷贝 7" class="cls-1" x="1377" y="475" width="104" height="6"/>
+  <rect id="矩形_3_拷贝_23" data-name="矩形 3 拷贝 23" class="cls-1" x="1353" y="315" width="124" height="4"/>
+  <rect id="矩形_3_拷贝_30" data-name="矩形 3 拷贝 30" class="cls-1" x="1356" y="270" width="120" height="4"/>
+  <rect id="矩形_4_拷贝_4" data-name="矩形 4 拷贝 4" class="cls-1" x="92" y="466" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_5" data-name="矩形 4 拷贝 5" class="cls-1" x="91" y="111" width="14" height="14"/>
+  <rect id="矩形_4" data-name="矩形 4" class="cls-1" x="1467" y="257" width="14" height="14"/>
+  <rect id="矩形_4_拷贝" data-name="矩形 4 拷贝" class="cls-1" x="1467" y="112" width="14" height="14"/>
+  <rect id="矩形_4_拷贝-2" data-name="矩形 4 拷贝" class="cls-1" x="1467" y="315" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_3" data-name="矩形 4 拷贝 3" class="cls-1" x="1467" y="467" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_6" data-name="矩形 4 拷贝 6" class="cls-1" x="91" y="318" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_15" data-name="矩形 4 拷贝 15" class="cls-1" x="91" y="257" width="14" height="14"/>
+  <rect id="矩形_3_拷贝_4" data-name="矩形 3 拷贝 4" class="cls-1" x="93" y="315" width="132" height="4"/>
+  <rect id="矩形_3_拷贝_6" data-name="矩形 3 拷贝 6" class="cls-1" x="282" y="315" width="184" height="4"/>
+  <rect id="矩形_3_拷贝_38" data-name="矩形 3 拷贝 38" class="cls-1" x="813" y="271" width="225" height="4"/>
+  <rect id="矩形_3_拷贝_55" data-name="矩形 3 拷贝 55" class="cls-1" x="306" y="271" width="130" height="4"/>
+  <rect id="矩形_3_拷贝_56" data-name="矩形 3 拷贝 56" class="cls-1" x="94" y="271" width="130" height="4"/>
+  <rect id="矩形_3_拷贝_57" data-name="矩形 3 拷贝 57" class="cls-1" x="251" y="271" width="26" height="4"/>
+  <rect id="矩形_3_拷贝_10" data-name="矩形 3 拷贝 10" class="cls-1" x="455" y="315" width="146" height="4"/>
+  <rect id="矩形_3_拷贝_12" data-name="矩形 3 拷贝 12" class="cls-1" x="634" y="315" width="155" height="4"/>
+  <rect id="矩形_3_拷贝_15" data-name="矩形 3 拷贝 15" class="cls-1" x="821" y="315" width="157" height="4"/>
+  <rect id="矩形_3_拷贝_16" data-name="矩形 3 拷贝 16" class="cls-1" x="1027" y="315" width="104" height="4"/>
+  <rect id="矩形_3_拷贝_19" data-name="矩形 3 拷贝 19" class="cls-1" x="1182" y="315" width="135" height="4"/>
+  <rect id="矩形_4_拷贝_7" data-name="矩形 4 拷贝 7" class="cls-1" x="422" y="257" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_8" data-name="矩形 4 拷贝 8" class="cls-1" x="422" y="111" width="14" height="14"/>
+  <rect id="矩形_3_拷贝_22" data-name="矩形 3 拷贝 22" class="cls-1" x="427" y="98" width="4" height="166"/>
+  <rect id="矩形_4_拷贝_11" data-name="矩形 4 拷贝 11" class="cls-1" x="775" y="319" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_11-2" data-name="矩形 4 拷贝 11" class="cls-1" x="775" y="466" width="14" height="14"/>
+  <rect id="矩形_3_拷贝_26" data-name="矩形 3 拷贝 26" class="cls-1" x="780" y="326" width="4" height="184"/>
+  <rect id="矩形_4_拷贝_12" data-name="矩形 4 拷贝 12" class="cls-1" x="964" y="319" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_12-2" data-name="矩形 4 拷贝 12" class="cls-1" x="964" y="466" width="14" height="14"/>
+  <rect id="矩形_3_拷贝_27" data-name="矩形 3 拷贝 27" class="cls-1" x="969" y="326" width="4" height="184"/>
+  <rect id="矩形_4_拷贝_14" data-name="矩形 4 拷贝 14" class="cls-1" x="1303" y="319" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_14-2" data-name="矩形 4 拷贝 14" class="cls-1" x="1303" y="466" width="14" height="14"/>
+  <rect id="矩形_3_拷贝_29" data-name="矩形 3 拷贝 29" class="cls-1" x="1308" y="326" width="4" height="184"/>
+  <rect id="矩形_3_拷贝_40" data-name="矩形 3 拷贝 40" class="cls-1" x="727" y="271" width="64" height="4"/>
+  <rect id="矩形_3_拷贝_41" data-name="矩形 3 拷贝 41" class="cls-1" x="727" y="112" width="64" height="4"/>
+  <rect id="矩形_3_拷贝_42" data-name="矩形 3 拷贝 42" class="cls-1" x="727" y="165" width="64" height="2"/>
+  <rect id="矩形_3_拷贝_43" data-name="矩形 3 拷贝 43" class="cls-1" x="727" y="211" width="64" height="2"/>
+  <rect id="矩形_3_拷贝_39" data-name="矩形 3 拷贝 39" class="cls-1" x="787" y="99" width="4" height="174"/>
+  <rect id="矩形_3_拷贝_44" data-name="矩形 3 拷贝 44" class="cls-1" x="727" y="112" width="4" height="20"/>
+  <rect id="矩形_3_拷贝_45" data-name="矩形 3 拷贝 45" class="cls-1" x="727" y="154" width="4" height="24"/>
+  <rect id="矩形_3_拷贝_46" data-name="矩形 3 拷贝 46" class="cls-1" x="727" y="200" width="4" height="34"/>
+  <rect id="矩形_3_拷贝_47" data-name="矩形 3 拷贝 47" class="cls-1" x="727" y="246" width="4" height="29"/>
+  <rect id="矩形_3_拷贝_48" data-name="矩形 3 拷贝 48" class="cls-1" x="590" y="271" width="64" height="4"/>
+  <rect id="矩形_3_拷贝_51" data-name="矩形 3 拷贝 51" class="cls-1" x="507" y="271" width="85" height="4"/>
+  <rect id="矩形_3_拷贝_52" data-name="矩形 3 拷贝 52" class="cls-1" x="467" y="211" width="56" height="4"/>
+  <rect id="矩形_3_拷贝_54" data-name="矩形 3 拷贝 54" class="cls-1" x="455" y="271" width="26" height="4"/>
+  <rect id="矩形_3_拷贝_53" data-name="矩形 3 拷贝 53" class="cls-1" x="467" y="183" width="4" height="88"/>
+  <rect id="矩形_3_拷贝_48-2" data-name="矩形 3 拷贝 48" class="cls-1" x="467" y="112" width="186" height="4"/>
+  <rect id="矩形_3_拷贝_48-3" data-name="矩形 3 拷贝 48" class="cls-1" x="590" y="165" width="64" height="2"/>
+  <rect id="矩形_3_拷贝_48-4" data-name="矩形 3 拷贝 48" class="cls-1" x="590" y="211" width="64" height="2"/>
+  <rect id="矩形_3_拷贝_48-5" data-name="矩形 3 拷贝 48" class="cls-1" x="590" y="99" width="4" height="174"/>
+  <rect id="矩形_3_拷贝_49" data-name="矩形 3 拷贝 49" class="cls-1" x="519" y="115" width="4" height="112"/>
+  <rect id="矩形_3_拷贝_48-6" data-name="矩形 3 拷贝 48" class="cls-1" x="650" y="112" width="4" height="20"/>
+  <rect id="矩形_3_拷贝_48-7" data-name="矩形 3 拷贝 48" class="cls-1" x="650" y="154" width="4" height="24"/>
+  <rect id="矩形_3_拷贝_48-8" data-name="矩形 3 拷贝 48" class="cls-1" x="650" y="200" width="4" height="34"/>
+  <rect id="矩形_3_拷贝_50" data-name="矩形 3 拷贝 50" class="cls-1" x="519" y="255" width="4" height="20"/>
+  <rect id="矩形_3_拷贝_48-9" data-name="矩形 3 拷贝 48" class="cls-1" x="650" y="246" width="4" height="29"/>
+  <rect id="矩形_5_拷贝_17" data-name="矩形 5 拷贝 17" class="cls-1" x="598" y="178" width="1" height="24"/>
+  <rect id="矩形_5_拷贝_17-2" data-name="矩形 5 拷贝 17" class="cls-1" x="639" y="174" width="1" height="32"/>
+  <rect id="矩形_5_拷贝_17-3" data-name="矩形 5 拷贝 17" class="cls-1" x="610" y="174" width="1" height="32"/>
+  <path id="矩形_5_拷贝_17-4" data-name="矩形 5 拷贝 17" class="cls-2" d="M610,173h1l29,34h-1Z"/>
+  <path id="矩形_5_拷贝_17-5" data-name="矩形 5 拷贝 17" class="cls-2" d="M610,206l30-33v1l-30,33v-1Z"/>
+  <rect id="矩形_5_拷贝_17-6" data-name="矩形 5 拷贝 17" class="cls-1" x="604" y="178" width="1" height="24"/>
+  <rect id="矩形_5_拷贝_17-7" data-name="矩形 5 拷贝 17" class="cls-1" x="598" y="201" width="6" height="1"/>
+  <rect id="矩形_5_拷贝_17-8" data-name="矩形 5 拷贝 17" class="cls-1" x="598" y="178" width="6" height="1"/>
+  <rect id="矩形_5_拷贝_17-9" data-name="矩形 5 拷贝 17" class="cls-1" x="610" y="173" width="30" height="1"/>
+  <rect id="矩形_5_拷贝_17-10" data-name="矩形 5 拷贝 17" class="cls-1" x="610" y="206" width="30" height="1"/>
+  <rect id="矩形_5_拷贝_17-11" data-name="矩形 5 拷贝 17" class="cls-1" x="598" y="130" width="1" height="24"/>
+  <rect id="矩形_5_拷贝_17-12" data-name="矩形 5 拷贝 17" class="cls-1" x="639" y="126" width="1" height="32"/>
+  <rect id="矩形_5_拷贝_17-13" data-name="矩形 5 拷贝 17" class="cls-1" x="610" y="126" width="1" height="32"/>
+  <path id="矩形_5_拷贝_17-14" data-name="矩形 5 拷贝 17" class="cls-2" d="M610,125h1l29,34h-1Z"/>
+  <path id="矩形_5_拷贝_17-15" data-name="矩形 5 拷贝 17" class="cls-2" d="M610,158l30-33v1l-30,33v-1Z"/>
+  <rect id="矩形_5_拷贝_17-16" data-name="矩形 5 拷贝 17" class="cls-1" x="604" y="130" width="1" height="24"/>
+  <rect id="矩形_5_拷贝_17-17" data-name="矩形 5 拷贝 17" class="cls-1" x="598" y="153" width="6" height="1"/>
+  <rect id="矩形_5_拷贝_17-18" data-name="矩形 5 拷贝 17" class="cls-1" x="598" y="130" width="6" height="1"/>
+  <rect id="矩形_5_拷贝_17-19" data-name="矩形 5 拷贝 17" class="cls-1" x="610" y="125" width="30" height="1"/>
+  <rect id="矩形_5_拷贝_17-20" data-name="矩形 5 拷贝 17" class="cls-1" x="610" y="158" width="30" height="1"/>
+  <rect id="矩形_5_拷贝_17-21" data-name="矩形 5 拷贝 17" class="cls-1" x="777" y="178" width="1" height="24"/>
+  <rect id="矩形_5_拷贝_17-22" data-name="矩形 5 拷贝 17" class="cls-1" x="736" y="174" width="1" height="32"/>
+  <rect id="矩形_5_拷贝_17-23" data-name="矩形 5 拷贝 17" class="cls-1" x="765" y="174" width="1" height="32"/>
+  <path id="矩形_5_拷贝_17-24" data-name="矩形 5 拷贝 17" class="cls-2" d="M766,173h-1l-29,34h1Z"/>
+  <path id="矩形_5_拷贝_17-25" data-name="矩形 5 拷贝 17" class="cls-2" d="M766,206l-30-33v1l30,33v-1Z"/>
+  <rect id="矩形_5_拷贝_17-26" data-name="矩形 5 拷贝 17" class="cls-1" x="771" y="178" width="1" height="24"/>
+  <rect id="矩形_5_拷贝_17-27" data-name="矩形 5 拷贝 17" class="cls-1" x="772" y="201" width="6" height="1"/>
+  <rect id="矩形_5_拷贝_17-28" data-name="矩形 5 拷贝 17" class="cls-1" x="772" y="178" width="6" height="1"/>
+  <rect id="矩形_5_拷贝_17-29" data-name="矩形 5 拷贝 17" class="cls-1" x="736" y="173" width="30" height="1"/>
+  <rect id="矩形_5_拷贝_17-30" data-name="矩形 5 拷贝 17" class="cls-1" x="736" y="206" width="30" height="1"/>
+  <rect id="矩形_5_拷贝_17-31" data-name="矩形 5 拷贝 17" class="cls-1" x="777" y="130" width="1" height="24"/>
+  <rect id="矩形_5_拷贝_17-32" data-name="矩形 5 拷贝 17" class="cls-1" x="736" y="126" width="1" height="32"/>
+  <rect id="矩形_5_拷贝_17-33" data-name="矩形 5 拷贝 17" class="cls-1" x="765" y="126" width="1" height="32"/>
+  <path id="矩形_5_拷贝_17-34" data-name="矩形 5 拷贝 17" class="cls-2" d="M766,125h-1l-29,34h1Z"/>
+  <path id="矩形_5_拷贝_17-35" data-name="矩形 5 拷贝 17" class="cls-2" d="M766,158l-30-33v1l30,33v-1Z"/>
+  <rect id="矩形_5_拷贝_17-36" data-name="矩形 5 拷贝 17" class="cls-1" x="771" y="130" width="1" height="24"/>
+  <rect id="矩形_5_拷贝_17-37" data-name="矩形 5 拷贝 17" class="cls-1" x="772" y="153" width="6" height="1"/>
+  <rect id="矩形_5_拷贝_17-38" data-name="矩形 5 拷贝 17" class="cls-1" x="772" y="130" width="6" height="1"/>
+  <rect id="矩形_5_拷贝_17-39" data-name="矩形 5 拷贝 17" class="cls-1" x="736" y="125" width="30" height="1"/>
+  <rect id="矩形_5_拷贝_17-40" data-name="矩形 5 拷贝 17" class="cls-1" x="736" y="158" width="30" height="1"/>
+  <rect id="矩形_3_拷贝_31" data-name="矩形 3 拷贝 31" class="cls-1" x="1237" y="271" width="83" height="4"/>
+  <rect id="矩形_3_拷贝_35" data-name="矩形 3 拷贝 35" class="cls-1" x="1180" y="271" width="18" height="4"/>
+  <rect id="矩形_3_拷贝_36" data-name="矩形 3 拷贝 36" class="cls-1" x="1068" y="271" width="79" height="4"/>
+  <rect id="矩形_3_拷贝_37" data-name="矩形 3 拷贝 37" class="cls-1" x="1143" y="257" width="4" height="18"/>
+  <rect id="矩形_3_拷贝_61" data-name="矩形 3 拷贝 61" class="cls-1" x="1216" y="216" width="76" height="4"/>
+  <rect id="矩形_3_拷贝_62" data-name="矩形 3 拷贝 62" class="cls-1" x="1251" y="94" width="2" height="124"/>
+  <rect id="矩形_3_拷贝_22-2" data-name="矩形 3 拷贝 22" class="cls-1" x="1311" y="97" width="4" height="174"/>
+  <rect id="矩形_3_拷贝_32" data-name="矩形 3 拷贝 32" class="cls-1" x="1194" y="97" width="4" height="178"/>
+  <rect id="矩形_3_拷贝_33" data-name="矩形 3 拷贝 33" class="cls-1" x="1068" y="97" width="4" height="174"/>
+  <rect id="矩形_3_拷贝_34" data-name="矩形 3 拷贝 34" class="cls-1" x="1143" y="97" width="4" height="129"/>
+  <rect id="矩形_4-2" data-name="矩形 4" class="cls-1" x="1306" y="257" width="14" height="14"/>
+  <rect id="矩形_4_拷贝-3" data-name="矩形 4 拷贝" class="cls-1" x="1306" y="111" width="14" height="14"/>
+  <rect id="矩形_5_拷贝_17-41" data-name="矩形 5 拷贝 17" class="cls-1" x="1159" y="109" width="24" height="1"/>
+  <rect id="矩形_5_拷贝_17-42" data-name="矩形 5 拷贝 17" class="cls-1" x="1155" y="150" width="32" height="1"/>
+  <rect id="矩形_5_拷贝_17-43" data-name="矩形 5 拷贝 17" class="cls-1" x="1155" y="121" width="32" height="1"/>
+  <path id="矩形_5_拷贝_17-44" data-name="矩形 5 拷贝 17" class="cls-2" d="M1154,121v1l34,29v-1Z"/>
+  <path id="矩形_5_拷贝_17-45" data-name="矩形 5 拷贝 17" class="cls-2" d="M1187,121l-33,30h1l33-30h-1Z"/>
+  <rect id="矩形_5_拷贝_17-46" data-name="矩形 5 拷贝 17" class="cls-1" x="1159" y="115" width="24" height="1"/>
+  <rect id="矩形_5_拷贝_17-47" data-name="矩形 5 拷贝 17" class="cls-1" x="1182" y="109" width="1" height="6"/>
+  <rect id="矩形_5_拷贝_17-48" data-name="矩形 5 拷贝 17" class="cls-1" x="1159" y="109" width="1" height="6"/>
+  <rect id="矩形_5_拷贝_17-49" data-name="矩形 5 拷贝 17" class="cls-1" x="1154" y="121" width="1" height="30"/>
+  <rect id="矩形_5_拷贝_17-50" data-name="矩形 5 拷贝 17" class="cls-1" x="1187" y="121" width="1" height="30"/>
+  <rect id="矩形_3_拷贝_69" data-name="矩形 3 拷贝 69" class="cls-1" x="1144" y="159" width="11" height="4"/>
+  <rect id="矩形_3_拷贝_76" data-name="矩形 3 拷贝 76" class="cls-1" x="1186" y="159" width="11" height="4"/>
+  <rect id="矩形_5_拷贝_29" data-name="矩形 5 拷贝 29" class="cls-1" x="529" y="183" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-2" data-name="矩形 5 拷贝 29" class="cls-1" x="529" y="187" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-3" data-name="矩形 5 拷贝 29" class="cls-1" x="529" y="207" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-4" data-name="矩形 5 拷贝 29" class="cls-1" x="529" y="211" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-5" data-name="矩形 5 拷贝 29" class="cls-1" x="529" y="191" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-6" data-name="矩形 5 拷贝 29" class="cls-1" x="529" y="195" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-7" data-name="矩形 5 拷贝 29" class="cls-1" x="529" y="199" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-8" data-name="矩形 5 拷贝 29" class="cls-1" x="529" y="203" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-9" data-name="矩形 5 拷贝 29" class="cls-1" x="559" y="162" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-10" data-name="矩形 5 拷贝 29" class="cls-1" x="559" y="166" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-11" data-name="矩形 5 拷贝 29" class="cls-1" x="559" y="153" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-12" data-name="矩形 5 拷贝 29" class="cls-1" x="559" y="157" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-13" data-name="矩形 5 拷贝 29" class="cls-1" x="559" y="170" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-14" data-name="矩形 5 拷贝 29" class="cls-1" x="559" y="174" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-15" data-name="矩形 5 拷贝 29" class="cls-1" x="559" y="178" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-16" data-name="矩形 5 拷贝 29" class="cls-1" x="559" y="182" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-17" data-name="矩形 5 拷贝 29" class="cls-1" x="556" y="147" width="1" height="71"/>
+  <rect id="矩形_5_拷贝_29-18" data-name="矩形 5 拷贝 29" class="cls-1" x="1079" y="183" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-19" data-name="矩形 5 拷贝 29" class="cls-1" x="1079" y="187" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-20" data-name="矩形 5 拷贝 29" class="cls-1" x="1079" y="207" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-21" data-name="矩形 5 拷贝 29" class="cls-1" x="1079" y="211" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-22" data-name="矩形 5 拷贝 29" class="cls-1" x="1079" y="191" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-23" data-name="矩形 5 拷贝 29" class="cls-1" x="1079" y="195" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-24" data-name="矩形 5 拷贝 29" class="cls-1" x="1079" y="199" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-25" data-name="矩形 5 拷贝 29" class="cls-1" x="1079" y="203" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-26" data-name="矩形 5 拷贝 29" class="cls-1" x="1109" y="162" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-27" data-name="矩形 5 拷贝 29" class="cls-1" x="1109" y="166" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-28" data-name="矩形 5 拷贝 29" class="cls-1" x="1109" y="153" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-29" data-name="矩形 5 拷贝 29" class="cls-1" x="1109" y="157" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-30" data-name="矩形 5 拷贝 29" class="cls-1" x="1109" y="170" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-31" data-name="矩形 5 拷贝 29" class="cls-1" x="1109" y="174" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-32" data-name="矩形 5 拷贝 29" class="cls-1" x="1109" y="178" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-33" data-name="矩形 5 拷贝 29" class="cls-1" x="1109" y="182" width="25" height="1"/>
+  <rect id="矩形_5_拷贝_29-34" data-name="矩形 5 拷贝 29" class="cls-1" x="1106" y="147" width="1" height="71"/>
 </svg>
+
 
 EFO;
 
@@ -1361,11 +1351,11 @@ EFO;
                     'area' => 1442.1
                 ];
                 $data['svg'] = <<<EFO
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="650" height="248" viewBox="0 0 1500 600">
+<svg id="边" xmlns="http://www.w3.org/2000/svg" width="650" height="248" viewBox="0 0 1621 620">
 <defs>
     <style>
       .cls-1, .cls-2 {
-        fill: #54befc;
+        fill: #585b7a;
       }
 
       .cls-2 {
@@ -1373,17 +1363,196 @@ EFO;
       }
     </style>
   </defs>
-  <image id="组_19" data-name="组 19" x="116" y="109" width="1233" height="378" xlink:href="data:img/png;base64,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"/>
-  <rect id="矩形_5" data-name="矩形 5" class="cls-1" x="575" y="337" width="148" height="134"/>
-  <rect id="矩形_5_拷贝_4" data-name="矩形 5 拷贝 4" class="cls-1" x="745" y="337" width="139" height="134"/>
-  <rect id="矩形_5_拷贝_5" data-name="矩形 5 拷贝 5" class="cls-1" x="908" y="337" width="129" height="134"/>
-  <rect id="矩形_5_拷贝_2" data-name="矩形 5 拷贝 2" class="cls-1" x="426" y="337" width="127" height="134"/>
-  <rect id="矩形_5_拷贝_3" data-name="矩形 5 拷贝 3" class="cls-1" x="283" y="337" width="123" height="134"/>
-  <path id="矩形_5_拷贝_6" data-name="矩形 5 拷贝 6" class="cls-2" d="M131,355H264V471H203.024L203,446H131V355Z"/>
-  <rect id="矩形_5_拷贝" data-name="矩形 5 拷贝" class="cls-1" x="755" y="126" width="214" height="134"/>
-  <path id="矩形_6" data-name="矩形 6" class="cls-2" d="M131,137h98V126H406V260H279V228H131V137Z"/>
-  <path id="矩形_6_拷贝" data-name="矩形 6 拷贝" class="cls-2" d="M1333,352H1195V337H1063V471h196V441h74V352Z"/>
+  <rect id="矩形_1" data-name="矩形 1" class="cls-1" x="198" y="481" width="1075" height="6"/>
+  <rect id="矩形_3_拷贝_14" data-name="矩形 3 拷贝 14" class="cls-1" x="213" y="109" width="6" height="19"/>
+  <rect id="矩形_3_拷贝_18" data-name="矩形 3 拷贝 18" class="cls-1" x="1267" y="451" width="6" height="36"/>
+  <rect id="矩形_3_拷贝_20" data-name="矩形 3 拷贝 20" class="cls-1" x="192" y="455" width="6" height="32"/>
+  <rect id="矩形_3_拷贝_21" data-name="矩形 3 拷贝 21" class="cls-1" x="116" y="455" width="76" height="6"/>
+  <rect id="矩形_3_拷贝_8" data-name="矩形 3 拷贝 8" class="cls-1" x="1343" y="341" width="6" height="116"/>
+  <rect id="矩形_3_拷贝_9" data-name="矩形 3 拷贝 9" class="cls-1" x="1343" y="122" width="6" height="215"/>
+  <rect id="矩形_3_拷贝_5" data-name="矩形 3 拷贝 5" class="cls-1" x="116" y="122" width="6" height="334"/>
+  <rect id="矩形_3_拷贝_13" data-name="矩形 3 拷贝 13" class="cls-1" x="119" y="122" width="94" height="6"/>
+  <rect id="矩形_3_拷贝_11" data-name="矩形 3 拷贝 11" class="cls-1" x="219" y="109" width="988" height="6"/>
+  <rect id="矩形_3_拷贝_7" data-name="矩形 3 拷贝 7" class="cls-1" x="1271" y="451" width="78" height="6"/>
+  <rect id="矩形_3_拷贝_23" data-name="矩形 3 拷贝 23" class="cls-1" x="1261" y="340" width="84" height="4"/>
+  <rect id="矩形_3_拷贝_24" data-name="矩形 3 拷贝 24" class="cls-1" x="1203" y="340" width="29" height="4"/>
+  <rect id="矩形_3_拷贝_60" data-name="矩形 3 拷贝 60" class="cls-1" x="1203" y="120" width="146" height="6"/>
+  <rect id="矩形_3_拷贝_25" data-name="矩形 3 拷贝 25" class="cls-1" x="1086" y="323" width="117" height="4"/>
+  <rect id="矩形_3_拷贝_28" data-name="矩形 3 拷贝 28" class="cls-1" x="935" y="323" width="117" height="4"/>
+  <rect id="矩形_3_拷贝_31" data-name="矩形 3 拷贝 31" class="cls-1" x="768" y="323" width="130" height="4"/>
+  <rect id="矩形_3_拷贝_61" data-name="矩形 3 拷贝 61" class="cls-1" x="829" y="271" width="130" height="4"/>
+  <rect id="矩形_3_拷贝_63" data-name="矩形 3 拷贝 63" class="cls-1" x="977" y="271" width="48" height="4"/>
+  <rect id="矩形_3_拷贝_32" data-name="矩形 3 拷贝 32" class="cls-1" x="513" y="323" width="184" height="4"/>
+  <rect id="矩形_3_拷贝_35" data-name="矩形 3 拷贝 35" class="cls-1" x="349" y="323" width="132" height="4"/>
+  <rect id="矩形_3_拷贝_42" data-name="矩形 3 拷贝 42" class="cls-1" x="264" y="323" width="60" height="4"/>
+  <rect id="矩形_3_拷贝_43" data-name="矩形 3 拷贝 43" class="cls-1" x="129" y="343" width="147" height="4"/>
+  <rect id="矩形_3_拷贝_40" data-name="矩形 3 拷贝 40" class="cls-1" x="264" y="269" width="111" height="4"/>
+  <rect id="矩形_3_拷贝_37" data-name="矩形 3 拷贝 37" class="cls-1" x="122" y="236" width="142" height="4"/>
+  <rect id="矩形_3_拷贝_29" data-name="矩形 3 拷贝 29" class="cls-1" x="1048" y="327" width="4" height="154"/>
+  <rect id="矩形_3_拷贝_62" data-name="矩形 3 拷贝 62" class="cls-1" x="977" y="113" width="4" height="161"/>
+  <rect id="矩形_3_拷贝_64" data-name="矩形 3 拷贝 64" class="cls-1" x="1044" y="113" width="4" height="118"/>
+  <rect id="矩形_3_拷贝_66" data-name="矩形 3 拷贝 66" class="cls-1" x="1044" y="256" width="4" height="19"/>
+  <rect id="矩形_3_拷贝_67" data-name="矩形 3 拷贝 67" class="cls-1" x="1079" y="271" width="16" height="4"/>
+  <rect id="矩形_3_拷贝_68" data-name="矩形 3 拷贝 68" class="cls-1" x="1025" y="271" width="34" height="4"/>
+  <rect id="矩形_3_拷贝_65" data-name="矩形 3 拷贝 65" class="cls-1" x="1091" y="113" width="4" height="161"/>
+  <rect id="矩形_3_拷贝_65-2" data-name="矩形 3 拷贝 65" class="cls-1" x="1146" y="111" width="2" height="118"/>
+  <rect id="矩形_3_拷贝_30" data-name="矩形 3 拷贝 30" class="cls-1" x="894" y="327" width="4" height="154"/>
+  <rect id="矩形_3_拷贝_33" data-name="矩形 3 拷贝 33" class="cls-1" x="731" y="327" width="4" height="154"/>
+  <rect id="矩形_3_拷贝_34" data-name="矩形 3 拷贝 34" class="cls-1" x="562" y="327" width="4" height="154"/>
+  <rect id="矩形_3_拷贝_36" data-name="矩形 3 拷贝 36" class="cls-1" x="414" y="327" width="4" height="154"/>
+  <rect id="矩形_3_拷贝_38" data-name="矩形 3 拷贝 38" class="cls-1" x="272" y="443" width="4" height="38"/>
+  <rect id="矩形_3_拷贝_44" data-name="矩形 3 拷贝 44" class="cls-1" x="264" y="323" width="4" height="21"/>
+  <rect id="矩形_3_拷贝_45" data-name="矩形 3 拷贝 45" class="cls-1" x="272" y="343" width="4" height="11"/>
+  <rect id="矩形_3_拷贝_39" data-name="矩形 3 拷贝 39" class="cls-1" x="264" y="114" width="4" height="30"/>
+  <rect id="矩形_3_拷贝_41" data-name="矩形 3 拷贝 41" class="cls-1" x="264" y="236" width="4" height="100"/>
+  <rect id="矩形_3_拷贝_27" data-name="矩形 3 拷贝 27" class="cls-1" x="1131" y="271" width="72" height="4"/>
+  <rect id="矩形_3_拷贝_74" data-name="矩形 3 拷贝 74" class="cls-1" x="1203" y="236" width="142" height="4"/>
+  <rect id="矩形_3_拷贝_69" data-name="矩形 3 拷贝 69" class="cls-1" x="1111" y="226" width="72" height="4"/>
+  <rect id="矩形_3_拷贝_26" data-name="矩形 3 拷贝 26" class="cls-1" x="1203" y="115" width="4" height="225"/>
+  <rect id="矩形_3_拷贝_75" data-name="矩形 3 拷贝 75" class="cls-1" x="1203" y="109" width="6" height="17"/>
+  <rect id="矩形_4_拷贝_4" data-name="矩形 4 拷贝 4" class="cls-1" x="117" y="446" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_5" data-name="矩形 4 拷贝 5" class="cls-1" x="116" y="122" width="14" height="14"/>
+  <rect id="矩形_4_拷贝" data-name="矩形 4 拷贝" class="cls-1" x="1335" y="336" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_2" data-name="矩形 4 拷贝 2" class="cls-1" x="1043" y="472" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_7" data-name="矩形 4 拷贝 7" class="cls-1" x="889" y="472" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_8" data-name="矩形 4 拷贝 8" class="cls-1" x="726" y="472" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_9" data-name="矩形 4 拷贝 9" class="cls-1" x="557" y="472" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_10" data-name="矩形 4 拷贝 10" class="cls-1" x="409" y="472" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_20" data-name="矩形 4 拷贝 20" class="cls-1" x="409" y="323" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_21" data-name="矩形 4 拷贝 21" class="cls-1" x="557" y="323" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_22" data-name="矩形 4 拷贝 22" class="cls-1" x="726" y="323" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_23" data-name="矩形 4 拷贝 23" class="cls-1" x="889" y="323" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_24" data-name="矩形 4 拷贝 24" class="cls-1" x="1042" y="323" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_25" data-name="矩形 4 拷贝 25" class="cls-1" x="1193" y="318" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_11" data-name="矩形 4 拷贝 11" class="cls-1" x="266" y="472" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_12" data-name="矩形 4 拷贝 12" class="cls-1" x="264" y="259" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_17" data-name="矩形 4 拷贝 17" class="cls-1" x="399" y="270" width="24" height="4"/>
+  <rect id="矩形_4_拷贝_14" data-name="矩形 4 拷贝 14" class="cls-1" x="259" y="111" width="14" height="14"/>
+  <rect id="矩形_3_拷贝_46" data-name="矩形 3 拷贝 46" class="cls-1" x="414" y="114" width="4" height="158"/>
+  <rect id="矩形_4_拷贝_16" data-name="矩形 4 拷贝 16" class="cls-1" x="409" y="111" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_26" data-name="矩形 4 拷贝 26" class="cls-1" x="409" y="259" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_13" data-name="矩形 4 拷贝 13" class="cls-1" x="264" y="323" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_3" data-name="矩形 4 拷贝 3" class="cls-1" x="1335" y="441" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_6" data-name="矩形 4 拷贝 6" class="cls-1" x="116" y="338" width="14" height="14"/>
+  <rect id="矩形_4_拷贝_15" data-name="矩形 4 拷贝 15" class="cls-1" x="116" y="231" width="14" height="14"/>
+  <rect id="矩形_3_拷贝_37-2" data-name="矩形 3 拷贝 37" class="cls-1" x="496" y="270" width="127" height="4"/>
+  <rect id="矩形_3_拷贝_41-2" data-name="矩形 3 拷贝 41" class="cls-1" x="438" y="270" width="23" height="4"/>
+  <rect id="矩形_3_拷贝_38-2" data-name="矩形 3 拷贝 38" class="cls-1" x="684" y="271" width="122" height="4"/>
+  <rect id="矩形_3_拷贝_44-2" data-name="矩形 3 拷贝 44" class="cls-1" x="496" y="253" width="4" height="17"/>
+  <rect id="矩形_3_拷贝_43-2" data-name="矩形 3 拷贝 43" class="cls-1" x="496" y="112" width="4" height="119"/>
+  <rect id="矩形_3_拷贝_45-2" data-name="矩形 3 拷贝 45" class="cls-1" x="561" y="133" width="4" height="137"/>
+  <rect id="矩形_3_拷贝_52" data-name="矩形 3 拷贝 52" class="cls-1" x="619" y="133" width="4" height="15"/>
+  <rect id="矩形_3_拷贝_53" data-name="矩形 3 拷贝 53" class="cls-1" x="619" y="173" width="4" height="25"/>
+  <rect id="矩形_3_拷贝_54" data-name="矩形 3 拷贝 54" class="cls-1" x="619" y="224" width="4" height="24"/>
+  <rect id="矩形_3_拷贝_55" data-name="矩形 3 拷贝 55" class="cls-1" x="619" y="261" width="4" height="9"/>
+  <rect id="矩形_3_拷贝_56" data-name="矩形 3 拷贝 56" class="cls-1" x="684" y="259" width="4" height="12"/>
+  <rect id="矩形_3_拷贝_57" data-name="矩形 3 拷贝 57" class="cls-1" x="684" y="223" width="4" height="21"/>
+  <rect id="矩形_3_拷贝_58" data-name="矩形 3 拷贝 58" class="cls-1" x="684" y="172" width="4" height="25"/>
+  <rect id="矩形_3_拷贝_59" data-name="矩形 3 拷贝 59" class="cls-1" x="684" y="133" width="4" height="15"/>
+  <rect id="矩形_3_拷贝_46-2" data-name="矩形 3 拷贝 46" class="cls-1" x="500" y="129" width="123" height="4"/>
+  <rect id="矩形_3_拷贝_47" data-name="矩形 3 拷贝 47" class="cls-1" x="684" y="129" width="59" height="4"/>
+  <rect id="矩形_3_拷贝_48" data-name="矩形 3 拷贝 48" class="cls-1" x="684" y="184" width="59" height="2"/>
+  <rect id="矩形_3_拷贝_49" data-name="矩形 3 拷贝 49" class="cls-1" x="684" y="235" width="59" height="2"/>
+  <rect id="矩形_3_拷贝_50" data-name="矩形 3 拷贝 50" class="cls-1" x="564" y="236" width="59" height="2"/>
+  <rect id="矩形_3_拷贝_51" data-name="矩形 3 拷贝 51" class="cls-1" x="564" y="185" width="59" height="2"/>
+  <rect id="矩形_3_拷贝_36-2" data-name="矩形 3 拷贝 36" class="cls-1" x="741" y="128" width="4" height="143"/>
+  <rect id="矩形_4_拷贝_2-2" data-name="矩形 4 拷贝 2" class="cls-1" x="731" y="114" width="14" height="15"/>
+  <rect id="矩形_5_拷贝_7" data-name="矩形 5 拷贝 7" class="cls-1" x="611" y="145" width="1" height="32"/>
+  <rect id="矩形_5_拷贝_9" data-name="矩形 5 拷贝 9" class="cls-1" x="582" y="145" width="1" height="32"/>
+  <path id="矩形_5_拷贝_15" data-name="矩形 5 拷贝 15" class="cls-2" d="M582,144h1l29,34h-1Z"/>
+  <path id="矩形_5_拷贝_16" data-name="矩形 5 拷贝 16" class="cls-2" d="M582,177l30-33v1l-30,33v-1Z"/>
+  <rect id="矩形_5_拷贝_11" data-name="矩形 5 拷贝 11" class="cls-1" x="570" y="149" width="1" height="24"/>
+  <rect id="矩形_5_拷贝_12" data-name="矩形 5 拷贝 12" class="cls-1" x="576" y="149" width="1" height="24"/>
+  <rect id="矩形_5_拷贝_13" data-name="矩形 5 拷贝 13" class="cls-1" x="570" y="172" width="6" height="1"/>
+  <rect id="矩形_5_拷贝_14" data-name="矩形 5 拷贝 14" class="cls-1" x="570" y="149" width="6" height="1"/>
+  <rect id="矩形_5_拷贝_8" data-name="矩形 5 拷贝 8" class="cls-1" x="582" y="144" width="30" height="1"/>
+  <rect id="矩形_5_拷贝_10" data-name="矩形 5 拷贝 10" class="cls-1" x="582" y="177" width="30" height="1"/>
+  <rect id="矩形_5_拷贝_17" data-name="矩形 5 拷贝 17" class="cls-1" x="570" y="199" width="1" height="24"/>
+  <rect id="矩形_5_拷贝_17-2" data-name="矩形 5 拷贝 17" class="cls-1" x="611" y="195" width="1" height="32"/>
+  <rect id="矩形_5_拷贝_17-3" data-name="矩形 5 拷贝 17" class="cls-1" x="582" y="195" width="1" height="32"/>
+  <path id="矩形_5_拷贝_17-4" data-name="矩形 5 拷贝 17" class="cls-2" d="M582,194h1l29,34h-1Z"/>
+  <path id="矩形_5_拷贝_17-5" data-name="矩形 5 拷贝 17" class="cls-2" d="M582,227l30-33v1l-30,33v-1Z"/>
+  <rect id="矩形_5_拷贝_17-6" data-name="矩形 5 拷贝 17" class="cls-1" x="576" y="199" width="1" height="24"/>
+  <rect id="矩形_5_拷贝_17-7" data-name="矩形 5 拷贝 17" class="cls-1" x="570" y="222" width="6" height="1"/>
+  <rect id="矩形_5_拷贝_17-8" data-name="矩形 5 拷贝 17" class="cls-1" x="570" y="199" width="6" height="1"/>
+  <rect id="矩形_5_拷贝_17-9" data-name="矩形 5 拷贝 17" class="cls-1" x="582" y="194" width="30" height="1"/>
+  <rect id="矩形_5_拷贝_17-10" data-name="矩形 5 拷贝 17" class="cls-1" x="582" y="227" width="30" height="1"/>
+  <rect id="矩形_5_拷贝_18" data-name="矩形 5 拷贝 18" class="cls-1" x="694" y="194" width="1" height="32"/>
+  <rect id="矩形_5_拷贝_18-2" data-name="矩形 5 拷贝 18" class="cls-1" x="723" y="194" width="1" height="32"/>
+  <path id="矩形_5_拷贝_18-3" data-name="矩形 5 拷贝 18" class="cls-2" d="M724,193h-1l-29,34h1Z"/>
+  <path id="矩形_5_拷贝_18-4" data-name="矩形 5 拷贝 18" class="cls-2" d="M724,226l-30-33v1l30,33v-1Z"/>
+  <rect id="矩形_5_拷贝_18-5" data-name="矩形 5 拷贝 18" class="cls-1" x="735" y="198" width="1" height="24"/>
+  <rect id="矩形_5_拷贝_18-6" data-name="矩形 5 拷贝 18" class="cls-1" x="729" y="198" width="1" height="24"/>
+  <rect id="矩形_5_拷贝_18-7" data-name="矩形 5 拷贝 18" class="cls-1" x="730" y="221" width="6" height="1"/>
+  <rect id="矩形_5_拷贝_18-8" data-name="矩形 5 拷贝 18" class="cls-1" x="730" y="198" width="6" height="1"/>
+  <rect id="矩形_5_拷贝_18-9" data-name="矩形 5 拷贝 18" class="cls-1" x="694" y="193" width="30" height="1"/>
+  <rect id="矩形_5_拷贝_18-10" data-name="矩形 5 拷贝 18" class="cls-1" x="694" y="226" width="30" height="1"/>
+  <rect id="矩形_5_拷贝_21" data-name="矩形 5 拷贝 21" class="cls-1" x="1054" y="162" width="32" height="1"/>
+  <rect id="矩形_5_拷贝_21-2" data-name="矩形 5 拷贝 21" class="cls-1" x="1054" y="133" width="32" height="1"/>
+  <path id="矩形_5_拷贝_21-3" data-name="矩形 5 拷贝 21" class="cls-2" d="M1053,133v1l34,29v-1Z"/>
+  <path id="矩形_5_拷贝_21-4" data-name="矩形 5 拷贝 21" class="cls-2" d="M1086,133l-33,30h1l33-30h-1Z"/>
+  <rect id="矩形_5_拷贝_21-5" data-name="矩形 5 拷贝 21" class="cls-1" x="1058" y="121" width="24" height="1"/>
+  <rect id="矩形_5_拷贝_21-6" data-name="矩形 5 拷贝 21" class="cls-1" x="1058" y="127" width="24" height="1"/>
+  <rect id="矩形_5_拷贝_21-7" data-name="矩形 5 拷贝 21" class="cls-1" x="1081" y="121" width="1" height="6"/>
+  <rect id="矩形_5_拷贝_21-8" data-name="矩形 5 拷贝 21" class="cls-1" x="1058" y="121" width="1" height="6"/>
+  <rect id="矩形_5_拷贝_21-9" data-name="矩形 5 拷贝 21" class="cls-1" x="1053" y="133" width="1" height="30"/>
+  <rect id="矩形_5_拷贝_21-10" data-name="矩形 5 拷贝 21" class="cls-1" x="1086" y="133" width="1" height="30"/>
+  <rect id="矩形_5_拷贝_19" data-name="矩形 5 拷贝 19" class="cls-1" x="694" y="144" width="1" height="32"/>
+  <rect id="矩形_5_拷贝_19-2" data-name="矩形 5 拷贝 19" class="cls-1" x="723" y="144" width="1" height="32"/>
+  <path id="矩形_5_拷贝_19-3" data-name="矩形 5 拷贝 19" class="cls-2" d="M724,143h-1l-29,34h1Z"/>
+  <path id="矩形_5_拷贝_19-4" data-name="矩形 5 拷贝 19" class="cls-2" d="M724,176l-30-33v1l30,33v-1Z"/>
+  <rect id="矩形_5_拷贝_19-5" data-name="矩形 5 拷贝 19" class="cls-1" x="735" y="148" width="1" height="24"/>
+  <rect id="矩形_5_拷贝_19-6" data-name="矩形 5 拷贝 19" class="cls-1" x="729" y="148" width="1" height="24"/>
+  <rect id="矩形_5_拷贝_19-7" data-name="矩形 5 拷贝 19" class="cls-1" x="730" y="171" width="6" height="1"/>
+  <rect id="矩形_5_拷贝_19-8" data-name="矩形 5 拷贝 19" class="cls-1" x="730" y="148" width="6" height="1"/>
+  <rect id="矩形_5_拷贝_19-9" data-name="矩形 5 拷贝 19" class="cls-1" x="694" y="143" width="30" height="1"/>
+  <rect id="矩形_5_拷贝_19-10" data-name="矩形 5 拷贝 19" class="cls-1" x="694" y="176" width="30" height="1"/>
+  <rect id="矩形_3_拷贝_52-2" data-name="矩形 3 拷贝 52" class="cls-1" x="444" y="219" width="56" height="4"/>
+  <rect id="矩形_3_拷贝_70" data-name="矩形 3 拷贝 70" class="cls-1" x="444" y="197" width="56" height="4"/>
+  <rect id="矩形_3_拷贝_71" data-name="矩形 3 拷贝 71" class="cls-1" x="444" y="156" width="56" height="4"/>
+  <rect id="矩形_3_拷贝_72" data-name="矩形 3 拷贝 72" class="cls-1" x="443" y="142" width="4" height="31"/>
+  <rect id="矩形_3_拷贝_73" data-name="矩形 3 拷贝 73" class="cls-1" x="443" y="112" width="4" height="18"/>
+  <rect id="矩形_3_拷贝_53-2" data-name="矩形 3 拷贝 53" class="cls-1" x="444" y="188" width="4" height="83"/>
+  <rect id="矩形_3_拷贝_69-2" data-name="矩形 3 拷贝 69" class="cls-1" x="1044" y="167" width="11" height="4"/>
+  <rect id="矩形_3_拷贝_76" data-name="矩形 3 拷贝 76" class="cls-1" x="1084" y="167" width="11" height="4"/>
+  <g id="组_20" data-name="组 20">
+    <rect id="矩形_5_拷贝_29" data-name="矩形 5 拷贝 29" class="cls-1" x="503" y="191" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_29-2" data-name="矩形 5 拷贝 29" class="cls-1" x="503" y="195" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_29-3" data-name="矩形 5 拷贝 29" class="cls-1" x="503" y="215" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_29-4" data-name="矩形 5 拷贝 29" class="cls-1" x="503" y="219" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_29-5" data-name="矩形 5 拷贝 29" class="cls-1" x="503" y="199" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_29-6" data-name="矩形 5 拷贝 29" class="cls-1" x="503" y="203" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_29-7" data-name="矩形 5 拷贝 29" class="cls-1" x="503" y="207" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_29-8" data-name="矩形 5 拷贝 29" class="cls-1" x="503" y="211" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_29-9" data-name="矩形 5 拷贝 29" class="cls-1" x="533" y="170" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_29-10" data-name="矩形 5 拷贝 29" class="cls-1" x="533" y="174" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_29-11" data-name="矩形 5 拷贝 29" class="cls-1" x="533" y="161" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_29-12" data-name="矩形 5 拷贝 29" class="cls-1" x="533" y="165" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_29-13" data-name="矩形 5 拷贝 29" class="cls-1" x="533" y="178" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_29-14" data-name="矩形 5 拷贝 29" class="cls-1" x="533" y="182" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_29-15" data-name="矩形 5 拷贝 29" class="cls-1" x="533" y="186" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_29-16" data-name="矩形 5 拷贝 29" class="cls-1" x="533" y="190" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_29-17" data-name="矩形 5 拷贝 29" class="cls-1" x="530" y="155" width="1" height="71"/>
+    <rect id="矩形_5_拷贝_30" data-name="矩形 5 拷贝 30" class="cls-1" x="985" y="191" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_30-2" data-name="矩形 5 拷贝 30" class="cls-1" x="985" y="195" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_30-3" data-name="矩形 5 拷贝 30" class="cls-1" x="985" y="215" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_30-4" data-name="矩形 5 拷贝 30" class="cls-1" x="985" y="219" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_30-5" data-name="矩形 5 拷贝 30" class="cls-1" x="985" y="199" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_30-6" data-name="矩形 5 拷贝 30" class="cls-1" x="985" y="203" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_30-7" data-name="矩形 5 拷贝 30" class="cls-1" x="985" y="207" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_30-8" data-name="矩形 5 拷贝 30" class="cls-1" x="985" y="211" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_30-9" data-name="矩形 5 拷贝 30" class="cls-1" x="1015" y="170" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_30-10" data-name="矩形 5 拷贝 30" class="cls-1" x="1015" y="174" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_30-11" data-name="矩形 5 拷贝 30" class="cls-1" x="1015" y="161" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_30-12" data-name="矩形 5 拷贝 30" class="cls-1" x="1015" y="165" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_30-13" data-name="矩形 5 拷贝 30" class="cls-1" x="1015" y="178" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_30-14" data-name="矩形 5 拷贝 30" class="cls-1" x="1015" y="182" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_30-15" data-name="矩形 5 拷贝 30" class="cls-1" x="1015" y="186" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_30-16" data-name="矩形 5 拷贝 30" class="cls-1" x="1015" y="190" width="25" height="1"/>
+    <rect id="矩形_5_拷贝_30-17" data-name="矩形 5 拷贝 30" class="cls-1" x="1012" y="155" width="1" height="71"/>
+  </g>
 </svg>
+
 
 EFO;
 

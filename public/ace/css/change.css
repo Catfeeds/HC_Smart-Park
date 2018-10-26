@@ -169,12 +169,20 @@ a:focus, a:hover{
     top: -9px;
 }
 
-
-
-
 .index-floor:hover{
     transform: scale(1.1);
 }
+
+.legend{
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 46px;
+}
+.legend-text{
+    padding-left: 10px;
+    padding-right: 20px;
+}
+
 
 
 
