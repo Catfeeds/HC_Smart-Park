@@ -26,6 +26,8 @@ Route::get('bill', 'api/cron.Bill/index');
 Route::get('deldir', 'api/cron.Runtime/index');
 //-----------定时任务列表结束-----------------------
 
+//apk下载地址
+Route::get('apk','api/v1.apk/index');
 //检测更新
 Route::resource('version', 'api/Version');
 //首页接口

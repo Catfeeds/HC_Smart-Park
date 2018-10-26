@@ -49,7 +49,7 @@
 							<thead>
 							<tr>
 								<th>登录用户名</th>
-								<th class="hidden-sm hidden-xs">邮箱</th>
+								<!--<th class="hidden-sm hidden-xs">邮箱</th>-->
 								<th>用户组</th>
 								<th>真实姓名</th>
 								<th class="hidden-sm hidden-xs">电话号码</th>
@@ -65,7 +65,7 @@
 							{foreach name="admin_list" item="v"}
 								<tr>
 									<td height="28" >{$v.admin_username}</td>
-									<td class="hidden-sm hidden-xs">{$v.admin_email}</td>
+									<!--<td class="hidden-sm hidden-xs">{$v.admin_email}</td>-->
 									<td>{$v.admin_id|get_groups}</td>
 									<td>{$v.admin_realname}</td>
 									<td class="hidden-sm hidden-xs">{$v.admin_tel}</td>
