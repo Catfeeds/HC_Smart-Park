@@ -69,11 +69,11 @@ class EnterpriseEntryInfo extends Model
     {
         if ($decorate == 1) {
             $value = '毛坯';
+            return $value;
         } elseif ($decorate == 2) {
             $value = '简装';
+            return $value;
         }
-
-        return $value;
     }
 
     /**
@@ -87,6 +87,26 @@ class EnterpriseEntryInfo extends Model
             return \get_app_imgurl($pic);
         } else {
             return '';
+        }
+    }
+
+    /**
+     * @param $pics
+     * @return array|string
+     * 返回租房合同完整地址
+     */
+    public function getPicManyImgAttr($pics)
+    {
+        if (empty($pics)) {
+            return '';
+        } else {
+            $arr = \explode(',', $pics);
+            foreach ($arr as &$v) {
+                if (!empty($v)) {
+                    $v = \request()->domain() . $v;
+                }
+            }
+            return \array_filter($arr);
         }
     }
 }
