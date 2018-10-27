@@ -19,7 +19,10 @@
     <td>
         <div class="hidden-sm hidden-xs action-buttons">
 
-            <a class="blue"  href="{:url('admin/enterprise/enterprise_info',array('id'=>$v['enterprise_id']))}" title="查看">
+            <!--<a class="blue"   href="{:url('admin/enterprise/enterprise_info',array('id'=>$v['enterprise_id']))}" title="查看">-->
+                <!--<i class="iconfont icon-chakan"></i>-->
+            <!--</a>-->
+            <a class="blue"  data-toggle="modal" data-target="#myModal" enterprise-id={$v['enterprise_id']} id="ajax-enterprise-chakan" title="查看">
                 <i class="iconfont icon-chakan"></i>
             </a>
 
@@ -69,3 +72,5 @@
 <tr>
     <td height="50" colspan="12" align="left">{$page}</td>
 </tr>
+
+

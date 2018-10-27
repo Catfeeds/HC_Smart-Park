@@ -76,4 +76,62 @@
         </div>
     </div>
 </div><!-- /.page-content -->
+
+
+<!--模态框测试-->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form class="form-horizontal ajaxForm2" name="member_group_runadd" method="post"
+          action="{:url('admin/Park/building_runadd')}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                    </h4>
+                </div>
+
+                <table class="enterprise-modal">
+                    <tr>
+                        <td >111</td>
+                        <td><img src="http://www.hacyy.com/public/img/logo.png" alt=""></td>
+                    </tr>
+                </table>
+
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </form>
+</div><!-- /.modal -->
+
+
+<script>
+
+    $('#ajax-enterprise-chakan').on('click',function () {
+        var enterpriseNum = this.getAttribute("enterprise-id");
+        $.ajax({
+            url:'http://www.hacyy.com/enterprise/' + enterpriseNum,
+            type:'get',
+            dataType:'json',
+            success:function(data){
+                console.log(data)
+                $('.modal-title').text(data.data.enterprise_list_name)
+                // $('.index-room-floor').html(data.data[0].floor)
+                // $('.index-room-squ').html(data.data[0].area)
+                // $('.index-room-times').html(data.data[0].phase)
+                // $('.index-room-enterprise').html(data.data[0].enterprise_id)
+                // $('.index-room-plane')[0].innerHTML = data.data.svg;
+
+            }
+        })
+    })
+
+
+
+</script>
+
 {/block}
+
+
