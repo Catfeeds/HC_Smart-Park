@@ -10,18 +10,20 @@
     <td>{$v.margin}</td>
     <td class="hidden-sm hidden-xs">{$v.signed_day|date='Y-m-d',###}</td>
     <td>{$v.signer}</td>
-    {if $v.is_notify eq 0}
-    <td>未通知</td>
-    {else}
-    <td>{$v.is_notify|getAdminUserNameById}</td>
-    {/if}
     {if $v.status eq 0}
     <td>待缴费</td>
     {elseif $v.status eq 1 /}
     <td>待开票</td>
     {else}
-    <td>已完成【{$v.invoice_handler|getAdminUserNameById}】</td>
+    <td>已完成</td>
     {/if}
+    {if $v.is_notify eq 0}
+    <td>未通知</td>
+    {else}
+    <td>{$v.is_notify|getAdminUserNameById}</td>
+    {/if}
+    <td>{$v.fee_handler|getAdminUserNameById}</td>
+    <td>{$v.invoice_handler|getAdminUserNameById}</td>
     <td>
         <div class="hidden-sm hidden-xs action-buttons">
 
@@ -39,5 +41,5 @@
 </tr>
 {/foreach}
 <tr>
-    <td height="50" colspan="14" align="left">{$page}</td>
+    <td height="50" colspan="16" align="left">{$page}</td>
 </tr>

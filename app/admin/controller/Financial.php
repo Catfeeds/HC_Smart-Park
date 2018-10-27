@@ -48,15 +48,26 @@ class Financial extends Base
      */
     public function bill_list()
     {
-        $key = \input('key');
+
+        $key = \input('key', '');
+        $status = \input('status', '');
+        $map = [];
+        if ($key != '') {
+            $map['el.enterprise_list_name'] = ['like', '%' . $key . '%'];
+        }
+        if ($status != '') {
+            $map['ebl.status'] = $status;
+        }
         $list = Db::name('EnterpriseBillList ebl')
             ->join('EnterpriseEntryInfo eei', 'ebl.enterprise_id=eei.enterprise_id', 'LEFT')
             ->join('EnterpriseBank eb', 'ebl.enterprise_id=eb.enterprise_id', 'LEFT')
             ->join('EnterpriseList el', 'ebl.enterprise_id=el.id', 'LEFT')
-            ->where('el.enterprise_list_name', 'like', "%" . $key . "%")
-            ->field('ebl.id,el.enterprise_list_name,ebl.rent_amount,ebl.property_amount,ebl.aircon_amount,ebl.discounted_amount,ebl.amount,ebl.invoice_handler,eei.margin,eei.signed_day,eei.signer,ebl.is_notify,ebl.status')
+            ->where('el.id','neq','')
+            ->where($map)
+            ->field('ebl.id,el.enterprise_list_name,ebl.rent_amount,ebl.property_amount,ebl.aircon_amount,ebl.discounted_amount,ebl.amount,ebl.fee_handler,ebl.invoice_handler,eei.margin,eei.signed_day,eei.signer,ebl.is_notify,ebl.status')
             ->order('bill_time')
             ->paginate(config('paginate.list_rows'));
+//        \halt($list);
         $show = $list->render();
         $show = preg_replace("(<a[^>]*page[=|/](\d+).+?>(.+?)<\/a>)", "<a href='javascript:ajax_page($1);'>$2</a>", $show);
         $this->assign('list', $list);
