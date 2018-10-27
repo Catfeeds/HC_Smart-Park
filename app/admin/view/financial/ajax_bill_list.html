@@ -18,7 +18,7 @@
     <td>已完成</td>
     {/if}
     {if $v.is_notify eq 0}
-    <td>未通知</td>
+    <td></td>
     {else}
     <td>{$v.is_notify|getAdminUserNameById}</td>
     {/if}
@@ -32,10 +32,26 @@
                 <i class="ace-icon fa  bigger-130 iconfont icon-chakan"></i>
             </a>
 
+            {if $v.is_notify eq 0}
             <a class="confirm-rst-url-btn" data-info="发送短信?"
                href="{:url('admin/financial/sendSms',array('id'=>$v['id']))}" title="发送短信通知" data-toggle="tooltip">
                 <i class="ace-icon fa fa-commenting-o bigger-130"></i>
             </a>
+            {/if}
+            {if $v.is_notify neq 0}
+            {if $v.status eq 0}
+            <a class="confirm-rst-url-btn" data-info="确认收款?"
+               href="{:url('admin/financial/paid',array('id'=>$v['id']))}" title="确认收款" data-toggle="tooltip">
+                <i class="ace-icon fa fa-rmb bigger-130"></i>
+            </a>
+            {/if}
+            {if $v.status eq 1}
+            <a class="confirm-rst-url-btn" data-info="确认开票?"
+               href="{:url('admin/financial/invoice',array('id'=>$v['id']))}" title="确认开票" data-toggle="tooltip">
+                <i class="ace-icon fa fa-money bigger-130"></i>
+            </a>
+            {/if}
+            {/if}
         </div>
     </td>
 </tr>

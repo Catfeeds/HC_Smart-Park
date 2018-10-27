@@ -62,7 +62,7 @@ class Financial extends Base
             ->join('EnterpriseEntryInfo eei', 'ebl.enterprise_id=eei.enterprise_id', 'LEFT')
             ->join('EnterpriseBank eb', 'ebl.enterprise_id=eb.enterprise_id', 'LEFT')
             ->join('EnterpriseList el', 'ebl.enterprise_id=el.id', 'LEFT')
-            ->where('el.id','neq','')
+            ->where('el.id', 'neq', '')
             ->where($map)
             ->field('ebl.id,el.enterprise_list_name,ebl.rent_amount,ebl.property_amount,ebl.aircon_amount,ebl.discounted_amount,ebl.amount,ebl.fee_handler,ebl.invoice_handler,eei.margin,eei.signed_day,eei.signer,ebl.is_notify,ebl.status')
             ->order('bill_time')
@@ -117,6 +117,60 @@ class Financial extends Base
             $this->success('发送成功!');
         } else {
             $this->error('发送失败');
+        }
+    }
+
+    /**
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 确认收款操作
+     */
+    public function paid()
+    {
+        $bill_id = \input('id');
+        $bill_id_check = Db::name('EnterpriseBillList')->where('id', $bill_id)->find();
+        if (empty($bill_id_check)) {
+            $this->error('该账单不存在');
+        } else {
+            $fields = [
+                'status'=>1,
+                'fee_handler' => \session('hid'),
+                'fee_handler_time' => \time(),
+            ];
+            $res = Db::name('EnterpriseBillList')->where('id', $bill_id)->setField($fields);
+            if ($res) {
+                $this->success('确认收款成功');
+            } else {
+                $this->error('确认收款失败');
+            }
+        }
+    }
+
+    /**
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 确认开票
+     */
+    public function invoice()
+    {
+        $bill_id = \input('id');
+        $bill_id_check = Db::name('EnterpriseBillList')->where('id', $bill_id)->find();
+        if (empty($bill_id_check)) {
+            $this->error('该账单不存在');
+        } else {
+            $fields = [
+                'status'=>2,
+                'invoice_handler' => \session('hid'),
+                'invoice_handler_time' => \time(),
+            ];
+            $res = Db::name('EnterpriseBillList')->where('id', $bill_id)->setField($fields);
+            if ($res) {
+                $this->success('确认收款成功');
+            } else {
+                $this->error('确认收款失败');
+            }
         }
     }
 
