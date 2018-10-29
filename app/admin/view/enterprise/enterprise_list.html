@@ -76,4 +76,271 @@
         </div>
     </div>
 </div><!-- /.page-content -->
+
+
+<!--模态框测试-->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form class="form-horizontal ajaxForm2" name="member_group_runadd" method="post"
+          action="{:url('admin/Park/building_runadd')}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel"></h4>
+                </div>
+
+                <table class="enterprise-modal">
+                    <tr>
+                        <td>企业名称</td>
+                        <td class="enterprise_list_name"></td>
+                    </tr>
+                    <tr>
+                        <td>企业LOGO</td>
+                        <td><img class="enterprise_list_logo" src="" alt="未上传企业LOGO"></td>
+                    </tr>
+                    <tr>
+                        <td>企业营业执照</td>
+                        <td><img class="enterprise_list_license_img" src="" alt="未上传营业执照"></td>
+                    </tr>
+                    <tr>
+                        <td>统一社会信用代码</td>
+                        <td class="enterprise_list_credit_code"></td>
+                    </tr>
+                    <tr>
+                        <td>法定代表人</td>
+                        <td class="enterprise_list_legal_representative"></td>
+                    </tr>
+                    <tr>
+                        <td>法人身份证号</td>
+                        <td class="enterprise_list_legal_id_number"></td>
+                    </tr>
+                    <tr>
+                        <td>法人联系方式</td>
+                        <td class="enterprise_list_legal_phone_number"></td>
+                    </tr>
+                    <tr>
+                        <td>成立日期</td>
+                        <td class="enterprise_list_legal_setup_day"></td>
+                    </tr>
+                    <tr>
+                        <td>注册资金</td>
+                        <td class="enterprise_list_legal_registered_capital"></td>
+                    </tr>
+                    <tr>
+                        <td>注册地址</td>
+                        <td class="enterprise_list_legal_registered_address"></td>
+                    </tr>
+                    <tr>
+                        <td>经营地址</td>
+                        <td class="enterprise_list_legal_business_address"></td>
+                    </tr>
+                    <tr>
+                        <td>企业通讯地址</td>
+                        <td class="enterprise_list_legal_book_address"></td>
+                    </tr>
+                    <tr>
+                        <td>企业纳税人类型</td>
+                        <td class="enterprise_list_legal_tax_type"></td>
+                    </tr>
+                    <tr>
+                        <td>企业登记注册类型</td>
+                        <td class="registration_type"></td>
+                    </tr>
+                    <tr>
+                        <td>行业类别</td>
+                        <td class="enterprise_category"></td>
+                    </tr>
+                    <tr>
+                        <td>企业所属技术领域</td>
+                        <td class="technical_field"></td>
+                    </tr>
+                    <tr>
+                        <td>企业网址</td>
+                        <td class="website_url"></td>
+                    </tr>
+                    <tr>
+                        <td>企业联系地址</td>
+                        <td class="contact_address"></td>
+                    </tr>
+                    <tr>
+                        <td>邮政编码</td>
+                        <td class="zip_code"></td>
+                    </tr>
+                    <tr>
+                        <td>联系人</td>
+                        <td class="contact_people"></td>
+                    </tr>
+                    <tr>
+                        <td>联系电话</td>
+                        <td class="contact_number"></td>
+                    </tr>
+                    <tr>
+                        <td>传真</td>
+                        <td class="fax"></td>
+                    </tr>
+                    <tr>
+                        <td>银行名称</td>
+                        <td class="bank_name"></td>
+                    </tr>
+                    <tr>
+                        <td>开户行</td>
+                        <td class="bank_deposit"></td>
+                    </tr>
+                    <tr>
+                        <td>账号</td>
+                        <td class="account"></td>
+                    </tr>
+                    <tr>
+                        <td>财务负责人</td>
+                        <td class="financial_office"></td>
+                    </tr>
+                    <tr>
+                        <td>财务负责人电话</td>
+                        <td class="financial_office_phone"></td>
+                    </tr>
+                    <tr>
+                        <td>邮箱</td>
+                        <td class="financial_office_email"></td>
+                    </tr>
+                    <tr>
+                        <td>楼宇</td>
+                        <td class="phase"></td>
+                    </tr>
+                    <tr>
+                        <td>房间号</td>
+                        <td class="room"></td>
+                    </tr>
+                    <tr>
+                        <td>保证金</td>
+                        <td class="margin"></td>
+                    </tr>
+                    <tr>
+                        <td>服务费支付周期</td>
+                        <td class="rent_period"></td>
+                    </tr>
+                    <tr>
+                        <td>物业费支付周期</td>
+                        <td class="property_period"></td>
+                    </tr>
+                    <tr>
+                        <td>空调费支付周期</td>
+                        <td class="air_conditioner_period"></td>
+                    </tr>
+                    <tr>
+                        <td>费用生效日期</td>
+                        <td class="signed_day"></td>
+                    </tr>
+                    <tr>
+                        <td>支付时间</td>
+                        <td class="pay_time"></td>
+                    </tr>
+                    <tr>
+                        <td>租房合同</td>
+                        <td class="pic_many_img"></td>
+                    </tr>
+                    <tr>
+                        <td>签订人</td>
+                        <td class="signer"></td>
+                    </tr>
+                    <tr>
+                        <td>操作人</td>
+                        <td class="operator"></td>
+                    </tr>
+                    <tr>
+                        <td>开票人</td>
+                        <td class="drawer"></td>
+                    </tr>
+                    <tr>
+                        <td>确认人</td>
+                        <td class="confirmer"></td>
+                    </tr>
+
+                </table>
+
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </form>
+</div><!-- /.modal -->
+
+
+<script>
+
+    // 查看企业详情部分JS
+    $('#ajax-enterprise-chakan').on('click',function () {
+        var enterpriseNum = this.getAttribute("enterprise-id");
+        $.ajax({
+            url:'http://www.hacyy.com/enterprise/' + enterpriseNum,
+            type:'get',
+            dataType:'json',
+            success:function(data){
+                console.log(data)
+                $('.modal-title').text(data.data.enterprise_list_name)
+                $('.enterprise_list_name').text(data.data.enterprise_list_name)
+                $('.enterprise_list_logo').attr("src","data.data.enterprise_list_logo")
+                $('.enterprise_list_license_img').attr("src","data.data.enterprise_list_license_img")
+                $('.enterprise_list_credit_code').text(data.data.enterprise_list_credit_code)
+                $('.enterprise_list_legal_representative').text(data.data.enterprise_list_legal_representative)
+                $('.enterprise_list_legal_id_number').text(data.data.enterprise_list_legal_id_number)
+                $('.enterprise_list_legal_phone_number').text(data.data.enterprise_list_legal_phone_number)
+                $('.enterprise_list_legal_setup_day').text(data.data.enterprise_list_legal_setup_day)
+                $('.enterprise_list_legal_registered_capital').text(data.data.enterprise_list_legal_registered_capital)
+                $('.enterprise_list_legal_registered_address').text(data.data.enterprise_list_legal_registered_address)
+                $('.enterprise_list_legal_business_address').text(data.data.enterprise_list_legal_business_address)
+                $('.enterprise_list_legal_book_address').text(data.data.enterprise_list_legal_book_address)
+                $('.enterprise_list_legal_tax_type').text(data.data.enterprise_list_legal_tax_type)
+
+                $('.registration_type').text(data.data.enterprise_business.registration_type)
+                $('.enterprise_category').text(data.data.enterprise_business.enterprise_category)
+                $('.technical_field').text(data.data.enterprise_business.technical_field)
+                $('.website_url').text(data.data.enterprise_business.website_url)
+
+                $('.contact_address').text(data.data.enterprise_contact.contact_address)
+                $('.zip_code').text(data.data.enterprise_contact.zip_code)
+                $('.contact_people').text(data.data.enterprise_contact.contact)
+                $('.contact_number').text(data.data.enterprise_contact.contact_number)
+                $('.fax').text(data.data.enterprise_contact.fax)
+
+                $('.bank_name').text(data.data.bank_info.bank_name)
+                $('.bank_deposit').text(data.data.bank_info.bank_deposit)
+                $('.account').text(data.data.bank_info.account)
+                $('.financial_office').text(data.data.bank_info.financial_office)
+                $('.financial_office_phone').text(data.data.bank_info.financial_office_phone)
+                $('.financial_office_email').text(data.data.bank_info.financial_office_email)
+
+                $('.phase').text(data.data.entry_info.phase)
+                $('.room').text(data.data.entry_info.room)
+                $('.margin').text(data.data.entry_info.margin)
+                $('.rent_period').text(data.data.entry_info.rent_period)
+                $('.property_period').text(data.data.entry_info.property_period)
+                $('.air_conditioner_period').text(data.data.entry_info.air_conditioner_period)
+                $('.signed_day').text(data.data.entry_info.signed_day)
+                $('.pay_time').text(data.data.entry_info.pay_time)
+
+                // 租赁合同
+                var arrImgs=data.data.entry_info.pic_many_img
+                var html_string='';
+                for(var i=0;i<arrImgs.length;i++){
+                    html_string+='<img src="'+arrImgs[i]+'" width="100%" />';
+                }
+                $('.pic_many_img').html(html_string)
+                $('.signer').text(data.data.entry_info.signer)
+                $('.operator').text(data.data.entry_info.operator)
+                $('.drawer').text(data.data.entry_info.drawer)
+                $('.confirmer').text(data.data.entry_info.confirmer)
+
+            }
+        })
+    })
+
+
+
+
+</script>
+
 {/block}
+
+

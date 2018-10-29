@@ -78,24 +78,6 @@ a:focus, a:hover{
     color: #27aaf3;
 }
 
-/*首页财务相关样式*/
-.index-financial{
-    width: 60.5%;
-}
-.index-financial-number h5{
-    display: inline-block;
-}
-.index-financial-number h3{
-    display: inline-block;
-}
-/*首页企业相关样式*/
-.index-enterprise {
-    width: 38%;
-}
-.index-enterprise  .common-number{
-    width: 49%;
-}
-
 /*图表样式*/
 .common-echarts {
     box-sizing: border-box;
@@ -232,6 +214,25 @@ a:focus, a:hover{
 }
 
 
+/*首页财务相关样式*/
+.index-financial{
+    width: 60.5%;
+}
+.index-financial-number h5{
+    display: inline-block;
+}
+.index-financial-number h3{
+    display: inline-block;
+}
+/*首页企业相关样式*/
+.index-enterprise {
+    width: 38%;
+}
+.index-enterprise  .common-number{
+    width: 49%;
+}
+
+
 
 /*顶部导航样式*/
 .nav-list>li .submenu {
@@ -353,6 +354,24 @@ a:focus, a:hover{
      margin-left: 0;
      margin-right: 0;
 }
+
+
+
+/*查看企业模态框样式*/
+
+.modal-content{
+    padding: 10px;
+}
+.enterprise-modal {
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+.enterprise-modal td{
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
 
 
 
