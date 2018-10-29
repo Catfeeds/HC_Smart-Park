@@ -5,7 +5,11 @@
     <td>{$v.rent_amount}</td>
     <td>{$v.property_amount}</td>
     <td>{$v.aircon_amount}</td>
-    <td>{$v.discounted_amount}</td>
+    <td>{$v.discounted_amount}
+        <a class="blue billedit_btn" href="{:url('admin/Financial/bill_edit')}" data-id="{$v.id}" data-toggle="tooltip" title="输入调整金额">
+            <i class="ace-icon fa  bigger-130 iconfont icon-brush"></i>
+        </a>
+    </td>
     <td>{$v.amount}</td>
     <td>{$v.margin}</td>
     <td class="hidden-sm hidden-xs">{$v.signed_day|date='Y-m-d',###}</td>

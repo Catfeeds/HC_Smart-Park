@@ -134,7 +134,7 @@ class Financial extends Base
             $this->error('该账单不存在');
         } else {
             $fields = [
-                'status'=>1,
+                'status' => 1,
                 'fee_handler' => \session('hid'),
                 'fee_handler_time' => \time(),
             ];
@@ -161,7 +161,7 @@ class Financial extends Base
             $this->error('该账单不存在');
         } else {
             $fields = [
-                'status'=>2,
+                'status' => 2,
                 'invoice_handler' => \session('hid'),
                 'invoice_handler_time' => \time(),
             ];
@@ -171,6 +171,60 @@ class Financial extends Base
             } else {
                 $this->error('确认收款失败');
             }
+        }
+    }
+
+    /**
+     * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 编辑账单弹窗
+     */
+    public function bill_edit()
+    {
+        if (\request()->isAjax()) {
+            $bill_id = \input('id');
+            $discounted_amount = Db::name('EnterpriseBillList')
+                ->where('id', $bill_id)
+                ->find();
+            $discounted_amount['code'] = 1;
+            return \json($discounted_amount);
+        } else {
+            $this->error('提交方式不正确!');
+        }
+    }
+
+    /**
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 执行编辑账单操作
+     */
+    public function bill_runedit()
+    {
+        $bill_info = Db::name('EnterpriseBillList')
+            ->where('id', \input('id'))
+            ->find();
+        if (empty($bill_info)) {
+            $this->error('该账单不存在');
+        }
+        //调整的金额
+        $discounted_amount = \input('discounted_amount');
+        //写入调整后总金额
+        $amount = $bill_info['amount'] + $discounted_amount;
+        $fields = [
+            'amount' => $amount,
+            'discounted_amount'=>\input('discounted_amount'),
+            'discounted_amount_reason' => \input('discounted_amount_reason'),
+            'discounted_amount_time' => \time(),
+        ];
+
+        $res = Db::name('EnterpriseBillList')->where('id', \input('id'))->setField($fields);
+        if ($res) {
+            $this->success('调整成功!');
+        } else {
+            $this->error('调整失败!');
         }
     }
 
@@ -186,22 +240,6 @@ class Financial extends Base
      *执行添加操作
      */
     public function bill_runadd()
-    {
-
-    }
-
-    /**
-     *编辑账单
-     */
-    public function bill_edit()
-    {
-
-    }
-
-    /**
-     *执行编辑操作
-     */
-    public function bill_runedit()
     {
 
     }

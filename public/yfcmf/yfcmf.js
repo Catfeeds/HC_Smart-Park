@@ -1,7 +1,7 @@
 /************************************************************* 所有带确认的ajax提交btn ********************************************************/
 /* get执行并返回结果，执行后不带跳转 */
 $(function () {
-	$('body').on('click','.rst-btn',function () {
+    $('body').on('click', '.rst-btn', function () {
         var $url = this.href;
         $.get($url, function (data) {
             if (data.code == 1) {
@@ -15,10 +15,10 @@ $(function () {
 });
 /* get执行并返回结果，执行后带跳转 */
 $(function () {
-	$('body').on('click','.rst-url-btn',function () {
+    $('body').on('click', '.rst-url-btn', function () {
         var $url = this.href;
         $.get($url, function (data) {
-            if (data.code==1) {
+            if (data.code == 1) {
                 layer.alert(data.msg, {icon: 6}, function (index) {
                     layer.close(index);
                     window.location.href = data.url;
@@ -34,7 +34,7 @@ $(function () {
 });
 /* 直接跳转 */
 $(function () {
-	$('body').on('click','.confirm-btn',function () {
+    $('body').on('click', '.confirm-btn', function () {
         var $url = this.href,
             $info = $(this).data('info');
         layer.confirm($info, {icon: 3}, function (index) {
@@ -46,7 +46,7 @@ $(function () {
 });
 /* post执行并返回结果，执行后不带跳转 */
 $(function () {
-	$('body').on('click','.confirm-rst-btn',function () {
+    $('body').on('click', '.confirm-rst-btn', function () {
         var $url = this.href,
             $info = $(this).data('info');
         layer.confirm($info, {icon: 3}, function (index) {
@@ -60,13 +60,13 @@ $(function () {
 });
 /* get执行并返回结果，执行后带跳转 */
 $(function () {
-	$('body').on('click','.confirm-rst-url-btn',function () {
+    $('body').on('click', '.confirm-rst-url-btn', function () {
         var $url = this.href,
             $info = $(this).data('info');
         layer.confirm($info, {icon: 3}, function (index) {
             layer.close(index);
             $.get($url, function (data) {
-                if (data.code==1) {
+                if (data.code == 1) {
                     layer.alert(data.msg, {icon: 6}, function (index) {
                         layer.close(index);
                         window.location.href = data.url;
@@ -82,7 +82,7 @@ $(function () {
     });
 });
 $(function () {
-    $('body').on('click','.confirm-url-btn',function () {
+    $('body').on('click', '.confirm-url-btn', function () {
         var $url = this.href,
             $info = $(this).data('info');
         layer.confirm($info, {icon: 3}, function (index) {
@@ -95,19 +95,19 @@ $(function () {
 /*************************************************************************** 所有状态类的ajax提交btn ********************************************************/
 /* 审核状态操作1 */
 $(function () {
-	$('body').on('click','.state-btn',function () {
+    $('body').on('click', '.state-btn', function () {
         var $url = this.href,
             val = $(this).data('id'),
-            $btn=$(this);
+            $btn = $(this);
         $.post($url, {x: val}, function (data) {
-            if (data.code==1) {
+            if (data.code == 1) {
                 if (data.msg == '未审') {
                     var a = '<button class="btn btn-minier btn-danger">未审</button>';
-                    $btn.children('div').html(a).attr('title','未审');
+                    $btn.children('div').html(a).attr('title', '未审');
                     return false;
                 } else {
                     var b = '<button class="btn btn-minier btn-yellow">已审</button>';
-                    $btn.children('div').html(b).attr('title','已审');
+                    $btn.children('div').html(b).attr('title', '已审');
                     return false;
                 }
             } else {
@@ -119,21 +119,19 @@ $(function () {
 });
 
 
-
-
 $(function () {
-	$('body').on('click','#btnorder',function () {
-        var $url=$(this).attr("href");
-        if(!$url){
-            $url=$(this).parents('form').attr('action');
+    $('body').on('click', '#btnorder', function () {
+        var $url = $(this).attr("href");
+        if (!$url) {
+            $url = $(this).parents('form').attr('action');
         }
         $.post($url, $("input.list_order").serialize(), function (data) {
-            if (data.code==1) {
+            if (data.code == 1) {
                 layer.alert(data.msg, {icon: 6}, function (index) {
-					window.location.href = data.url;
+                    window.location.href = data.url;
                     layer.close(index);
                 });
-            }else{
+            } else {
                 layer.alert(data.msg, {icon: 5}, function (index) {
                     layer.close(index);
                 });
@@ -144,19 +142,19 @@ $(function () {
 });
 /* 启用状态操作 */
 $(function () {
-	$('body').on('click','.open-btn',function () {
+    $('body').on('click', '.open-btn', function () {
         var $url = this.href,
             val = $(this).data('id'),
-            $btn=$(this);
+            $btn = $(this);
         $.post($url, {x: val}, function (data) {
-            if (data.code==1) {
+            if (data.code == 1) {
                 if (data.msg == '状态禁止') {
                     var a = '<button class="btn btn-minier btn-danger">禁用</button>';
-                    $btn.children('div').html(a).attr('title','已禁用');
+                    $btn.children('div').html(a).attr('title', '已禁用');
                     return false;
                 } else {
                     var b = '<button class="btn btn-minier btn-yellow">开启</button>';
-                    $btn.children('div').html(b).attr('title','已开启');
+                    $btn.children('div').html(b).attr('title', '已开启');
                     return false;
                 }
             } else {
@@ -170,19 +168,19 @@ $(function () {
 
 /* 处理状态操作 */
 $(function () {
-    $('body').on('click','.check-btn',function () {
+    $('body').on('click', '.check-btn', function () {
         var $url = this.href,
             val = $(this).data('id'),
-            $btn=$(this);
+            $btn = $(this);
         $.post($url, {x: val}, function (data) {
-            if (data.code==1) {
+            if (data.code == 1) {
                 if (data.msg == '待处理') {
                     var a = '<button class="btn btn-minier btn-danger">未处理</button>';
-                    $btn.children('div').html(a).attr('title','未处理');
+                    $btn.children('div').html(a).attr('title', '未处理');
                     return false;
                 } else {
                     var b = '<button class="btn btn-minier btn-yellow">已处理</button>';
-                    $btn.children('div').html(b).attr('title','已处理');
+                    $btn.children('div').html(b).attr('title', '已处理');
                     return false;
                 }
             } else {
@@ -196,19 +194,19 @@ $(function () {
 
 /* 显示状态操作 */
 $(function () {
-	$('body').on('click','.display-btn',function () {
+    $('body').on('click', '.display-btn', function () {
         var $url = this.href,
             val = $(this).data('id'),
-            $btn=$(this);
+            $btn = $(this);
         $.post($url, {x: val}, function (data) {
-            if (data.code==1) {
+            if (data.code == 1) {
                 if (data.msg == '状态禁止') {
                     var a = '<button class="btn btn-minier btn-danger">隐藏</button>';
-                    $btn.children('div').html(a).attr('title','已隐藏');
+                    $btn.children('div').html(a).attr('title', '已隐藏');
                     return false;
                 } else {
                     var b = '<button class="btn btn-minier btn-yellow">显示</button>';
-                    $btn.children('div').html(b).attr('title','已显示');
+                    $btn.children('div').html(b).attr('title', '已显示');
                     return false;
                 }
             } else {
@@ -220,19 +218,19 @@ $(function () {
 });
 /* 检测状态操作 */
 $(function () {
-    $('body').on('click','.notcheck-btn',function () {
+    $('body').on('click', '.notcheck-btn', function () {
         var $url = this.href,
             val = $(this).data('id'),
-            $btn=$(this);
+            $btn = $(this);
         $.post($url, {x: val}, function (data) {
-            if (data.code==1) {
+            if (data.code == 1) {
                 if (data.msg == '检测') {
                     var a = '<button class="btn btn-minier btn-yellow">检测</button>';
-                    $btn.children('div').html(a).attr('title','检测');
+                    $btn.children('div').html(a).attr('title', '检测');
                     return false;
                 } else {
                     var b = '<button class="btn btn-minier btn-danger">不检测</button>';
-                    $btn.children('div').html(b).attr('title','不检测');
+                    $btn.children('div').html(b).attr('title', '不检测');
                     return false;
                 }
             } else {
@@ -244,19 +242,19 @@ $(function () {
 });
 /* 激活状态操作 */
 $(function () {
-	$('body').on('click','.active-btn',function () {
+    $('body').on('click', '.active-btn', function () {
         var $url = this.href,
             val = $(this).data('id'),
-            $btn=$(this);
+            $btn = $(this);
         $.post($url, {x: val}, function (data) {
-            if (data.code==1) {
+            if (data.code == 1) {
                 if (data.msg == '未激活') {
                     var a = '<button class="btn btn-minier btn-danger">未激活</button>';
-                    $btn.children('div').html(a).attr('title','未激活');
+                    $btn.children('div').html(a).attr('title', '未激活');
                     return false;
                 } else {
                     var b = '<button class="btn btn-minier btn-yellow">已激活</button>';
-                    $btn.children('div').html(b).attr('title','已激活');
+                    $btn.children('div').html(b).attr('title', '已激活');
                     return false;
                 }
             } else {
@@ -312,6 +310,7 @@ $(function () {
         dataType: 'json'
     });
 });
+
 //失败跳转
 function complete(data) {
     if (data.code == 1) {
@@ -327,6 +326,7 @@ function complete(data) {
         return false;
     }
 }
+
 //失败不跳转
 function complete2(data) {
     if (data.code == 1) {
@@ -340,6 +340,7 @@ function complete2(data) {
         });
     }
 }
+
 //失败不跳转,验证码刷新
 function complete3(data) {
     if (data.code == 1) {
@@ -350,6 +351,7 @@ function complete3(data) {
         layer.alert(data.msg, {icon: 5});
     }
 }
+
 //admin表单检查
 function checkadminForm() {
     var admin_username = $.trim($('input[name="admin_username"]').val()); //获取INPUT值
@@ -376,6 +378,7 @@ function checkadminForm() {
         return false;
     }
 }
+
 //member表单检查
 function checkmemberForm() {
     if (!$("#member_list_tel").val().match(/^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/)) {
@@ -386,6 +389,7 @@ function checkmemberForm() {
         return false;
     }
 }
+
 //多选表单检查
 function checkselectForm() {
     var chk_value = [];
@@ -398,6 +402,7 @@ function checkselectForm() {
         return false;
     }
 }
+
 /*************************************************************************** 所有css操作 ********************************************************/
 /* 菜单样式 */
 $(function () {
@@ -418,12 +423,14 @@ $(function () {
         }
     }).triggerHandler('settings.ace.two_menu', ['sidebar_fixed', $('#sidebar').hasClass('sidebar-fixed')]);
 });
+
 /* 多选判断 */
 function unselectall() {
     if (document.myform.chkAll.checked) {
         document.myform.chkAll.checked = document.myform.chkAll.checked & 0;
     }
 }
+
 function CheckAll(form) {
     for (var i = 0; i < form.elements.length; i++) {
         var e = form.elements[i];
@@ -432,10 +439,11 @@ function CheckAll(form) {
         }
     }
 }
+
 /* 日期选择器 */
 var dateInput = $("input.js-date")
 if (dateInput.length) {
-	dateInput.datePicker();
+    dateInput.datePicker();
 }
 /* 权限配置 */
 $(function () {
@@ -500,7 +508,7 @@ $(document).ready(function () {
 /*************************************************************************** 所有ajax获取编辑数据 ********************************************************/
 /* 会员组修改操作 */
 $(function () {
-	$('body').on('click','.memberedit-btn',function () {
+    $('body').on('click', '.memberedit-btn', function () {
         var $url = this.href,
             val = $(this).data('id');
         $.post($url, {member_group_id: val}, function (data) {
@@ -518,6 +526,7 @@ $(function () {
         return false;
     });
 });
+
 /* 友链类型 */
 function openWindow(a, b, c) {
     $("#myModal").show(300);
@@ -525,19 +534,22 @@ function openWindow(a, b, c) {
     $("#newplug_linktype_name").val(b);
     $("#newplug_linktype_order").val(c);
 }
+
 /* 模型添加到menu */
 function addmenu(a) {
     $("#myModal").show(300);
     $("#model_id").val(a);
 }
+
 /* we菜单添加 */
 function add_we_menu(a) {
     $('#myModal').modal('show');
     $("#we_menu_leftid").val(a);
 }
+
 /* 路由规则编辑 */
 $(function () {
-    $('body').on('click','.routeedit-btn',function () {
+    $('body').on('click', '.routeedit-btn', function () {
         var $url = this.href,
             val = $(this).data('id');
         $.post($url, {id: val}, function (data) {
@@ -547,7 +559,7 @@ $(function () {
                 $("#editroute_full_url").val(data.full_url);
                 $("#editroute_url").val(data.url);
                 if (data.status == 1) {
-                    $("#editroute_status").prop("checked",true);
+                    $("#editroute_status").prop("checked", true);
                 } else {
                     $("#editroute_status").prop("checked", false);
                 }
@@ -561,14 +573,14 @@ $(function () {
 });
 /* 友链编辑 */
 $(function () {
-	$('body').on('click','.linkedit-btn',function () {
+    $('body').on('click', '.linkedit-btn', function () {
         var $url = this.href,
             val = $(this).data('id');
         $.post($url, {plug_link_id: val}, function (data) {
             if (data.code == 1) {
                 $("#myModaledit").show(300);
                 $("#editplug_link_id").val(data.plug_link_id);
-				$("#editplug_link_l").val(data.plug_link_l);
+                $("#editplug_link_l").val(data.plug_link_l);
                 $("#editplug_link_name").val(data.plug_link_name);
                 $("#editplug_link_url").val(data.plug_link_url);
                 $("#editplug_link_target").val(data.plug_link_target);
@@ -584,7 +596,7 @@ $(function () {
 });
 /* 广告位编辑 */
 $(function () {
-	$('body').on('click','.adtypeedit-btn',function () {
+    $('body').on('click', '.adtypeedit-btn', function () {
         var $url = this.href,
             val = $(this).data('id');
         $.post($url, {plug_adtype_id: val}, function (data) {
@@ -603,7 +615,7 @@ $(function () {
 
 /* 楼宇名称编辑 */
 $(function () {
-    $('body').on('click','.buildingedit-btn',function () {
+    $('body').on('click', '.buildingedit-btn', function () {
         var $url = this.href,
             val = $(this).data('id');
         $.post($url, {id: val}, function (data) {
@@ -619,10 +631,28 @@ $(function () {
     });
 });
 
+/* 账单调整金额编辑 */
+$(function () {
+    $('body').on('click', '.billedit_btn', function () {
+        var $url = this.href,
+            val = $(this).data('id');
+        $.post($url, {id: val}, function (data) {
+            if (data.code == 1) {
+                $("#myModaledit").show(300);
+                $("#id").val(data.id);
+                $("#discounted_amount").val(data.discounted_amount);
+                $("#discounted_amount_reason").val(data.discounted_amount_reason)
+            } else {
+                layer.alert(data.msg, {icon: 5});
+            }
+        }, "json");
+        return false;
+    });
+});
 
 /* 回复留言 */
 $(function () {
-	$('body').on('click','.sugreply-btn',function () {
+    $('body').on('click', '.sugreply-btn', function () {
         var $url = this.href,
             val = $(this).data('id');
         $.post($url, {plug_sug_id: val}, function (data) {
@@ -640,7 +670,7 @@ $(function () {
 });
 /* 来源编辑 */
 $(function () {
-	$('body').on('click','.sourceedit-btn',function () {
+    $('body').on('click', '.sourceedit-btn', function () {
         var $url = this.href,
             val = $(this).data('id');
         $.post($url, {source_id: val}, function (data) {
@@ -656,6 +686,7 @@ $(function () {
         return false;
     });
 });
+
 //来源
 function souadd(val) {
     $('#news_source').val(val);
@@ -663,7 +694,7 @@ function souadd(val) {
 
 /* 微信菜单编辑 */
 $(function () {
-	$('body').on('click','.menuedit-btn',function () {
+    $('body').on('click', '.menuedit-btn', function () {
         var $url = this.href,
             val = $(this).data('id');
         $.post($url, {we_menu_id: val}, function (data) {
@@ -675,10 +706,10 @@ $(function () {
                 $("#editwe_menu_type").val(data.we_menu_type);
                 $("#editwe_menu_typeval").val(data.we_menu_typeval);
                 $("#editwe_menu_order").val(data.we_menu_order);
-                if(data.we_menu_open){
-                    $("#editwe_menu_open").prop("checked",true);
-                }else{
-                    $("#editwe_menu_open").prop("checked",false);
+                if (data.we_menu_open) {
+                    $("#editwe_menu_open").prop("checked", true);
+                } else {
+                    $("#editwe_menu_open").prop("checked", false);
                 }
             } else {
                 layer.alert(data.msg, {icon: 5});
@@ -689,7 +720,7 @@ $(function () {
 });
 /* 微信关键词回复编辑 */
 $(function () {
-	$('body').on('click','.replyedit-btn',function () {
+    $('body').on('click', '.replyedit-btn', function () {
         var $url = this.href,
             val = $(this).data('id');
         $.post($url, {we_reply_id: val}, function (data) {
@@ -698,23 +729,23 @@ $(function () {
                 $("#editwe_reply_id").val(data.we_reply_id);
                 $("#editwe_reply_key").val(data.we_reply_key);
                 $("#editwe_reply_type").val(data.we_reply_type);
-				var Modal=$("#editwe_reply_type").parents('.modal');
-				if(data.we_reply_type=='news'){
-					Modal.find("#input-text").hide();
-					Modal.find("#input-news").show();
-					$("#editnews_title").val(data.we_reply_content.title);
-					$("#editnews_description").val(data.we_reply_content.description);
-					$("#editnews_url").val(data.we_reply_content.url);
-					$("#editnews_image").val(data.we_reply_content.image);
-				}else{
-					Modal.find("#input-news").hide();
-					Modal.find("#input-text").show();
-					$("#editwe_reply_content").val(data.we_reply_content);
-				}
-                if(data.we_reply_open){
-                    $("#editwe_reply_open").prop("checked",true);
-                }else{
-                    $("#editwe_reply_open").prop("checked",false);
+                var Modal = $("#editwe_reply_type").parents('.modal');
+                if (data.we_reply_type == 'news') {
+                    Modal.find("#input-text").hide();
+                    Modal.find("#input-news").show();
+                    $("#editnews_title").val(data.we_reply_content.title);
+                    $("#editnews_description").val(data.we_reply_content.description);
+                    $("#editnews_url").val(data.we_reply_content.url);
+                    $("#editnews_image").val(data.we_reply_content.image);
+                } else {
+                    Modal.find("#input-news").hide();
+                    Modal.find("#input-text").show();
+                    $("#editwe_reply_content").val(data.we_reply_content);
+                }
+                if (data.we_reply_open) {
+                    $("#editwe_reply_open").prop("checked", true);
+                } else {
+                    $("#editwe_reply_open").prop("checked", false);
                 }
             } else {
                 layer.alert(data.msg, {icon: 5});
@@ -750,12 +781,13 @@ $("#file2").change(function () {
 });
 //
 $("input[id^=file_]").change(function () {
-    var field=$(this).data('field'),objUrl = getObjectURL2(this.files[0],field);
+    var field = $(this).data('field'), objUrl = getObjectURL2(this.files[0], field);
     console.log("objUrl = " + objUrl);
     if (objUrl) {
-        $("#img_"+field).attr("src", objUrl);
+        $("#img_" + field).attr("src", objUrl);
     }
 });
+
 function getObjectURL(file) {
     var url = null;
     if (window.createObjectURL != undefined) { // basic
@@ -770,6 +802,7 @@ function getObjectURL(file) {
     }
     return url;
 }
+
 function getObjectURL1(file) {
     var url = null;
     if (window.createObjectURL != undefined) { // basic
@@ -784,6 +817,7 @@ function getObjectURL1(file) {
     }
     return url;
 }
+
 function getObjectURL12(file) {
     var url = null;
     if (window.createObjectURL != undefined) { // basic
@@ -798,40 +832,46 @@ function getObjectURL12(file) {
     }
     return url;
 }
-function getObjectURL2(file,field) {
+
+function getObjectURL2(file, field) {
     var url = null;
     if (window.createObjectURL != undefined) { // basic
-        $("#oldcheckpic_"+field).val("nopic");
+        $("#oldcheckpic_" + field).val("nopic");
         url = window.createObjectURL(file);
     } else if (window.URL != undefined) { // mozilla(firefox)
-        $("#oldcheckpic_"+field).val("nopic");
+        $("#oldcheckpic_" + field).val("nopic");
         url = window.URL.createObjectURL(file);
     } else if (window.webkitURL != undefined) { // webkit or chrome
-        $("#oldcheckpic_"+field).val("nopic");
+        $("#oldcheckpic_" + field).val("nopic");
         url = window.webkitURL.createObjectURL(file);
     }
     return url;
 }
-function backpic2(picurl,field) {
-    $("#img_"+field).attr("src", picurl);//还原修改前的图片
-    $("#file_"+field).val("");//清空文本框的值
-    $("#oldcheckpic_"+field).val(picurl);//清空文本框的值
+
+function backpic2(picurl, field) {
+    $("#img_" + field).attr("src", picurl);//还原修改前的图片
+    $("#file_" + field).val("");//清空文本框的值
+    $("#oldcheckpic_" + field).val(picurl);//清空文本框的值
 }
+
 function backpic(picurl) {
     $("#img0").attr("src", picurl);//还原修改前的图片
     $('#file0').val("");//清空文本框的值
     $("input[name='oldcheckpic']").val(picurl);//清空文本框的值
 }
+
 function backpic1(picurl) {
     $("#img1").attr("src", picurl);//还原修改前的图片
     $('#file1').val("");//清空文本框的值
     $("input[name='oldcheckpic']").val(picurl);//清空文本框的值
 }
+
 function backpic12(picurl) {
     $("#img2").attr("src", picurl);//还原修改前的图片
     $('#file2').val("");//清空文本框的值
     $("input[name='oldcheckpic']").val(picurl);//清空文本框的值
 }
+
 /* 新闻多图删除 */
 function delall(id, url) {
     $('#id' + id).hide();
@@ -840,12 +880,13 @@ function delall(id, url) {
     var pic_newold = str.replace(surl, "");
     $('#pic_oldlist').val(pic_newold);
 }
+
 /*************************************************************************** 数据备份还原********************************************************/
 /* 数据库备份、优化、修复 */
 (function ($) {
     $("a[id^=optimize_]").click(function () {
         $.get(this.href, function (data) {
-            if (data.code==1) {
+            if (data.code == 1) {
                 layer.alert(data.msg, {icon: 6});
             } else {
                 layer.alert(data.msg, {icon: 5});
@@ -855,7 +896,7 @@ function delall(id, url) {
     });
     $("a[id^=repair_]").click(function () {
         $.get(this.href, function (data) {
-            if (data.code==1) {
+            if (data.code == 1) {
                 layer.alert(data.msg, {icon: 6});
             } else {
                 layer.alert(data.msg, {icon: 5});
@@ -868,9 +909,9 @@ function delall(id, url) {
     $optimize = $("#optimize"), $repair = $("#repair");
 
     $optimize.add($repair).click(function () {
-		var that=this;
+        var that = this;
         $.post(this.href, $form.serialize(), function (data) {
-            if (data.code==1) {
+            if (data.code == 1) {
                 layer.alert(data.msg, {icon: 6}, function (index) {
                     layer.close(index);
                 });
@@ -890,12 +931,12 @@ function delall(id, url) {
     $export.click(function () {
         $export.children().addClass("disabled");
         $export.children().text("正在发送备份请求...");
-		var that=this;
+        var that = this;
         $.post(
             $form.attr("action"),
             $form.serialize(),
             function (data) {
-                if (data.code==1) {
+                if (data.code == 1) {
                     tables = data.tables;
                     $export.children().text(data.msg + "开始备份，请不要关闭本页面！");
                     backup(data.tab);
@@ -919,18 +960,18 @@ function delall(id, url) {
 
     function backup(tab, status) {
         status && showmsg(tab.id, "开始备份...(0%)");
-		var that=this;
+        var that = this;
         $.get($form.attr("action"), tab, function (data) {
-            if (data.code==1) {
+            if (data.code == 1) {
                 showmsg(tab.id, data.msg);
                 if (!$.isPlainObject(data.tab)) {
                     $export.children().removeClass("disabled");
                     $export.children().text("备份完成，点击重新备份");
                     window.onbeforeunload = null;
                 }
-				if(data.tab !=undefined){
-					backup(data.tab, tab.id != data.tab.id);					
-				}
+                if (data.tab != undefined) {
+                    backup(data.tab, tab.id != data.tab.id);
+                }
             } else {
                 updateAlert(data.msg, 'alert-error');
                 $export.children().removeClass("disabled");
@@ -944,7 +985,7 @@ function delall(id, url) {
     }
 
     function showmsg(id, msg) {
-        $tr=$form.find("input[value=" + tables[id] + "]").closest("tr");
+        $tr = $form.find("input[value=" + tables[id] + "]").closest("tr");
         $tr.find(".green").html("");
         $tr.find(".info").html("");
         $tr.find(".backup").html(msg);
@@ -977,11 +1018,11 @@ $(function () {
 });
 /*************************************************************************** 生成安全文件********************************************************/
 (function ($) {
-	$('body').on('click','#security_generate',function () {
+    $('body').on('click', '#security_generate', function () {
         $(this).children().addClass("disabled");
         $(this).find("span").text("正在生成安全文件...");
         $.get(this.href, function (data) {
-            if (data.code==1) {
+            if (data.code == 1) {
                 layer.alert(data.msg, {icon: 6}, function (index) {
                     layer.close(index);
                     window.location.href = data.url;
@@ -995,180 +1036,182 @@ $(function () {
             $(this).find("span").text("重新生成安全文件");
         });
         return false;
-});
+    });
 })(jQuery);
 /*************************************************************************** 选择列表框change事件********************************************************/
 (function ($) {
-	$('body').on('change','.ajax_change',function () {		
+    $('body').on('change', '.ajax_change', function () {
         var $form = $(this).parents("form");
-		$.ajax({
-		    url:$form.attr('action'),
-			type:"POST",
-			data:$form.serialize(),            
-			success: function(data,status){
-				$("#ajax-data").html(data);
-			}
-		});	
-    });
-    $('body').on('click','.range_inputs .applyBtn',function () {
-        var reservation=$('#reservation');
-        var $form = reservation.parents("form");
-        reservation.val($('input[name="daterangepicker_start"]').val()+' - '+$('input[name="daterangepicker_end"]').val());
         $.ajax({
-            url:$form.attr('action'),
-            type:"POST",
-            data:$form.serialize(),
-            success: function(data,status){
+            url: $form.attr('action'),
+            type: "POST",
+            data: $form.serialize(),
+            success: function (data, status) {
                 $("#ajax-data").html(data);
             }
         });
     });
-    })(jQuery);
+    $('body').on('click', '.range_inputs .applyBtn', function () {
+        var reservation = $('#reservation');
+        var $form = reservation.parents("form");
+        reservation.val($('input[name="daterangepicker_start"]').val() + ' - ' + $('input[name="daterangepicker_end"]').val());
+        $.ajax({
+            url: $form.attr('action'),
+            type: "POST",
+            data: $form.serialize(),
+            success: function (data, status) {
+                $("#ajax-data").html(data);
+            }
+        });
+    });
+})(jQuery);
 (function ($) {
-	$('body').on('change','.submit_change',function () {		
-        var $form = $(this).parents("form");	
+    $('body').on('change', '.submit_change', function () {
+        var $form = $(this).parents("form");
         $form.submit();
     });
-    })(jQuery);
+})(jQuery);
+
 function ajax_page(page) {
-	$.ajax({
-		type:"POST",
-		data:$('#list-filter').serialize()+'&page='+page,            
-		success: function(data,status){
-			$("#ajax-data").html(data);
-		}
-	});
+    $.ajax({
+        type: "POST",
+        data: $('#list-filter').serialize() + '&page=' + page,
+        success: function (data, status) {
+            $("#ajax-data").html(data);
+        }
+    });
 }
+
 /*搜索form*/
 $(function () {
-	$('body').on('click','.ajax-search-form',function () {
-		$.ajax({
-			type:"POST",
-			data:$(this).parents("form").serialize(),            
-			success: function(data,status){
-				$("#ajax-data").html(data);
-			}
-		});	
+    $('body').on('click', '.ajax-search-form', function () {
+        $.ajax({
+            type: "POST",
+            data: $(this).parents("form").serialize(),
+            success: function (data, status) {
+                $("#ajax-data").html(data);
+            }
+        });
         return false;
     });
 });
 /*搜索type*/
 $(function () {
-	$('body').on('click','.ajax-search-type',function () {
-		$(this).parents("form")[0].reset();
-		alert($(this).data('type'));
-		$.ajax({
-			type:"POST",
-			data:{type:$(this).data('type')},            
-			success: function(data,status){
-				$("#ajax-data").html(data);
-			}
-		});	
+    $('body').on('click', '.ajax-search-type', function () {
+        $(this).parents("form")[0].reset();
+        alert($(this).data('type'));
+        $.ajax({
+            type: "POST",
+            data: {type: $(this).data('type')},
+            success: function (data, status) {
+                $("#ajax-data").html(data);
+            }
+        });
         return false;
     });
 });
 /*搜索form显示全部*/
 $(function () {
-	$('body').on('click','.ajax-display-all',function () {
-		$(this).parents("form")[0].reset();
-		$.ajax({
-			type:"POST",
-			data:{},            
-			success: function(data,status){
-				$("#ajax-data").html(data);
-			}
-		});	
+    $('body').on('click', '.ajax-display-all', function () {
+        $(this).parents("form")[0].reset();
+        $.ajax({
+            type: "POST",
+            data: {},
+            success: function (data, status) {
+                $("#ajax-data").html(data);
+            }
+        });
         return false;
     });
 });
 /*清空*/
 $(function () {
-	$('body').on('click','.ajax-drop',function () {
-		$(this).parents("form")[0].reset();
-		var url=$(this).parent('a').attr('href');
-		$.ajax({
-			type:"POST",
-			url:url,
-			data:{},            
-			success: function(data,status){
-				layer.alert(data.msg, {icon: 6}, function (index) {
+    $('body').on('click', '.ajax-drop', function () {
+        $(this).parents("form")[0].reset();
+        var url = $(this).parent('a').attr('href');
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: {},
+            success: function (data, status) {
+                layer.alert(data.msg, {icon: 6}, function (index) {
                     layer.close(index);
                     window.location.href = data.url;
                 });
-			}
-		});	
+            }
+        });
         return false;
     });
 });
 /*详情*/
 $(function () {
-	$('body').on('click','.show-details-btn',function (e) {
-		e.preventDefault();
-		$(this).closest('tr').next().toggleClass('open');
-		$(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
+    $('body').on('click', '.show-details-btn', function (e) {
+        e.preventDefault();
+        $(this).closest('tr').next().toggleClass('open');
+        $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
     });
 });
 $(function () {
     /*权限管理*/
-	$('body').on('click','.rule-list',function () {
-		var $a=$(this),$tr=$a.parents('tr');
-		var $pid=$tr.attr('id');
-		if($a.find('span').hasClass('fa-minus')){
-			$("tr[id^='"+$pid+"-']").attr('style','display:none');
-			$a.find('span').removeClass('fa-minus').addClass('fa-plus');
-		}else{
-			if($("tr[id^='"+$pid+"-']").length>0){
-				$("tr[id^='"+$pid+"-']").attr('style','');
-				$a.find('span').removeClass('fa-plus').addClass('fa-minus');
-			}else{
-				var $url = this.href,$id=$a.data('id'),$level=$a.data('level');
-				$.post($url,{pid:$id,level:$level,id:$pid}, function (data) {
-					if (data) {
-						$a.find('span').removeClass('fa-plus').addClass('fa-minus');
-						$tr.after(data);
-					}else{
-						$a.find('span').removeClass('fa-plus').addClass('fa-minus');
-					}
-				}, "json");
-			}
-		}
+    $('body').on('click', '.rule-list', function () {
+        var $a = $(this), $tr = $a.parents('tr');
+        var $pid = $tr.attr('id');
+        if ($a.find('span').hasClass('fa-minus')) {
+            $("tr[id^='" + $pid + "-']").attr('style', 'display:none');
+            $a.find('span').removeClass('fa-minus').addClass('fa-plus');
+        } else {
+            if ($("tr[id^='" + $pid + "-']").length > 0) {
+                $("tr[id^='" + $pid + "-']").attr('style', '');
+                $a.find('span').removeClass('fa-plus').addClass('fa-minus');
+            } else {
+                var $url = this.href, $id = $a.data('id'), $level = $a.data('level');
+                $.post($url, {pid: $id, level: $level, id: $pid}, function (data) {
+                    if (data) {
+                        $a.find('span').removeClass('fa-plus').addClass('fa-minus');
+                        $tr.after(data);
+                    } else {
+                        $a.find('span').removeClass('fa-plus').addClass('fa-minus');
+                    }
+                }, "json");
+            }
+        }
         return false;
-    }).on('change','.ajax_change_news_columnid',function () {
-        var obj=$(this).siblings('.action');
-        var old_id=obj.find('.cancel-change-columnid').data('columnid'),new_id=$(this).val();
-        if(old_id != new_id){
-            obj.find('.change-columnid').data('columnid',new_id);
+    }).on('change', '.ajax_change_news_columnid', function () {
+        var obj = $(this).siblings('.action');
+        var old_id = obj.find('.cancel-change-columnid').data('columnid'), new_id = $(this).val();
+        if (old_id != new_id) {
+            obj.find('.change-columnid').data('columnid', new_id);
             obj.removeClass('none');
-        }else{
+        } else {
             obj.addClass('none');
         }
-    }).on('click','a.change-columnid',function () {
-        var $url=this.href,$news_columnid=$(this).data('columnid'),$n_id=$(this).data('id');
-        var obj=$(this);
-        $.post($url,{news_columnid:$news_columnid,n_id:$n_id}, function (data) {
-            if (data.code==1) {
+    }).on('click', 'a.change-columnid', function () {
+        var $url = this.href, $news_columnid = $(this).data('columnid'), $n_id = $(this).data('id');
+        var obj = $(this);
+        $.post($url, {news_columnid: $news_columnid, n_id: $n_id}, function (data) {
+            if (data.code == 1) {
                 obj.parent().addClass('none');
-                obj.siblings('.cancel-change-columnid').data('columnid',$news_columnid);
-                layer.msg(data.msg,{icon: 6});
-            }else{
-                layer.msg(data.msg,{icon: 5});
+                obj.siblings('.cancel-change-columnid').data('columnid', $news_columnid);
+                layer.msg(data.msg, {icon: 6});
+            } else {
+                layer.msg(data.msg, {icon: 5});
             }
         }, "json");
         return false;
-    }).on('click','a.cancel-change-columnid',function () {
-        var old_id=$(this).data('columnid'),obj=$(this).parent();
+    }).on('click', 'a.cancel-change-columnid', function () {
+        var old_id = $(this).data('columnid'), obj = $(this).parent();
         obj.addClass('none').siblings('.ajax_change_news_columnid').val(old_id);
         return false;
     });
-	//极验验证
-    $('#geetest_on').click(function(){
+    //极验验证
+    $('#geetest_on').click(function () {
         $("#geetest").toggle(200);
     });
 });
 <!--JS导出表格插件-->
-$("#jsexport").click(function(){
+$("#jsexport").click(function () {
     $("#dynamic-table").tableExport({
-        type:"xlsx",
-        escape:"false",
+        type: "xlsx",
+        escape: "false",
     });
 });
