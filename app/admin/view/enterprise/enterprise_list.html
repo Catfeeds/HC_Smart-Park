@@ -82,7 +82,7 @@
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <form class="form-horizontal ajaxForm2" name="member_group_runadd" method="post"
-          action="{:url('admin/Park/building_runadd')}">
+          action="{:url('admin/Park/building_runadd')}" style="display: contents">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -260,7 +260,6 @@
 
                 </table>
 
-
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </form>
@@ -268,6 +267,7 @@
 
 
 <script>
+    
 
     // 查看企业详情部分JS
     $('#ajax-enterprise-chakan').on('click',function () {
@@ -277,7 +277,6 @@
             type:'get',
             dataType:'json',
             success:function(data){
-                console.log(data)
                 $('.modal-title').text(data.data.enterprise_list_name)
                 $('.enterprise_list_name').text(data.data.enterprise_list_name)
                 $('.enterprise_list_logo').attr("src","data.data.enterprise_list_logo")
@@ -331,11 +330,9 @@
                 $('.operator').text(data.data.entry_info.operator)
                 $('.drawer').text(data.data.entry_info.drawer)
                 $('.confirmer').text(data.data.entry_info.confirmer)
-
             }
         })
     })
-
 
 
 
