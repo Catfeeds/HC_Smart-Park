@@ -96,7 +96,11 @@ class EnterpriseList extends Model
      */
     public function getEnterpriseListLegalSetupDayAttr($time)
     {
-        return \date('Y-m-d', $time);
+        if ($time > 0) {
+            return \date('Y-m-d', $time);
+        } else {
+            return '信息未填写';
+        }
     }
 
     /**
