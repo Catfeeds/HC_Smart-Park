@@ -82,7 +82,7 @@
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <form class="form-horizontal ajaxForm2" name="member_group_runadd" method="post"
-          action="{:url('admin/Park/building_runadd')}" style="display: contents">
+          action="{:url('admin/Park/building_runadd')}" style="display: contents" >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -270,7 +270,7 @@
     
 
     // 查看企业详情部分JS
-    $('#ajax-enterprise-chakan').on('click',function () {
+        $('#dynamic-table').on('click','#ajax-enterprise-chakan',function () {
         var enterpriseNum = this.getAttribute("enterprise-id");
         $.ajax({
             url:'http://www.hacyy.com/enterprise/' + enterpriseNum,
