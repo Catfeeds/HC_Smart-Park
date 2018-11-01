@@ -209,9 +209,9 @@ class Park extends Base
         $status = [
             0 => '未租',
             1 => '已租',
-            2 => '自留',
+            2 => '已售',
             3 => '已定',
-            4 => '已售'
+            4 => '自留'
 
         ];
         $building = Db::name('ParkBuilding')->where('status', 'eq', 1)->select();
