@@ -17,23 +17,23 @@
     <td class="hidden-xs">
         {if $v.status eq 1}
         <span class="red" title="已租">
-					<div id="zt{$v.id}"><button class="btn btn-minier btn-danger">已租</button></div>
+					<div id="zt{$v.id}"><button class="btn btn-minier btn1">已租</button></div>
 				</span>
         {elseif $v.status eq 0}
         <span class="red" title="未租">
-					<div id="zt{$v.id}"><button class="btn btn-minier btn-yellow">未租</button></div>
+					<div id="zt{$v.id}"><button class="btn btn-minier btn0">未租</button></div>
                 </span>
         {elseif $v.status eq 2}
         <span class="red" title="已售">
-					<div id="zt{$v.id}"><button class="btn btn-minier btn-info">已售</button></div>
+					<div id="zt{$v.id}"><button class="btn btn-minier btn2">已售</button></div>
                 </span>
         {elseif $v.status eq 3}
         <span class="red" title="已定">
-					<div id="zt{$v.id}"><button class="btn btn-minier btn-success">已定</button></div>
+					<div id="zt{$v.id}"><button class="btn btn-minier btn3">已定</button></div>
                 </span>
         {elseif $v.status eq 4}
         <span class="red" title="自留">
-					<div id="zt{$v.id}"><button class="btn btn-minier btn-inverse">自留</button></div>
+					<div id="zt{$v.id}"><button class="btn btn-minier btn4">自留</button></div>
                 </span>
         {/if}
     </td>
