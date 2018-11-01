@@ -37,7 +37,7 @@ class Index extends Common
         $data[2] = ['value' => $status2, 'name' => '已售'];
 
         $status3 = $model->where('status', 3)->count();
-        $data[3] = ['value' => $status3, 'name' => '已定'];
+        $data[3] = ['value' => $status3, 'name' => '已订'];
 
         $status4 = $model->where('status', 4)->count();
         $data[4] = ['value' => $status4, 'name' => '自留'];
@@ -1090,21 +1090,30 @@ EFO;
                     'area' => 1442.1
                 ];
                 $data['svg'] = <<<EFO
-<svg id="边" xmlns="http://www.w3.org/2000/svg" width="650" height="248" viewBox="0 0 1621 620">
+<svg id="边" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="650" height="248" viewBox="0 0 1621 620">
 <defs>
     <style>
       .cls-1, .cls-2 {
         fill: #585b7a;
       }
 
-      .cls-2, .cls-4 {
+      .cls-2, .cls-5 {
         fill-rule: evenodd;
       }
 
-      .cls-3, .cls-4 {
+      .cls-3 {
+        filter: url(#filter);
+      }
+
+      .cls-4, .cls-5 {
         fill: #54befc;
       }
     </style>
+    <filter id="filter" filterUnits="userSpaceOnUse">
+      <feFlood result="flood" flood-color="#ffde83"/>
+      <feComposite result="composite" operator="in" in2="SourceGraphic"/>
+      <feBlend result="blend" in2="SourceGraphic"/>
+    </filter>
   </defs>
   <rect id="矩形_1" data-name="矩形 1" class="cls-1" x="199" y="510" width="1191" height="6"/>
   <rect id="矩形_3_拷贝_14" data-name="矩形 3 拷贝 14" class="cls-1" x="192" y="93" width="6" height="19"/>
@@ -1321,21 +1330,23 @@ EFO;
     <rect id="矩形_5_拷贝_29-16" data-name="矩形 5 拷贝 29" class="cls-1" x="559" y="182" width="25" height="1"/>
     <rect id="矩形_5_拷贝_29-17" data-name="矩形 5 拷贝 29" class="cls-1" x="556" y="147" width="1" height="71"/>
   </g>
-  <rect id="矩形_5" data-name="矩形 5" class="cls-3" x="275" y="108" width="141" height="157"/>
-  <rect id="矩形_5_拷贝_2" data-name="矩形 5 拷贝 2" class="cls-3" x="275" y="325" width="141" height="179"/>
-  <rect id="矩形_5_拷贝_3" data-name="矩形 5 拷贝 3" class="cls-3" x="441" y="325" width="141" height="179"/>
-  <rect id="矩形_5_拷贝_4" data-name="矩形 5 拷贝 4" class="cls-3" x="606" y="325" width="161" height="179"/>
-  <rect id="矩形_7" data-name="矩形 7" class="cls-3" x="789" y="423" width="80" height="81"/>
-  <rect id="矩形_7_拷贝_4" data-name="矩形 7 拷贝 4" class="cls-3" x="1152" y="423" width="69" height="81"/>
-  <rect id="矩形_7_拷贝_5" data-name="矩形 7 拷贝 5" class="cls-3" x="1234" y="423" width="68" height="81"/>
-  <rect id="矩形_7_拷贝_6" data-name="矩形 7 拷贝 6" class="cls-3" x="1318" y="361" width="62" height="143"/>
-  <rect id="矩形_7_拷贝" data-name="矩形 7 拷贝" class="cls-3" x="884" y="423" width="80" height="81"/>
-  <rect id="矩形_7_拷贝_2" data-name="矩形 7 拷贝 2" class="cls-3" x="980" y="325" width="69" height="179"/>
-  <rect id="矩形_7_拷贝_3" data-name="矩形 7 拷贝 3" class="cls-3" x="1067" y="325" width="69" height="179"/>
-  <rect id="矩形_5_拷贝" data-name="矩形 5 拷贝" class="cls-3" x="792" y="108" width="268" height="157"/>
-  <path id="矩形_6" data-name="矩形 6" class="cls-4" d="M108,121h98V108h47V265H108V121Z"/>
-  <path id="矩形_6_拷贝_2" data-name="矩形 6 拷贝 2" class="cls-4" d="M107,467H207v37h45V325H107V467Z"/>
-  <path id="矩形_6_拷贝" data-name="矩形 6 拷贝" class="cls-4" d="M1465,127h-92V108h-47V265h139V127Z"/>
+  <g id="组_22" data-name="组 22" class="cls-3">
+    <rect id="矩形_5" data-name="矩形 5" class="cls-4" x="275" y="108" width="141" height="157"/>
+    <rect id="矩形_5_拷贝_2" data-name="矩形 5 拷贝 2" class="cls-4" x="275" y="325" width="141" height="179"/>
+    <rect id="矩形_5_拷贝_3" data-name="矩形 5 拷贝 3" class="cls-4" x="441" y="325" width="141" height="179"/>
+    <rect id="矩形_5_拷贝_4" data-name="矩形 5 拷贝 4" class="cls-4" x="606" y="325" width="161" height="179"/>
+    <rect id="矩形_7" data-name="矩形 7" class="cls-4" x="789" y="423" width="80" height="81"/>
+    <rect id="矩形_7_拷贝_4" data-name="矩形 7 拷贝 4" class="cls-4" x="1152" y="423" width="69" height="81"/>
+    <rect id="矩形_7_拷贝_5" data-name="矩形 7 拷贝 5" class="cls-4" x="1234" y="423" width="68" height="81"/>
+    <rect id="矩形_7_拷贝_6" data-name="矩形 7 拷贝 6" class="cls-4" x="1318" y="361" width="62" height="143"/>
+    <rect id="矩形_7_拷贝" data-name="矩形 7 拷贝" class="cls-4" x="884" y="423" width="80" height="81"/>
+    <rect id="矩形_7_拷贝_2" data-name="矩形 7 拷贝 2" class="cls-4" x="980" y="325" width="69" height="179"/>
+    <rect id="矩形_7_拷贝_3" data-name="矩形 7 拷贝 3" class="cls-4" x="1067" y="325" width="69" height="179"/>
+    <rect id="矩形_5_拷贝" data-name="矩形 5 拷贝" class="cls-4" x="792" y="108" width="268" height="157"/>
+    <path id="矩形_6" data-name="矩形 6" class="cls-5" d="M108,121h98V108h47V265H108V121Z"/>
+    <path id="矩形_6_拷贝_2" data-name="矩形 6 拷贝 2" class="cls-5" d="M107,467H207v37h45V325H107V467Z"/>
+    <path id="矩形_6_拷贝" data-name="矩形 6 拷贝" class="cls-5" d="M1465,127h-92V108h-47V265h139V127Z"/>
+  </g>
 </svg>
 
 EFO;

@@ -33,8 +33,8 @@ option = {
         orient: 'vertical',
         right: 80,
         top: 110,
-        itemGap: 38,
-        data: ['已租','未租','已售出','已预订','房自留']
+        itemGap: 18,
+        data: ['已租','未租','已售','已订','自留']
     },
     series: [
         //内层饼状图
@@ -57,9 +57,9 @@ option = {
             data:[
                 {value:0, name:'已租'},
                 {value:0, name:'未租'},
-                {value:0, name:'已售出'},
-                {value:0, name:'已预订'},
-                {value:0, name:'房自留'}
+                {value:0, name:'已售'},
+                {value:0, name:'已订'},
+                {value:0, name:'自留'}
             ]
         },
         //外层饼状图
@@ -102,9 +102,9 @@ option = {
             data:[
                 {value:0, name:'已租'},
                 {value:0, name:'未租'},
-                {value:0, name:'已售出'},
-                {value:0, name:'已预订'},
-                {value:0, name:'房自留'}
+                {value:0, name:'已售'},
+                {value:0, name:'已订'},
+                {value:0, name:'自留'}
             ]
         }
     ]
