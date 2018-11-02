@@ -13,11 +13,11 @@ return [
     'token_expires_time' => '2592000',
     //APP版本信息
     'app_version' => [
-        'version' => '1.0.4',
-        'publish_time' => '2018/10/12',
+        'version' => '1.0.5',
+        'publish_time' => '2018/11/01',
         'size' => '',
         'content' => '',
-        'download_url' => 'http://tongnian.qiniuniu.com/%E6%B7%AE%E5%AE%89%E7%95%99%E5%88%9B%E5%9B%ADv1.0.4.apk',
+        'download_url' => 'http://ov7uxfxnm.bkt.clouddn.com/%E6%B7%AE%E5%AE%89%E7%95%99%E5%88%9B%E5%9B%ADv1.0.5.apk',
         'is_force' => '',
     ],
     //七牛云的上传地址
