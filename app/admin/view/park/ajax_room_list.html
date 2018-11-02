@@ -41,7 +41,8 @@
     <td>
         <div class="hidden-sm hidden-xs action-buttons">
             {if $v.status eq 0}
-            <a class="blue" href="{:url('admin/Enterprise/enterprise_add',array('room_id'=>$v['room_number'],'phase'=>$v['phase']))}" title="添加企业">
+            <a class="blue" href="{:url('admin/Enterprise/enterprise_add',array('room_id'=>$v['room_number'],'phase'=>$v['phase']))}
+" title="添加企业">
                 <i class="ace-icon fa  bigger-130 iconfont icon-jia1"></i>
             </a>
             {else}
