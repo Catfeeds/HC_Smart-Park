@@ -136,8 +136,8 @@ class Admin extends Model
                 'group_id'=>$group_id,
             );
             Db::name('auth_group_access')->insert($accdata);
-            //添加会员
-            $member_id=MemberList::add($admin_username,$admin_pwd_salt,$admin_pwd,1,$admin_realname,$admin_email,$admin_tel,1,1);
+            //添加会员,添加的管理员为前台用户并设置为"园区管理组"
+            $member_id=MemberList::add($admin_username,$admin_pwd_salt,$admin_pwd,3,$admin_realname,$admin_email,$admin_tel,1,1);
             //修改admin对应member_id
             if($member_id) self::update(['admin_id' =>$admin_id, 'member_id' =>$member_id]);
             return $admin_id;
