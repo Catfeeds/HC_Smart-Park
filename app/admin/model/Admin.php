@@ -145,10 +145,16 @@ class Admin extends Model
             return 0;
         }
     }
+
+
     /**
-     * 修改管理员
-     * @param array
+     * @param $data
      * @return bool
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 修改管理员
      */
     public static function edit($data)
     {
