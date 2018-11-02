@@ -1564,7 +1564,6 @@ EFO;
   </g>
 </svg>
 
-
 EFO;
 
                 return \show(1, 'OK', $data, 200);
