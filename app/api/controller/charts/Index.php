@@ -76,7 +76,9 @@ class Index extends Common
             $m_s = \date('Y' . '-' . $i . '-' . '01');
             //每个月结束时间
             $m_e = \date('Y' . '-' . $i . '-' . 't');
-            $data[] = Db::name('EnterpriseList')->where('enterprise_list_addtime', 'between time', [$m_s, $m_e])->count();
+            $data[] = Db::name('EnterpriseList')
+                ->where('enterprise_list_addtime', 'between time', [$m_s, $m_e])
+                ->count();
         }
         return ['data' => $data];
     }
